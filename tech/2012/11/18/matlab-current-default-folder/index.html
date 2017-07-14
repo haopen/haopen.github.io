@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>设置 MATLAB 中 Current Folder 的默认文件夹 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="设置 MATLAB 中 Current Folder 的默认文件夹 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">942 字</span>
+    
+
+    
+<h1 class="article-title">设置 MATLAB 中 Current Folder 的默认文件夹
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2012/11/18</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E8%AE%BE%E7%BD%AE&#43;MATLAB&#43;%E4%B8%AD&#43;Current&#43;Folder&#43;%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E5%A4%B9&#43;%2Ftech%2F2012%2F11%2F18%2Fmatlab-current-default-folder%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E8%AE%BE%E7%BD%AE&#43;MATLAB&#43;%E4%B8%AD&#43;Current&#43;Folder&#43;%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E5%A4%B9&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2012%2F11%2F18%2Fmatlab-current-default-folder%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2012-11-18-matlab-current-default-folder.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-matlab" title="Matlab">Matlab</a></span>;
+  
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p>原文地址：<a href="http://www.yueye.org/2011/set-matlab-current-default-folder.html" target="_blank">http://www.yueye.org/2011/set-matlab-current-default-folder.html</a></p>
+
+<p>在我们使用MATLAB的过程中，其<code>Current Folder</code>面板会给我们带来一定的便利性。但遗憾的是，MATLAB自身没有提供友好的设置界面，以供用户自如地设置Current Folder面板上的起始文件夹。这就给我们带来了一定的不便，毕竟每次启动MATLAB后都重新在Current Folder中设置到我们想要的文件夹地址会耗费一定的时间，也会影响我们的心情。</p>
+
+<p>那么，我们应该如何在MATLAB中设置Current Folder面板上的<strong>起始文件夹</strong>位置呢？</p>
+
+<p>在以前的MATLAB版本中，我们可以通过右击MATLAB安装目录下MATLAB快捷方式而在其弹出的对话框中通过设置快捷方式的起始位置而对Current Folder面板上的起始文件夹进行设置。但自从MATLAB进入R2010和R2011后，我们已经不能通过这样的设置来实现我们想要的效果。但MATLAB自身提供了另一种方式，虽然不太友好，但毕竟一次设置永久受益，还是让我们来一起设置一下吧。</p>
+
+<p>首先，思考选择一个你要设置的文件夹路径，比如你可以保持一贯的传统，而设置为“MATLAB\R2011a\work\”文件夹；</p>
+
+<p>接着，让我们进入MATLAB的安装目录下的<code>“MATLAB\R2011a\toolbox\local”</code>文件夹下，在local文件夹下新建一个名为<code>startup</code>的.m文件，在其中输入如下内容：</p>
+
+<pre><code>cd D:\Program Files\MATLAB\R2011a\work
+</code></pre>
+
+<p>其中<code>cd</code>后面的内容为你要设置的起始文件夹路径。</p>
+
+<p>需要注意的是，这里的路径不需要用引号引起来，也不需要做任何处理。编写好<code>startup.m</code>文件并保存后，再次启动MATLAB，可以看到，MATLAB的Current Folder面板上的起始文件夹已经变成了我们设置的路径。</p>
+
+<p>这里还有一点需要特别说明的是，如果你要设置的<strong>路径包含中文名</strong>，比如<code>“D:\我的文档\MATLAB”</code>，则在编写好如下所示的<code>startup.m</code>文件内容：</p>
+
+<pre><code>cd D:\我的文档\MATLAB
+</code></pre>
+
+<p>之后，还需要将该文件的编码修改为<code>Unicode</code>，MATLAB才能正常识别，从而你的设置才能正常发挥作用，MATLAB启动时，Current Folder面板上的起始文件夹初始地址才能变成设置的效果。</p>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2012/09/17/knitr/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> knitr、Markdown、Pandoc 相关的几份资料</div>
+    </a>
+    
+
+    
+    <a href="/tech/2012/11/21/apsrtable-knitr-latex-table/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">apsrtable 在 knitr 中生成 LaTeX 表格 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2012\/09\/17\/knitr\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2012\/11\/21\/apsrtable-knitr-latex-table\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

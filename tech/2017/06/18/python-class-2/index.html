@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>《廖雪峰 Python 教程》笔记 5：面向对象编程2 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="《廖雪峰 Python 教程》笔记 5：面向对象编程2 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">7469 字</span>
+    
+
+    
+<h1 class="article-title">《廖雪峰 Python 教程》笔记 5：面向对象编程2
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/06/18</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;5%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B2&#43;%2Ftech%2F2017%2F06%2F18%2Fpython-class-2%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;5%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B2&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F06%2F18%2Fpython-class-2%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-06-18-Python-class-2.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-python" title="Python">Python</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-python" title="Python">Python</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-class" title="Class">Class</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E7%B1%BB" title="类">类</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：</p>
+
+<p><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143186738532805c392f2cc09446caf3236c34e3f980f000" target="_blank">http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143186738532805c392f2cc09446caf3236c34e3f980f000</a></p>
+
+<p><strong>进一步阅读</strong>资料，了解关于 Metaclass 的相关细节：</p>
+
+<ul>
+<li><a href="/stylus/2014/08/10/python-class-object/">深刻理解Python中的元类(metaclass)</a>；</li>
+<li><a href="/stylus/2017/06/18/create-class-dynamic/">Python 动态创建类z</a>；<br />
+</li>
+</ul>
+
+<p>Python 是动态语言，因此创建了一个<code>class</code>的实例后，可以给该实例绑定任何属性和方法。但是，给一个实例绑定的方法，对另一个实例是不起作用的。为了给所有实例都绑定方法，可以给<code>class</code>绑定方法，之后该方法所有实例均可调用。</p>
+
+<!-- more -->
+
+<h1 id="定制类">定制类</h1>
+
+<h2 id="slots-限制实例可以添加的属性和方法"><strong>slots</strong> - 限制实例可以添加的属性和方法</h2>
+
+<p>试图绑定不允许的属性将得到<code>AttributeError</code>的错误。但要注意，<code>__slots__</code>定义的属性仅对当前类实例起作用，对继承的子类是不起作用的，除非在子类中也定义<code>__slots__</code>，这样，子类实例允许定义的属性就是自身的<code>__slots__</code>加上父类的<code>__slots__</code>。</p>
+
+<pre><code class="language-python">class Student(object):
+    __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
+</code></pre>
+
+<h2 id="str-repr-结果看上去更人性化">__str__(), __repr__() - 结果看上去更人性化</h2>
+
+<ul>
+<li><code>__str__()</code>：<code>print()</code>类的实例时结果看上去更人性化；</li>
+<li><code>__repr__()</code>：直接访问类实例，不<code>print()</code>时的结果更人性化。<br />
+</li>
+</ul>
+
+<pre><code class="language-python">class Student(object):
+    def __init__(self, name):
+        self.name = name
+    def __str__(self):
+        return 'Student object (name=%s)' % self.name
+    __repr__ = __str__
+</code></pre>
+
+<h2 id="iter-类似-list-或-tuple-那样可以-for-in">__iter__() - 类似 list 或 tuple 那样可以 for&hellip; in</h2>
+
+<pre><code>class Fib(object):
+    def __init__(self):
+        self.a, self.b = 0, 1 # 初始化两个计数器a，b
+
+    def __iter__(self):
+        return self # 实例本身就是迭代对象，故返回自己
+
+    def __next__(self):
+        self.a, self.b = self.b, self.a + self.b # 计算下一个值
+        if self.a &gt; 100000: # 退出循环的条件
+            raise StopIteration()
+        return self.a # 返回下一个值
+</code></pre>
+
+<h2 id="getitem-更像-list-下标-切片访问">__getitem__() - 更像 list 下标、切片访问</h2>
+
+<pre><code class="language-python">class Fib(object):
+    def __getitem__(self, n):
+        a, b = 1, 1
+        for x in range(n):
+            a, b = b, a + b
+        return a
+
+&gt;&gt;&gt; f = Fib()
+&gt;&gt;&gt; f[0]
+1
+&gt;&gt;&gt; f[1]
+</code></pre>
+
+<h3 id="切片访问">切片访问</h3>
+
+<pre><code class="language-python">class Fib(object):
+    def __getitem__(self, n):
+        if isinstance(n, int): # n是索引
+            a, b = 1, 1
+            for x in range(n):
+                a, b = b, a + b
+            return a
+        if isinstance(n, slice): # n是切片
+            start = n.start
+            stop = n.stop
+            if start is None:
+                start = 0
+            a, b = 1, 1
+            L = []
+            for x in range(stop):
+                if x &gt;= start:
+                    L.append(a)
+                a, b = b, a + b
+            return L
+</code></pre>
+
+<p>切片的<code>step</code>功能，即<code>f[:10:2]</code>中的<code>2</code>，负数处理等都需要额外的代码实现。所以，要正确实现一个<code>__getitem__()</code>还是有很多工作要做的。</p>
+
+<p>此外，如果把对象看成<code>dict</code>，<code>__getitem__()</code>的参数也可能是一个可以作<code>key</code>的<code>object</code>，例如<code>str</code>。</p>
+
+<p>与之对应的是<code>__setitem__()</code>方法，把对象视作<code>list</code>或<code>dict</code>来对集合赋值。最后，还有一个<code>__delitem__()</code>方法，用于删除某个元素。</p>
+
+<p>总之，通过上面的方法，我们自己定义的类表现得和 Python 自带的<code>list</code>、<code>tuple</code>、<code>dict</code>没什么区别，这完全归功于动态语言的“鸭子类型”，不需要强制继承某个接口。</p>
+
+<blockquote>
+<p><strong>理解</strong>：可能直接继承自<code>list()</code>，然后将返回值变成一个<code>list</code>值的对象可能更容易达到目的。</p>
+</blockquote>
+
+<h2 id="getattr-动态返回一个不存在的属性或函数">__getattr__() - 动态返回一个不存在的属性或函数</h2>
+
+<p>注意与<code>getattr()</code>函数区分开：<code>c = getattr(m, 'myclass')</code>。前者是返回指定类属性的取值，后者是访问不存在的属性时动态返回一个属性或函数。</p>
+
+<pre><code class="language-python">class Student(object):
+
+    def __init__(self):
+        self.name = 'Michael'
+
+    def __getattr__(self, attr):
+        if attr=='score':
+            return 99
+
+&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.name
+'Michael'
+&gt;&gt;&gt; s.score
+99
+
+# 返回函数
+class Student(object):
+
+    def __getattr__(self, attr):
+        if attr=='age':
+            return lambda: 25
+只是调用方式要变为：
+
+&gt;&gt;&gt; s.age()     # 注意调用方法
+25
+</code></pre>
+
+<p>注意到任意调用如<code>s.abc</code>都会返回<code>None</code>，这是因为我们定义的<code>__getattr__()</code>默认返回就是<code>None</code>。要让<code>class</code>只响应特定的几个属性，我们就要按照约定，抛出<code>AttributeError</code>的错误：</p>
+
+<pre><code class="language-python">class Student(object):
+
+    def __getattr__(self, attr):
+        if attr=='age':
+            return lambda: 25
+        raise AttributeError('\'Student\' object has no attribute \'%s\'' % attr)
+</code></pre>
+
+<p><strong>理解</strong>：理解教程中 REST 的关键就在于，一个 URL 对应一个功能接口，所以在链式方式调用某个功能时，利用<code>__getattr__()</code>可以动态实现一个特定的 URL 字符串，这样就不必要针对每个功能的 URL 专门定义一个方法或属性，而是动态生成即可。</p>
+
+<pre><code class="language-python">class Chain(object):
+
+    def __init__(self, path='GET '):
+        self._path = path
+
+    def __getattr__(self, path):
+        return Chain('%s/%s' % (self._path, path))
+
+    def __call__(self,path):
+        return Chain('%s/%s' % (self._path, path))
+
+    def __str__(self):
+        return self._path
+
+    __repr__ = __str__
+
+
+print(Chain().users('lidu').repos)
+</code></pre>
+
+<p><code>Chain() -&gt; init</code>得到<code>'GET '</code>，<code>.user()</code>没有这个方法，所以走<code>__getattr__()</code>，这时，<code>self._path</code>是<code>GET</code>，<code>path</code>是<code>user</code>，然后在传给<code>Chain</code>时，被连接了起来<code>GET /user</code>，然后又调用了<code>Chain -&gt; init</code>，这时，<code>path</code>为<code>GET /user</code>， 因为<code>Chain()</code>将生成一个实例，而这个实例后面跟着<code>('lidu')</code>，所以将调用<code>__call__()</code>，把<code>lidu</code>与<code>_path</code>连接起来，然后<code>__call__()</code>中又调用<code>Chain()</code>，继续走<code>init</code>, 把<code>GET /user/lidu</code>给了<code>_path</code>，后面又跟了一个<code>.repos</code>，没有这个属性，走<code>__getatter__()</code>，就如一开始那样，把<code>repos</code>也连接起来了。</p>
+
+<p>最后，外面是一个<code>print</code>，里面是一个<code>Chain</code>的实例，所以会调用<code>str</code>，类中定义<code>str</code>返回<code>_path</code>，就是上面一连串过程后，生成的字符串：<code>GET /user/lidu/repos</code>。</p>
+
+<h2 id="call-让实例像函数一样-callable">__call__() - 让实例像函数一样 callable</h2>
+
+<p>这部分可以参考<a href="/stylus/2015/04/19/python-call/">Python 中 __init__ 和 __call__ 的区别z</a>。</p>
+
+<p>一个对象实例可以有自己的属性和方法，当我们调用实例方法时，我们用<code>instance.method()</code>来调用。能不能直接在实例本身上调用呢？在 Python 中，答案是肯定的。</p>
+
+<p>任何类，只需要定义一个<code>__call__()</code>方法，就可以直接对实例进行调用。请看示例：</p>
+
+<pre><code class="language-python">class Student(object):
+    def __init__(self, name):
+        self.name = name
+
+    def __call__(self):
+        print('My name is %s.' % self.name)
+</code></pre>
+
+<p>调用方式如下：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; s = Student('Michael')
+&gt;&gt;&gt; s() # self参数不要传入
+My name is Michael.
+</code></pre>
+
+<p><code>__call__()</code>还可以定义参数。对实例进行直接调用就好比对一个函数进行调用一样，所以你完全可以把对象看成函数，把函数看成对象，因为这两者之间本来就没啥根本的区别。</p>
+
+<p>如果你把对象看成函数，那么函数本身其实也可以在运行期动态创建出来，因为类的实例都是运行期创建出来的，这么一来，我们就模糊了对象和函数的界限。</p>
+
+<p>那么，怎么判断一个变量是对象还是函数呢？其实，更多的时候，我们需要判断一个对象是否能被调用，能被调用的对象就是一个 Callable 对象，比如函数和我们上面定义的带有<code>__call__()</code>的类实例：</p>
+
+<pre><code>&gt;&gt;&gt; callable(Student())
+True
+&gt;&gt;&gt; callable(max)
+True
+&gt;&gt;&gt; callable([1, 2, 3])
+False
+&gt;&gt;&gt; callable(None)
+False
+&gt;&gt;&gt; callable('str')
+False
+</code></pre>
+
+<p>通过<code>callable()</code>函数，我们就可以判断一个对象是否是<code>可调用</code>对象。</p>
+
+<h1 id="property-方便的-set-get">@property - 方便的 set(), get()</h1>
+
+<p>在绑定属性时，如果我们直接把属性暴露出去，虽然写起来很简单，但是，没办法检查参数。为解决这一缺陷，<a href="/stylus/2017/06/17/Python-class/">初级方法中的解决方案</a>是将属性设定为私有类型，然后提供相应的<code>set(), get()</code>方法来访问属性。但是，上面的调用方法又略显复杂，没有直接用属性这么直接简单。有没有既能检查参数，又可以用类似属性这样简单的方式来访问类的变量呢？Python内置的<code>@property</code>装饰器就是负责把一个方法变成属性调用的。</p>
+
+<pre><code class="language-python">class Student(object):
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value &lt; 0 or value &gt; 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+</code></pre>
+
+<p><code>@property</code>的实现比较复杂，我们先考察如何使用。</p>
+
+<blockquote>
+<p><strong>用法</strong>：把一个<code>getter()</code>方法变成属性，只需要加上<code>@property</code>就可以了，此时，<code>@property</code>本身又创建了另一个装饰器<code>@score.setter</code>，负责把一个<code>setter()</code>方法变成属性赋值，于是，我们就拥有一个可控的属性操作：</p>
+</blockquote>
+
+<pre><code class="language-python">&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; s.score = 60 # OK，实际转化为s.set_score(60)
+&gt;&gt;&gt; s.score # OK，实际转化为s.get_score()
+60
+&gt;&gt;&gt; s.score = 9999
+Traceback (most recent call last):
+  ...
+ValueError: score must between 0 ~ 100!
+</code></pre>
+
+<p>注意到这个神奇的<code>@property</code>，我们在对实例属性操作的时候，就知道该属性很可能不是直接暴露的，而是通过<code>getter()</code>和<code>setter()</code>方法来实现的。还可以定义只读属性，只定义<code>getter()方法，不定义</code>setter()方法就是一个只读属性：</p>
+
+<pre><code class="language-python">class Student(object):
+
+    @property
+    def birth(self):
+        return self._birth
+
+    @birth.setter
+    def birth(self, value):
+        self._birth = value
+
+    @property
+    def age(self):
+        return 2015 - self._birth
+</code></pre>
+
+<h1 id="多重继承-mixin">多重继承, MixIn</h1>
+
+<p>通过多重继承，一个子类就可以同时获得多个父类的所有功能。</p>
+
+<p>在设计类的继承关系时，通常，<strong>主线</strong>都是<code>单一</code>继承下来的，例如，<code>Ostrich</code>继承自<code>Bird</code>。但是，如果需要“混入”额外的功能，通过多重继承就可以实现，比如，让<code>Ostrich</code>除了继承自<code>Bird</code>外，再同时继承<code>Runnable</code>。这种设计通常称之为<strong>MixIn</strong>。</p>
+
+<p>为了更好地看出继承关系，我们把<code>Runnable</code>和<code>Flyable</code>改为<code>RunnableMixIn</code>和<code>FlyableMixIn</code>。类似的，你还可以定义出肉食动物<code>CarnivorousMixIn</code>和植食动物<code>HerbivoresMixIn</code>，让某个动物同时拥有好几个<code>MixIn</code>：</p>
+
+<pre><code class="language-python">class Dog(Mammal, RunnableMixIn, CarnivorousMixIn):
+    pass
+</code></pre>
+
+<p>MixIn 的目的就是给一个类增加多个功能，这样，在设计类的时候，我们优先考虑通过多重继承来组合多个 MixIn 的功能，而不是设计<del><code>多层次</code></del>的复杂的继承关系<sup class="footnote-ref" id="fnref:Python-MixIn-Jav"><a rel="footnote" href="#fn:Python-MixIn-Jav">1</a></sup>。</p>
+
+<blockquote>
+<p><strong>理解</strong>：MixIn 本身在语法上和主线上的继承类没有区别，但是在名称上加了<code>MixIn</code>以后，可以更清晰的看到继承的主与次？</p>
+</blockquote>
+
+<p>Python 自带的很多库也使用了 MixIn。举个例子，Python 自带了<code>TCPServer</code>和<code>UDPServer</code>这两类网络服务，而要同时服务多个用户就必须使用多进程或多线程模型，这两种模型由<code>ForkingMixIn</code>和<code>ThreadingMixIn</code>提供。通过组合，我们就可以创造出合适的服务来。</p>
+
+<p>比如，编写一个多进程模式的 TCP 服务，定义如下：</p>
+
+<pre><code class="language-python">class MyTCPServer(TCPServer, ForkingMixIn):
+    pass
+</code></pre>
+
+<p>编写一个多线程模式的 UDP 服务，定义如下：</p>
+
+<pre><code class="language-python">class MyUDPServer(UDPServer, ThreadingMixIn):
+    pass
+</code></pre>
+
+<p>如果你打算搞一个更先进的协程模型，可以编写一个<code>CoroutineMixIn</code>：</p>
+
+<pre><code class="language-python">class MyTCPServer(TCPServer, CoroutineMixIn):
+    pass
+</code></pre>
+
+<p>这样一来，我们不需要复杂而庞大的继承链，只要选择组合不同的类的功能，就可以快速构造出所需的子类。</p>
+
+<h1 id="枚举">枚举</h1>
+
+<p>Python提供了<code>Enum</code>类来实现这个功能：</p>
+
+<pre><code class="language-python">from enum import Enum
+
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+</code></pre>
+
+<p>这样我们就获得了<code>Month</code>类型的枚举类，可以直接使用<code>Month.Jan</code>来引用一个常量，或者枚举它的所有成员：</p>
+
+<pre><code class="language-python">for name, member in Month.__members__.items():
+    print(name, '=&gt;', member, ',', member.value)
+
+Jan =&gt; Month.Jan , 1
+Feb =&gt; Month.Feb , 2
+Mar =&gt; Month.Mar , 3
+Apr =&gt; Month.Apr , 4
+May =&gt; Month.May , 5
+Jun =&gt; Month.Jun , 6
+Jul =&gt; Month.Jul , 7
+Aug =&gt; Month.Aug , 8
+Sep =&gt; Month.Sep , 9
+Oct =&gt; Month.Oct , 10
+Nov =&gt; Month.Nov , 11
+Dec =&gt; Month.Dec , 12
+</code></pre>
+
+<p><code>value</code>属性则是自动赋给成员的<code>int</code>常量，默认从<code>1</code>开始计数。</p>
+
+<p>如果需要更精确地控制枚举类型，可以从<code>Enum</code>派生出自定义类：</p>
+
+<pre><code class="language-python">from enum import Enum, unique
+
+@unique
+class Weekday(Enum):
+    Sun = 0 # Sun的value被设定为0
+    Mon = 1
+    Tue = 2
+    Wed = 3
+    Thu = 4
+    Fri = 5
+    Sat = 6
+</code></pre>
+
+<p><code>@unique</code>装饰器可以帮助我们检查保证没有重复值。</p>
+
+<p>访问这些枚举类型可以有若干种方法：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; day1 = Weekday.Mon
+&gt;&gt;&gt; print(day1)
+Weekday.Mon
+&gt;&gt;&gt; print(Weekday.Tue)
+Weekday.Tue
+&gt;&gt;&gt; print(Weekday['Tue'])
+Weekday.Tue
+&gt;&gt;&gt; print(Weekday.Tue.value)
+2
+&gt;&gt;&gt; print(day1 == Weekday.Mon)
+True
+&gt;&gt;&gt; print(day1 == Weekday.Tue)
+False
+&gt;&gt;&gt; print(Weekday(1))
+Weekday.Mon
+&gt;&gt;&gt; print(day1 == Weekday(1))
+True
+&gt;&gt;&gt; Weekday(7)
+Traceback (most recent call last):
+  ...
+ValueError: 7 is not a valid Weekday
+&gt;&gt;&gt; for name, member in Weekday.__members__.items():
+...     print(name, '=&gt;', member)
+...
+Sun =&gt; Weekday.Sun
+Mon =&gt; Weekday.Mon
+Tue =&gt; Weekday.Tue
+Wed =&gt; Weekday.Wed
+Thu =&gt; Weekday.Thu
+Fri =&gt; Weekday.Fri
+Sat =&gt; Weekday.Sat
+</code></pre>
+
+<p>可见，既可以用成员名称引用枚举常量，又可以直接根据<code>value</code>的值获得枚举常量。</p>
+
+<h1 id="元类">元类</h1>
+
+<ul>
+<li><code>type</code>类是一切之祖，是 Python 的内建 Metaclass，<code>type()</code>函数可以查看类型；</li>
+<li><code>type()</code>函数既可以返回一个对象的类型，又可以创建出新的类型，比如，我们可以通过<code>type()</code>函数创建出<code>Hello</code>类，而无需通过<code>class Hello(object)...</code>的定义：<br />
+</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; def fn(self, name='world'): # 先定义函数
+...     print('Hello, %s.' % name)
+...
+&gt;&gt;&gt; Hello = type('Hello', (object,), dict(hello=fn)) # 创建Hello class
+&gt;&gt;&gt; h = Hello()
+&gt;&gt;&gt; h.hello()
+Hello, world.
+&gt;&gt;&gt; print(type(Hello))
+&lt;class 'type'&gt;
+&gt;&gt;&gt; print(type(h))
+&lt;class '__main__.Hello'&gt;
+</code></pre>
+
+<p>要创建一个<code>class</code>对象，<code>type()</code>函数依次传入 3 个参数：</p>
+
+<ol>
+<li><code>class</code>的名称；</li>
+<li>继承的父类集合，注意 Python 支持多重继承，如果只有一个父类，别忘了<code>tuple</code>的单元素写法；</li>
+<li><code>class</code>的方法名称与函数绑定，这里我们把函数<code>fn</code>绑定到方法名<code>hello</code>上。<br />
+</li>
+</ol>
+
+<p>通过<code>type()</code>函数创建的类和直接写 class 是完全一样的，因为 Python  解释器遇到 class 定义时，仅仅是扫描一下 class 定义的语法，然后调用<code>type()</code>函数创建出<code>class</code>。</p>
+
+<p>正常情况下，我们都用<code>class Xxx...</code>来定义类，但是，<code>type()</code>函数也允许我们动态创建出类来，也就是说，动态语言本身支持运行期动态创建类，这和静态语言有非常大的不同，要在静态语言运行期创建类，必须构造源代码字符串再调用编译器，或者借助一些工具生成字节码实现，本质上都是动态编译，会非常复杂。</p>
+
+<blockquote>
+<p><strong>理解</strong>：教程中关于 Metaclass 的内容不好理解，一是例子本身比较深奥，二是讲解也不到位。但需要注意的是普通的 class 不仅是一个类，而且也是一个 object，这是 Python 的一个非常特殊的概念。而所有 class 的祖先就是 type，但 type 的实现又用了一些特殊的技巧，<code>class</code>这个关键词实际上就是告诉 Python 在创建一个 class 的时候，也会创建一个对应的 classObject。</p>
+
+<p><code>type</code>就是 Python 的内建元类，当然了，你也可以创建自己的元类。</p>
+
+<p>除了一些代码中不能理解的东西外，还不好理解的是为什么 ORM 适合用 Metaclass 来实现，这一部分教程写的非常不够。<a href="https://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python" target="_blank">https://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python</a> 的讲解虽然好（<a href="http://blog.jobbole.com/21351/" target="_blank">中文版</a>），但这一问题仍然感觉不到位。</p>
+</blockquote>
+
+<p>对于教程中的代码：</p>
+
+<pre><code class="language-python"># metaclass是类的模板，所以必须从`type`类型派生：
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):   // cls 是固定写法，new 阶段还没有 self，也就无法用 self 为参数
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
+</code></pre>
+
+<p>现在难以理解的是这里的<code>ListMetaclass</code>中的<code>name</code>和<code>bases</code>究竟是什么。</p>
+
+<h2 id="metaclass">Metaclass</h2>
+
+<p>除了使用<code>type()</code>动态创建类以外，要控制类的创建行为，还可以使用<code>Metaclass</code>。<code>Metaclass</code>，直译为元类，简单的解释就是：</p>
+
+<ul>
+<li>当我们定义了类以后，就可以根据这个类创建出实例，所以：<code>先定义类，然后创建实例</code>。</li>
+<li>但是如果我们想创建出类呢？那就必须根据<code>Metaclass</code>创建出类，所以：<code>先定义 Metaclass，然后创建类</code>。</li>
+<li>连接起来就是：<code>先定义 Metaclass，就可以创建类，最后创建实例</code>。<br />
+</li>
+</ul>
+
+<p>所以，Metaclass允许你创建类或者修改类。换句话说，你可以把类看成是 Metaclass 创建出来的实例，也就是前面总结的，普通的类不仅是一个 class，同时还是一个由 Metaclass 而来的 object，。</p>
+
+<p>Metaclass 是 Python 面向对象里最难理解，也是最难使用的魔术代码。正常情况下，你不会碰到需要使用 Metaclass 的情况，所以，以下内容看不懂也没关系，因为基本上你不会用到。</p>
+
+<p>我们先看一个简单的例子，这个 Metaclass 可以给我们自定义的<code>MyList</code>增加一个<code>add</code>方法：</p>
+
+<p>定义<code>ListMetaclass</code>，按照默认习惯，Metaclass 的类名总是以 Metaclass 结尾，以便清楚地表示这是一个 Metaclass：</p>
+
+<pre><code class="language-python"># Metaclass 是类的模板，所以必须从`type`类型派生：
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        // new 的时候还没有 object，到 init 时才有，所以不能是 self，只能是 cls
+        attrs['add'] = lambda self, value: self.append(value)
+        return type.__new__(cls, name, bases, attrs)
+</code></pre>
+
+<p>有了<code>ListMetaclass</code>，我们在定义类的时候还要指示使用<code>ListMetaclass</code>来定制类，传入关键字参数<code>metaclass</code>：</p>
+
+<pre><code class="language-python">class MyList(list, metaclass=ListMetaclass):
+    pass
+</code></pre>
+
+<p>当我们传入关键字参数<code>metaclass</code>时，魔术就生效了，它指示 Python 解释器在创建<code>MyList</code>时，要通过<code>ListMetaclass.__new__()</code>来创建，在此，我们可以修改类的定义，比如，加上新的方法，然后，返回修改后的定义。</p>
+
+<p><code>__new__()</code>方法接收到的参数依次是：</p>
+
+<ol>
+<li>当前准备创建的类的对象；</li>
+<li>类的名字；</li>
+<li>类继承的父类集合；</li>
+<li>类的方法集合。<br />
+</li>
+</ol>
+
+<p>测试一下<code>MyList</code>是否可以调用<code>add()</code>方法：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; L = MyList()
+&gt;&gt;&gt; L.add(1)
+&gt;&gt; L
+[1]
+</code></pre>
+
+<p>而普通的<code>list</code>没有<code>add()</code>方法：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; L2 = list()
+&gt;&gt;&gt; L2.add(1)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: 'list' object has no attribute 'add'
+</code></pre>
+
+<p>动态修改有什么意义？直接在<code>MyList</code>定义中写上<code>add()</code>方法不是更简单吗？正常情况下，确实应该直接写，通过 Metaclass 修改纯属变态。但是，总会遇到需要通过 Metaclass 修改类定义的。ORM 就是一个典型的例子。</p>
+
+<h2 id="metaclass-orm-实例">Metaclass - ORM 实例</h2>
+
+<p>ORM 全称<code>Object Relational Mapping</code>，即<code>对象-关系映射</code>，就是把关系数据库的一行映射为一个对象<sup class="footnote-ref" id="fnref:User"><a rel="footnote" href="#fn:User">2</a></sup>，也就是一个类<code>User-Class</code>对应一个表<code>User-Table</code>，这样，写代码更简单，不用直接操作 SQL 语句。</p>
+
+<blockquote>
+<p><strong>不理解</strong>：要编写一个 ORM 框架，所有的类都只能动态定义，因为只有使用者才能根据表的结构定义出对应的类来。</p>
+</blockquote>
+
+<p>让我们来尝试编写一个 ORM 框架。</p>
+
+<p>编写底层模块的第一步，就是先把调用接口写出来。比如，使用者如果使用这个 ORM 框架，想定义一个<code>User</code>类来操作对应的数据库表<code>User</code>，我们期待他写出这样的代码：</p>
+
+<pre><code class="language-python">class User(Model):
+    # 定义类的属性到列的映射：
+    id = IntegerField('id')
+    name = StringField('username')
+    email = StringField('email')
+    password = StringField('password')
+    // 这部分的语法用于指定 User 的属性，但实际上最终被 Metaclass `pop` 了
+
+# 创建一个实例：
+u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
+    // User 的 __init__() 可以直接用 Model 的 __init()?
+# 保存到数据库：
+u.save()
+</code></pre>
+
+<p>其中，父类<code>Model</code>和属性类型<code>StringField</code>、<code>IntegerField</code>是由 ORM 框架提供的，剩下的魔术方法比如<code>save()</code>全部由<code>metaclass</code>自动完成。虽然<code>metaclass</code>的编写会比较复杂，但 ORM 的使用者用起来却异常简单。</p>
+
+<p>现在，我们就按上面的接口来实现该 ORM。</p>
+
+<p>首先来定义<code>Field</code>类，它负责保存数据库表的字段名和字段类型：</p>
+
+<pre><code class="language-python">class Field(object):
+
+    def __init__(self, name, column_type):
+        self.name = name
+        self.column_type = column_type
+
+    def __str__(self):
+        return '&lt;%s:%s&gt;' % (self.__class__.__name__, self.name)
+</code></pre>
+
+<p>在<code>Field</code>的基础上，进一步定义各种类型的<code>Field</code>，比如<code>StringField</code>，<code>IntegerField</code>等等：</p>
+
+<pre><code class="language-python">class StringField(Field):
+
+    def __init__(self, name):
+        super(StringField, self).__init__(name, 'varchar(100)')
+
+class IntegerField(Field):
+
+    def __init__(self, name):
+        super(IntegerField, self).__init__(name, 'bigint')
+</code></pre>
+
+<p>下一步，就是编写最复杂的<code>ModelMetaclass</code>了：</p>
+
+<pre><code class="language-python">class ModelMetaclass(type):
+
+    def __new__(cls, name, bases, attrs):
+        # cls 固定；name, bases, attrs 对应为将来准备使用的参数，来自 User，走向新 User
+        # 参考《深刻理解Python中的元类(metaclass)》可知是未来的
+        if name=='Model':
+            return type.__new__(cls, name, bases, attrs)
+        print('Found model: %s' % name)
+        mappings = dict()
+        for k, v in attrs.items():
+            if isinstance(v, Field):
+                print('Found mapping: %s ==&gt; %s' % (k, v))
+                mappings[k] = v
+        for k in mappings.keys():
+            attrs.pop(k)
+        attrs['__mappings__'] = mappings    # 保存属性和列的映射关系
+        attrs['__table__'] = name           # 假设表名和类名一致
+        return type.__new__(cls, name, bases, attrs)
+</code></pre>
+
+<p>以及基类<code>Model</code>：</p>
+
+<pre><code class="language-python">class Model(dict, metaclass=ModelMetaclass):
+
+    def __init__(self, **kw):
+        # **kw 在初始化 User 时用到
+        super(Model, self).__init__(**kw)
+
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r&quot;'Model' object has no attribute '%s'&quot; % key)
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+    def save(self):
+        fields = []
+        params = []
+        args = []
+        for k, v in self.__mappings__.items():
+            fields.append(v.name)
+            params.append('?')
+            args.append(getattr(self, k, None))
+        sql = 'insert into %s (%s) values (%s)' % (self.__table__, ','.join(fields), ','.join(params))
+        print('SQL: %s' % sql)
+        print('ARGS: %s' % str(args))
+</code></pre>
+
+<p>当用户定义一个<code>class User(Model)</code>时，Python 解释器首先在当前类<code>User</code>的定义中查找<code>metaclass</code>，如果没有找到，就继续在父类<code>Model</code>中查找<code>metaclass</code>，找到了，就使用<code>Model</code>中定义的<code>metaclass</code>的<code>ModelMetaclass</code>来创建<code>User</code>类，也就是说，<code>metaclass</code>可以隐式地继承到子类，但子类自己却感觉不到。</p>
+
+<p>在<code>ModelMetaclass</code>中，一共做了几件事情：</p>
+
+<ol>
+<li>排除掉对<code>Model</code>类的修改<sup class="footnote-ref" id="fnref:if-name-Model"><a rel="footnote" href="#fn:if-name-Model">3</a></sup>；</li>
+<li>在当前类（比如<code>User</code>）中查找定义的类的所有属性，如果找到一个<code>Field</code>属性，就把它保存到一个<code>__mappings__</code>的<code>dict</code>中，同时从类属性中删除该<code>Field</code>属性，否则，容易造成运行时错误（实例的属性会遮盖类的同名属性<sup class="footnote-ref" id="fnref:-"><a rel="footnote" href="#fn:-">4</a></sup>；</li>
+<li>把表名保存到<code>__table__</code>中，这里简化为表名默认为类名。</li>
+<li>在<code>Model</code>类中，就可以定义各种操作数据库的方法，比如<code>save()</code>，<code>delete()</code>，<code>find()</code>，<code>update()</code>等等。</li>
+<li>我们实现了<code>save()</code>方法，把一个实例保存到数据库中。因为有表名，属性到字段的映射和属性值的集合，就可以构造出<code>INSERT</code>语句。<br />
+</li>
+</ol>
+
+<p>编写代码试试：</p>
+
+<pre><code class="language-python">u = User(id=12345, name='Michael', email='test@orm.org', password='my-pwd')
+u.save()
+</code></pre>
+
+<p>输出如下：</p>
+
+<pre><code>Found model: User
+Found mapping: email ==&gt; &lt;StringField:email&gt;
+Found mapping: password ==&gt; &lt;StringField:password&gt;
+Found mapping: id ==&gt; &lt;IntegerField:uid&gt;
+Found mapping: name ==&gt; &lt;StringField:username&gt;
+SQL: insert into User (password,email,username,id) values (?,?,?,?)
+ARGS: ['my-pwd', 'test@orm.org', 'Michael', 12345]
+</code></pre>
+
+<p>可以看到，<code>save()</code>方法已经打印出了可执行的 SQL 语句，以及参数列表，只需要真正连接到数据库，执行该 SQL 语句，就可以完成真正的功能。</p>
+
+<p>不到 100 行代码，我们就通过<code>metaclass</code>实现了一个精简的 ORM 框架。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:Python-MixIn-Jav">由于 Python 允许使用多重继承，因此，MixIn 就是一种常见的设计。只允许单一继承的语言（如 Java）不能使用 MixIn 的设计。 <a class="footnote-return" href="#fnref:Python-MixIn-Jav">↩</a></li>
+<li id="fn:User">这里对应<code>User</code>。 <a class="footnote-return" href="#fnref:User">↩</a></li>
+<li id="fn:if-name-Model">这个对应于<code>if name=='Model'</code>，但不明白含义。 <a class="footnote-return" href="#fnref:if-name-Model">↩</a></li>
+<li id="fn:-">没有彻底的理解。 <a class="footnote-return" href="#fnref:-">↩</a></li>
+</ol>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/06/18/python-debug/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 《廖雪峰 Python 教程》笔记 6：调试</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/06/18/sas-if-where/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">SAS 中 IF 与 WHERE 的辨析 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/06\/18\/python-debug\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/06\/18\/sas-if-where\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

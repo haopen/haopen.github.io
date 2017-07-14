@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>《廖雪峰 Python 教程》笔记 1：基础语法、函数 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="《廖雪峰 Python 教程》笔记 1：基础语法、函数 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">10440 字</span>
+    
+
+    
+<h1 class="article-title">《廖雪峰 Python 教程》笔记 1：基础语法、函数
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/06/13</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;1%EF%BC%9A%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E3%80%81%E5%87%BD%E6%95%B0&#43;%2Ftech%2F2017%2F06%2F13%2Fpython%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;1%EF%BC%9A%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E3%80%81%E5%87%BD%E6%95%B0&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F06%2F13%2Fpython%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-06-13-Python.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-python" title="Python">Python</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-python" title="Python">Python</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" target="_blank">http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000</a></p>
+
+<h1 id="python-简介">Python 简介</h1>
+
+<h2 id="python解释器">Python解释器</h2>
+
+<ul>
+<li><strong>CPython</strong>: 官方版本的解释器。这个解释器是用 C 语言开发的，所以叫 CPython。在命令行下运行 Python 就是启动 CPython 解释器。</li>
+<li><strong>IPython</strong>: CPython 之上的一个交互式解释器，也就是说，IPython 只是在交互方式上有所增强，但是执行 Python 代码的功能和 CPython 是完全一样的。好比很多国产浏览器虽然外观不同，但内核其实都是调用了 IE。</li>
+<li><strong>CPython</strong> 用<code>&gt;&gt;&gt;</code>作为提示符，而 IPython 用<code>In [序号]:</code>作为提示符。</li>
+<li><strong>Jython</strong>: 运行在 Java 平台上的 Python 解释器，可以直接把 Python 代码编译成 Java 字节码执行。</li>
+<li><strong>IronPython</strong>: 和 Jython 类似，只不过 IronPython 是运行在微软 .Net 平台上的 Python 解释器，可以直接把 Python 代码编译成 .Net 的字节码。<br />
+</li>
+</ul>
+
+<!-- more -->
+
+<h2 id="第一个-python-程序">第一个 Python 程序</h2>
+
+<p><code>exit()</code>退出 Python。</p>
+
+<p><code>python hello.py</code>执行程序。</p>
+
+<p><strong>提醒</strong>：能不能像<code>.exe</code>文件那样直接运行<code>.py</code>文件呢？在 Windows 上是不行的，但是，在 Mac 和 Linux 上是可以的，方法是在<code>.py</code>文件的第一行加上一个特殊的注释：</p>
+
+<pre><code class="language-python">#!/usr/bin/env python3
+print('hello, world')
+</code></pre>
+
+<p>然后，通过命令给<code>hello.py</code>以执行权限：</p>
+
+<pre><code class="language-bash">$ chmod a+x hello.py
+</code></pre>
+
+<h2 id="python代码运行助手">Python代码运行助手</h2>
+
+<p><code>print()</code>会依次打印每个字符串，遇到逗号<code>,</code>会输出一个<strong>空格</strong>。</p>
+
+<pre><code class="language-python">name = input()
+name = input('please enter your name: ')
+print('hello,', name)
+</code></pre>
+
+<p><code>input()</code>返回的数据类型是<code>str</code>，<code>str</code>不能直接和整数比较，必须先把<code>str</code>转换成整数。Python 提供了<code>int()</code>函数来完成这件事情。</p>
+
+<h1 id="python-基础语法">Python 基础语法</h1>
+
+<h2 id="预备知识">预备知识</h2>
+
+<ul>
+<li><strong>注释</strong>：用<code>#</code>开头，行内最后的注释也有用<code>//</code>的；</li>
+<li>Python 大小写敏感；</li>
+<li>代码段由<strong>缩进</strong>控制，因此复制可能导致意外发生，为了尽量减少意外，可能需要少用多重缩进，并且习惯上用将 1 个<code>tab</code>对应为 4 个空格；</li>
+<li>注意<code>if</code>和<code>else</code>后面的<code>:</code>，这表明接下来是一个<code>block</code>；</li>
+<li><strong>转义</strong>：<code>\</code>用于字符的转义，而<code>%%</code>则用于占位符情形下<code>%</code>的转义；<code>r''</code>用于简化转义；如果字符串内部有很多换行，用<code>\n</code>写在一行里不好阅读，因此可以用<code>'''...'''</code>定义多行文本，类似的，用<code>r'''...'''</code>定义不必转义的多行文本，关于字符串中的<code>'</code>和<code>&quot;</code>，如果只有一种，则用另一种引括即可，如果两种都有，就需要用<code>\'</code>和<code>\&quot;</code>进行转义；</li>
+<li><strong>占位符</strong>：<code>%d</code>对应整数，<code>%f</code>对应浮点数，<code>%s</code>对应字符串，<code>%x</code>对应十六进制数，其中<code>%s</code>是万金油，而<code>%f</code>还可以指定显示格式，如<code>%.1f</code>对应只显示 1 位小数的浮点数；<br />
+</li>
+</ul>
+
+<h2 id="基础语法">基础语法</h2>
+
+<ul>
+<li><strong>常见运算符与常量</strong>：<code>+, -, *, **, /, //, True, False, and, or, not, &amp;, |, !=, &gt;=, &lt;=, None, PI(常量经常用大写), /, //(地板除), %(余数)</code>；</li>
+<li>Python 的<strong>整数</strong>没有大小限制，而某些语言的整数根据其存储长度是有大小限制的，例如 Java 对 32 位整数的范围限制在<code>-2147483648</code>-<code>2147483647</code>。</li>
+<li>Python 的<strong>浮点数</strong>也没有大小限制，但是超出一定范围就直接表示为<code>inf</code>（无限大）。<br />
+</li>
+</ul>
+
+<h2 id="数据类型">数据类型</h2>
+
+<ul>
+<li><strong>基础</strong>的类型有<code>字符串</code>、<code>整数</code>、<code>浮点数</code>、<code>布尔值</code>；</li>
+<li><strong>复杂</strong>的类型有<code>list, tuple</code>，其中的<code>list</code>类似于 Matlab 中的<code>cell</code>类型，用<code>[]</code>进行定义，<code>tuple</code>中的内容一旦定义，不能再修改，用<code>()</code>定义<sup class="footnote-ref" id="fnref:tuple-myTuple-1"><a rel="footnote" href="#fn:tuple-myTuple-1">1</a></sup>；</li>
+<li>其它还有<code>dict, set</code>，其中<code>dict</code>对应<code>key-value</code>对，如<code>d = {'Michael': 95, 'Bob': 75, 'Tracy': 85}</code>所示，用<code>{:,}</code>的方式定义，包含<code>get()</code>与<code>pop()</code>方法，如<code>'Thomas' in d</code>所示，还可以用<code>in</code>这一操作；<code>set</code>和<code>dict</code>类似，也是一组<code>key</code>的集合，但不存储<code>value</code>。由于<code>key</code>不能重复，所以，在<code>set</code>中，没有重复的<code>key</code>，用<code>set([,])</code>方式定义，可以使用<code>add()</code>和<code>remove()</code>方法，参考下面的例子：<br />
+</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3])
+&gt;&gt;&gt; s
+{1, 2, 3}
+</code></pre>
+
+<h3 id="字符串">字符串</h3>
+
+<ul>
+<li>对于字符串而言，在内存中统一为 Unicode，但是具体到终端时，可能是各种类型的编码；</li>
+<li>对于单个字符的编码，Python 提供了<code>ord()</code>函数获取字符的整数表示，<code>chr()</code>函数把编码转换为对应的字符；</li>
+<li>如果知道字符的整数编码，还可以用十六进制这么写 str：<code>'\u4e2d\u6587'</code>，这其实对应于字符串<code>中文</code>；</li>
+<li>由于 Python 的字符串类型是<code>str</code>，在内存中以 Unicode 表示，一个字符对应若干个字节（英文字母是 1 个字节，汉字是 3 个字节）。如果要在网络上传输，或者保存到磁盘上，就需要把<code>str</code>变为以字节为单位的<code>bytes</code>。Python 对<code>bytes</code>类型的数据用带<code>b</code>前缀的单引号或双引号表示：<code>x = b'ABC'</code>，要注意区分<code>'ABC'</code>和<code>b'ABC'</code>，前者是<code>str</code>，后者虽然内容显示得和前者一样，但<code>bytes</code>的每个字符都只占用一个字节<sup class="footnote-ref" id="fnref:3-ASCII"><a rel="footnote" href="#fn:3-ASCII">2</a></sup>。<br />
+</li>
+</ul>
+
+<p>以 Unicode 表示的<code>str</code>通过<code>encode()</code>方法可以编码为指定的<code>bytes</code>，例如：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; 'ABC'.encode('ascii')
+b'ABC'
+&gt;&gt;&gt; '中文'.encode('utf-8')
+b'\xe4\xb8\xad\xe6\x96\x87'
+&gt;&gt;&gt; '中文'.encode('ascii')
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+</code></pre>
+
+<p>纯英文的<code>str</code>可以用 ASCII 编码为<code>bytes</code>，内容是一样的，含有中文的<code>str</code>可以用 UTF-8 编码为<code>bytes</code>。含有中文的<code>str</code>无法用 ASCII 编码，因为中文编码的范围超过了 ASCII 编码的范围，Python 会报错。</p>
+
+<p>在<code>bytes</code>中，无法显示为 ASCII 字符的字节，用<code>\x##</code>显示。</p>
+
+<p>反过来，如果我们从网络或磁盘上读取了字节流，那么读到的数据就是<code>bytes</code>。要把<code>bytes</code>变为<code>str</code>，就需要用<code>decode()</code>方法：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; b'ABC'.decode('ascii')
+'ABC'
+&gt;&gt;&gt; b'\xe4\xb8\xad\xe6\x96\x87'.decode('utf-8')
+'中文'
+</code></pre>
+
+<p>要计算 str 包含多少个字符，可以用<code>len()</code>函数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; len('ABC')
+3
+&gt;&gt;&gt; len('中文')
+2
+</code></pre>
+
+<p><code>len()</code>函数计算的是<code>str</code>的<strong>字符</strong>数，如果换成<code>bytes</code>，<code>len()</code>函数就计算<strong>字节</strong>数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; len(b'ABC')
+3
+&gt;&gt;&gt; len(b'\xe4\xb8\xad\xe6\x96\x87')
+6
+&gt;&gt;&gt; len('中文'.encode('utf-8'))
+6
+</code></pre>
+
+<p>可见，1 个中文字符经过 UTF-8 编码后通常会占用 3 个字节，而 1 个英文字符只占用 1 个字节。</p>
+
+<p>在操作字符串时，我们经常遇到<code>str</code>和<code>bytes</code>的互相转换。为了避免乱码问题，应当始终坚持使用 UTF-8 编码对<code>str</code>和<code>bytes</code>进行转换。</p>
+
+<h3 id="list-和-tuple">List 和 tuple</h3>
+
+<ul>
+<li><strong>list</strong>：是一种<code>有序</code>的集合，可以随时<code>添加[append, insert(i, value)]</code>和<code>删除[pop, pop(i)]</code>其中的元素，<code>list</code>中的元素从<code>0</code>号开始，其中<code>-1</code>表示最后一个元素，索引越界时，会抛出<code>IndexError</code>错误；<br />
+<code>list</code>可以作为另一个<code>list</code>的元素，此时的访问方法是<code>myList[i][j]</code>，初始的赋值用<code>classmates = ['Michael', 'Bob', 'Tracy']</code>完成，注意其中用的是<code>[]</code>，之后操纵元素时用的是函数的<code>()</code>；</li>
+<li><strong>tuple</strong>：和<code>list</code>非常类似，但是<code>tuple</code>一旦初始化就不能<del><code>修改</code></del>，初始的赋值用<code>classmates = ('Michael', 'Bob', 'Tracy')</code>完成，注意其中用的是<code>()</code>，并且之后元素的不可<del><code>改变</code></del><sup class="footnote-ref" id="fnref:tuple-list-list"><a rel="footnote" href="#fn:tuple-list-list">3</a></sup>。<code>tuple</code>所谓的<code>不变</code>是说，<code>tuple</code>的每个元素，指向永远不变。即指向<code>'a'</code>，就不能改成指向<code>'b'</code>，指向一个<code>list</code>，就不能改成指向其他对象，但指向的这个<code>list</code>本身是可变的！<br />
+</li>
+</ul>
+
+<h3 id="dict-和-list">dict 和 list</h3>
+
+<p>注意<code>dict</code>内部存放的顺序和<code>key</code>放入的顺序没有关系。和<code>list</code>比较，<code>dict</code>有以下几个特点：</p>
+
+<ul>
+<li>查找和插入的速度极快，不会随着<code>key</code>的增加而变慢；</li>
+<li>需要占用大量的内存，内存浪费多。<br />
+<br />
+</li>
+</ul>
+
+<p>而<code>list</code>相反，所以，<code>dict</code>是用空间来换取时间的一种方法。</p>
+
+<p><code>dict</code>可以用在需要高速查找的很多地方，在 Python 代码中几乎无处不在，正确使用<code>dict</code>非常重要，需要牢记的第一条就是<code>dict</code>的<code>key</code>必须是不可变对象。</p>
+
+<h2 id="循环-判断">循环、判断</h2>
+
+<h3 id="if-语句">if 语句</h3>
+
+<pre><code>if &lt;条件判断1&gt;:
+    &lt;执行1&gt;
+elif &lt;条件判断2&gt;:
+    &lt;执行2&gt;
+elif &lt;条件判断3&gt;:
+    &lt;执行3&gt;
+else:
+    &lt;执行4&gt;
+</code></pre>
+
+<h3 id="循环语句-for-和-while">循环语句：for 和 while</h3>
+
+<ul>
+<li><code>for...in</code>循环，依次把<code>list</code>或<code>tuple</code>中的每个元素迭代出来<br />
+</li>
+</ul>
+
+<pre><code class="language-python">sum = 0
+for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+    sum = sum + x
+print(sum)
+</code></pre>
+
+<p>如果要计算 1-100 的整数之和，从 1 写到 100 有点困难，幸好 Python 提供一个<code>range()</code>函数，可以生成一个整数序列，再通过<code>list()</code>函数可以转换为<code>list</code>。比如<code>range(5)</code>生成的序列是从 0 开始小于 5 的整数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; list(range(5))
+[0, 1, 2, 3, 4]
+</code></pre>
+
+<p><code>range(101)</code>就可以生成 0-100 的整数序列，计算如下：</p>
+
+<pre><code class="language-python">sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+</code></pre>
+
+<p>从上面的例子看业，<code>range()</code>生成的序列，即使不转换成<code>list</code>，也可以循环操作。</p>
+
+<ul>
+<li><code>while</code>循环，只要条件满足，就不断循环，条件不满足时退出循环。比如我们要计算 100 以内所有奇数之和，可以用 while 循环实现：<br />
+</li>
+</ul>
+
+<pre><code class="language-python">sum = 0
+n = 99
+while n &gt; 0:
+    sum = sum + n
+    n = n - 2
+print(sum)
+</code></pre>
+
+<p>可以用<code>break</code>以及<code>continue</code>跳出循环，有些时候，如果代码写得有问题，会让程序陷入<strong>死循环</strong>，也就是永远循环下去。这时可以用<kbd>Ctrl</kbd>+<kbd>C</kbd>退出程序，或者强制结束 Python 进程。</p>
+
+<h1 id="函数">函数</h1>
+
+<p>内置函数列表：<a href="https://docs.python.org/3/library/functions.html" target="_blank">https://docs.python.org/3/library/functions.html</a></p>
+
+<ul>
+<li><strong>类型转换</strong>：<code>int()</code>, <code>float()</code>, <code>str()</code>, <code>bool()</code>, <code>hex()</code>, <code>enumerate()</code><sup class="footnote-ref" id="fnref:list-for"><a rel="footnote" href="#fn:list-for">4</a></sup>, <code>iter()</code><sup class="footnote-ref" id="fnref:iterable-iterato"><a rel="footnote" href="#fn:iterable-iterato">5</a></sup>, <code>list()</code><sup class="footnote-ref" id="fnref:iterator-iterabl"><a rel="footnote" href="#fn:iterator-iterabl">6</a></sup>；</li>
+<li><strong>类型检查</strong>：<code>isinstance(x, str)</code>；</li>
+<li><strong>是否包含关键字</strong>：<code>in</code>；<br />
+</li>
+</ul>
+
+<h2 id="定义函数">定义函数</h2>
+
+<p>在 Python 中，定义一个函数要使用<code>def</code>语句，依次写出函数名、括号、括号中的参数和冒号<code>:</code>，然后，在缩进块中编写函数体，函数的返回值用<code>return</code>语句返回。如果没有<code>return</code>语句，函数执行完毕后也会返回结果，只是结果为<code>None</code>。<code>return None</code>可以简写为<code>return</code>。</p>
+
+<pre><code class="language-python">def my_abs(x):
+    if x &gt;= 0:
+        return x
+    else:
+        return -x
+</code></pre>
+
+<p>如果已经把<code>my_abs()</code>的函数定义保存为<code>abstest.py</code>文件了，那么，可以在该文件的当前目录下启动 Python 解释器，用<code>from abstest import my_abs</code>来导入<code>my_abs()</code>函数，注意<code>abstest</code>是文件名（不含<code>.py</code>扩展名）。</p>
+
+<h2 id="更稳健的函数">更稳健的函数</h2>
+
+<ul>
+<li><strong>空函数</strong>：如果想定义一个什么事也不做的空函数，可以用<code>pass</code>语句。<br />
+</li>
+</ul>
+
+<pre><code class="language-python">def nop():
+    pass
+</code></pre>
+
+<ul>
+<li><strong>参数检查</strong>：调用函数时，如果参数个数不对，Python 解释器会自动检查出来，并抛出<code>TypeError</code>，但是如果参数类型不对，Python 解释器就无法帮我们检查。数据类型检查可以用内置函数<code>isinstance()</code>实现。<br />
+</li>
+</ul>
+
+<pre><code class="language-python">def my_abs(x):
+    if not isinstance(x, (int, float)):
+        raise TypeError('bad operand type')
+    if x &gt;= 0:
+        return x
+    else:
+        return -x
+</code></pre>
+
+<ul>
+<li><strong>返回多个值</strong>：返回值是一个<code>tuple</code>！但是，在语法上，返回一个<code>tuple</code>可以省略括号，而多个变量可以同时接收一个<code>tuple</code>，按位置赋给对应的值，所以，Python 的函数返回多值其实就是返回一个<code>tuple</code>，但写起来更方便。<br />
+</li>
+</ul>
+
+<pre><code class="language-python">import math
+
+def move(x, y, step, angle=0):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx, ny
+
+&gt;&gt;&gt; x, y = move(100, 100, 60, math.pi / 6)
+&gt;&gt;&gt; print(x, y)
+151.96152422706632 70.0
+
+&gt;&gt;&gt; r = move(100, 100, 60, math.pi / 6)
+&gt;&gt;&gt; print(r)
+(151.96152422706632, 70.0)
+</code></pre>
+
+<h2 id="函数的参数">函数的参数</h2>
+
+<p>Python 的函数定义非常简单，但灵活度却非常大。除了正常定义的<strong>必选参数</strong>外，还可以使用<strong>默认参数</strong>、<strong>可变参数</strong>、<strong>关键字参数</strong>和<strong>命名关键字参数</strong>，使得函数定义出来的接口，不但能处理复杂的参数，还可以简化调用者的代码。下面是关于函数参数的一些重要规则的总结：</p>
+
+<ul>
+<li>默认参数必须指向不变对象；</li>
+<li>可变参数内部是<code>()-tuple</code>，关键字参数内部是<code>{}-dict</code>；</li>
+<li>可变参数在语法上是<code>*</code>，关键字参数是<code>**</code>，命名关键字参数是<code>单独的 *</code>，如果有可变参数，则命名关键字参数不再需要单独的使用特殊分隔符<code>*</code>；</li>
+<li>可变参数本身调用时，参数可以是<code>list-()</code>或<code>tuple-[]</code>；</li>
+<li>对于任意函数，都可以通过类似<code>func(*args, **kw)</code>的形式调用它，无论它的参数是如何定义的，但是这种做法容易引起混淆，不推荐；</li>
+<li>参数定义的顺序必须是：<code>必选参数</code>、<code>默认参数</code>、<code>可变参数</code>、<code>命名关键字参数</code>和<code>关键字参数</code>。<br />
+</li>
+</ul>
+
+<h3 id="默认参数-必须指向不变对象">默认参数(必须指向不变对象)</h3>
+
+<pre><code class="language-python">def power(x, n=2):
+    s = 1
+    while n &gt; 0:
+        n = n - 1
+        s = s * x
+    return s
+</code></pre>
+
+<p>必选参数在前，默认参数在后，否则 Python 的解释器会报错；当函数有多个参数时，把变化大的参数放前面，变化小的参数放后面。变化小的参数就可以作为默认参数。</p>
+
+<p>默认参数降低了函数调用的难度，而一旦需要更复杂的调用时，又可以传递更多的参数来实现。无论是简单调用还是复杂调用，函数只需要定义一个。有多个默认参数时，调用的时候，既可以按顺序提供默认参数，比如调用<code>enroll('Bob', 'M', 7)</code>，意思是，除了<code>name</code>，<code>gender</code>这两个参数外，最后 1 个参数应用在参数<code>age</code>上，<code>city</code>参数由于没有提供，仍然使用默认值。也可以不按顺序提供部分默认参数。当不按顺序提供部分默认参数时，需要把参数名写上。比如调用<code>enroll('Adam', 'M', city='Tianjin')</code>，意思是，<code>city</code>参数用传进去的值，其他默认参数继续使用默认值。</p>
+
+<blockquote>
+<p><strong>警告</strong>：默认参数很有用，但使用不当，会有很大的麻烦。</p>
+</blockquote>
+
+<p>下面的例子先定义一个函数，传入一个<code>list</code>，添加一个<code>'END'</code>再返回：</p>
+
+<pre><code class="language-python">def add_end(L=[]):
+    L.append('END')
+    return L
+</code></pre>
+
+<p>正常调用时，结果似乎不错：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; add_end([1, 2, 3])
+[1, 2, 3, 'END']
+&gt;&gt;&gt; add_end(['x', 'y', 'z'])
+['x', 'y', 'z', 'END']
+</code></pre>
+
+<p>使用默认参数调用时，一开始结果也是对的：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; add_end()
+['END']
+</code></pre>
+
+<p>但是，再次调用<code>add_end()</code>时，结果就不对了：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; add_end()
+['END', 'END']
+&gt;&gt;&gt; add_end()
+['END', 'END', 'END']
+</code></pre>
+
+<p>默认参数是<code>[]</code>，但是函数似乎每次都<strong>记住了</strong>上次添加了<code>'END'</code>后的<code>list</code>。</p>
+
+<p>原因是 Python 函数在定义的时候，默认参数<code>L</code>的值就被计算出来了，即<code>[]</code>，因为默认参数<code>L</code>也是一个变量，它指向对象<code>[]</code>，每次调用该函数，如果改变了<code>L</code>的内容，则下次调用时，默认参数的内容就变了，不再是函数定义时的<code>[]</code>了。</p>
+
+<blockquote>
+<p><strong>提醒：</strong>默认参数必须指向不变对象！</p>
+</blockquote>
+
+<p>要修改上面的例子，我们可以用<code>None</code>这个不变对象来实现：</p>
+
+<pre><code class="language-python">def add_end(L=None):
+    if L is None:
+        L = []
+    L.append('END')
+    return L
+</code></pre>
+
+<p>现在，无论调用多少次，都不会有问题：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; add_end()
+['END']
+&gt;&gt;&gt; add_end()
+['END']
+</code></pre>
+
+<p>为什么要设计<code>str</code>、<code>None</code>这样的<strong>不变对象</strong>呢？因为不变对象一旦创建，对象内部的数据就不能修改，这样就减少了由于修改数据导致的错误。此外，由于对象不变，多任务环境下同时读取对象不需要加锁，同时读一点问题都没有。在编写程序时，如果可以设计一个不变对象，那就尽量设计成不变对象。</p>
+
+<h3 id="可变参数-函数内部为-tuple-定义和引用都可以用">可变参数(函数内部为 tuple，定义和引用都可以用 *)</h3>
+
+<p>要定义出这种函数，必须确定输入的参数。由于参数个数不确定，首先想到可以把<code>a</code>，<code>b</code>，<code>c</code>……作为一个<code>list</code>或<code>tuple</code>传进来，但是调用的时候，需要先组装出一个<code>list</code>或<code>tuple</code>，如果利用可变参数，调用函数的方式可以简化。</p>
+
+<pre><code class="language-python">def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+</code></pre>
+
+<p>定义可变参数和定义一个<code>list</code>或<code>tuple</code>参数相比，仅仅在参数前面加了一个<code>*</code>号。在函数内部，参数<code>numbers</code>接收到的是一个<code>tuple</code>，因此，函数代码完全不变。但是，调用该函数时，可以传入任意个参数，包括 0 个参数。如果已经有一个<code>list</code>或者<code>tuple</code>，可以将其中的元素一个一个传递给可变参数函数，但是太繁琐，所以 Python 允许在<code>list</code>或<code>tuple</code>前面加一个<code>*</code>号，把<code>list</code>或<code>tuple</code>的元素变成可变参数传进去，这种写法相当有用，而且很常见。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; nums = [1, 2, 3]
+&gt;&gt;&gt; calc(*nums)
+14
+</code></pre>
+
+<h3 id="关键字参数-函数内部为-dict-定义和引用都可以用">关键字参数(函数内部为 dict，定义和引用都可以用 **)</h3>
+
+<p>可变参数允许你传入 0 个或任意个参数，这些可变参数在函数调用时自动组装为一个<code>tuple</code>。而关键字参数允许你传入 0 个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个<code>dict</code>。请看示例：</p>
+
+<pre><code class="language-python">def person(name, age, **kw):
+    print('name:', name, 'age:', age, 'other:', kw)
+</code></pre>
+
+<p>函数<code>person</code>除了必选参数<code>name</code>和<code>age</code>外，还接受关键字参数<code>kw</code>。在调用该函数时，可以只传入必选参数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; person('Michael', 30)
+name: Michael age: 30 other: {}
+</code></pre>
+
+<p>也可以传入任意个数的关键字参数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; person('Bob', 35, city='Beijing')
+name: Bob age: 35 other: {'city': 'Beijing'}
+&gt;&gt;&gt; person('Adam', 45, gender='M', job='Engineer')
+name: Adam age: 45 other: {'gender': 'M', 'job': 'Engineer'}
+</code></pre>
+
+<p>关键字参数有什么用？它可以<code>扩展函数的功能</code>。比如，在<code>person</code>函数里，我们保证能接收到<code>name</code>和<code>age</code>这两个参数，但是，如果调用者愿意提供更多的参数，我们也能收到。试想你正在做一个用户注册的功能，除了用户名和年龄是必填项外，其他都是可选项，利用关键字参数来定义这个函数就能满足注册的需求。</p>
+
+<p>和可变参数类似，也可以先组装出一个<code>dict</code>，然后，把该<code>dict</code>转换为关键字参数传进去：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; extra = {'city': 'Beijing', 'job': 'Engineer'}
+&gt;&gt;&gt; person('Jack', 24, city=extra['city'], job=extra['job'])
+name: Jack age: 24 other: {'city': 'Beijing', 'job': 'Engineer'}
+</code></pre>
+
+<p>当然，上面复杂的调用可以用简化的写法<sup class="footnote-ref" id="fnref:dict-dict"><a rel="footnote" href="#fn:dict-dict">7</a></sup>：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; extra = {'city': 'Beijing', 'job': 'Engineer'}
+&gt;&gt;&gt; person('Jack', 24, **extra)
+name: Jack age: 24 other: {'city': 'Beijing', 'job': 'Engineer'}
+</code></pre>
+
+<p><code>**extra</code>表示把<code>extra</code>这个<code>dict</code>的所有<code>key-value</code>用关键字参数传入到函数的<code>**kw</code>参数，<code>kw</code>将获得一个<code>dict</code>，注意<code>kw</code>获得的<code>dict</code>是<code>extra</code>的一份拷贝，对<code>kw</code>的改动不会影响到函数外的<code>extra</code>。</p>
+
+<h3 id="命名关键字参数-限制参数名称-单独的">命名关键字参数(限制参数名称，单独的 *)</h3>
+
+<p>对于关键字参数，函数的调用者可以传入任意不受限制的关键字参数。至于到底传入了哪些，就需要在函数内部通过<code>kw</code>检查。</p>
+
+<p>仍以<code>person()</code>函数为例，我们希望检查是否有<code>city</code>和<code>job</code>参数：</p>
+
+<pre><code class="language-python">// 这种做法更灵活
+def person(name, age, **kw):
+    if 'city' in kw:
+        # 有city参数
+        pass
+    if 'job' in kw:
+        # 有job参数
+        pass
+    print('name:', name, 'age:', age, 'other:', kw)
+</code></pre>
+
+<p>但是调用者仍可以传入<code>不受限制</code>的关键字参数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; person('Jack', 24, city='Beijing', addr='Chaoyang', zipcode=123456)
+</code></pre>
+
+<p>如果要限制关键字参数的名字，就可以用命名关键字参数，例如，只接收<code>city</code>和<code>job</code>作为关键字参数。这种方式定义的函数如下：</p>
+
+<pre><code class="language-python">// 这种做法更严谨
+def person(name, age, *, city, job):
+    print(name, age, city, job)
+</code></pre>
+
+<blockquote>
+<p><strong>定义</strong>：和关键字参数<code>**kw</code>不同，命名关键字参数需要一个特殊分隔符<code>*</code>，<code>*</code>后面的参数被视为命名关键字参数。</p>
+</blockquote>
+
+<p>调用方式如下：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; person('Jack', 24, city='Beijing', job='Engineer')
+Jack 24 Beijing Engineer
+</code></pre>
+
+<blockquote>
+<p><strong>提示</strong>：如果函数定义中已经有了一个可变参数，后面跟着的命名关键字参数就不再需要一个特殊分隔符<code>*</code>了：</p>
+</blockquote>
+
+<pre><code class="language-python">def person(name, age, *args, city, job):
+    print(name, age, args, city, job)
+</code></pre>
+
+<blockquote>
+<p><strong>警告</strong>：命名关键字参数必须传入参数名，这和位置参数不同。如果没有传入参数名，调用将报错：</p>
+</blockquote>
+
+<pre><code class="language-python">&gt;&gt;&gt; person('Jack', 24, 'Beijing', 'Engineer')
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: person() takes 2 positional arguments but 4 were given
+</code></pre>
+
+<p>由于调用时缺少参数名<code>city</code>和<code>job</code>，Python 解释器把这 4 个参数均视为位置参数，但<code>person()</code>函数仅接受 2 个位置参数。</p>
+
+<p>命名关键字参数可以有缺省值，从而简化调用：</p>
+
+<pre><code class="language-python">def person(name, age, *, city='Beijing', job):
+    print(name, age, city, job)
+</code></pre>
+
+<p>由于命名关键字参数<code>city</code>具有默认值，调用时，可不传入<code>city</code>参数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; person('Jack', 24, job='Engineer')
+Jack 24 Beijing Engineer
+</code></pre>
+
+<p>使用命名关键字参数时，要特别注意，如果没有可变参数，就必须加一个<code>*</code>作为特殊分隔符。如果缺少<code>*</code>，Python 解释器将无法识别位置参数和命名关键字参数：</p>
+
+<pre><code class="language-python">def person(name, age, city, job):
+    # 缺少 *，city和job被视为位置参数
+    pass
+````
+
+### 不同类型参数的优先级
+
+&gt; **提示**：在 Python 中定义函数，可以用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这 5 种参数都可以组合使用。但是请注意，参数定义的顺序必须是：`必选参数`、`默认参数`、`可变参数`、`命名关键字参数`和`关键字参数`。
+
+比如定义一个函数，包含上述若干种参数：
+
+```python
+def f1(a, b, c=0, *args, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
+
+def f2(a, b, c=0, *, d, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'd =', d, 'kw =', kw)
+</code></pre>
+
+<p>在函数调用的时候，Python 解释器自动按照参数位置和参数名把对应的参数传进去。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; f1(1, 2)
+a = 1 b = 2 c = 0 args = () kw = {}
+&gt;&gt;&gt; f1(1, 2, c=3)
+a = 1 b = 2 c = 3 args = () kw = {}
+&gt;&gt;&gt; f1(1, 2, 3, 'a', 'b')
+a = 1 b = 2 c = 3 args = ('a', 'b') kw = {}
+    // 这里是直接一个一个参数的传递
+
+&gt;&gt;&gt; f1(1, 2, 3, 'a', 'b', x=99)
+a = 1 b = 2 c = 3 args = ('a', 'b') kw = {'x': 99}
+&gt;&gt;&gt; f2(1, 2, d=99, ext=None)
+a = 1 b = 2 c = 0 d = 99 kw = {'ext': None}
+    // c 用默认值，d 对应可变参数, ext 对应关键字参数
+</code></pre>
+
+<p>最神奇的是通过一个<code>tuple</code>和<code>dict</code>，你也可以调用上述函数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; args = (1, 2, 3, 4)
+&gt;&gt;&gt; kw = {'d': 99, 'x': '#'}
+&gt;&gt;&gt; f1(*args, **kw)
+a = 1 b = 2 c = 3 args = (4,) kw = {'d': 99, 'x': '#'}
+    // 直接用 list 或 tuple 作为参数
+    // 注意 args = (4,) 后面有一个逗号，(4) 对应一个数 4，而 (4, ) 才对应只有一个元素 4 的 tuple
+
+&gt;&gt;&gt; args = (1, 2, 3)
+&gt;&gt;&gt; kw = {'d': 88, 'x': '#'}
+&gt;&gt;&gt; f2(*args, **kw)
+a = 1 b = 2 c = 3 d = 88 kw = {'x': '#'}
+    // 这里的 args 和 kw 不是直接对应 * 和 **
+    // 而是要先满足必选参数的 1,2,3，之后再用 kw 的第一项满足可变参数
+    // 最后用 kw 的第二项满足关键字参数
+</code></pre>
+
+<p>所以，对于任意函数，都可以通过类似<code>func(*args, **kw)</code>的形式调用它，无论它的参数是如何定义的<sup class="footnote-ref" id="fnref:-"><a rel="footnote" href="#fn:-">8</a></sup>。</p>
+
+<h2 id="递归">递归</h2>
+
+<p>教程上说用尾递归的方法可以避免栈溢出，但 Python 也没有提供针对尾递归的优化，考虑到平时用的很少，并且尾递归代码的写法比较麻烦<sup class="footnote-ref" id="fnref:return"><a rel="footnote" href="#fn:return">9</a></sup>，所以干脆不要使用。</p>
+
+<h1 id="高级特性">高级特性</h1>
+
+<h2 id="切片">切片</h2>
+
+<pre><code class="language-python">&gt;&gt;&gt; L[0:3]
+&gt;&gt;&gt; L[:3]            // 取前 3 个元素
+
+&gt;&gt;&gt; L[1:3]           // 取 1, 2 号元素，0 号不取
+&gt;&gt;&gt; L[:10:2]         // 前 10 个元素，每两个取 1 个
+&gt;&gt;&gt; L[::5]           // 所有数，每5个取一个
+&gt;&gt;&gt; [:]              // 复制
+
+&gt;&gt;&gt; L[-1]            // 取倒数第一个元素
+&gt;&gt;&gt; L[-2:-1]         // 取最后两个元素
+&gt;&gt;&gt; L[-10:]          // 取最后 10 个元素
+
+&gt;&gt;&gt; 'ABCDEFG'[:3]    // 字符串也可以视作一个 list
+'ABC'
+&gt;&gt;&gt; 'ABCDEFG'[::2]
+'ACEG'
+
+</code></pre>
+
+<h2 id="迭代">迭代</h2>
+
+<ul>
+<li>通常用<code>for ... in</code>完成迭代；</li>
+<li>默认情况下，<code>dict</code>迭代的是<code>key</code>。如果要迭代<code>value</code>，可以用<code>for value in d.values()</code>，如果要同时迭代<code>key</code>和<code>value</code>，可以用<code>for k, v in d.items()</code>；</li>
+<li>字符串也是可迭代对象，因此，也可以作用于<code>for</code>循环；</li>
+<li>通过<code>collections</code>模块的<code>Iterable</code>类型判断一个对象是可迭代对象；<br />
+</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; from collections import Iterable
+&gt;&gt;&gt; isinstance('abc', Iterable) # str是否可迭代
+True
+&gt;&gt;&gt; isinstance([1,2,3], Iterable) # list是否可迭代
+True
+&gt;&gt;&gt; isinstance(123, Iterable) # 整数是否可迭代
+False
+</code></pre>
+
+<ul>
+<li>可以同时引用了两个变量；<br />
+</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; for x, y in [(1, 1), (2, 4), (3, 9)]:
+...     print(x, y)
+...
+1 1
+2 4
+3 9
+</code></pre>
+
+<p>要对<code>list</code>实现类似 Java 那样的下标循环，Python 内置的<code>enumerate()</code>函数可以把一个<code>list</code>变成<code>索引-元素对</code>，这样就可以在<code>for</code>循环中同时迭代索引和元素本身；</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; for i, value in enumerate(['A', 'B', 'C']):
+...     print(i, value)
+...
+0 A
+1 B
+2 C
+</code></pre>
+
+<h2 id="list-生成器">list 生成器</h2>
+
+<h3 id="静态-list">静态 list</h3>
+
+<pre><code class="language-python">&gt;&gt;&gt; [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+&gt;&gt;&gt; [x * x for x in range(1, 11) if x % 2 == 0]         // 用 if 后，只输出偶数的平方
+[4, 16, 36, 64, 100]
+
+&gt;&gt;&gt; [m + n for m in 'ABC' for n in 'XYZ']
+['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']  // 使用两层循环，可以生成全排列
+
+&gt;&gt;&gt; import os                                           // 导入 os 模块，模块的概念后面讲到
+&gt;&gt;&gt; [d for d in os.listdir('.')]                        // os.listdir 可以列出文件和目录
+['.emacs.d', '.ssh', '.Trash', 'Desktop', 'Documents', 'Downloads', 'Library', 'VirtualBox VMs']
+
+&gt;&gt;&gt; d = {'x': 'A', 'y': 'B', 'z': 'C' }                 // 使用两个变量来生成 list
+&gt;&gt;&gt; [k + '=' + v for k, v in d.items()]
+['y=B', 'x=A', 'z=C']
+
+&gt;&gt;&gt; L = ['Hello', 'World', 'IBM', 'Apple']              // 把一个 list 中所有的字符串变成小写
+&gt;&gt;&gt; [s.lower() for s in L]
+['hello', 'world', 'ibm', 'apple']
+
+&gt;&gt;&gt; L = ['Hello', 'World', 18, 'Apple', None]           // 非字符串类型没有 lower() 方法，列表生成式会报错
+&gt;&gt;&gt; [s.lower() for s in L]
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;listcomp&gt;
+AttributeError: 'int' object has no attribute 'lower'
+
+&gt;&gt;&gt; x = 'abc'                                           // 用内建 isinstance 函数可判断变量是否为字符串
+&gt;&gt;&gt; y = 123
+&gt;&gt;&gt; isinstance(x, str)
+True
+&gt;&gt;&gt; isinstance(y, str)
+False
+
+</code></pre>
+
+<h3 id="动态-list-generator">动态 list：generator</h3>
+
+<p>通过静态 list 生成式，我们可以直接创建一个<code>list</code>。但是，受到内存限制，列表容量肯定是有限的。而且，创建一个包含 100 万个元素的列表，会占用很大的存储空间，如果仅仅需要访问前面几个元素，那后面绝大多数元素占用的空间都白白浪费了。</p>
+
+<p>所以，如果<code>list</code>中的元素可以按照某种算法推算出来，就不必创建完整的<code>list</code>，从而节省大量的空间。在 Python 中，这种一边循环一边计算的机制，称为生成器：<strong>generator</strong>。</p>
+
+<p><strong>方法1</strong>(<code>()</code>)：要创建一个<code>generator</code>，把一个列表生成式的<code>[]</code>改成<code>()</code>，就创建了一个<code>generator</code>。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; L = [x * x for x in range(10)]          // list
+&gt;&gt;&gt; L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+&gt;&gt;&gt; g = (x * x for x in range(10))          // generator
+&gt;&gt;&gt; g                                       // 元素无法直接输出
+&lt;generator object &lt;genexpr&gt; at 0x1022ef630&gt;
+
+&gt;&gt;&gt; next(g)                                 // 使用 next() 才能依次输出元素
+0
+&gt;&gt;&gt; next(g)
+1
+</code></pre>
+
+<p>不断调用<code>next(g)</code>并不可行，正确的方法是使用<code>for</code>循环，因为<code>generator</code>也是可迭代对象。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; g = (x * x for x in range(10))
+&gt;&gt;&gt; for n in g:
+...     print(n)
+... 
+0
+1
+4
+</code></pre>
+
+<p><strong>方法2</strong>(<code>yield</code>)：如果推算的算法比较复杂，用类似列表生成式的<code>for</code>循环无法实现的时候，可以用函数来实现。</p>
+
+<pre><code class="language-python">def fib(max):
+    n, a, b = 0, 0, 1
+    while n &lt; max:
+        print(b)
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+</code></pre>
+
+<p>注意其中的<code>a, b = b, a + b</code>相当于：</p>
+
+<pre><code class="language-python">t = (b, a + b) # t 是一个 tuple
+a = t[0]
+b = t[1]
+</code></pre>
+
+<p>但不必显式写出临时变量<code>t</code>就可以赋值，另外这里<code>t</code>只是临时的，所以应该不涉及 tuple 不能修改的问题。可以看出，<code>fib()</code>函数实际上是定义了斐波拉契数列的推算规则，可以从第一个元素开始，推算出后续任意的元素，这种逻辑其实非常类似<code>generator</code>。也就是说，上面的函数和<code>generator</code>仅一步之遥。把<code>fib()</code>函数变成<code>generator</code>，只需要把<code>print(b)</code>改为<code>yield b</code>就可以了：</p>
+
+<pre><code class="language-python">def fib(max):
+    n, a, b = 0, 0, 1
+    while n &lt; max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+</code></pre>
+
+<p>简单来讲，如果一个函数定义中包含<code>yield</code>关键字，那么这个函数就不再是一个普通函数，而是一个<code>generator</code>。</p>
+
+<blockquote>
+<p><strong>警告</strong>：用<code>for</code>循环调用<code>generator</code>时，得不到<code>generator</code>的<code>return</code>语句的返回值。如果想要得到返回值，必须捕获<code>StopIteration</code>错误，返回值包含在<code>StopIteration</code>的<code>value</code>中。</p>
+</blockquote>
+
+<pre><code class="language-python">&gt;&gt;&gt; g = fib(6)
+&gt;&gt;&gt; while True:
+...     try:
+...         x = next(g)
+...         print('g:', x)
+...     except StopIteration as e:
+...         print('Generator return value:', e.value)
+...         break
+...
+g: 1
+g: 1
+g: 2
+g: 3
+g: 5
+g: 8
+Generator return value: done
+</code></pre>
+
+<h2 id="迭代器">迭代器</h2>
+
+<ul>
+<li><strong>Iterable</strong>：可以直接用<code>for</code>循环的对象统称为可<strong>迭代对象</strong>，<code>list</code>、<code>tuple</code>、<code>dict</code>、<code>set</code>、<code>str</code>等都可以用<code>for</code>遍历；</li>
+<li><strong>Iterator</strong>：可以被<code>next()</code>函数调用并不断返回下一个值的对象称为<strong>迭代器</strong>，方法 1 和方法 2 中用<code>generator</code>生成的都可以用<code>next()</code>操作；</li>
+<li>可以使用<code>isinstance()</code>判断一个对象是否是<code>Iterable</code>对象或者<code>Iterator</code>对象。</li>
+<li><code>list</code>、<code>dict</code>、<code>str</code>虽然<code>Iterable</code>，却不是<code>Iterator</code>，把<code>list</code>、<code>dict</code>、<code>str</code>等<code>Iterable</code>变成<code>Iterator</code>可以使用<code>iter()</code>函数：<br />
+</li>
+</ul>
+
+<pre><code class="language-python">&gt;&gt;&gt; isinstance(iter([]), Iterator)
+True
+&gt;&gt;&gt; isinstance(iter('abc'), Iterator)
+True
+</code></pre>
+
+<p>Python 的 Iterator 对象表示的是一个<strong>数据流</strong>，Iterator 对象可以被<code>next()</code>函数调用并不断返回下一个数据，直到没有数据时抛出<code>StopIteration</code>错误。可以把这个数据流看做是一个<code>有序序列</code>，但我们却不能提前知道序列的长度，只能不断通过<code>next()</code>函数实现按需计算下一个数据，所以 Iterator 的计算是<strong>惰性</strong>的，只有在需要返回下一个数据时它才会计算。Iterator 甚至可以表示一个<code>无限大</code>的数据流，例如<code>全体自然数</code>。而使用<code>list</code>是永远不可能存储全体自然数的。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:tuple-myTuple-1">空<code>tuple</code>的定义在语法上要用<code>myTuple(1,)</code>这样的方式，否则用<code>myTuple(1)</code>则认为是 一个元素为<code>1</code>的一维<code>tuple</code>，具体可参考教程说明。 <a class="footnote-return" href="#fnref:tuple-myTuple-1">↩</a></li>
+<li id="fn:3-ASCII">这地方稍有歧义，汉字是 3 个字节，但对应于一个字符，因此这种解释只适用于 ASCII 范围内的符号。 <a class="footnote-return" href="#fnref:3-ASCII">↩</a></li>
+<li id="fn:tuple-list-list">虽然<code>tuple</code>指向的元素不可改变，但如果其中一个元素是可以改变的<code>list</code>，那么可以通过改变<code>list</code>中元素的内容来达到修改<code>tuple</code>内容的目的，具体参考<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014316724772904521142196b74a3f8abf93d8e97c6ee6000" target="_blank">使用<code>list</code>和<code>tuple</code></a>。 <a class="footnote-return" href="#fnref:tuple-list-list">↩</a></li>
+<li id="fn:list-for">把一个<code>list</code>变成<code>索引-元素对</code>，这样就可以在<code>for</code>循环中同时迭代索引和元素本身。 <a class="footnote-return" href="#fnref:list-for">↩</a></li>
+<li id="fn:iterable-iterato">将<code>iterable</code>转换成<code>iterator</code>。 <a class="footnote-return" href="#fnref:iterable-iterato">↩</a></li>
+<li id="fn:iterator-iterabl">将一个惰性的<code>iterator</code>转换成一个确定的<code>iterable</code>型的<code>list</code>。 <a class="footnote-return" href="#fnref:iterator-iterabl">↩</a></li>
+<li id="fn:dict-dict">虽然将一个<code>dict</code>作为参数传递给函数也是可行的，但这样做在函数内部就需要再将<code>dict</code>一个一个单独进行额外处理，而<code>**</code>的方法可以省略这个步骤。 <a class="footnote-return" href="#fnref:dict-dict">↩</a></li>
+<li id="fn:-">这种做法容易引起混淆，个人<del><code>不太推荐</code></del>。 <a class="footnote-return" href="#fnref:-">↩</a></li>
+<li id="fn:return"><strong>尾递归</strong>是指，在函数返回的时候，调用自身本身，并且，<code>return</code>语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。 <a class="footnote-return" href="#fnref:return">↩</a></li>
+</ol>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/05/17/latex-url-linkbreak/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 使 LaTeX 文稿中的 URL 正确换行z</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/06/14/python/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">《廖雪峰 Python 教程》笔记 2：函数式编程 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/05\/17\/latex-url-linkbreak\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/06\/14\/python\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

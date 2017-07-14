@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>什么是双重差分模型（difference-in-differences model）？ - 慧航 - 专栏 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="什么是双重差分模型（difference-in-differences model）？ - 慧航 - 专栏 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/prof/">归档</a></li>
+    
+    <li class=""><a href="/prof/categories/">分类</a></li>
+    
+    <li class=""><a href="/prof/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1066 字</span>
+    
+
+    
+<h1 class="article-title">什么是双重差分模型（difference-in-differences model）？ - 慧航 - 专栏
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 慧航 ·   2014/07/04</span>
+  <span class="article-toolbar">
+    
+    <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B%EF%BC%88difference-in-differences&#43;model%EF%BC%89%EF%BC%9F&#43;-&#43;%E6%85%A7%E8%88%AA&#43;-&#43;%E4%B8%93%E6%A0%8F&#43;%2Fprof%2F2014%2F07%2F04%2Fdid%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E4%BB%80%E4%B9%88%E6%98%AF%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86%E6%A8%A1%E5%9E%8B%EF%BC%88difference-in-differences&#43;model%EF%BC%89%EF%BC%9F&#43;-&#43;%E6%85%A7%E8%88%AA&#43;-&#43;%E4%B8%93%E6%A0%8F&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2014%2F07%2F04%2Fdid%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/prof/2014-07-04-DID.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/6-%E7%BB%8F%E6%B5%8E---%E8%AE%A1%E9%87%8F" title="经济 - 计量">经济 - 计量</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E6%85%A7%E8%88%AA" title="慧航">慧航</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8F" title="知乎专栏">知乎专栏</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E8%AE%A1%E9%87%8F" title="计量">计量</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E5%8F%8C%E9%87%8D%E5%B7%AE%E5%88%86" title="双重差分">双重差分</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-did" title="DID">DID</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>：<a href="https://zhuanlan.zhihu.com/p/19793523" class="uri">https://zhuanlan.zhihu.com/p/19793523</a></p>
+<p>双重差分吗，就是差分两次。我们先来举个栗子。</p>
+<p>现在要修一条铁路，铁路是条线，所以必然会有穿过的城市和没有被穿过的城市。记<span class="math inline">\(D_i=1\)</span>，如果城市<span class="math inline">\(i\)</span>被穿过，<span class="math inline">\(D_i=0\)</span>如果城市<span class="math inline">\(i\)</span>没有被穿过。</p>
+<p>现在我们比较好奇铁路修好以后，被铁路穿过的城市是不是经济增长更快了？我们该怎么做呢？</p>
+<p>一开始的想法是，我们把<span class="math inline">\(D_i=1\)</span>的城市的 GDP 加总，减去<span class="math inline">\(D_i=0\)</span>的城市的 GDP 加总，然后两者一减，即<span class="math inline">\(\mathrm{E}(Y_i|D_i==1)-\mathrm{E}(Y_i|D_i==0)\)</span>，这样我们就算出了两类城市的 GDP 的平均之差。</p>
+<p>这样做不用说肯定有问题。万一被铁路穿过的城市在建铁路之前 GDP 就高呢？为了解决这个问题，我们需要观察到至少两期，第一期是建铁路之前，第二期是建铁路之后。我们先把两类城市的 GDP 做两期之差，即：</p>
+<p><span class="math display">\[\Delta Y_i=\frac{1}{N}\sum(Y_{i1}-Y_{i0})\]</span></p>
+<p>这是第一次差分，经过这一步，我们实际上算出了每个城市 GDP 的增长（率，如果取 log 之后），也就是 GDP 的趋势。</p>
+<p>完了之后，计算：</p>
+<p><span class="math display">\[\mathrm{Treatment Effect}=\mathrm{E}(\Delta Y_i|D_i=1)-\mathrm{E}(\Delta Y_i|D_i=0)\]</span></p>
+<p>这是第二次差分。这一步就把两类城市在修建铁路之前和之后的 GDP 增长率的差异给算出来了，这就是我们要的<strong>处理效应</strong>，即修建铁路之后对城市经济的促进作用。</p>
+<p>这个东西你还可以换一个写法。记<span class="math inline">\(T=1\)</span>如果时间为建铁路之后，<span class="math inline">\(T=0\)</span>如果时间为建铁路之前，那么我们可以得到一个表：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Treated</th>
+<th align="center"><span class="math inline">\(D_i=0\)</span></th>
+<th align="center"><span class="math inline">\(D_i=1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(T=0\)</span></td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(T=1\)</span></td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(Treated\)</span>代表在某一期，某一类城市是不是建了铁路。第零期肯定没有建铁路，第一期只有<span class="math inline">\(D_i=1\)</span>的城市建了铁路。所以<span class="math inline">\(Treated=D_i*T\)</span>。因此我们把方程写成：</p>
+<p><span class="math display">\[Y_{it}=\alpha D_i+\beta T+\gamma(D_i\times T)+u_{it}\]</span></p>
+<p>对时间差分，得到：</p>
+<p><span class="math display">\[\Delta Y_i=\beta+\gamma D_i+\Delta u_{it}\]</span></p>
+<p>再次差分，取期望：</p>
+<p><span class="math display">\[\mathrm{E}(\Delta Y_1-\Delta Y_0)=\gamma\]</span></p>
+<p>可见，<span class="math inline">\(\gamma\)</span>就是我们想要估计的处理效应。</p>
+<p>所以实际做的时候，可以直接跑</p>
+<p><span class="math display">\[Y_{it}=\alpha D_i+\beta T+\gamma(D_i\times T)+u_{it}\]</span></p>
+<p>这个式子的回归，得到的交叉项的系数就是所要估计的处理效应。</p>
+<p>用一个图表示就是：</p>
+<div class="figure">
+<img src="/images/Eco/Econometrica/huihang/DID.jpg" />
+
+</div>
+<p>所以看清楚了，这里 DID 最关键的假设是 <strong>common trend</strong>，也就是两个组别在不处理的情况下，<span class="math inline">\(y\)</span>的趋势是一样的。</p>
+<p>那么你会说了，铁路穿过的城市可能本身 GDP 也高，而 GDP 高的城市按照理论 GDP 增长率可能更高可能更低，所以 common trend 的假设可能是不对的，那怎么办？</p>
+<p>如果这个问题存在，我们可以进一步假设在控制了某些外生变量之后，common trend 是对的，比如上个问题，我们可以控制城市在<span class="math inline">\(T=0\)</span>期的 GDP level。当我们控制其他变量之后，自然不能直接减两次了，我们需要用上面说的回归式子，即 run the following OLS:</p>
+<p><span class="math display">\[Y_{it}=\alpha D_i+\beta T+\gamma(D_i\times T)+\boldsymbol{X}^\prime\delta+u_{it}\]</span></p>
+<p>好了，我就说到这里了。当然也有可能你控制了<span class="math inline">\(X\)</span>之后 common trend 还是不成立，那么你要想其他办法了。有些人会去找工具变量，这个方法我不是多么认可，所以我也就不介绍了。需要的时候再说。</p>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/prof/2014/05/20/2sls-r2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> R-squared&lt;0 in 2SLS-IV estimation? - 慧航 - 专栏</div>
+    </a>
+    
+
+    
+    <a href="/prof/2014/08/03/pongzi-condition/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">横截条件 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/prof\/2014\/05\/20\/2sls-r2\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/prof\/2014\/08\/03\/pongzi-condition\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

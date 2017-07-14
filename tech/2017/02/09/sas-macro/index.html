@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>SAS 关于宏、宏函数、宏变量、data 步、proc 步和 call execute 的理解 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="SAS 关于宏、宏函数、宏变量、data 步、proc 步和 call execute 的理解 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1833 字</span>
+    
+
+    
+<h1 class="article-title">SAS 关于宏、宏函数、宏变量、data 步、proc 步和 call execute 的理解 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/02/09</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=SAS&#43;%E5%85%B3%E4%BA%8E%E5%AE%8F%E3%80%81%E5%AE%8F%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%8F%E5%8F%98%E9%87%8F%E3%80%81data&#43;%E6%AD%A5%E3%80%81proc&#43;%E6%AD%A5%E5%92%8C&#43;call&#43;execute&#43;%E7%9A%84%E7%90%86%E8%A7%A3&#43;z&#43;%2Ftech%2F2017%2F02%2F09%2Fsas-macro%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=SAS&#43;%E5%85%B3%E4%BA%8E%E5%AE%8F%E3%80%81%E5%AE%8F%E5%87%BD%E6%95%B0%E3%80%81%E5%AE%8F%E5%8F%98%E9%87%8F%E3%80%81data&#43;%E6%AD%A5%E3%80%81proc&#43;%E6%AD%A5%E5%92%8C&#43;call&#43;execute&#43;%E7%9A%84%E7%90%86%E8%A7%A3&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F02%2F09%2Fsas-macro%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-02-09-SAS-MACRO.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-sas" title="SAS">SAS</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-sas" title="SAS">SAS</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-macro" title="Macro">Macro</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E5%AE%8F" title="宏">宏</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>：<a href="http://www.cnblogs.com/SSSR/p/6380957.html" target="_blank">http://www.cnblogs.com/SSSR/p/6380957.html</a></p>
+
+<p>SAS 宏和宏函数的问题困扰了我三年之久，终于在昨日想通了，而想通的原因也很搞笑，仅仅是当时意识到了 <strong>SAS 宏</strong>和<strong>宏函数</strong>是两个东西，<code>自定的宏并不是宏函数</code>（在其他编程语言中自定义函数和语言本身函数是一样的，受此影响！）</p>
+
+<blockquote>
+<p><strong>结论</strong>：SAS 宏并不具备 SAS 宏函数的功能，它仅仅只是一段文本，这段文本中如果有参数和宏函数，我们只是把参数替换掉和宏函数执行了，然后生成一个正常的文本（包含<code>data</code>步和<code>proc</code>步）提交给 SAS 运行。</p>
+</blockquote>
+
+<!-- more -->
+
+<p>遇到宏函数时会直接执行，遇到宏时会直接进行文本替换（宏中的宏函数也会直接执行），宏函数返回的文本会和其他的<code>data</code>步和<code>proc</code>步组合然后一起提交给 SAS 步运行。</p>
+
+<p>宏函数直接执行，SAS 函数需要在<code>data</code>步中执行（<code>%put</code>和<code>put</code>的区别）</p>
+
+<p>下面来看两个简单的例子：</p>
+
+<pre><code class="language-sas">options symbolgen mprint;*将宏编译的过程也打印出来，以便进行测试;
+%macro s(i);
+ 
+    %put &amp;i.;
+%mend;
+ 
+data _null_;
+     set sashelp.class;
+     put name;
+     %s('program');
+run;
+ 
+ 
+/*以下是结果：汉字为注释
+ 
+105  %macro s(i);
+106
+107      %put &amp;i.;
+108  %mend;
+109
+110  data _null_;
+111  set sashelp.class;
+112  put name;
+113       %s('program');                            //下面是这句宏调用的解析
+SYMBOLGEN:  Macro variable I resolves to 'program'  // I是%s的宏参数，被替换成了program。
+                                                    // 下面是直接打印了program，这个是为啥呢？
+                                                    // 就是因为 %put 是宏函数，会立即执行，
+                                                    // 从而先打印了program，
+                                                    // 然后才会将正常的data步提交给sas执行，
+                                                    // run;后的部分是宏编译完以后执行的结果。
+'program'
+114  run;
+ 
+Alfred
+Alice
+Barbara
+Carol
+Henry
+James
+Jane
+Janet
+Jeffrey
+John
+Joyce
+Judy
+Louise
+Mary
+Philip
+Robert
+Ronald
+Thomas
+William
+NOTE: There were 19 observations read from the data set SASHELP.CLASS.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+ 
+ 
+*/
+ 
+%macro t(i);
+ 
+    put &amp;i.;
+%mend;
+ 
+data _null_;
+set sashelp.class;
+     %t(name);
+     %s('programe')
+run;
+/*以下为结果：中文为注释
+ 
+135  %macro t(i);
+136
+137      put &amp;i.;
+138  %mend;
+139
+140  data _null_;
+141  set sashelp.class;
+142       %t(name);
+SYMBOLGEN:  Macro variable I resolves to name    //宏变量I被解析成name，注意这个name不带双引号，
+MPRINT(T):   put name;                           //这里put name和data set等一起被提交给sas执行
+143       %s('programe')
+SYMBOLGEN:  Macro variable I resolves to 'programe'  //这个因为是%put所以被直接执行了。
+'programe'
+144  run;
+ 
+Alfred
+Alice
+Barbara
+Carol
+Henry
+James
+Jane
+Janet
+Jeffrey
+John
+Joyce
+Judy
+Louise
+Mary
+Philip
+Robert
+Ronald
+Thomas
+William
+NOTE: There were 19 observations read from the data set SASHELP.CLASS.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+*/
+ 
+proc print data=sashelp.class;
+run;
+</code></pre>
+
+<p>再来看一个复杂的例子：</p>
+
+<pre><code class="language-sas">options symbolgen mprint;
+data b;
+input a1 a2 a3;
+cards;
+1 2 3
+;
+run;
+ 
+%macro varx;
+  %do i=0 %to 2;
+    proc sql  ;
+      select a%eval(&amp;i.+1) into:a%eval(&amp;i.+1)
+      from b;
+    quit;
+   %let j=%eval(&amp;i.+1);
+   data _null_;
+      a= &amp;&amp;a&amp;j.;
+      put a;
+   run;
+%end ;
+%mend varx;
+%varx;
+ 
+/*以下为结果：中文为注释，整个程序循环了三次i=0 1 2,
+        所以会生成三次proc sql和三次data步，然后提交给sas运行。
+        从这个就可以看出sas宏的一个作用，减少代码量，将重复的代码进行封装。
+145  data b;
+146  input a1 a2 a3;
+147  cards;
+ 
+NOTE: The data set WORK.B has 1 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+149  ;
+150  run;               //以上为数据集生成
+151
+152  %macro varx;
+153  %do i=0 %to 2;
+154  proc sql  ;
+155  select a%eval(&amp;i.+1) into:a%eval(&amp;i.+1)
+156  from b;
+157  quit;
+158  %let j=%eval(&amp;i.+1);
+159  data _null_;
+160  a= &amp;&amp;a&amp;j.;
+161  put a;
+162  run;
+163  %end ;
+164  %mend varx;
+165  %varx;
+MPRINT(VARX):   proc sql ;
+SYMBOLGEN:  Macro variable I resolves to 0
+SYMBOLGEN:  Macro variable I resolves to 0
+MPRINT(VARX):   select a1 into:a1 from b;
+MPRINT(VARX):   quit;                                      // 从proc sql到这里就是宏varx编译
+                                                           // 生成的一段proc sql代码，
+                                                           // 这部分提交给sas运行。
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+SYMBOLGEN:  Macro variable I resolves to 0
+MPRINT(VARX):   data _null_;
+SYMBOLGEN:  &amp;&amp; resolves to &amp;.
+SYMBOLGEN:  Macro variable J resolves to 1
+SYMBOLGEN:  Macro variable A1 resolves to        1
+MPRINT(VARX):   a= 1;
+MPRINT(VARX):   put a;
+MPRINT(VARX):   run;            // 从data步到这一行是宏varx编译生成的第二段代码data步，
+                                // 这段代码中宏变量I被编译成了0，j直接被计算成了1.
+                                // 这段代码也同样展示了select into生成的宏变量
+                                //    在其他程序中调用的执行顺序。
+ 
+1
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+MPRINT(VARX):   proc sql ;
+SYMBOLGEN:  Macro variable I resolves to 1
+SYMBOLGEN:  Macro variable I resolves to 1
+MPRINT(VARX):   select a2 into:a2 from b;
+MPRINT(VARX):   quit;               //重复proc sql
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+SYMBOLGEN:  Macro variable I resolves to 1
+MPRINT(VARX):   data _null_;
+SYMBOLGEN:  &amp;&amp; resolves to &amp;.
+SYMBOLGEN:  Macro variable J resolves to 2
+SYMBOLGEN:  Macro variable A2 resolves to        2
+MPRINT(VARX):   a= 2;
+MPRINT(VARX):   put a;
+MPRINT(VARX):   run;                      //重复data
+ 
+2
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+MPRINT(VARX):   proc sql ;
+SYMBOLGEN:  Macro variable I resolves to 2
+SYMBOLGEN:  Macro variable I resolves to 2
+MPRINT(VARX):   select a3 into:a3 from b;
+MPRINT(VARX):   quit;                         //重复proc sql
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+ 
+ 
+SYMBOLGEN:  Macro variable I resolves to 2
+MPRINT(VARX):   data _null_;
+SYMBOLGEN:  &amp;&amp; resolves to &amp;.
+SYMBOLGEN:  Macro variable J resolves to 3
+SYMBOLGEN:  Macro variable A3 resolves to        3
+MPRINT(VARX):   a= 3;
+MPRINT(VARX):   put a;
+MPRINT(VARX):   run;                     //重复data
+ 
+3
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+ 
+ 
+*/
+</code></pre>
+
+<p>未完，后续预告<code>call execute</code>（<a href="http://bbs.pinggu.org/thread-2377205-1-1.html" target="_blank">http://bbs.pinggu.org/thread-2377205-1-1.html</a> 此链接的讲解非常透彻，同时<code>call excute</code>可以调用宏，而且讲解了在使用宏和宏变量时单引号和双引号的处理）。</p>
+
+<p>在 Python 和 R 语言中，有一个<code>for</code>循环的功能非常好用，但是在 SAS 中没有类似的功能。鉴于SAS <code>data</code>步中的 PDV 是一行一行的读取执行的，so 可以结合<code>call execute</code>来实现<code>for</code>循环功能：</p>
+
+<p>以下代码实现的功能是将三行数据生成三个数据集，数据集的名称是 dataset 列的值。</p>
+
+<pre><code class="language-sas">data a;
+   input A B dataset $;
+   datalines;
+    1 2 ds_1
+    6 7 ds_2a
+    2 3 ds_100c
+   ;
+run;
+
+data _null_;
+  set a;
+  call execute('data ' ||dataset||';'||'set  a (firstobs=' ||_n_|| ' obs=' || _n_ || ');run;' );
+run;
+
+/* or */
+data _null_;
+  set a;
+  call execute('data ' || dataset || ';' || 'set  a ; if  dataset= &quot;' || dataset || '&quot;; run ;' );
+run;
+</code></pre>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2016/12/30/a-plain-markdown-post/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> A Plain Markdown Post</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/02/09/proc-report/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">SAS 使用 proc report 实现同比、环比、占比、sql 的窗口函数 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2016\/12\/30\/a-plain-markdown-post\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/02\/09\/proc-report\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>MetaClass 与 ORM z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="MetaClass 与 ORM z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3828 字</span>
+    
+
+    
+<h1 class="article-title">MetaClass 与 ORM z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2015/06/01</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=MetaClass&#43;%E4%B8%8E&#43;ORM&#43;z&#43;%2Ftech%2F2015%2F06%2F01%2Fmetaclass-orm%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=MetaClass&#43;%E4%B8%8E&#43;ORM&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2015%2F06%2F01%2Fmetaclass-orm%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2015-06-01-metaclass-ORM.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-python" title="Python">Python</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-python" title="Python">Python</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-class" title="Class">Class</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E7%B1%BB" title="类">类</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-orm" title="ORM">ORM</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-metaclass" title="MetaClass">MetaClass</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E5%85%83%E7%B1%BB" title="元类">元类</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：<a href="http://blog.csdn.net/langqing12345/article/details/46318503" target="_blank">http://blog.csdn.net/langqing12345/article/details/46318503</a></p>
+
+<h1 id="type-与-metaclass">type 与 MetaClass</h1>
+
+<h2 id="type">type</h2>
+
+<p>实例指的是某类的对象，如<code>husky</code>是<code>Dog</code>类的实例，但<code>husky</code>同时也是对象，即单独称呼时叫对象，附属于某类时叫某类的实例。</p>
+
+<p>Python 默认的元类是<code>type</code>（缺省元类），就连<code>object</code>也是<code>type</code>创造出来的类，<code>type</code>是一切类型的缺省元类，所以<code>object</code>类也是一种<code>type</code>；但同时<code>type</code>也是<code>object</code>的类，构造出的世间万物都是<code>object</code>的实例。所以就算声明一个类不继承自<code>object</code>，它也依然是<code>object</code>的实例，只是不继承自<code>object</code>而已，虽然没有从<code>object</code>继承它的一些方法，但是从构造器<code>object. __new__()</code>中获得了作为一个对象所需要的数据结构和参数。</p>
+
+<!-- more -->
+
+<pre><code class="language-python">&gt;&gt;&gt; isinstance(object, type)
+True
+&gt;&gt;&gt; isinstance(type, object)
+True
+
+
+
+&gt;&gt;&gt; class Ok:
+...     pass
+...
+&gt;&gt;&gt; o=Ok()
+&gt;&gt;&gt; isinstance(o, ok)
+True
+&gt;&gt;&gt; isinstance(Ok, object)
+True
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; isinstance(o, object)
+True
+</code></pre>
+
+<p>用<code>type</code>来<code>动态创建</code>类：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; def fn(self, name='world'): # 先定义函数
+...     print('Hello, %s.' % name)
+...
+&gt;&gt;&gt; Hello = type('Hello', (object,), dict(hello=fn)) # 创建Hello class
+</code></pre>
+
+<p>使用<code>type</code>创建新的类的语法如下：</p>
+
+<pre><code>class type(name, bases, dict)
+</code></pre>
+
+<p>return a new type object。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; x=type('y', (object,), dict(a=1))
+&gt;&gt;&gt; x
+&lt;class '__main__.y&gt;
+&gt;&gt;&gt; x()
+&lt;__main__.y object at 0x021FD210
+&gt;&gt;&gt; h=x()
+&gt;&gt;&gt; h
+&lt;__main__.y object at 0x021FD270
+&gt;&gt;&gt; y
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+NameError: name 'y' is not defined
+&gt;&gt;&gt;
+&gt;&gt;&gt; class x_1:
+...     pass
+...
+&gt;&gt;&gt; x_1
+&lt;class __main__.x_1 at 0x01D1EA40&gt;
+&gt;&gt;&gt; h_1=x_1()
+&gt;&gt;&gt; h_1
+&lt;__main__.x_1 instance at 0x01D68328
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; class x_1(object):
+...     pass
+...
+&gt;&gt;&gt; x_1
+&lt;class '__main__.x_1'&gt;
+&gt;&gt;&gt; x_1()
+&lt;__main__.x_1 object at 0x021FD1D0&gt;
+&gt;&gt;&gt;
+</code></pre>
+
+<p>由上可知，用<code>type()</code>和<code>class</code>创建类，<code>type()</code>中的<code>y</code>和<code>class</code>中的<code>x_1</code>是等同的，都是类名，赋值给<code>__name__</code>属性，但是<code>type()</code>创建的类却不能用类名<code>y</code>来创建实例，只能用<code>type</code>的返回值<code>x</code>来创建<code>h = x()</code>，为了避免混淆，我们最好把类名和<code>type()</code>的返回值设置成相同的字符串，如<code>X=type('X', (object, ), dict(a=1))</code>。</p>
+
+<h2 id="metaclass">MetaClass</h2>
+
+<p>参考资料：<a href="http://blog.jobbole.com/21351/" target="_blank">深刻理解python中的元类</a>（没看）。MetaClass 翻译过来就是元类，什么叫元？元者，源也，根也，本也！所谓元类就是能够创造出其他类的类，即原始类。下面看看怎么用 MetaClass 来动态创建类。</p>
+
+<pre><code class="language-python">
+# -*- coding:utf-8 -*-
+
+# metaclass是创建类，所以必须从 'type' 类派生
+class ListMetaclass(type):
+    def __new__(cls, name, bases, attrs):
+        print 'attrs:%s\n' %attrs
+        attrs['add'] = lambda self, value: self.append(value)
+        print 'cls: %s, \n name: %s, \n bases: %s, \n attrs: %s\n' %(cls, name, bases, attrs)
+        print type.__new__(cls, name, bases, attrs)
+        return type.__new__(cls, name, bases, attrs)  #用type申请内存空间(并返回用metaclass创建好的MyList对象)
+
+class MyList(list):
+    __metaclass__ = ListMetaclass                     #指示使用ListMetaclass来定制类
+</code></pre>
+
+<p>结果：</p>
+
+<pre><code>E:\shizhan&gt;python ok5.py
+attrs:{'__module__': '__main__', '__metaclass__': &lt;class '__main__.ListMetaclass'&gt;}
+
+cls: &lt;class '__main__.ListMetaclass'&gt;,
+name: Mylist,
+bases: (&lt;type 'list'&gt;,),
+attrs: {'__module__': '__main__', '__metaclass__': &lt;class '__main__.ListMetaclass'&gt;, 'add': &lt;function &lt;lambda&gt; at 0x020401B0&gt;}
+
+&lt;class '__main__.MyList'&gt;
+</code></pre>
+
+<p>值得注意的是，<code>attrs</code>是<code>dict</code>类型的数据，它存储着 MetaClass 调用者的所有属性和方法，其中属性包括类属性和实例的属性，所以我们可以向用 Metaclass 创建的类中添加方法 ，这实际上就是给<code>attrs</code>添加<code>key - value</code>值对。给<code>attrs</code>赋值时要用<code>dict</code>的方式<code>attrs[ ' ' ] =  ?</code>。</p>
+
+<p>关于类属性和实例属性：直接在<code>class</code>中定义的是类属性：</p>
+
+<pre><code class="language-python">class Student(object):
+    name = 'Student'
+</code></pre>
+
+<p>实例属性必须通过实例来绑定，比如<code>self.name =  'xxx'</code>。来测试一下：</p>
+
+<pre><code class="language-python">
+&gt;&gt;&gt; # 创建实例s：
+&gt;&gt;&gt; s = Student()
+&gt;&gt;&gt; # 打印name属性，因为实例并没有name属性，所以会继续查找class的name属性：
+&gt;&gt;&gt; print(s.name)
+Student
+&gt;&gt;&gt; # 这和调用Student.name是一样的：
+&gt;&gt;&gt; print(Student.name)
+Student
+&gt;&gt;&gt; # 给实例绑定name属性：
+&gt;&gt;&gt; s.name = 'Michael'
+&gt;&gt;&gt; # 由于实例属性优先级比类属性高，因此，它会屏蔽掉类的name属性：
+&gt;&gt;&gt; print(s.name)
+Michael
+&gt;&gt;&gt; # 但是类属性并未消失，用Student.name仍然可以访问：
+&gt;&gt;&gt; print(Student.name)
+Student
+&gt;&gt;&gt; # 如果删除实例的name属性：
+&gt;&gt;&gt; del s.name
+&gt;&gt;&gt; # 再次调用s.name，由于实例的name属性没有找到，类的name属性就显示出来了：
+&gt;&gt;&gt; print(s.name)
+Student
+</code></pre>
+
+<p>因此，在编写程序的时候，千万不要把实例属性和类属性使用相同的名字(如果碰到这种情况)。</p>
+
+<p>创建一个实例时调用了其类的构造器<code>__new__()</code>，当解释器看到类声明时，就调用<code>type</code>的构造器<code>__new__()</code>，把类声明中写的东西作为<code>name, bases, attrs</code>参数传递进去，然后<code>__new__()</code>就申请内存创建了一个类的对象（实例），并返回它。<code>cls</code>参数是 metaclass 简称，指它调用的<code>metaclass</code>。</p>
+
+<p>用<code>type()</code>创建一个类，是调用了<code>type()</code>的构造器<code>__new__()</code>，从而创建了一个<code>type</code>的新实例，也就是一个新的类。如果解释器在类声明中读到了<code>__metaclass__</code>属性，那就会用这个自定义元类的构造器<code>__new__()</code>来造这个类，如果没有，那就会用<code>type</code>的构造器<code>__new__()</code>来造这个类，也就是说<code>type</code>就是缺省元类。</p>
+
+<p>有了自定义元类，就可以使真实造出来的类和类声明中写的有所不同，只要覆盖元类的构造器就行了，当然，它需要调用<code>type</code>的构造器来申请空间。</p>
+
+<p>这样，我们就用 Metaclass 创建了<code>list</code>的派生类<code>MyList</code>，并添加了一个方法<code>add()</code>。关于<code>lambda</code>的用法疑问，可以用下面例子解释：</p>
+
+<pre><code class="language-python">
+&gt;&gt;&gt;x = lambda a,b : a*b
+&gt;&gt;&gt;x(2,3)
+6
+</code></pre>
+
+<p>看来调用<code>lambda</code>函数就是用括号里穿参数的形式。这样就可以解释下面调用<code>add()</code>方法的疑问</p>
+
+<pre><code class="language-python">
+&gt;&gt;&gt;from ok5 import MyList
+&gt;&gt;&gt;L=MyList()
+&gt;&gt;&gt;L.add(1)        # self 就是 L，调用add，就是调用 lambda 函数 
+&gt;&gt;&gt;L
+[1]
+</code></pre>
+
+<p>调用<code>add()</code>方法，就是调用 lambda 函数。</p>
+
+<h2 id="定制类-str-用作自定义打印实例">定制类：<code>__str__</code>用作自定义打印实例</h2>
+
+<p>我们先定义一个<code>Student</code>类，打印一个实例：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; class Student(object):
+...     def __init__(self, name):
+...         self.name = name
+...
+&gt;&gt;&gt; print Student('Michael')
+&lt;__main__.Student object at 0x109afb190&gt;
+</code></pre>
+
+<p>打印出一堆<code>&lt;__main__.Student object at 0x109afb190&gt;</code>，不好看。怎么才能打印得好看呢？只需要定义好<code>__str__()</code>方法，返回一个好看的字符串就可以了：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; class Student(object):
+...     def __init__(self, name):
+...         self.name = name
+...     def __str__(self):
+...         return 'Student object (name: %s)' % self.name
+...
+&gt;&gt;&gt; print Student('Michael')
+Student object (name: Michael)
+</code></pre>
+
+<p>这样打印出来的实例，不但好看，而且容易看出实例内部重要的数据。</p>
+
+<h1 id="orm">ORM</h1>
+
+<p>为什么 ORM 一定要用 Metaclass 来创建？很简单，假设我们已经写好了 ORM，用户会怎么调用呢？</p>
+
+<pre><code class="language-python">
+class User(Model):
+    id_key = IntegerField('uid')
+    name_key = StringField('username')
+    email_key = StringField('email')
+    password_key = StringField('password')
+</code></pre>
+
+<p>这就是用户调用 ORM 的方式，但是我们并不知道用户会用哪些类属性，在这里的类属性是<code>id_key</code>、<code>name_key</code>、<code>email_key</code>、<code>password_key</code>，但是下一次可能用户定义的就是<code>id</code>、<code>address</code>、<code>cellphone</code>、<code>name</code>、<code>email</code>、<code>password</code>等，所以我们必须把用户创建的类属性动态加入，这就要用到 Metaclass，总结一句话，<code>Metaclass</code>就是给动态创建的类【添加属性和方法的】。拿上面的例子来说，</p>
+
+<p><img src="/images/Tech/Python/ORM-Metaclass/1" alt="" /></p>
+
+<pre><code> attrs: {'id_key': &lt;__main__.IntegerField object at 0x020ED8F0&gt;, '__module__': '__main__', 'password_key': &lt;__main__.StringField object at 0x020ED950&gt;, 'email_key': &lt;__main__.StringField object at 0x020ED930&gt;, 'name_key': &lt;__main__.StringField object at 0x020ED910&gt;}
+</code></pre>
+
+<p>在<code>User</code>类调用的 MetaClass 中打印<code>attrs</code>得到上面的结果，可见在<code>User</code>中定义的类属性变成了其所调用的 MetaClass 的<code>attrs</code>的<code>key</code>，类属性的值则作为<code>attrs</code>的<code>value</code>，类属性的值可以是任何类型的数据，这里是<code>IntergetField</code>或<code>StringField</code>类的实例。</p>
+
+<p><img src="/images/Tech/Python/ORM-Metaclass/2" alt="" /></p>
+
+<p>另外，利用上面的<code>__str__()</code>方法，我们在打印类属性的值由于其是实例(<code>object</code>)类型的数据时，所以我们可以自己选择打印格式，而不是类似<code>&lt;__main__.IntegerField object at 0x0220D8D0&gt;</code>这样冷冰冰的东西。（当然不设置<code>__str__()</code>也并没有影响）</p>
+
+<p>ORM 代码：</p>
+
+<pre><code class="language-python"># -*- coding: utf-8 -*-
+
+' Simple ORM using metaclass '
+
+
+class Field(object):
+    def __init__(self, name, column_type):
+        self.name = name
+        self.column_type = column_type
+        
+    def __str__(self):                    #定义__str__()方法的目的：一旦打印Field实例就调用
+        return '&lt;%s:%s&gt;' % (self.__class__.__name__, self.name)
+
+class StringField(Field):
+    def __init__(self, name):
+        super(StringField, self).__init__(name, 'varchar(100)')
+
+class IntegerField(Field):
+    def __init__(self, name):
+        super(IntegerField, self).__init__(name, 'bigint')
+
+class ModelMetaclass(type):
+
+    def __new__(cls, name, bases, attrs):
+        if name=='Model':
+            return type.__new__(cls, name, bases, attrs)
+        
+        print('Found model: %s' % name)
+        
+        print '-------------------------------------------------'
+        print 'cls: %s, \n name: %s, \n bases: %s, \n attrs: %s\n' %(cls, name, bases, attrs)
+        print '-------------------------------------------------'
+        
+        mappings = dict()
+        for key, value in attrs.iteritems():
+            if isinstance(value, Field):
+                print('Found mapping: %s ==&gt; %s' % (key, value))  #打印v时调用__str__()方法
+                mappings[key] = value       
+                
+        for key in mappings.iterkeys():
+            attrs.pop(key)
+        attrs['__mappings__'] = mappings
+        '''
+        以上那么做的目的很明显，就是为了让attrs的结构更清晰，让所有的类属性都集中到mappings dict中,再赋值给attrs的__mappings__
+        这样类属性就整合为一个整体作为attrs的__mappings__的 value
+        '''
+        
+        attrs['__table__'] = name # 假设表名和类名一致
+        return type.__new__(cls, name, bases, attrs)
+
+class Model(dict):
+    __metaclass__ = ModelMetaclass     #User和Model都会调用ModelMetaclass，不过Model调用ModelMetaclass会什么都不做就返回(if name=='Model')
+
+    def __init__(self, **kw):
+        super(Model, self).__init__(**kw)
+
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(r&quot;'Model' object has no attribute '%s'&quot; % key)
+
+    def __setattr__(self, key, value):
+        self[key] = value
+
+    def save(self):
+        fields = []
+        params = []
+        args = []
+        
+        '''
+        print '-------------------------------------------------'
+        print '__mappings__:%s,\n'  %self.__mappings__
+        print '-------------------------------------------------'
+        '''
+        
+        #self是u，u是User的实例,但是 u 没有属性__mappings__，__mappings__是类的属性
+        #u继承类的属性，所以这里的self.__mappings__是User.__mappings__
+        for k, v in self.__mappings__.iteritems():   
+            #print k,v
+            fields.append(v.name)  #v本身就是实例(object)，所以可以有自己的属性
+            params.append('?')
+            args.append(self[k])   
+        sql = 'insert into %s (%s) values (%s)' % (self.__table__, ','.join(fields), ','.join(params))
+        print('SQL: %s' % sql)
+        print('ARGS: %s' % str(args))
+</code></pre>
+
+<p>测试代码：</p>
+
+<pre><code class="language-python">
+class User(Model):
+    id_key = IntegerField('uid')  #括号里的是数据库表的列名，因为 fields.append(v.name)，而v.name就是uid，uid等作为sql的 values 
+    name_key = StringField('username')
+    email_key = StringField('email')
+    password_key = StringField('password')
+
+'''
+print '-------------------------------------------------'
+print 'User.__mappings__:%s,\n User.__table__:%s,\n User.__module__:%s\n' %(User.__mappings__,User.__table__,User.__module__)
+print '-------------------------------------------------'
+'''
+
+#########################################################################################
+u = User(id_key=12345, name_key='zhuma', email_key='test@orm.org', password_key='zhangpan')
+#括号里的全部是**kw 关键字参数(dict), self 是 u . id, name, email, password变成了实例u的属性，而非User的类属性
+#根据User的类属性key，找到实例u的对应的value(u的key一定要和User类属性的名称保持一致).
+
+'''
+print '-------------------------------------------------'
+print 'u.__mappings__:%s,\n u.__table__:%s,\n u.__module__:%s\n' %(u.__mappings__,u.__table__,u.__module__)
+print '-------------------------------------------------'
+'''
+
+u.save()
+</code></pre>
+
+<p><code>u=User()</code>会调用<code>User</code>的父类<code>Model</code>初始化参数，而<code>Model</code>的父类又是<code>dict</code>，所以<code>u = User(id_key=12345, name_key='Michael', email_key='test@orm.org', password_key='my-pwd')</code>括号里的参数会被<code>dict</code>初始化，同时<code>Model</code>又定义了<code>__getattr__()</code>和<code>__setattr__()</code>方法，所以初始化后可以用<code>u[id_key]</code>和<code>u.id_key</code>来访问<code>u</code>的属性。</p>
+
+<p>注意很重要的一点：<code>save()</code>方法中</p>
+
+<pre><code>args.append(self[k])
+</code></pre>
+
+<p><code>self</code>是<code>u</code>，而<code>k</code>是<code>User</code>定义的<code>id_key</code>、<code>name_key</code>、<code>email_key</code>、<code>password_key</code>，所以要想用<code>self [k]</code>找到<code>u</code>对应的<code>value</code>，就必须<code>u</code>的<code>key</code>一定要和<code>User</code>类属性(即上面的<code>k</code>)的名称保持一致。</p>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2015/05/05/numpy-scipy-pandas/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> NumPy、SciPy 和 Pandas z</div>
+    </a>
+    
+
+    
+    <a href="/tech/2015/06/25/spider-csdn-login/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python 模拟登陆知乎和 CSDN z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2015\/05\/05\/numpy-scipy-pandas\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2015\/06\/25\/spider-csdn-login\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

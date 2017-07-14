@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>《廖雪峰 Python 教程》笔记 2：函数式编程 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="《廖雪峰 Python 教程》笔记 2：函数式编程 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">5890 字</span>
+    
+
+    
+<h1 class="article-title">《廖雪峰 Python 教程》笔记 2：函数式编程
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/06/14</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;2%EF%BC%9A%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B&#43;%2Ftech%2F2017%2F06%2F14%2Fpython%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;2%EF%BC%9A%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F06%2F14%2Fpython%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-06-14-Python.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-python" title="Python">Python</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-python" title="Python">Python</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：</p>
+
+<p><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014317848428125ae6aa24068b4c50a7e71501ab275d52000" target="_blank">http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014317848428125ae6aa24068b4c50a7e71501ab275d52000</a></p>
+
+<h1 id="函数式编程">函数式编程</h1>
+
+<p>函数式编程是一种抽象程度很高的编程范式，<code>纯粹的</code>函数式编程语言编写的函数没有<del><code>变量</code></del>，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的。</p>
+
+<blockquote>
+<p>函数式编程的一个<strong>特点</strong>就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！</p>
+</blockquote>
+
+<p>Python 对函数式编程提供<code>部分</code>支持。由于 Python 允许使用变量，因此，Python 不是纯函数式编程语言。</p>
+
+<!-- more -->
+
+<h2 id="高阶函数">高阶函数</h2>
+
+<h3 id="变量可以指向函数">变量可以指向函数</h3>
+
+<pre><code class="language-python">&gt;&gt;&gt; abs(-10)
+10
+
+&gt;&gt;&gt; abs
+&lt;built-in function abs&gt;
+
+&gt;&gt;&gt; f = abs
+&gt;&gt;&gt; f
+&lt;built-in function abs&gt;
+
+&gt;&gt;&gt; f = abs
+&gt;&gt;&gt; f(-10)
+10
+</code></pre>
+
+<p>从上面的代码运行结果可以看到，函数本身也可以赋值给变量，即：变量可以指向函数。如果一个变量指向了一个函数，那么可以通过该变量来调用这个函数。</p>
+
+<h3 id="函数名也是变量">函数名也是变量</h3>
+
+<p>函数名其实就是指向函数的变量！对于<code>abs()</code>这个函数，完全可以把函数名<code>abs</code>看成变量，它指向一个可以计算绝对值的函数！如果把<code>abs</code>指向其他对象，例如</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; abs = 10
+&gt;&gt;&gt; abs(-10)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: 'int' object is not callable
+</code></pre>
+
+<p>把<code>abs</code>指向<code>10</code>后，就无法通过<code>abs(-10)</code>调用该函数了！因为<code>abs</code>这个变量已经不指向求绝对值函数而是指向一个整数<code>10</code>！当然实际代码绝对不能这么写，这里是为了说明函数名也是变量。要恢复<code>abs</code>函数，请重启 Python 交互环境。</p>
+
+<blockquote>
+<p><strong>注</strong>：由于<code>abs</code>函数实际上是定义在<code>import builtins</code>模块中的，所以要让修改<code>abs</code>变量的指向在其它模块也生效，要用<code>import builtins; builtins.abs = 10</code>。</p>
+</blockquote>
+
+<h3 id="高阶函数-变量名作为参数">高阶函数：变量名作为参数</h3>
+
+<p>变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为<strong>高阶函数</strong>。编写高阶函数，就是让函数的参数能够接收别的函数，函数式编程就是指这种高度抽象的编程范式。</p>
+
+<pre><code class="language-python">def add(x, y, f):
+    return f(x) + f(y)
+
+x = -5
+y = 6
+f = abs
+f(x) + f(y) ==&gt; abs(-5) + abs(6) ==&gt; 11
+return 11
+</code></pre>
+
+<h2 id="map-reduce-filter-sorted">map, reduce, filter, sorted</h2>
+
+<p>读过论文 <a href="http://research.google.com/archive/mapreduce.html" target="_blank">MapReduce: Simplified Data Processing on Large Clusters</a>，就能大概明白<code>map/reduce</code>的概念：</p>
+
+<ul>
+<li><code>map</code>类似于 Matlab 或者 R 中的<code>apply</code>系数函数，将函数<code>f</code>作用于<code>list</code>中的每个元素；</li>
+<li><code>reduce</code>类似于 R 中的<code>cumsum</code>，将函数<code>f</code>累积作用于序列中的每个元素；</li>
+<li><code>filter</code>作用于每个元素，然后根据返回值是<code>True</code>还是<code>False</code>决定保留还是丢弃该元素；</li>
+<li><code>sorted</code>函数可以指定排序的依据，默认时数值按大小、字符串按 ASCII 编号，但可将排序改为按绝对值大小、忽略字符大小写、按升序还是降序等；<br />
+</li>
+</ul>
+
+<h3 id="map">map()</h3>
+
+<p><code>map()</code>函数接收两个参数，一个是<code>函数名</code>，一个是<code>Iterable</code>，<code>map</code>将传入的函数依次作用到序列的每个元素，并把结果作为一个<code>Iterator</code>型返回。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; def f(x):
+...     return x * x
+...
+&gt;&gt;&gt; r = map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+&gt;&gt;&gt; list(r)
+[1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre>
+
+<p>上面结果<code>r</code>是一个 Iterator，Iterator 是<code>惰性</code>序列，因此通过<code>list()</code>函数让它把整个序列都计算出来并返回一个<code>list</code>。<code>map()</code>作为高阶函数，事实上它把运算规则抽象了，因此，我们不但可以计算简单的$f(x)=x^2$，还可以计算任意复杂的函数，比如，把这个<code>list</code>中的所有数字转为字符串：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; list(map(str, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+['1', '2', '3', '4', '5', '6', '7', '8', '9']
+</code></pre>
+
+<h3 id="reduce">reduce()</h3>
+
+<p><code>reduce()</code>把一个函数作用在一个序列<code>[x1, x2, x3, ...]</code>上，这个函数必须接收两个参数，<code>reduce()</code>把结果继续和序列的下一个元素做累积计算，其效果就是：</p>
+
+<pre><code>reduce(f, [x1, x2, x3, x4]) = f(f(f(x1, x2), x3), x4)
+</code></pre>
+
+<p>比方说对一个序列求和，就可以用<code>reduce()</code>实现：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; from functools import reduce
+&gt;&gt;&gt; def add(x, y):
+...     return x + y
+...
+&gt;&gt;&gt; reduce(add, [1, 3, 5, 7, 9])
+25
+</code></pre>
+
+<p>当然求和运算可以直接用 Python 内建函数<code>sum()</code>，没必要动用<code>reduce()</code>。但是如果要把序列<code>[1, 3, 5, 7, 9]</code>变换成整数<code>13579</code>，<code>reduce()</code>就可以派上用场：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; from functools import reduce
+&gt;&gt;&gt; def fn(x, y):
+...     return x * 10 + y
+...
+&gt;&gt;&gt; reduce(fn, [1, 3, 5, 7, 9])
+13579
+</code></pre>
+
+<p>这个例子本身没多大用处，但是，如果考虑到字符串<code>str</code>也是一个序列，对上面的例子稍加改动，配合<code>map()</code>，我们就可以写出把<code>str</code>转换为<code>int</code>的函数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; from functools import reduce
+&gt;&gt;&gt; def fn(x, y):
+...     return x * 10 + y
+...
+&gt;&gt;&gt; def char2num(s):
+...     return {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}[s]
+...
+&gt;&gt;&gt; reduce(fn, map(char2num, '13579'))
+13579
+</code></pre>
+
+<p>上面的函数中，先用<code>map()</code>将字符串<code>13579</code>转换成一个整数序列<code>[1, 3, 5, 7, 9]</code>，再用<code>reduce()</code>将整数序列转换成一个整数，这个过程整理成一个<code>str2int()</code>函数就是：</p>
+
+<pre><code class="language-python">from functools import reduce
+
+def str2int(s):
+    def fn(x, y):
+        return x * 10 + y
+    def char2num(s):
+        return {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}[s]
+    return reduce(fn, map(char2num, s))
+</code></pre>
+
+<p>还可以用<code>lambda</code>函数进一步简化成：</p>
+
+<pre><code>from functools import reduce
+
+def char2num(s):
+    return {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}[s]
+
+def str2int(s):
+    return reduce(lambda x, y: x * 10 + y, map(char2num, s))
+</code></pre>
+
+<p>也就是说，假设 Python 没有提供<code>int()</code>函数，你完全可以自己写一个把字符串转化为整数的函数，而且只需要几行代码！<code>lambda</code>函数的用法在后面介绍。</p>
+
+<h3 id="filter">filter()</h3>
+
+<p><code>filter()</code>也接收一个函数和一个序列。和<code>map()</code>不同的是，<code>filter()</code>把传入的函数依次作用于每个元素，然后根据返回值是<code>True</code>还是<code>False</code>决定保留还是丢弃该元素。</p>
+
+<pre><code class="language-python">def is_odd(n):
+    return n % 2 == 1
+list(filter(is_odd, [1, 2, 4, 5, 6, 9, 10, 15]))
+# 结果: [1, 5, 9, 15]
+
+// 删除序列中的空字符串
+def not_empty(s):
+    return s and s.strip()
+list(filter(not_empty, ['A', '', 'B', None, 'C', '  ']))
+# 结果: ['A', 'B', 'C']
+</code></pre>
+
+<p>用<code>filter()</code>这个高阶函数，关键在于正确实现一个<strong>筛选</strong>函数。注意到<code>filter()</code>函数返回的是一个 Iterator，也就是一个惰性序列，所以要强迫<code>filter()</code>完成计算结果，需要用<code>list()</code>函数获得所有结果并返回<code>list</code>。</p>
+
+<p>讲义中用<a href="http://baike.baidu.com/view/3784258.htm" target="_blank">埃氏筛法</a>筛选中全部素数的方法，首先是利用了<code>filter()</code>函数，其次还用到了 Iterator 型变量惰性计算特征下可以表示出全体自然数的优点，应该说是 Python 语言特征的一次典型应用，实际上在利用 Python 的这两个特殊技巧操作数据也是非常方便的。</p>
+
+<h3 id="sorted">sorted()</h3>
+
+<pre><code class="language-python">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21])
+[-21, -12, 5, 9, 36]
+
+&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)
+[5, 9, -12, -21, 36]
+
+&gt;&gt;&gt; sorted(['bob', 'about', 'Zoo', 'Credit'])
+['Credit', 'Zoo', 'about', 'bob']
+
+&gt;&gt;&gt; sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower)
+['about', 'bob', 'Credit', 'Zoo']
+
+&gt;&gt;&gt; sorted(['bob', 'about', 'Zoo', 'Credit'], key=str.lower, reverse=True)
+['Zoo', 'Credit', 'bob', 'about']
+</code></pre>
+
+<h2 id="返回值为函数-闭包-难度较高">返回值为函数、闭包（难度较高）</h2>
+
+<p>高阶函数除了可以接受函数作为参数外，还可以把函数作为结果值返回。一个可变参数的求和通常情况下是这样定义的：</p>
+
+<pre><code class="language-python">def calc_sum(*args):
+    ax = 0
+    for n in args:
+        ax = ax + n
+    return ax
+</code></pre>
+
+<p>但是，如果不需要立刻求和，而是在后面的代码中，根据需要再计算怎么办？可以不返回求和的结果，而是返回求和的函数：</p>
+
+<pre><code class="language-python">def lazy_sum(*args):
+    def sum():
+        ax = 0
+        for n in args:
+            ax = ax + n
+        return ax
+    return sum
+</code></pre>
+
+<p>当我们调用<code>lazy_sum()</code>时，返回的并不是<del><strong>求和结果</strong></del>，而是<strong>求和函数</strong>：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; f = lazy_sum(1, 3, 5, 7, 9)
+&gt;&gt;&gt; f
+&lt;function lazy_sum.&lt;locals&gt;.sum at 0x101c6ed90&gt;
+
+&gt;&gt;&gt; f()     // 调用函数 f 时，才真正计算求和的结果：
+25
+</code></pre>
+
+<p>在这个例子中，我们在函数<code>lazy_sum</code>中又定义了函数<code>sum</code>，并且，内部函数<code>sum</code>可以引用外部函数<code>lazy_sum</code>的参数和局部变量，当<code>lazy_sum</code>返回函数<code>sum</code>时，相关参数和变量都保存在返回的函数中<sup class="footnote-ref" id="fnref:-"><a rel="footnote" href="#fn:-">1</a></sup>，这种称为<strong>闭包（Closure）</strong>的程序结构拥有极大的威力。</p>
+
+<blockquote>
+<p><strong>注意</strong>：调用<code>lazy_sum()</code>时，每次调用都会返回一个新的函数，即使传入相同的参数：</p>
+</blockquote>
+
+<pre><code class="language-python">&gt;&gt;&gt; f1 = lazy_sum(1, 3, 5, 7, 9)
+&gt;&gt;&gt; f2 = lazy_sum(1, 3, 5, 7, 9)
+&gt;&gt;&gt; f1==f2
+False
+</code></pre>
+
+<p><code>f1()</code>和<code>f2()</code>的调用结果互不影响。</p>
+
+<p>注意到返回的函数在其定义内部引用了局部变量<code>args</code><sup class="footnote-ref" id="fnref:sum-args"><a rel="footnote" href="#fn:sum-args">2</a></sup>，所以，当一个函数返回了一个函数后，其内部的局部变量还被新函数引用，所以，闭包用起来简单，实现起来可不容易。<strong>疑惑</strong>的是这里<strong>其</strong>指的是什么、<strong>新函数</strong>是什么没有弄明白。</p>
+
+<blockquote>
+<p><strong>注意</strong>：返回的函数并没有立刻执行，而是直到调用了<code>f()</code>才执行</p>
+</blockquote>
+
+<pre><code>def count():
+    fs = []
+    for i in range(1, 4):
+        def f():
+             return i*i
+        fs.append(f)
+    return fs
+
+f1, f2, f3 = count()
+</code></pre>
+
+<p>在上面的例子中，<code>range(1,4)</code>对应<code>[1, 2, 3]</code>，每次循环都创建了一个新的函数，然后，把创建的 3 个函数都返回了。可能会认为调用<code>f1()</code>，<code>f2()</code>和<code>f3()</code>结果应该是<code>1</code>，<code>4</code>，<code>9</code>，但实际结果是：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; f1()
+9
+&gt;&gt;&gt; f2()
+9
+&gt;&gt;&gt; f3()
+9
+</code></pre>
+
+<p>全部都是<code>9</code>！原因就在于返回的函数引用了变量<code>i</code>，但它并非立刻执行。等到 3 个函数都返回时，它们所引用的变量<code>i</code>已经变成了<code>3</code>，因此最终结果为<code>9</code>。返回闭包时牢记的一点就是：<strong>返回函数不要引用任何循环变量，或者后续会发生变化的变量</strong>。如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，无论该循环变量后续如何更改，已绑定到函数参数的值不变：</p>
+
+<blockquote>
+<p><strong>疑惑</strong>：什么时候<code>f1()</code>、<code>f2()</code>和<code>f3()</code>会有参数，该怎么操作？</p>
+</blockquote>
+
+<pre><code class="language-python">def count():
+    def f(j):
+        def g():
+            return j*j
+        return g
+    fs = []
+    for i in range(1, 4):
+        fs.append(f(i))     # f(i)立刻被执行，因此i的当前值被传入f()
+    return fs
+
+&gt;&gt;&gt; f1, f2, f3 = count()
+&gt;&gt;&gt; f1()
+1
+&gt;&gt;&gt; f2()
+4
+&gt;&gt;&gt; f3()
+9
+</code></pre>
+
+<p>这种做法的缺点是代码较长，可利用<code>lambda()</code>函数缩短代码。</p>
+
+<h2 id="匿名函数-lambda">匿名函数(lambda)</h2>
+
+<p>有些时候，不需要显式地定义函数，直接传入匿名函数更方便。在 Python 中，对匿名函数提供了有限支持。还是以<code>map()</code>函数为例，计算$f(x)=x^2$时，除了定义一个$f(x)$的函数外，还可以直接传入匿名函数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; list(map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+[1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre>
+
+<p>通过对比可以看出，匿名函数<code>lambda x: x * x</code>实际上就是：</p>
+
+<pre><code class="language-python">def f(x):
+    return x * x
+</code></pre>
+
+<p>关键字<code>lambda</code>表示匿名函数，冒号前面的<code>x</code>表示函数参数。</p>
+
+<p>匿名函数有个限制，就是只能有一个表达式，不用写<code>return</code>，返回值就是该表达式的结果。用匿名函数有个好处，因为函数没有名字，不必担心函数名冲突。此外，匿名函数也是一个函数对象，也可以把匿名函数赋值给一个变量，再利用变量来调用该函数：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; f = lambda x: x * x
+&gt;&gt;&gt; f
+&lt;function &lt;lambda&gt; at 0x101c6ef28&gt;
+&gt;&gt;&gt; f(5)
+25
+</code></pre>
+
+<p>同样，也可以把匿名函数作为返回值返回，比如：</p>
+
+<pre><code class="language-python">def build(x, y):
+    return lambda: x * x + y * y
+</code></pre>
+
+<h2 id="装饰器-decorator">装饰器(decorator)</h2>
+
+<p>在面向对象（OOP）的设计模式中，decorator 被称为装饰模式。OOP 的装饰模式需要通过继承和组合来实现，而 Python 除了能支持 OOP 的 decorator 外，直接从语法层次支持 decorator。Python 的 decorator 可以用函数实现，也可以用类实现。decorator 可以增强函数的功能，定义起来虽然有点复杂，但使用起来非常灵活和方便。</p>
+
+<p>由于函数也是一个对象，而且函数对象可以被赋值给变量，所以，通过变量也能调用该函数。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; def now():
+...     print('2015-3-25')
+...
+&gt;&gt;&gt; f = now
+&gt;&gt;&gt; f()
+2015-3-25
+</code></pre>
+
+<p>函数对象有一个<code>__name__</code>属性，可以得到函数的名字：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; now.__name__
+'now'
+&gt;&gt;&gt; f.__name__
+'now'
+</code></pre>
+
+<p>现在，假设我们要增强<code>now()</code>函数的功能，比如，在函数调用前后自动打印日志，但又不希望修改<code>now()</code>函数的定义，这种在代码运行期间动态增加功能的方式，称之为<strong>装饰器</strong>（Decorator）。</p>
+
+<p>本质上，decorator 就是一个返回函数的高阶函数，其参数为指定的函数名称，返回值为一个函数，目的是在不改变输入函数功能的前提下对原始函数进行功能增加。所以，我们要定义一个能打印日志的 decorator，可以定义如下：</p>
+
+<pre><code class="language-python">def log(func):
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+</code></pre>
+
+<p>观察上面的<code>log()</code>，因为它是一个 decorator，所以接受一个函数作为参数，并返回一个函数。我们要借助 Python 的<code>@</code>语法，把 decorator 置于函数的定义处：</p>
+
+<pre><code>@log
+def now():
+    print('2015-3-25')
+</code></pre>
+
+<p>调用<code>now()</code>函数，不仅会运行<code>now()</code>函数本身，还会在运行<code>now()</code>函数前打印一行日志：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; now()
+call now():
+2015-3-25
+</code></pre>
+
+<p>把<code>@log</code>放到<code>now()</code>函数的定义处，相当于执行了语句：</p>
+
+<pre><code>now = log(now)
+</code></pre>
+
+<p>由于<code>log()</code>是一个 decorator，返回一个函数，所以，原来的<code>now()</code>函数仍然存在，只是现在同名的<code>now</code>变量指向了新的函数，于是调用<code>now()</code>将执行新函数，即在<code>log()</code>函数中返回的<code>wrapper()</code>函数。</p>
+
+<p><code>wrapper()</code>函数的参数定义是<code>(*args, **kw)</code>，因此，<code>wrapper()</code>函数可以接受任意参数的调用。在<code>wrapper()</code>函数内，首先打印日志，再紧接着调用原始函数。</p>
+
+<p>如果 decorator 本身需要传入参数，那就需要编写一个返回 decorator 的高阶函数，写出来会更复杂。比如，要自定义<code>log()</code>的文本：</p>
+
+<pre><code class="language-python">def log(text):
+    def decorator(func):
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+</code></pre>
+
+<p>这个 3 层嵌套的 decorator 用法如下：</p>
+
+<pre><code class="language-python">@log('execute')
+def now():
+    print('2015-3-25')
+</code></pre>
+
+<p>执行结果如下：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; now()
+execute now():
+2015-3-25
+</code></pre>
+
+<p>和两层嵌套的 decorator 相比，3 层嵌套的效果是这样的：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; now = log('execute')(now)
+</code></pre>
+
+<p>我们来剖析上面的语句，首先执行<code>log('execute')</code>，返回的是<code>decorator()</code>函数，再调用返回的函数，参数是<code>now()</code>函数，返回值最终是<code>wrapper()</code>函数。</p>
+
+<blockquote>
+<p><strong>提醒</strong>：以上两种 decorator 的定义都没有问题，但还差最后一步。因为我们讲了函数也是对象，它有<code>__name__</code>等属性，但你去看经过 decorator 装饰之后的函数，它们的<code>__name__</code>已经从原来的<code>'now'</code>变成了<code>'wrapper'</code>：</p>
+</blockquote>
+
+<pre><code class="language-pyhon">&gt;&gt;&gt; now.__name__
+'wrapper'
+</code></pre>
+
+<p>因为返回的那个<code>wrapper()</code>函数名字就是<code>'wrapper'</code>，所以，需要把原始函数的<code>__name__</code>等属性复制到<code>wrapper()</code>函数中，否则，有些依赖函数签名的代码执行就会出错。</p>
+
+<p>不需要编写<code>wrapper.__name__ = func.__name__</code>这样的代码，Python 内置的<code>functools.wraps</code>就是干这个事的，所以，一个完整的 decorator 的写法如下：</p>
+
+<pre><code class="language-python">import functools
+
+def log(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print('call %s():' % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+</code></pre>
+
+<p>或者针对带参数的 decorator：</p>
+
+<pre><code class="language-python">import functools
+
+def log(text):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kw):
+            print('%s %s():' % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+</code></pre>
+
+<p><code>import functools</code>是导入<code>functools</code>模块。模块的概念稍候讲解。现在，只需记住在定义<code>wrapper()</code>的前面加上<code>@functools.wraps(func)</code>即可。</p>
+
+<h2 id="偏函数">偏函数</h2>
+
+<p>当函数的参数个数太多，需要简化时，使用<code>functools.partial</code>可以创建一个新的函数，这个新函数可以固定住原函数的部分参数，从而在调用时更简单。</p>
+
+<p>Python 的<code>functools</code>模块提供了很多有用的功能，其中一个就是<strong>偏函数</strong>（Partial function）。要注意，这里的偏函数和数学意义上的偏函数不一样。</p>
+
+<p>在介绍函数参数的时候，我们讲到，通过设定参数的默认值，可以降低函数调用的难度。而偏函数也可以做到这一点。举例如下：</p>
+
+<p><code>int()</code>函数可以把字符串转换为整数，当仅传入字符串时，<code>int()</code>函数默认按十进制转换：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; int('12345')
+12345
+</code></pre>
+
+<p>但<code>int()</code>函数还提供额外的<code>base</code>参数，默认值为<code>10</code>。如果传入<code>base</code>参数，就可以做<code>N</code>进制的转换：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; int('12345', base=8)
+5349
+&gt;&gt;&gt; int('12345', 16)
+74565
+</code></pre>
+
+<p>假设要转换大量的二进制字符串，每次都传入<code>int(x, base=2)</code>非常麻烦，于是，我们想到，可以定义一个<code>int2()</code>的函数，默认把<code>base=2</code>传进去：</p>
+
+<pre><code class="language-python">def int2(x, base=2):
+    return int(x, base)
+</code></pre>
+
+<p>这样，我们转换二进制就非常方便了：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; int2('1000000')
+64
+&gt;&gt;&gt; int2('1010101')
+85
+</code></pre>
+
+<p><code>functools.partial</code>就是帮助我们创建一个偏函数的，不需要我们自己定义<code>int2()</code>，可以直接使用下面的代码创建一个新的函数<code>int2</code>：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; import functools
+&gt;&gt;&gt; int2 = functools.partial(int, base=2)
+&gt;&gt;&gt; int2('1000000')
+64
+&gt;&gt;&gt; int2('1010101')
+85
+</code></pre>
+
+<p>所以，简单总结<code>functools.partial</code>的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。</p>
+
+<p>注意到上面的新的<code>int2()</code>函数，仅仅是把<code>base</code>参数重新设定默认值为<code>2</code>，但也可以在函数调用时传入其他值：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; int2('1000000', base=10)
+1000000
+</code></pre>
+
+<blockquote>
+<p><strong>提醒</strong>：最后，创建偏函数时，实际上可以接收<code>函数对象</code>、<code>*args</code>和<code>**kw</code>这<code>3</code>个参数，当传入：</p>
+</blockquote>
+
+<pre><code class="language-python">int2 = functools.partial(int, base=2)
+</code></pre>
+
+<p>实际上固定了<code>int()</code>函数的关键字参数<code>base</code>，也就是：</p>
+
+<pre><code class="language-python">int2('10010')
+</code></pre>
+
+<p>相当于：</p>
+
+<pre><code class="language-python">kw = { 'base': 2 }
+int('10010', **kw)
+</code></pre>
+
+<p>当传入：</p>
+
+<pre><code class="language-python">max2 = functools.partial(max, 10)
+</code></pre>
+
+<p>实际上会把<code>10</code>作为<code>*args</code>的一部分自动加到左边，也就是：</p>
+
+<pre><code class="language-python">max2(5, 6, 7)
+</code></pre>
+
+<p>相当于：</p>
+
+<pre><code>args = (10, 5, 6, 7)
+max(*args)
+</code></pre>
+
+<p>结果为<code>10</code>。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:-">这里的相关参数和变量指什么？ <a class="footnote-return" href="#fnref:-">↩</a></li>
+<li id="fn:sum-args">指<code>sum</code>函数中用到了<code>args</code>？ <a class="footnote-return" href="#fnref:sum-args">↩</a></li>
+</ol>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/06/13/python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 《廖雪峰 Python 教程》笔记 1：基础语法、函数</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/06/15/rmarkdown-notes/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">RMarkdown 应用笔记 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/06\/13\/python\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/06\/15\/rmarkdown-notes\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

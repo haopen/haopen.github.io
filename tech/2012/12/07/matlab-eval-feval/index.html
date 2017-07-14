@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>Matlab 中的 eval 与 feval 函数 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="Matlab 中的 eval 与 feval 函数 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1503 字</span>
+    
+
+    
+<h1 class="article-title">Matlab 中的 eval 与 feval 函数
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2012/12/07</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=Matlab&#43;%E4%B8%AD%E7%9A%84&#43;eval&#43;%E4%B8%8E&#43;feval&#43;%E5%87%BD%E6%95%B0&#43;%2Ftech%2F2012%2F12%2F07%2Fmatlab-eval-feval%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=Matlab&#43;%E4%B8%AD%E7%9A%84&#43;eval&#43;%E4%B8%8E&#43;feval&#43;%E5%87%BD%E6%95%B0&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2012%2F12%2F07%2Fmatlab-eval-feval%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2012-12-07-matlab-eval-feval.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-matlab" title="Matlab">Matlab</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-matlab" title="Matlab">Matlab</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-eval" title="eval">eval</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<h1 id="eval函数用法简介">eval函数用法简介</h1>
+
+<p>原文地址：<a href="http://www.ilovematlab.cn/thread-53554-1-1.html" target="_blank">http://www.ilovematlab.cn/thread-53554-1-1.html</a></p>
+
+<p><code>eval(expression)</code>用于执行其参数中包含的 <code>expression</code>。例如，把 <code>August1.mat</code> 到 <code>August3.mat</code> 加载到 <code>MATLAB workspace</code>：</p>
+
+<pre><code class="language-matlab">for d=1:3
+   s = ['load August' int2str(d) '.mat']
+   eval(s)
+end
+</code></pre>
+
+<p>上面的部分代码也可以写成 <code>s = ['load August', int2str(d), '.mat']</code>，也就是中间用逗号隔开，这样才能把三部分合成一个字符串，以下是被执行的 <code>s</code> 语句：</p>
+
+<pre><code class="language-matlab">s =
+   load August1.mat
+s =
+   load August2.mat
+s =
+   load August3.mat
+</code></pre>
+
+<!-- more -->
+
+<h1 id="feval函数用法简介">feval函数用法简介</h1>
+
+<p>原文地址：<a href="http://www.madio.net/thread-170200-1-1.html" target="_blank">http://www.madio.net/thread-170200-1-1.html</a></p>
+
+<p><code>[y1,..,yn] = FEVAL(F,x1,...,xn)</code>，<code>F</code> 是需要使用函数的函数名，或者句柄(见下面程序注释)；<code>xi</code> 是函数的参数，<code>yi</code> 是函数的返回值。</p>
+
+<p>举例，假设需要调用的函数 <code>foo</code> 定义如下：</p>
+
+<pre><code class="language-matlab">function x=foo(a,b)
+x=a*b;
+</code></pre>
+
+<p>若在 <code>main</code> 函数中用 <code>feval</code> 调用 <code>foo</code>，可以有以下几种方式：</p>
+
+<blockquote>
+<ol>
+<li><code>result=feval('foo',3,15);</code></li>
+<li><code>result=feval(@foo,3,16); % 这里@foo是函数foo的句柄</code></li>
+<li>若调用的函数要作为<code>main</code>的参数，则</li>
+</ol>
+</blockquote>
+
+<pre><code class="language-matlab">function result=main(f)
+result=feval(f,3,10);
+</code></pre>
+
+<p>然后调用 <code>main</code> 时将 <code>'foo'</code> 传入即可：</p>
+
+<pre><code class="language-matlab">&gt;&gt;main('foo');
+</code></pre>
+
+<h1 id="feval和eval的区别">feval和eval的区别</h1>
+
+<p>原文地址：<a href="http://powerelite.blog.163.com/blog/static/42965891201272725641245/" target="_blank">http://powerelite.blog.163.com/blog/static/42965891201272725641245/</a></p>
+
+<p><code>feval</code> 和 <code>eval</code> 运行区别之一：<code>feval</code> 的 <code>FN</code> 不能是表达式，其 <code>FN</code> <strong>只接受函数名</strong>。函数 <code>eval</code> 给 MATLAB 提供 <strong>宏</strong> 的能力，该函数提供了将用户创建的函数名传给其它函数能力，以便求值。函数 <code>feval</code> 与 <code>eval</code> 类似，但在用法上有更多的限制。<code>feval('fun',x)</code> 求由字符串 <code>'fun'</code> 给定的函数值，其输入参量是变量 <code>x</code>，即 <code>feval_r('fun',x)</code> 等价于求 <code>fun(x)</code> 值，注意下面代码中的运行错误解决方法见上面 <code>feval</code> 函数的三种使用方法。</p>
+
+<pre><code class="language-matlab">format short
+x=pi/4;
+Ve=eval('1+sin(x)') 
+Ve =
+    1.7071 
+Vf=feval('1+sin(x)',x) 
+??? Error using ==&gt; feval
+Invalid function name '1+sin(x)'.
+</code></pre>
+
+<h1 id="关于带参数的积分问题">关于带参数的积分问题</h1>
+
+<p>原文地址：<a href="http://forum.chinavib.com/thread-42369-1-1.html" target="_blank">http://forum.chinavib.com/thread-42369-1-1.html</a></p>
+
+<p>有不少人常问带参数的积分问题该如何处理,现举一个例子，希望能起到抛砖引玉的作用。</p>
+
+<pre><code class="language-matlab">%%%--------------------------------------------%%%
+例如以下问题:
+函数为 y=sin(k.*x).*x.^2，对x积分，
+积分区域为【1，5】，目的是要画 k 和 y 的图形.
+%%%============================================%%%
+%%% 作k的一个循环, k作为 inline函数的参数即可.
+clear all
+k=linspace(0,5);
+for i=1:length(k)
+    kk=k(i);
+    fun=strcat('sin(',num2str(kk),'*x).*x.^2');
+    y(i)=quadl(inline(fun),1,5);
+end
+plot(k,y)
+%%%============================================%%%
+</code></pre>
+
+<p><strong>注意</strong>：这个程序的特别意义在于，对于任何复杂的、无显式积分表达式的带参数积分问题具有通用性，我主要是针对此而写的。</p>
+
+<h1 id="matlab中函数调用及-feval-函数-带参数积分问题">Matlab中函数调用及<code>feval</code>函数，带参数积分问题</h1>
+
+<p>原文地址：<a href="http://www.ilovematlab.cn/thread-36666-1-1.html" target="_blank">http://www.ilovematlab.cn/thread-36666-1-1.html</a></p>
+
+<pre><code class="language-matlab">function InlineSubAnonymousNestedDemo
+% 带参数的积分问题
+% 例如
+% 函数为 y=sin(k.*x).*x.^2，对x积分，
+% 积分区域为【1，5】，目的是要画 k 和 y 的图形.
+% 例子意义在于,对于一些复杂的、无显式积分表达式的带参数积分问题具有通用性
+% 问题来源于振动论坛原xjzuo版主发的一个帖子；
+% 原帖地址：http://www.chinavib.com/forum/thread-42369-1-2.html%% 用inline解决
+tic;
+k=linspace(0,5);
+y1 = zeros(size(k));
+for i=1:length(k)
+    kk=k(i);
+    fun=inline(['sin(',num2str(kk),'*x).*x.^2']);
+    y1(i)=quadl(fun,0,5);
+end
+time = toc;
+disp(['用inline方法的时间是：',num2str(time),'秒!'])%% 用anonymous function 解决
+tic;
+f=@(k) quadl(@(x)  sin(k.*x).*x.^2,0,5);
+kk=linspace(0,5);
+y2=zeros(size(kk));
+for ii=1:length(kk)
+y2(ii)=f(kk(ii));
+end
+time = toc;
+disp(['用anonymous function方法的时间是：',num2str(time),'秒!'])%% 用nested function解决
+function y = ParaInteg(k)
+y=quadl(@(x) sin(k.*x).*x.^2 ,0,5);
+end
+tic;
+kk=linspace(0,5);
+y3=zeros(size(kk));
+for ii=1:length(kk)
+y3(ii)=ParaInteg(kk(ii));
+end
+time = toc;
+disp(['用nested function方法的时间是：',num2str(time),'秒!'])%% 用 arrayfun + anonymous function 解决
+tic;y4 = arrayfun(@(k) quadl(@(x)  sin(k.*x).*x.^2,0,5),linspace(0,5));time = toc;
+disp(['用arrayfun + anonymous function方法的时间是：',num2str(time),'秒!'])
+plot(kk,y2);
+end
+</code></pre>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2012/12/05/r-string-grep/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> R 中字符串处理和 grep 的用法 z</div>
+    </a>
+    
+
+    
+    <a href="/tech/2013/01/09/2013-01-09-sas-macro-definition/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">SAS 定义宏的三种用法 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2012\/12\/05\/r-string-grep\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2013\/01\/09\/2013-01-09-sas-macro-definition\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

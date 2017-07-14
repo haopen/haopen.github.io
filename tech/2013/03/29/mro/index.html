@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>MRO：多继承属性查找机制 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="MRO：多继承属性查找机制 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1706 字</span>
+    
+
+    
+<h1 class="article-title">MRO：多继承属性查找机制 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2013/03/29</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=MRO%EF%BC%9A%E5%A4%9A%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E6%9F%A5%E6%89%BE%E6%9C%BA%E5%88%B6&#43;z&#43;%2Ftech%2F2013%2F03%2F29%2Fmro%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=MRO%EF%BC%9A%E5%A4%9A%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E6%9F%A5%E6%89%BE%E6%9C%BA%E5%88%B6&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2013%2F03%2F29%2Fmro%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2013-03-29-MRO.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-python" title="Python">Python</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-python" title="Python">Python</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-class" title="Class">Class</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E7%B1%BB" title="类">类</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-mro" title="MRO">MRO</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：<a href="http://blog.csdn.net/imzoer/article/details/8737642" target="_blank">http://blog.csdn.net/imzoer/article/details/8737642</a></p>
+
+<p>还记得什么是新式类和旧式类吗？Python 中，一个<code>class</code>继承于<code>object</code>，或其 bases class 里面任意一个继承于<code>object</code>，这个<code>class</code>都是 new-style class。</p>
+
+<ul>
+<li>在 Python 中，类是可以多重继承的。Python 类中的所有成员变量都是类似 Java 语言中的<code>public</code>的。</li>
+<li>在 Python 中，类中定义的函数也是对象。也可以修改赋值。<br />
+</li>
+</ul>
+
+<!-- more -->
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+class A(object):
+    def f(self):
+        print &quot;f&quot;
+def ff():
+    print &quot;ff&quot;
+a=A()
+a.f()
+xf=a.f
+xf()
+a.f=ff
+a.f()
+</code></pre>
+
+<p>这个例子的输出结果如下：</p>
+
+<pre><code class="language-txt">f
+f
+ff
+</code></pre>
+
+<p>通过上面的结果，可看出来，<code>a.f=ff</code>的时候，对象<code>a</code>中的函数已经被修改成<code>ff</code>函数了。另外，<code>xf</code>也是一个函数对象。</p>
+
+<p>对于继承，Python 提供了两个函数：<code>issubclass(</code>)和<code>isinstance()</code></p>
+
+<p>看例子：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; issubclass(bool,int)
+True
+&gt;&gt;&gt;
+</code></pre>
+
+<p>结果输出是<code>True</code>，说明<code>bool</code>是<code>int</code>的子类。</p>
+
+<pre><code># -*- coding:utf-8 -*-
+class A(object):
+    def a(self):
+        print &quot;a&quot;
+
+if __name__ == &quot;__main__&quot;:
+    a=A()
+    print isinstance(a,A)
+</code></pre>
+
+<p>主要还是学习一下多重继承的概念。Python 中多重继承的语法如下：</p>
+
+<pre><code>class Myclass(base1,base2,base3):
+</code></pre>
+
+<h1 id="mro">MRO</h1>
+
+<p>MRO 即 <strong>M</strong>ethod <strong>R</strong>esolution <strong>O</strong>rder，主要用于在多继承时判断调的属性的路径(来自于哪个类)。</p>
+
+<p>之前查看了很多资料，说 MRO 是基于<code>深度优先</code>搜索算法的。但不完全正确。在 Python2.3 之前是基于此算法，但从 Python2.3 起应用了新算法：<code>C3</code>算法。</p>
+
+<h2 id="为什么采用-c3-算法">为什么采用 C3 算法</h2>
+
+<p>C3 算法最早被提出是用于 Lisp 的，应用在 Python 中是为了解决原来基于深度优先搜索算法不满足<strong>本地优先级</strong>，和<strong>单调性</strong>的问题。</p>
+
+<ul>
+<li><strong>本地优先级</strong>：指声明时父类的顺序，比如<code>C(A, B)</code>，如果访问<code>C</code>类对象属性时，应该根据声明顺序，优先查找<code>A</code>类，然后再查找<code>B</code>类。</li>
+<li><strong>单调性</strong>：如果在<code>C</code>的解析顺序中，<code>A</code>排在<code>B</code>的前面，那么在<code>C</code>的所有子类里，也必须满足这个顺序。<br />
+</li>
+</ul>
+
+<p>在新式类中，查找一个要调用的函数或者属性的时候，是<code>广度优先</code>搜搜的。在旧式类当中，是<code>深度优先</code>搜索的。如下图所示：</p>
+
+<p><img src="/images/Tech/Python/C3.jpg" alt="" /></p>
+
+<p>看下面的例子：</p>
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+
+# 最好在 2.X 中测试
+class D(object):
+    def foo(self):
+        print &quot;class D&quot;
+
+class B(D):
+    pass
+
+class C(D):
+    def foo(self):
+        print &quot;class C&quot;
+
+class A(B, C):
+    pass
+
+f = A()
+f.foo()
+</code></pre>
+
+<p>例子中定义<code>D</code>类的时候，<code>D</code>是新式类，所以<code>D</code>的所有子类都是新式类。<code>A</code>的实例对象<code>f</code>在调用<code>foo</code>函数的时候，根据广度优先搜索原则，调用的是<code>C</code>类里面的<code>foo</code>函数。上面的代码输出<code>class C</code>；如果定义<code>D</code>类的时候直接<code>class D</code>，而不是<code>class D(object)</code>，那么上述代码就该输出<code>class D</code>了。</p>
+
+<p>需要说明的是，在 3.X 中运行代码时<code>class D:</code>和<code>class D(object)</code>的返回结果都是<code>class C</code>，说明完全不再有深度优先支持；但在 2.X 中，<code>class D:</code>的结果是<code>class D</code>，说明 2.X 还是支持深度优先的。<br />
+返回的结果是<code>class C</code></p>
+
+<h1 id="命名空间-作用域">命名空间、作用域</h1>
+
+<p>Python 中，不同命名空间中的内容可以重名。比如说在<code>A</code>模块中定义一个<code>max</code>函数，在<code>B</code>模块中也定义一个<code>max</code>函数，那么二者是不冲突的。在调用的时候，只需要在函数名字前面加上模块名字即可。</p>
+
+<p>在 Python 中，一切都是对象。严格的说，在模块中，对名字的引用就是属性引用。在表达式<code>modulename.functionname</code>中，<code>modulename</code>是一个模块对象。<code>function</code>则是该对象的一个属性。</p>
+
+<p>属性分为<code>只读</code>的和<code>可写</code>的。如果是<code>可写</code>的属性，那么就可以使用<code>del</code>来删除了。比如说在一个类中删除一个属性的例子如下：</p>
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+
+class OOO(object):
+    def __init__(self, value):
+        self.value=value
+    
+if __name__ == &quot;__main__&quot;:
+    a=OOO(100)
+    print a.value
+    del a.value
+    print a.value
+</code></pre>
+
+<p>执行代码的结果：</p>
+
+<pre><code>Traceback (most recent call last):
+  File &quot;C:\Users\naughty\workspace\ttt\com\d.py&quot;, line 15, in &lt;module&gt;
+100
+    print a.value
+AttributeError: 'OOO' object has no attribute 'value'
+</code></pre>
+
+<p>可以看到，属性<code>value</code>在删除之前是可以输出的。删除之后，再次输出就会抛出异常了。</p>
+
+<p>也可以删除引入的另外一个模块的内容：</p>
+
+<pre><code class="language-python">
+# -*- coding:utf-8 -*-
+
+import data
+
+if __name__ == &quot;__main__&quot;:
+    print data.a
+    print data.b
+    del data.a
+    print data.a
+</code></pre>
+
+<p><code>data</code>模块如下：</p>
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+
+a = &quot;aa&quot;
+b = &quot;bb&quot;
+</code></pre>
+
+<p>既然涉及到了命名空间，那么有必要说一下<code>global</code>的使用。<code>global</code>的使用了是为了在一个代码块中声明一个变量是全局变量。</p>
+
+<pre><code class="language-python"># -*- coding:utf-8 -*-
+
+import data
+
+a=&quot;global a!&quot;
+
+def modify():
+    global a
+    a=&quot;inner a!&quot;
+    print a
+
+
+if __name__ == &quot;__main__&quot;:
+    print a
+    modify()
+    print a 
+</code></pre>
+
+<p>在上面这个例子中，<code>modify</code>函数中使用了<code>global</code>，然后修改了<code>a</code>的值，并打印。在代码最后也打印了<code>a</code>的值。执行代码输出如下：</p>
+
+<pre><code>global a!
+inner a!
+inner a!    # 这里的值被修改了
+</code></pre>
+
+<p>这说明，<code>global</code>确实起到作用了。如果这里不使用<code>global</code>的话，那么根据 Python 对变量赋值的原则，这里会在<code>modify</code>这个函数的局部空间中修改变量<code>a</code>，并不会反映到全局。删除<code>global a</code>之后，再次执行，输出如下：</p>
+
+<pre><code>global a!
+inner a!
+global a!
+</code></pre>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2013/02/01/missing-number-treated-as-zero/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 导致 “Missing number, treated as zero” 的原因</div>
+    </a>
+    
+
+    
+    <a href="/tech/2013/04/26/math-version-bold-not-defined/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">Math version `bold&#39; is not defined <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2013\/02\/01\/missing-number-treated-as-zero\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2013\/04\/26\/math-version-bold-not-defined\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

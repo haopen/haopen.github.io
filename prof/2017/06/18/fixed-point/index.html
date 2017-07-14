@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>不动点定理 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="不动点定理 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/prof/">归档</a></li>
+    
+    <li class=""><a href="/prof/categories/">分类</a></li>
+    
+    <li class=""><a href="/prof/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1580 字</span>
+    
+
+    
+<h1 class="article-title">不动点定理
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/06/18</span>
+  <span class="article-toolbar">
+    
+    <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86&#43;%2Fprof%2F2017%2F06%2F18%2Ffixed-point%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E4%B8%8D%E5%8A%A8%E7%82%B9%E5%AE%9A%E7%90%86&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2017%2F06%2F18%2Ffixed-point%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/prof/2017-06-18-fixed-point.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/6-%E7%BB%8F%E6%B5%8E---%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%8A%A8%E6%80%81" title="经济 - 数学与动态">经济 - 数学与动态</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E6%B3%9B%E5%87%BD%E5%88%86%E6%9E%90" title="泛函分析">泛函分析</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E4%B8%8D%E5%8A%A8%E7%82%B9" title="不动点">不动点</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>参考资料</strong>：《经济数学方法与模型》, by de la Fuente, p191</p>
+<div class="section level1">
+<h1>简介</h1>
+<ul>
+<li>Brouwer (<strong>布劳维尔</strong>)不动点定理给出的是函数存在不动点的充分条件；</li>
+<li>Kakutani (<strong>角谷静夫</strong>)不动点定理给出的是有限维空间中对应存在不动点的充分条件；</li>
+</ul>
+<!-- more -->
+</div>
+<div class="section level1">
+<h1>不动点定理</h1>
+<ol style="list-style-type: decimal">
+<li><p><strong>压缩映射原理</strong>(Émile Picard(1890)；Stefan Banach(1922))：设<span class="math inline">\(X\)</span>是一个完备的度量空间，映射<span class="math inline">\(f:X\to X\)</span> 把每两点的距离至少压缩<span class="math inline">\(\lambda\)</span>倍，即<span class="math inline">\(\mathrm{d}(f(x), f(y))\leqslant\lambda\mathrm{d}(x,y)\)</span>，这里<span class="math inline">\(\lambda\)</span>是一个小于<span class="math inline">\(1\)</span>的常数，那么<span class="math inline">\(f\)</span>必有而且只有一个不动点，而且从<span class="math inline">\(Χ\)</span>的任何点<span class="math inline">\(x_0\)</span>出发作出序列<span class="math inline">\(x_1=f(x_0),x_2=f(x_1),\dotsc,x_n=f(x_{n-1}),\dotsc\)</span>，这序列一定收敛到那个不动点。这条定理是许多种方程的解的存在性、惟一性及迭代解法的理论基础。由于分析学的需要，这定理已被推广到非扩展映射、概率度量空间、映射族、集值映射等许多方面。</p></li>
+<li><p><strong>Brouwer 不动点定理</strong>(1910): 设<span class="math inline">\(Χ\)</span>是欧氏空间中的紧凸集，那么<span class="math inline">\(Χ\)</span>到自身的每个连续映射都至少有一个不动点。</p></li>
+</ol>
+<p>用这定理可以证明<strong>代数基本定理</strong>：复系数的代数方程一定有复数解。把布劳威尔定理中的欧氏空间换成巴拿赫空间，就是<strong>绍德尔不动点定理</strong>(1930)，常用于偏微分方程理论。这些定理可以从单值映射推广到集值映射，除微分方程理论外还常用于对策论和数理经济学。</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Kakutani 不动点定理</strong>: 设<span class="math inline">\(C\)</span>是<span class="math inline">\(\mathbb{R}^n\)</span>中的紧凸集，<span class="math inline">\(f\)</span>为从<span class="math inline">\(C\)</span>到<span class="math inline">\(C\)</span>的非空凸子集的上半连续的点—集映射，则至少存在一点<span class="math inline">\(x^\ast\)</span>, 使得<span class="math inline">\(x^\ast\in f(x^\ast)\)</span>。</li>
+</ol>
+<p>1941 年，Kakutani 把 Brouwer 不动点定理推广到有限维空间中多值映射的情形。不动点的个数有两种数法。代数上通常说<span class="math inline">\(n\)</span>次复多项式有<span class="math inline">\(n\)</span>个复根，是把一个<span class="math inline">\(k\)</span>重根算作<span class="math inline">\(k\)</span>个根的。如果不把重数统计在内，根的个数就可以小于<span class="math inline">\(n\)</span>。推广<strong>根的重数</strong>概念，可以定义不动点的指数，它是一个整数，可正可负可零，取决于映射在不动点附近的局部几何性质。一个映射的所有不动点的指数的总和，称为这映射的<strong>不动点代数个数</strong>，以别于不动点的实际个数。</p>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>莱夫谢茨不动点定理</strong>：设<span class="math inline">\(Χ\)</span>是紧多面体，<span class="math inline">\(f:Χ\to Χ\)</span>是映射，那么<span class="math inline">\(f\)</span>的不动点代数个数等于<span class="math inline">\(f\)</span>的莱夫谢茨数<span class="math inline">\(L(f)\)</span>，它是一个容易计算的同伦不变量，可以利用同调群以简单的公式写出。当<span class="math inline">\(L(f)\neq 0\)</span>时，与<span class="math inline">\(f\)</span>同伦的每个映射都至少有一个不动点。这个定理既发展了布劳威尔定理，也发展了关于向量场奇点指数和等于流形的欧拉数的<strong>庞加莱－霍普夫定理</strong>，把它进一步推广到泛函空间而得的<strong>勒雷－绍德尔参数延拓原理</strong>，早已成为偏微分方程理论的标准的工具。</li>
+</ol>
+<p>J.尼尔斯 1927 年发现，一个映射<span class="math inline">\(f\)</span>的全体不动点可以自然地分成若干个不动点类，每类中诸不动点的指数和都是同伦不变量。指数和不为<span class="math inline">\(0\)</span>的不动点类的个数，称为这映射的<strong>尼尔斯数</strong><span class="math inline">\(N(f)\)</span>。只要<span class="math inline">\(Χ\)</span>是维数大于<span class="math inline">\(2\)</span>的流形，<span class="math inline">\(N(f)\)</span>恰是与 <span class="math inline">\(f\)</span>同伦的映射的最少不动点数。这就提供了研究方程的解的实际个数（而不只是代数个数）的一种方法。</p>
+<p>莱夫谢茨定理的一个重要发展是关于微分流形上椭圆型算子与椭圆型复形的<strong>阿蒂亚－辛格指标定理</strong>与<strong>阿蒂亚-博特不动点定理</strong>。</p>
+</div>
+<div class="section level1">
+<h1>参考文献</h1>
+<ol style="list-style-type: decimal">
+<li>江泽涵，《不动点类理论》，科学出版社，北京，1979。</li>
+<li>V. I. Istratescu. Fixed Point Theory (An Introduction)[M]. Reidel, 1981.</li>
+<li>B.Jiang,Lectures on Nielsen Fixed Point Theory,Amer. Math. Soc., Providence, 1983.</li>
+<li>M.J.Todd,The Computation of Fixed Points and Applications, Springer-Verlag, New York, 1976.</li>
+<li>L. E. J. Brouwer. Beweis der Invarianz der Dimensionenzahl[J]. Math. Ann., 1911, (70): 161–165.</li>
+<li>S. Kakutani. A Generalization of Brouwer Fixed Point Theorem[J]. Duke Math. J., 1941, (8): 457–459.</li>
+<li>熊金城. 点集拓扑讲义(第三版)[M]. 高等教育出版社, 2003.</li>
+</ol>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Picard%E2%80%93Lindel%C3%B6f_theorem">Picard–Lindelöf theorem</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Banach_fixed-point_theorem">Banach fixed-point theorem</a></li>
+<li><a href="https://zhidao.baidu.com/question/1671784868029411107.html" class="uri">https://zhidao.baidu.com/question/1671784868029411107.html</a></li>
+</ul>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/prof/2017/06/18/operator/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 算子 (Operator)</div>
+    </a>
+    
+
+    
+    <a href="/prof/2017/06/24/regular/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">正则 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/prof\/2017\/06\/18\/operator\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/prof\/2017\/06\/24\/regular\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

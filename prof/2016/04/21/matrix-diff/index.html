@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>矩阵求导 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="矩阵求导 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/prof/">归档</a></li>
+    
+    <li class=""><a href="/prof/categories/">分类</a></li>
+    
+    <li class=""><a href="/prof/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">902 字</span>
+    
+
+    
+<h1 class="article-title">矩阵求导 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2016/04/21</span>
+  <span class="article-toolbar">
+    
+    <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC&#43;z&#43;%2Fprof%2F2016%2F04%2F21%2Fmatrix-diff%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E7%9F%A9%E9%98%B5%E6%B1%82%E5%AF%BC&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2016%2F04%2F21%2Fmatrix-diff%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/prof/2016-04-21-matrix-diff.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/6-%E7%BB%8F%E6%B5%8E---%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%8A%A8%E6%80%81" title="经济 - 数学与动态">经济 - 数学与动态</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E7%9F%A9%E9%98%B5" title="矩阵">矩阵</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E5%AF%BC%E6%95%B0" title="导数">导数</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p>矩阵求导好像读书的时候都没学过，因为讲矩阵的课程上不讲求导，讲求导的课又不提矩阵。如果从事机器学习方面的工作，那就一定会遇到矩阵求导的东西。<a href="http://en.wikipedia.org/wiki/Matrix_calculus">维基百科</a>上， 根据<span class="math inline">\(y,\pmb{y},Y\)</span>与<span class="math inline">\(x,\pmb{x},X\)</span>的不同类型（实值，向量，矩阵），给出了具体的求导公式，以及一堆相关的公式，查起来都费劲。</p>
+<!-- more -->
+<p><em>矩阵求导</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">类型</th>
+<th align="left">单值</th>
+<th>向量</th>
+<th align="left">矩阵</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">单值</td>
+<td align="left"><span class="math inline">\(\partial y/\partial x\)</span></td>
+<td><span class="math inline">\(\partial y/\partial x\)</span></td>
+<td align="left"><span class="math inline">\(\partial \pmb{y}/\partial Y\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">向量</td>
+<td align="left"><span class="math inline">\(\partial y/\partial \pmb{x}\)</span></td>
+<td><span class="math inline">\(\partial \pmb{y}/\partial \pmb{x}\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">矩阵</td>
+<td align="left"><span class="math inline">\(\partial y/\partial X\)</span></td>
+<td></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>其实在实际的机器学习工作中，最常用到的就是实值函数<span class="math inline">\(y\)</span>对向量<span class="math inline">\(\pmb{x}\)</span>的求导，定义如下（其实就是<span class="math inline">\(y\)</span>对向量<span class="math inline">\(\pmb{x}\)</span>的每一个元素求导）：</p>
+<p><span class="math display">\[
+\frac{\partial y}{\partial \pmb{x}}=
+\begin{bmatrix}
+    \dfrac{\partial y}{\partial  x_1}\\
+    \dfrac{\partial y}{\partial  x_2}\\
+    \vdots\\
+    \dfrac{\partial y}{\partial  x_n}
+\end{bmatrix}
+\]</span></p>
+<p>实值函数<span class="math inline">\(y\)</span>对矩阵<span class="math inline">\(X\)</span>求导也类似：</p>
+<p><span class="math display">\[
+\frac{\partial y}{\partial X}=
+\begin{bmatrix}
+          \dfrac{\partial y}{\partial   x_{11}} &amp; \dfrac{\partial y}{\partial   x_{12}}&amp; \cdots &amp;\dfrac{\partial y}{\partial   x_{1n}}\\  
+          \dfrac{\partial y}{\partial   x_{21}} &amp; \dfrac{\partial y}{\partial   x_{22}}&amp;\cdots &amp;\dfrac{\partial y}{\partial   x_{2n}}\\  
+          \vdots &amp; \vdots &amp; \ddots &amp; \vdots\\  
+          \dfrac{\partial y}{\partial   x_{n1}} &amp; \dfrac{\partial y}{\partial   x_{n2}}&amp;\cdots &amp;\dfrac{\partial y}{\partial   x_{nn}}\\  
+\end{bmatrix}
+\]</span></p>
+<p>因为有监督的机器学习的一般套路是给定输入<span class="math inline">\(\pmb{x}\)</span>，选择一个模型<span class="math inline">\(f\)</span>作为决策函数，由<span class="math inline">\(f(\pmb{x})\)</span>预测出<span class="math inline">\(\hat{y}\)</span>。而要得到<span class="math inline">\(f\)</span>的参数<span class="math inline">\(\theta\)</span>，需要定义一个 loss 函数来定义当前的预测值<span class="math inline">\(\hat{y}\)</span>和实际值<span class="math inline">\(y\)</span>之间的接近程度，模型学习的过程就是求使得 loss 函数<span class="math inline">\(L(f(\pmb{x}),y)\)</span>最小的参数<span class="math inline">\(\theta\)</span>。这是一个最优化的问题，实际应用中都是用和梯度相关的最优化方法，如梯度下降，共轭梯度，拟牛顿法等等。为方便推倒有以下公式：</p>
+<p><span class="math display">\[
+\frac{\partial \beta^T\pmb{x}}{\partial \pmb{x}}  =\beta, \quad\frac{\partial \pmb{x}^T\pmb{x}}{\partial \pmb{x}}  =2\pmb{x}, \quad\frac{\partial \pmb{x}^T A\pmb{x}}{\partial \pmb{x}}  =(\mathbf{A}+\mathbf{A}^T)\pmb{x}
+\]</span></p>
+<p>其实只要掌握上面的公式，就能搞定很多问题了。</p>
+<p>为了方便推导，下面列出一些机器学习中常用的求导公式，其中 andrew ng 那一套用矩阵迹的方法还是挺不错的，矩阵的迹也是实值的，而一个实数的迹等于其本身，实际工作中可以将 loss 函数转化成迹，然后再求导，可能会简化推导的步骤。</p>
+<p><span class="math display">\[\text{tr}(a)=a\]</span> <span class="math display">\[\text{tr}(AB)=\text{tr}(BA)\]</span> <span class="math display">\[\text{tr}(ABC)=\text{tr}(CAB)=\text{tr}(BCA)\]</span> <span class="math display">\[\frac{\partial{\text{tr}(AB)}}{A}=B^T\]</span> <span class="math display">\[\text{tr}(A)=\text{tr}(A^T)\]</span> <span class="math display">\[\frac{\partial{\text{tr}(ABA^TC)}}{A}=CAB+C^TAB^T\]</span></p>
+<p>以上只是一些最基本的公式，能够解决一些问题，主要是减少大家对矩阵求导的恐惧感。关于矩阵方面的更多信息可以参考上面的 <a href="http://en.wikipedia.org/wiki/Matrix_calculus">wiki</a> 链接以及《Matrix cookbook》。</p>
+<div class="section level1">
+<h1>参考资料</h1>
+<blockquote>
+<p><strong>未完成工作</strong>：1, 3, 4 中的内容还有待进一步整理，事实上整理完成 1 中的内容就完全足够，但第 4 项中关于 Notation 的总结也不错。</p>
+</blockquote>
+<ol style="list-style-type: decimal">
+<li><a href="https://en.wikipedia.org/wiki/Matrix_calculus" class="uri">https://en.wikipedia.org/wiki/Matrix_calculus</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_8eac0b290101fsqb.html" class="uri">http://blog.sina.com.cn/s/blog_8eac0b290101fsqb.html</a></li>
+<li><a href="http://www.voidcn.com/blog/liuuze5/article/p-5037874.html" class="uri">http://www.voidcn.com/blog/liuuze5/article/p-5037874.html</a></li>
+<li><a href="http://blog.csdn.net/u012045426/article/details/52343676" class="uri">http://blog.csdn.net/u012045426/article/details/52343676</a></li>
+</ol>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/prof/2016/03/19/gmm/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 什么是 Generalized Method of Moments (GMM)？z</div>
+    </a>
+    
+
+    
+    <a href="/prof/2016/10/23/nature-of-bubble/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">泡沫的本质：明知倾家荡产，你还一往无前 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/prof\/2016\/03\/19\/gmm\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/prof\/2016\/10\/23\/nature-of-bubble\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

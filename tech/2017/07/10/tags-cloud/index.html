@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>添加标签云页面到 Hugo - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="添加标签云页面到 Hugo - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">496 字</span>
+    
+
+    
+<h1 class="article-title">添加标签云页面到 Hugo
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 彭浩 ·   2017/07/10</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE%E4%BA%91%E9%A1%B5%E9%9D%A2%E5%88%B0&#43;Hugo&#43;%2Ftech%2F2017%2F07%2F10%2Ftags-cloud%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E6%B7%BB%E5%8A%A0%E6%A0%87%E7%AD%BE%E4%BA%91%E9%A1%B5%E9%9D%A2%E5%88%B0&#43;Hugo&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F07%2F10%2Ftags-cloud%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-07-10-tags-cloud.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-hugo" title="Hugo">Hugo</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-hugo" title="Hugo">Hugo</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E6%A0%87%E7%AD%BE%E4%BA%91" title="标签云">标签云</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p>Yihui 修改过的主题并不提供分类、标签云这样的分类功能，因此需要自己想办法解决。</p>
+
+<p>由于标签和分类在 Hugo 都属于 Taxonomies 的一种实现，因此两种类别的内容的 Render 都由 <code>list.html</code> 来实现，要使用标签云就需要再单独定义与标签云匹配的模板文件（分为主站模板与 Section 下的模板）；</p>
+
+<ol>
+<li>整个站点的标签云由 <code>/layouts/taxonomy/tag.terms.html</code> 负责，按这种目录和文件名结构，Huxo 就能<strong>自动</strong>根据该文件中的信息生成 <code>tags/index.html</code>；</li>
+<li>调整 <code>/js/tags.js</code> 中的 <code>begin</code> 和 <code>end</code>，用于设定最小字体、最大字体以及每种标签对应的显示颜色；</li>
+<li>然而仅仅这样做还不够，因为还还需要生成每个 Section 下的标签云页面：在 <code>/contents/</code> 创建 <code>section-arts.md</code> 文件，并在其中指定 <code>type</code> 和 <code>layout</code> 信息，并且 <code>slug</code> 将文件映射到指定的路径，之后在 <code>/layouts/customterms/tagslist.html</code> 中指定文件的渲染模板，注意这里的 <code>customterms</code> 与前面在 <code>/contents/</code> 中的 <code>tags-*.md</code> 对应；</li>
+<li>由于 Hugo 目前无法获取指定 Section 下的 Categories 和 Tags，因此只好用了一些 Hack 的手法，给全部 Post 的 tags 和 categories 信息添加了一个特定的前缀编号（如 <code>4-tagName</code>），之后模板文件利用这些信息再配合 <code>config.yaml</code> 中的信息筛选出当前 Section 下的全部 tags；</li>
+<li>一些特殊的代码用于保证在标题中显示的 Section 信息以及 tag 的名称信息是正确的；</li>
+<li>Categories 列表的处理这标签基本类似，只是站点下的分类页面使用了默认的 <code>list.html</code> 文件，而 Section 下的分类页面使用了 <code>/layouts/customterms/categorieslist.html</code> 文件；</li>
+</ol>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/07/08/hugo-template-priority/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Hugo 模板优先级解读</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/07/10/hugo-local-search/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">添加本地搜索功能到 Hugo <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/07\/08\/hugo-template-priority\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/07\/10\/hugo-local-search\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+
+    
+  </body>
+</html>
+

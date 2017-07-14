@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>分位点与分位数 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="分位点与分位数 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/prof/">归档</a></li>
+    
+    <li class=""><a href="/prof/categories/">分类</a></li>
+    
+    <li class=""><a href="/prof/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">421 字</span>
+    
+
+    
+<h1 class="article-title">分位点与分位数 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2013/06/25</span>
+  <span class="article-toolbar">
+    
+    <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E5%88%86%E4%BD%8D%E7%82%B9%E4%B8%8E%E5%88%86%E4%BD%8D%E6%95%B0&#43;z&#43;%2Fprof%2F2013%2F06%2F25%2Fquantile%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E5%88%86%E4%BD%8D%E7%82%B9%E4%B8%8E%E5%88%86%E4%BD%8D%E6%95%B0&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2013%2F06%2F25%2Fquantile%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/prof/2013-06-25-quantile.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/6-%E7%BB%9F%E8%AE%A1%E5%AD%A6" title="统计学">统计学</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E5%88%86%E4%BD%8D%E6%95%B0" title="分位数">分位数</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p>分位数在统计学是中一个比较简单和容易理解的概念，大部分初级的统计学教材中都会有相应的介绍。但实际在理解这个概念的时候，要注意连续情形下与分位数相关的几个概念之间的联系与区别。</p>
+<div class="section level1">
+<h1>离散情形</h1>
+<p>举一个例子，将 100 名同学的期末考试总分成绩所组成的向量 <span class="math inline">\(\mathbf{x}\)</span> 按从小到大的规则进行排序，生成一个新的顺序统计量 <span class="math inline">\(\mathbf{x}&#39;\)</span>，那么 <span class="math inline">\(\mathbf{x}\)</span> 的 <span class="math inline">\(1/4\)</span> 分位数指的是 <span class="math inline">\(\mathbf{x}^\prime\)</span> 第 25 号位上的那个数字，同理可知中位数以及 <span class="math inline">\(3/4\)</span> 分位数等。</p>
+</div>
+<div class="section level1">
+<h1>连续情形</h1>
+<p>以正态分布为例，<span class="math inline">\(1/4\)</span> 分位数指的是 <span class="math inline">\(\mathrm{Pr}(X\leqslant x)=1/4\)</span> 对应的 <span class="math inline">\(x\)</span> 值，类似的，标准正态分布中中位数对应的 <span class="math inline">\(x\)</span> 为 0。</p>
+<p>从上面的例子可以看出，分位点确定的基础是在离散情形下将样本数量标准化为 1，而在连续情形下则是将 x 坐标轴的可用长度标准化为 1(对于正态分布和 t 分布而言，原始长度为 <span class="math inline">\(-\infty\)</span> 到 <span class="math inline">\(+\infty\)</span> 之间的全部范围。</p>
+<blockquote>
+<p>在连续情形下，若考虑的置信系数是左单侧的，那么置信系数 <span class="math inline">\(\alpha\)</span> 对应的下 <span class="math inline">\(\alpha\)</span> 分位点的 <span class="math inline">\(x\)</span> 值与 <span class="math inline">\(\alpha\)</span> 分位数以及 <span class="math inline">\(\mathrm{Pr}(X\leqslant x)=\alpha\)</span> 中的 <span class="math inline">\(x\)</span> 实际上指向同一个 <span class="math inline">\(x\)</span> 值。</p>
+</blockquote>
+<p>这个值在大部分统计软件中对应的命令以 <code>q</code> 开头，比如 R 中的 <code>qnorm</code> 命令。</p>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+
+    
+    <a href="/prof/2013/07/05/scatter-fitted-line/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">散点图与回归拟合线 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/prof\/2013\/07\/05\/scatter-fitted-line\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

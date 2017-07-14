@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>语法高亮：在 lstinline 中给行内代码添加背景颜色 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="语法高亮：在 lstinline 中给行内代码添加背景颜色 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">440 字</span>
+    
+
+    
+<h1 class="article-title">语法高亮：在 lstinline 中给行内代码添加背景颜色 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/03/07</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE%EF%BC%9A%E5%9C%A8&#43;lstinline&#43;%E4%B8%AD%E7%BB%99%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2&#43;z&#43;%2Ftech%2F2017%2F03%2F07%2Flstlistings-bgcolor%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE%EF%BC%9A%E5%9C%A8&#43;lstinline&#43;%E4%B8%AD%E7%BB%99%E8%A1%8C%E5%86%85%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F03%2F07%2Flstlistings-bgcolor%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-03-07-lstlistings-bgcolor.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-latex" title="LaTeX">LaTeX</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-latex" title="LaTeX">LaTeX</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-lstlistings" title="lstlistings">lstlistings</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE" title="语法高亮">语法高亮</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-highlight" title="highlight">highlight</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>： <a href="https://tex.stackexchange.com/questions/357227/adding-background-color-to-verb-or-lstinline-command-without-colorbox" class="uri">https://tex.stackexchange.com/questions/357227/adding-background-color-to-verb-or-lstinline-command-without-colorbox</a></p>
+<p>比较推荐的方法是用<code>xparse</code>宏包提供的<code>DeclareDocumentCommand</code>，使用这种方法的好处是用这种方法定义的命令<code>\ccmd</code>在使用方式上与<code>\verb</code>命令非常相似，可以用<code>{...}</code>来包含参数，也可以用<code>|...|</code>或者<code>!...!</code>等来包含参数。</p>
+<pre class="tex"><code>\documentclass{article}
+
+\usepackage{xcolor,xparse}
+\usepackage{listings}
+
+\definecolor{cmdbg}{rgb}{0.8,0.8,0.8}
+\lstset{%
+    basicstyle=\ttfamily,
+    breaklines = true,
+    backgroundcolor=\color{cmdbg},
+}
+
+\usepackage{realboxes}  % 提供 \Colorbox
+
+\DeclareDocumentCommand{\ccmd}{v}{% 参数 v 表示工作方法类似于 \verb
+    \Colorbox{cmdbg}{\csname lstinline\endcsname!#1!}%
+}
+
+\begin{document}
+
+% demo using \lstinline only
+This is \lstinline|my code|
+
+% demo using \lstinline and \Colorbox
+This is \Colorbox{cmdbg}{\lstinline|my code|}
+\clist{my code}
+
+\end{document}</code></pre>
+<p>问题是：</p>
+<ol style="list-style-type: decimal">
+<li>将其中的<code>article</code>改成<code>ctexbook</code>或者<code>ctexart</code>之后，由<code>\ccmd{\my code}</code>指令生成的效果中<code>\my code</code>中的<code>\</code>会消失掉，只显示<code>my code</code>，而直接用<code>\Colorbox{cmdbg}{\lstinline|\my code|}</code>生成的效果中<code>\</code>不会消失，仍然正确显示为<code>\my code</code>。这说明 ctex 与<code>xparse</code>之间存在冲突。</li>
+</ol>
+<p>也试过更新 ctex 包和 l3 相关的包后再试，但是更新总遇到问题，所以暂时放弃，不清楚是否有直接的方法可以 hack。</p>
+<ol start="2" style="list-style-type: decimal">
+<li>用<code>xpatch</code>方法在<code>\lstinline</code>上挂一个<code>\Colorbox</code>也可以，但是这种做法将导致<code>\lstinline</code>内的内容无法断行，不清楚前面使用<code>xparse</code>的方法是否也存在这一问题。</li>
+</ol>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/02/09/proc-report/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> SAS 使用 proc report 实现同比、环比、占比、sql 的窗口函数 z</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/03/11/floats-in-latex-basic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">LaTeX 中的浮动体：基础篇 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/02\/09\/proc-report\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/03\/11\/floats-in-latex-basic\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

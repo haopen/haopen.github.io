@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>R-squared&lt;0 in 2SLS-IV estimation? - 慧航 - 专栏 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="R-squared&lt;0 in 2SLS-IV estimation? - 慧航 - 专栏 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/prof/">归档</a></li>
+    
+    <li class=""><a href="/prof/categories/">分类</a></li>
+    
+    <li class=""><a href="/prof/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">532 字</span>
+    
+
+    
+<h1 class="article-title">R-squared&lt;0 in 2SLS-IV estimation? - 慧航 - 专栏
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 慧航 ·   2014/05/20</span>
+  <span class="article-toolbar">
+    
+    <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=R-squared%3C0&#43;in&#43;2SLS-IV&#43;estimation%3F&#43;-&#43;%E6%85%A7%E8%88%AA&#43;-&#43;%E4%B8%93%E6%A0%8F&#43;%2Fprof%2F2014%2F05%2F20%2F2sls-r2%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=R-squared%3C0&#43;in&#43;2SLS-IV&#43;estimation%3F&#43;-&#43;%E6%85%A7%E8%88%AA&#43;-&#43;%E4%B8%93%E6%A0%8F&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2014%2F05%2F20%2F2sls-r2%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/prof/2014-05-20-2SLS-R2.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/6-%E7%BB%8F%E6%B5%8E---%E8%AE%A1%E9%87%8F" title="经济 - 计量">经济 - 计量</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E6%85%A7%E8%88%AA" title="慧航">慧航</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8F" title="知乎专栏">知乎专栏</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E8%AE%A1%E9%87%8F" title="计量">计量</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/r2" title=""></a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-2sls" title="2SLS">2SLS</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>：<a href="https://zhuanlan.zhihu.com/p/19756603" class="uri">https://zhuanlan.zhihu.com/p/19756603</a></p>
+<p>今天一个漂亮的小妹妹来问我问题，Stata 里面做工具变量估计，结果不汇报 R2 的值。我一听也十分诧异，从来没遇到这种情况。当然本着学术的纯洁目的仔细研究了一下这个问题（真的不是为了学妹！），发现 Stata 官网上有对这个问题的描述：<a href="http://www.stata.com/support/faqs/statistics/two-stage-least-squares/">Stata | FAQ: Negative and missing R-squared for 2SLS/IV</a></p>
+<p>说的抽象一点，因为我们之前做 OLS 的时候，是一个正交投影，所以不会出现这个问题。但是当我们做 2SLS 的时候，是一个非正交的投影。既然是非正交的投影，投影的时候就会有角度。当这个角度比较小的时候，就会出现预测的<code>y_hat</code>跟实际的<code>y</code>夹角大于<code>90</code>度，就会出现这种情况。</p>
+<p>具体从计算的角度来看，我们做 2SLS 实际上做了两步。假设内生变量是<code>x1,x2</code>,外生变量是<code>z1,z2,z3,z4</code>。我们要估计</p>
+<pre class="stata"><code>y on x1 x2 z3 z4</code></pre>
+<p>但是我们实际上先回归了</p>
+<pre class="stata"><code>reg x1 on z1 z2 z3 z4 =&gt; x1_hat
+reg x2 on z1 z2 z3 z4 =&gt; x2_hat</code></pre>
+<p>然后回归：</p>
+<pre class="stata"><code>reg y on x1_hat x2_hat z3 z4 =&gt; y_hat</code></pre>
+<p>如果计算残差的时候是用这个<code>y_hat</code>的，那么不会出现<code>R2&lt;0</code>的问题。但是我们计算残差的时候实际上是用</p>
+<pre class="stata"><code>y-b1*x1-b2*x2-b3*z3-b4*z4</code></pre>
+<p>而非</p>
+<pre class="stata"><code>y-b1_hat*x1-b2_hat*x2-b3*z3-b4*z4</code></pre>
+<p>所以计算的<code>u</code>的 variance 肯定更大，就会出现<code>R2&lt;0</code>的问题。</p>
+<p>那么这个问题怎么解决呢？实际上这根本不是个问题。因为本来 IV 就要求不是个最优的 predictor，所以忽略这个问题吧！</p>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/prof/2014/05/05/econometrica-wrong-misunderstanding/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 计量经济学中那些从统计学、初级计量里面带来的恶习 - 慧航 - 专栏</div>
+    </a>
+    
+
+    
+    <a href="/prof/2014/07/04/did/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">什么是双重差分模型（difference-in-differences model）？ - 慧航 - 专栏 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/prof\/2014\/05\/05\/econometrica-wrong-misunderstanding\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/prof\/2014\/07\/04\/did\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

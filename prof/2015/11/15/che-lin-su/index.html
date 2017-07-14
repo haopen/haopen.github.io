@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>结构模型中约束最优化的使用——纪念 Che-Lin Su - 慧航 - 专栏 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="结构模型中约束最优化的使用——纪念 Che-Lin Su - 慧航 - 专栏 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/prof/">归档</a></li>
+    
+    <li class=""><a href="/prof/categories/">分类</a></li>
+    
+    <li class=""><a href="/prof/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1603 字</span>
+    
+
+    
+<h1 class="article-title">结构模型中约束最优化的使用——纪念 Che-Lin Su - 慧航 - 专栏
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 慧航 ·   2015/11/15</span>
+  <span class="article-toolbar">
+    
+    <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%BA%A6%E6%9D%9F%E6%9C%80%E4%BC%98%E5%8C%96%E7%9A%84%E4%BD%BF%E7%94%A8%E2%80%94%E2%80%94%E7%BA%AA%E5%BF%B5&#43;Che-Lin&#43;Su&#43;-&#43;%E6%85%A7%E8%88%AA&#43;-&#43;%E4%B8%93%E6%A0%8F&#43;%2Fprof%2F2015%2F11%2F15%2Fche-lin-su%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%BA%A6%E6%9D%9F%E6%9C%80%E4%BC%98%E5%8C%96%E7%9A%84%E4%BD%BF%E7%94%A8%E2%80%94%E2%80%94%E7%BA%AA%E5%BF%B5&#43;Che-Lin&#43;Su&#43;-&#43;%E6%85%A7%E8%88%AA&#43;-&#43;%E4%B8%93%E6%A0%8F&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2015%2F11%2F15%2Fche-lin-su%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/prof/2015-11-15-Che-Lin-Su.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/6-%E7%BB%8F%E6%B5%8E---%E6%95%B0%E5%AD%A6%E4%B8%8E%E5%8A%A8%E6%80%81" title="经济 - 数学与动态">经济 - 数学与动态</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E6%85%A7%E8%88%AA" title="慧航">慧航</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E7%9F%A5%E4%B9%8E%E4%B8%93%E6%A0%8F" title="知乎专栏">知乎专栏</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0" title="文献笔记">文献笔记</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E6%9C%80%E4%BC%B0%E5%8C%96" title="最估化">最估化</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B" title="结构模型">结构模型</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E8%B4%9D%E5%B0%94%E6%9B%BC%E6%96%B9%E7%A8%8B" title="贝尔曼方程">贝尔曼方程</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>：<a href="https://zhuanlan.zhihu.com/p/20146048" class="uri">https://zhuanlan.zhihu.com/p/20146048</a></p>
+<div class="figure">
+<img src="/images/Eco/ChelinSu.png" />
+
+</div>
+<p>这篇文章是之前在 <a href="http://www.zhihu.com/question/33950280/answer/57579092">Che-lin Su 在经济学上有哪些突出的研究成果？ - 慧航的回答</a>里面承诺过的。在这里我将介绍一下已逝的经济学家 Che-Lin Su 最重要的一篇文章，<a href="http://onlinelibrary.wiley.com/doi/10.3982/ECTA7925/abstract">《Constrained optimization approaches to estimation of structural models》</a>。 这篇文章很短，正文只有 16 页，然而任何优秀的论文都不是以页数论英雄的。</p>
+<p>在计算结构式模型的估计（structural estimation）的时候，计算的复杂度通常很大，而这种难度经常是由于各种不动点迭代（fixed-point iteration）造成的。典型的例子比如：</p>
+<ol style="list-style-type: decimal">
+<li>动态规划中求解 policy function</li>
+<li>求解一个 game 的 Nash equilibrium</li>
+<li>求解一个一般均衡</li>
+<li>BLP 中通过市场份额倒推产品特征的效用</li>
+</ol>
+<p>在这些例子里面都涉及到不动点的迭代。然而，考虑到当我们估计这个模型的时候，为了计算极大似然、广义矩估计，我们必须给定一个参数，做一次不动点迭代，然后计算目标函数值，再给定新的参数，再做不动点迭代，然后计算目标函数值。这个过程不停重复，最终最优化算法会收敛到最优点。</p>
+<p>然而这个过程是<code>非常非常耗费时间</code>的：本身不动点迭代就是非常耗费时间的，更何况外面还套着一层最优化的迭代。因而这种结构模型一般运算时间都非常的长。</p>
+<p>怎么办呢？Che-Lin Su 想出了一个办法：根本不需要进行不动点迭代，把他看成是一个最优化的约束就好了。而约束最优化是运筹学里面早就很成熟的方法。</p>
+<p>数学上的描述就是，给定参数<span class="math inline">\(\theta\)</span>、内生变量<span class="math inline">\(\sigma\)</span>，而给定参数，模型可以通过一阶条件、贝尔曼方程、市场均衡条件等计算出内生变量。假设这两个变量之间存在如下关系：</p>
+<p><span class="math display">\[h(\theta,\sigma)=0\]</span></p>
+<p>进而，我们观察到的数据为<span class="math inline">\(X=\{x,d\}\)</span>，其中<span class="math inline">\(x\)</span>为外生变量，<span class="math inline">\(d\)</span>为内生变量。</p>
+<p>在此之前的做法一般为不动点的迭代，即 NFXP（nested fixed-point）方法，即给定参数<span class="math inline">\(\theta\)</span>，求解<span class="math inline">\(\hat{\sigma}\)</span>，然后计算极大似然函数：</p>
+<p><span class="math display">\[\hat{\theta}=\arg\max_{\theta} \frac{1}{M}L(\theta,\hat{\sigma}(\theta);X)\]</span></p>
+<p>注意这里<span class="math inline">\(\hat{\sigma}\)</span>涉及到不动点迭代，再加上外面的最优化的迭代，迭代套迭代。</p>
+<p>而 Che-Lin Su 提出，实际上没必要这么麻烦，只要把不动点迭代的部分作为最优化的约束就好了：</p>
+<span class="math display">\[\begin{equation}
+\left\{
+\begin{aligned}
+&amp; \max_{(\theta,\sigma)}\; \frac{1}{M}L(\theta,\sigma;X)\\
+&amp; \begin{aligned}
+s.t.\;\; &amp; h(\theta, \sigma)=0
+\end{aligned}
+\end{aligned}
+\right.
+\end{equation}\]</span>
+<p>这样，虽然最优化的维数增加了，然而节省了不动点迭代的时间。而 Su 证明了，以上的两种方法都是<code>等价</code>的。</p>
+<p>在这篇文章中，Su 还给出了一个 dynamic discrete choice 模型的例子。</p>
+<p>考虑一个公共汽车公司正在考虑要不要更新汽车引擎的决策问题。其决策是一个离散变量，<code>d=1</code>为更换，<code>d=0</code>为不更换。公司在某一期的效用函数为：</p>
+<p><span class="math display">\[u(x,d,\varepsilon;\theta_1,RC)=\nu(x,d;\theta_1,RC)+\varepsilon(d)\]</span></p>
+<p><span class="math display">\[
+\nu(x,d;\theta_1,RC)=\left\{
+\begin{aligned}
+-c(x;\theta_1),\;\text{if}\,d=0\\
+-RC-c(0;\theta_1),\;\text{if}\,d=1
+\end{aligned}
+\right.
+\]</span></p>
+<p>其中<span class="math inline">\(x\)</span>为里程数，<span class="math inline">\(RC\)</span>为更换引擎的成本，<span class="math inline">\(c\)</span>为给定里程数汽车的运营成本，<span class="math inline">\(\theta\)</span>为参数。</p>
+<p>公司的决策并非静态的，实际上公司必须考虑其决策对未来的影响，或者说公司应该考虑是这一期换，还是下一期换？因而公司的决策是一个动态的最优化：</p>
+<p><span class="math display">\[\max_{d_t,d_{t+1},d_{t+2},\dotsc}\mathbb{E}\left[\sum^\infty_{\tau=t}\beta^{\tau-t}u(x_\tau,d_\tau,\varepsilon_\tau;\theta_1,RC)\right]\]</span></p>
+<p>而根据动态规划的方法，可以通过以上效用函数定义值函数（value function），进而得到贝尔曼方程（Bellman equation）：</p>
+<p><span class="math display">\[\mathrm{EV}(x,d)=\nu(x,d;\theta_1,RC)+\varepsilon(d)+\beta\int_{x^\prime}\mathrm{EV}(x^\prime)p_3(x^\prime+x,d;\theta_3)\,\mathrm{d}x^\prime\]</span></p>
+<p>这个贝尔曼方程是公司决策的核心，当更换引擎的<span class="math inline">\(\mathrm{EV}\)</span>大于不更换引擎的<span class="math inline">\(\mathrm{EV}\)</span>，公司就会选择更换引擎。</p>
+<p>而当我们看到数据，需要估计其中的参数时，逻辑是这样的：首先，给定一个参数的猜测，解出贝尔曼方程，得到公司的决策，再将这个预测的决策跟实际的决策比，如果足够接近，那么参数就对了，否则，按照一定规则，给出参数的新的猜测，继续比。</p>
+<p>然而，这里面每一次给出新的参数，都要重新计算一次贝尔曼方程，而传统上贝尔曼方程是通过 value function iteration 的方法得到的，本质上就是一个不动点的迭代，速度较慢。而使用 Su 的方法，以上的贝尔曼方程可以不用每次给定新参数就迭代计算，而是将其看成是最优化的一个约束。这样，虽然最优化的参数变多了，但是却节省了每一步不动点迭代的时间。</p>
+<p>最后，再次为这位年轻有为的经济学家哀悼。</p>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/prof/2015/11/01/housing-boom/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 解开中国房价之谜 - 慧航 - 专栏</div>
+    </a>
+    
+
+    
+    <a href="/prof/2015/12/08/driving-restrictions-on-pollution/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">北京限行政策降低了污染么？ - 慧航 - 专栏 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/prof\/2015\/11\/01\/housing-boom\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/prof\/2015\/12\/08\/driving-restrictions-on-pollution\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

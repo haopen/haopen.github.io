@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>CSS: block、inline 和 inline-block 概念和区别 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="CSS: block、inline 和 inline-block 概念和区别 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1276 字</span>
+    
+
+    
+<h1 class="article-title">CSS: block、inline 和 inline-block 概念和区别 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2013/06/16</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=CSS%3A&#43;block%E3%80%81inline&#43;%E5%92%8C&#43;inline-block&#43;%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8C%BA%E5%88%AB&#43;z&#43;%2Ftech%2F2013%2F06%2F16%2Fcss-block-inline%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=CSS%3A&#43;block%E3%80%81inline&#43;%E5%92%8C&#43;inline-block&#43;%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8C%BA%E5%88%AB&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2013%2F06%2F16%2Fcss-block-inline%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2013-06-16-CSS-block-inline.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-%E8%AE%A1%E7%AE%97%E6%9C%BA---%E7%BD%91%E9%A1%B5%E7%BC%96%E7%A8%8B" title="计算机 - 网页编程">计算机 - 网页编程</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-css" title="CSS">CSS</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：<a href="http://www.cnblogs.com/KeithWang/p/3139517.html" target="_blank">http://www.cnblogs.com/KeithWang/p/3139517.html</a></p>
+
+<h1 id="总体概念">总体概念</h1>
+
+<ol>
+<li><strong>block</strong>和<strong>inline</strong>这两个概念是简略的说法，完整确切的说应该是 block-level elements (<strong>块级元素</strong>) 和 inline elements (<strong>内联元素</strong>)。block元素通常被现实为独立的一块，会单独换一行；inline元素则前后不会产生换行，一系列inline元素都在一行内显示，直到该行排满。</li>
+<li>大体来说HTML元素各有其自身的布局级别（block元素还是inline元素）：<br />
+
+<ul>
+<li>常见的块级元素有<code>DIV, FORM, TABLE, P, PRE, H1~H6, DL, OL, UL</code>等。</li>
+<li>常见的内联元素有<code>SPAN, A, STRONG, EM, LABEL, INPUT, SELECT, TEXTAREA, IMG, BR</code>等。</li>
+</ul></li>
+<li>block元素可以包含block元素和inline元素；但inline元素只能包含inline元素。要注意的是这个是个大概的说法，每个特定的元素能包含的元素也是特定的，所以具体到个别元素上，这条规律是不适用的。比如<code>P</code>元素，只能包含inline元素，而不能包含block元素。</li>
+<li>一般来说，可以通过<code>display:inline</code>和<code>display:block</code>的设置，改变元素的布局级别。<br />
+</li>
+</ol>
+
+<h1 id="block-inline-和-inline-block-细节对比"><code>block，inline</code>和<code>inline-block</code>细节对比</h1>
+
+<h2 id="display-block"><code>display:block</code></h2>
+
+<ol>
+<li>block元素会独占一行，多个block元素会各自新起一行。默认情况下，block元素宽度自动填满其父元素宽度。</li>
+<li>block元素可以设置<code>width, height</code>属性。块级元素即使设置了宽度,仍然是独占一行。</li>
+<li>block元素可以设置<code>margin</code>和<code>padding</code>属性。<br />
+</li>
+</ol>
+
+<h2 id="display-inline"><code>display:inline</code></h2>
+
+<ol>
+<li>inline元素不会独占一行，多个相邻的行内元素会排列在同一行里，直到一行排列不下，才会新换一行，其宽度随元素的内容而变化。</li>
+<li>inline元素设置width,height属性无效。</li>
+<li>inline元素的margin和padding属性，水平方向的padding-left, padding-right, margin-left, margin-right都产生边距效果；但竖直方向的padding-top, padding-bottom, margin-top, margin-bottom不会产生边距效果。<br />
+</li>
+</ol>
+
+<h2 id="display-inline-block-新-重要"><code>display:inline-block</code>（新、重要）</h2>
+
+<p>简单来说就是将对象呈现为inline对象，但是对象的内容作为block对象呈现。之后的内联对象会被排列在同一行内。比如我们可以给一个link（<code>a</code>元素）inline-block属性值，使其既具有block的宽度高度特性又具有inline的同行特性。</p>
+
+<h1 id="补充说明">补充说明</h1>
+
+<p>一般我们会用<code>display:block，display:inline</code>或者<code>display:inline-block</code>来调整元素的布局级别，其实<code>isplay</code>的参数远远不止这三种，仅仅是比较常用而已。</p>
+
+<p>IE（低版本IE）本来是不支持<code>inline-block</code>的，所以在IE中对内联元素使用<code>display:inline-block</code>，理论上IE是不识别的，但使用<code>display:inline-block</code>在IE下会触发<code>layout</code>，从而使内联元素拥有了<code>display:inline-block</code>属性的表象。</p>
+
+<p><code>input</code>元素是<code>inline-block</code>元素，所以设置宽高可用。可以使用<code>window.getComputedStyle()</code>这个方法拿到<code>input</code>元素的<code>display</code>属性试一下。</p>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2013/06/09/r-packages-introduction/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> R的应用领域包介绍 z</div>
+    </a>
+    
+
+    
+    <a href="/tech/2013/07/10/filter/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">滤波的基本概念 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2013\/06\/09\/r-packages-introduction\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2013\/07\/10\/filter\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+
+    
+  </body>
+</html>
+

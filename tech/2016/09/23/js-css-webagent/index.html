@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>根据浏览器类型、屏幕分辨率调用不同的样式文件 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="根据浏览器类型、屏幕分辨率调用不同的样式文件 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">785 字</span>
+    
+
+    
+<h1 class="article-title">根据浏览器类型、屏幕分辨率调用不同的样式文件 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2016/09/23</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E6%A0%B9%E6%8D%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E7%B1%BB%E5%9E%8B%E3%80%81%E5%B1%8F%E5%B9%95%E5%88%86%E8%BE%A8%E7%8E%87%E8%B0%83%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6&#43;z&#43;%2Ftech%2F2016%2F09%2F23%2Fjs-css-webagent%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E6%A0%B9%E6%8D%AE%E6%B5%8F%E8%A7%88%E5%99%A8%E7%B1%BB%E5%9E%8B%E3%80%81%E5%B1%8F%E5%B9%95%E5%88%86%E8%BE%A8%E7%8E%87%E8%B0%83%E7%94%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A0%B7%E5%BC%8F%E6%96%87%E4%BB%B6&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2016%2F09%2F23%2Fjs-css-webagent%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2016-09-23-JS-CSS-WebAgent.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-%E8%AE%A1%E7%AE%97%E6%9C%BA---%E7%BD%91%E9%A1%B5%E7%BC%96%E7%A8%8B" title="计算机 - 网页编程">计算机 - 网页编程</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-css" title="CSS">CSS</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-javascript" title="Javascript">Javascript</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：<a href="http://blog.csdn.net/duchao123duchao/article/details/52638506" target="_blank">http://blog.csdn.net/duchao123duchao/article/details/52638506</a></p>
+
+<h1 id="根据分辨率提供不同的-css-样式">根据分辨率提供不同的 CSS 样式</h1>
+
+<pre><code class="language-css">@media screen and (min-width: 320px) and (max-width: 480px){
+    在这里写小屏幕设备的样式
+}
+
+@media only screen and (min-width: 321px) and (max-width: 1024px){
+    这里写宽度大于321px小于1024px的样式(一般是平板电脑)
+}
+
+@media only screen and (min-width: 1029px){
+    这里写pc客户端的样式
+}
+</code></pre>
+
+<!-- more -->
+
+<h1 id="用-js-根据客户端输出对应样式">用 js 根据客户端输出对应样式</h1>
+
+<pre><code class="language-javascript">/* 事实上用 asp、php 后台判断更保险，js 在前端，有可能被用户禁止 */
+function loadCSS() {
+  if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|iOS|iPad|Android|wOSBrowser|BrowserNG|WebOS)/i))) {
+         document.write('&lt;link href=&quot;css/pad-phone.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;');
+     }
+     else {
+         document.write('&lt;link href=&quot;css/pc.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;');
+     }
+}
+loadCSS();
+</code></pre>
+
+<h1 id="既判断分辨率-也判断浏览器">既判断分辨率，也判断浏览器</h1>
+
+<p>应 E.Qiang 提议，重新完善代码，使之成为判断浏览器类型屏幕分辨率自动调用不同 CSS 的代码，代码如下：</p>
+
+<pre><code class="language-javascript">&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;
+&lt;!--
+if (window.navigator.userAgent.indexOf(&quot;MSIE&quot;)&gt;=1) {
+    var IE1024=&quot;&quot;;
+    var IE800=&quot;&quot;;
+    var IE1152=&quot;&quot;;
+    var IEother=&quot;&quot;;
+    ScreenWidth(IE1024,IE800,IE1152,IEother)
+} else {
+    if (window.navigator.userAgent.indexOf(&quot;Firefox&quot;)&gt;=1) {
+         // 如果浏览器为Firefox
+         var Firefox1024=&quot;&quot;;
+         var Firefox800=&quot;&quot;;
+         var Firefox1152=&quot;&quot;;
+         var Firefoxother=&quot;&quot;;
+         ScreenWidth(Firefox1024,Firefox800,Firefox1152,Firefoxother)
+    } else {
+        // 如果浏览器为其他
+        var Other1024=&quot;&quot;;
+        var Other800=&quot;&quot;;
+        var Other1152=&quot;&quot;;
+        var Otherother=&quot;&quot;;
+        ScreenWidth(Other1024,Other800,Other1152,Otherother)
+    }
+}
+
+function ScreenWidth(CSS1,CSS2,CSS3,CSS4)   {
+    if ((screen.width == 1024) &amp;&amp; (screen.height == 768)) {
+        setActiveStyleSheet(CSS1);
+    } else {
+        if ((screen.width == 800) &amp;&amp; (screen.height == 600)) {
+            setActiveStyleSheet(CSS2);
+        } else {
+            if ((screen.width == 1152) &amp;&amp; (screen.height == 864)) {
+                setActiveStyleSheet(CSS3);
+            } else {
+                setActiveStyleSheet(CSS4);
+            }
+        }
+    }
+}
+ 
+function setActiveStyleSheet(title){
+    document.getElementsByTagName(&quot;link&quot;)[0].href=&quot;style/&quot;+title;
+}
+//--&gt;
+&lt;/SCRIPT&gt;
+</code></pre>
+
+<h1 id="解释">解释</h1>
+
+<pre><code class="language-javascript">var IE1024=&quot;&quot;;
+var IE800=&quot;&quot;;
+var IE1152=&quot;&quot;;
+var IEother=&quot;&quot;;
+</code></pre>
+
+<p>引号里面分别填写用户使用 IE 并且分辨率为<code>1024*768, 800*600, 1152*864</code>的时候要使用的 css 文件名。</p>
+
+<pre><code>var Firefox1024=&quot;&quot;;
+var Firefox800=&quot;&quot;;
+var Firefox1152=&quot;&quot;;
+var Firefoxother=&quot;&quot;;
+</code></pre>
+
+<p>引号里面分别填写用户使用 FF 并且分辨率为<code>1024*768, 800*600, 1152*864</code>的时候要使用的 css 文件名。</p>
+
+<pre><code>var Other1024=&quot;&quot;;
+var Other800=&quot;&quot;;
+var Other1152=&quot;&quot;;
+var Otherother=&quot;&quot;;
+</code></pre>
+
+<p>引号里面分别填写用户使用其他浏览器并且分辨率为<code>1024*768, 800*600, 1152*864</code>的时候要使用的 css 文件名。</p>
+
+<h1 id="例子">例子</h1>
+
+<ol>
+<li>不判断分辨率，只判断浏览器，实现根据浏览器类型自动调用不同CSS。<br />
+</li>
+</ol>
+
+<pre><code>&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;
+&lt;!--
+if (window.navigator.userAgent.indexOf(&quot;MSIE&quot;)&gt;=1) {    
+    // 如果浏览器为IE
+    setActiveStyleSheet(&quot;default.css&quot;);
+    } else {
+        if (window.navigator.userAgent.indexOf(&quot;Firefox&quot;)&gt;=1) {
+            // 如果浏览器为Firefox
+            setActiveStyleSheet(&quot;default2.css&quot;);
+        } else {
+            // 如果浏览器为其他
+            setActiveStyleSheet(&quot;newsky.css&quot;);
+        }
+    }
+    function setActiveStyleSheet(title){
+    document.getElementsByTagName(&quot;link&quot;)[0].href=&quot;style/&quot;+title;
+}
+//--&gt;
+&lt;/SCRIPT&gt;
+</code></pre>
+
+<p><strong>解释</strong>：</p>
+
+<ul>
+<li>如果浏览器为 IE，则调用 default.css</li>
+<li>如果浏览器为 Firefox，则调用 default2.css</li>
+<li>如果浏览器为其他，则调用 newsky.css<br />
+</li>
+</ul>
+
+<p><strong>用法</strong>：放在<code>&lt;/head&gt;</code>前面即可。</p>
+
+<ol>
+<li>只要求判断根据屏幕宽度选择不同的 CSS 样式表。<br />
+</li>
+</ol>
+
+<pre><code class="language-javascript">&lt;script language=javascript&gt;
+&lt;!--
+if (screen.width == 800) {
+    document.write('&lt;link rel=stylesheet type=&quot;text/css&quot; href=&quot;css800.css&quot;&gt;')
+}
+else {
+    document.write('&lt;link rel=stylesheet type=&quot;text/css&quot; href=&quot;css1024.css&quot;&gt;')
+}
+//--&gt;
+&lt;/script&gt;
+</code></pre>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2016/06/19/spider/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Python 爬虫：一些常用的爬虫技巧总结 z</div>
+    </a>
+    
+
+    
+    <a href="/tech/2016/10/26/markdown-in-pandoc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">Pandoc 中的 Markdown 语法 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2016\/06\/19\/spider\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2016\/10\/26\/markdown-in-pandoc\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

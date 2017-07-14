@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>《廖雪峰 Python 教程》笔记 4：面向对象编程1 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="《廖雪峰 Python 教程》笔记 4：面向对象编程1 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">4551 字</span>
+    
+
+    
+<h1 class="article-title">《廖雪峰 Python 教程》笔记 4：面向对象编程1
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/06/17</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;4%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B1&#43;%2Ftech%2F2017%2F06%2F17%2Fpython-class%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E3%80%8A%E5%BB%96%E9%9B%AA%E5%B3%B0&#43;Python&#43;%E6%95%99%E7%A8%8B%E3%80%8B%E7%AC%94%E8%AE%B0&#43;4%EF%BC%9A%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B1&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F06%2F17%2Fpython-class%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-06-17-Python-class.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-python" title="Python">Python</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-python" title="Python">Python</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-class" title="Class">Class</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E7%B1%BB" title="类">类</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p><strong>原文地址</strong>：</p>
+
+<p><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014318645694388f1f10473d7f416e9291616be8367ab5000" target="_blank">http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014318645694388f1f10473d7f416e9291616be8367ab5000</a></p>
+
+<p>面向对象的设计思想是从自然界中来的，因为在自然界中，类（Class）和实例（Instance）的概念是很自然的。Class 是一种抽象概念，比如我们定义的 Class——Student，是指学生这个概念，而实例（Instance）则是一个个具体的 Student，比如，Bart Simpson 和Lisa Simpson 是两个具体的 Student。所以，面向对象的设计思想是抽象出 Class，根据 Class 创建 Instance。</p>
+
+<!-- more -->
+
+<p>面向对象的抽象程度又比函数要高，因为一个 Class 既包含数据，又包含操作数据的方法。</p>
+
+<h1 id="简单示例">简单示例</h1>
+
+<h2 id="面向函数">面向函数</h2>
+
+<pre><code class="language-python">std1 = { 'name': 'Michael', 'score': 98 }
+std2 = { 'name': 'Bob', 'score': 81 }
+
+def print_score(std):
+    print('%s: %s' % (std['name'], std['score']))
+</code></pre>
+
+<h2 id="面向对象">面向对象</h2>
+
+<pre><code class="language-python">class Student(object):
+
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+    def print_score(self):
+        print('%s: %s' % (self.name, self.score))
+
+bart = Student('Bart Simpson', 59)
+lisa = Student('Lisa Simpson', 87)
+bart.print_score()
+lisa.print_score()
+</code></pre>
+
+<h1 id="类和实例">类和实例</h1>
+
+<p>一般模块文件名称小写，类的名称首字母大写，在新式类的定义中，需要明确指定是继承自哪个父类。</p>
+
+<pre><code class="language-python">class Student(object):
+    pass
+
+&gt;&gt;&gt; bart = Student()
+&gt;&gt;&gt; bart
+&lt;__main__.Student object at 0x10a67a590&gt;
+&gt;&gt;&gt; Student
+&lt;class '__main__.Student'&gt;
+</code></pre>
+
+<p>类的实例——对象可以自由添加新的属性<sup class="footnote-ref" id="fnref:-"><a rel="footnote" href="#fn:-">1</a></sup>：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart.name = 'Bart Simpson'
+&gt;&gt;&gt; bart.name
+'Bart Simpson'
+</code></pre>
+
+<h2 id="init">__init__()</h2>
+
+<p>类可以起到模板的作用，因此，可以在初始化实例的时候<sup class="footnote-ref" id="fnref:new-init"><a rel="footnote" href="#fn:new-init">2</a></sup>，把一些我们认为必须绑定的属性强制填写进去。通过定义一个特殊的<code>__init__()</code>方法，在初始化实例的时候，就把<code>name</code>，<code>score</code>等属性绑上去：</p>
+
+<pre><code class="language-python">class Student(object):
+
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+</code></pre>
+
+<blockquote>
+<p><strong>总结</strong>：<code>__init__()</code>方法的第一个参数永远是<code>self</code>，表示创建的实例本身，因此，在<code>__init__()</code>方法内部，就可以把各种属性绑定到<code>self</code>，因为<code>self</code>就指向创建的实例本身。有了<code>__init__()</code>方法，在创建实例的时候，就不能<del><code>传入空的参数</code></del>了，必须传入与<code>__init__()</code>方法匹配的参数，但<code>self</code>不需要传，Python 解释器自己会把实例变量传进去：</p>
+</blockquote>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart = Student('Bart Simpson', 59)
+&gt;&gt;&gt; bart.name
+'Bart Simpson'
+&gt;&gt;&gt; bart.score
+59
+</code></pre>
+
+<p>和普通的函数相比，在类中定义的函数只有一点不同，就是第一个参数永远是实例变量<code>self</code>，并且，调用时，不用传递该参数。除此之外，类的方法和普通函数没有什么区别，所以，你仍然可以用默认参数、可变参数、关键字参数和命名关键字参数。</p>
+
+<h2 id="访问限制">访问限制</h2>
+
+<blockquote>
+<p><strong>总结</strong>：</p>
+
+<ul>
+<li><code>__name</code>式的成员是私有成员，不能外部访问，当然，也可以用<code>._Class__name</code>的方式强制访问；</li>
+<li><code>_name</code>式的成员可以外部访问，但习惯上认为没应该从外部访问；</li>
+<li><code>__name__</code>式的可以外部访问，但一般有特殊含义，不建议自己定义的成员使用；</li>
+<li>私有成员考虑实现<code>get(), set()</code>方法来进行访问，这样可以增加访问限制，从而避免无效参数设定；</li>
+<li>不要给类实例增加<code>__name</code>这样的属性，这个名称与实际上内部私有成员的属性名<code>._Class__name</code>并不相同。</li>
+</ul>
+</blockquote>
+
+<h3 id="公有-私有成员">公有、私有成员</h3>
+
+<p>如果要让内部属性不被外部访问，可以把属性的名称前加上两个下划线<code>__</code>，在 Python 中，实例的变量名如果以<code>__</code>开头，就变成了一个私有变量（private），只有内部可以访问，外部不能访问，所以，我们把<code>Student</code>类改一改：</p>
+
+<pre><code class="language-python">class Student(object):
+
+    def __init__(self, name, score):
+        self.__name = name
+        self.__score = score
+
+    def print_score(self):
+        print('%s: %s' % (self.__name, self.__score))
+</code></pre>
+
+<p>改完后，对于外部代码来说，没什么变动，但是已经无法从外部访问实例变量<code>.__name</code>和实例变量<code>.__score</code>了：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart = Student('Bart Simpson', 98)
+&gt;&gt;&gt; bart.__name
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: 'Student' object has no attribute '__name'
+</code></pre>
+
+<p>这样就确保了外部代码不能随意修改对象内部的状态，这样通过访问限制的保护，代码更加健壮。</p>
+
+<h3 id="get-set">get(), set()</h3>
+
+<p>但是如果外部代码要获取<code>name</code>和<code>score</code>怎么办？可以给<code>Student</code>类增加<code>get_name()</code>和<code>get_score()</code>这样的方法<sup class="footnote-ref" id="fnref:getattr-setattr"><a rel="footnote" href="#fn:getattr-setattr">3</a></sup>：</p>
+
+<pre><code class="language-python">class Student(object):
+    ...
+
+    def get_name(self):
+        return self.__name
+
+    def get_score(self):
+        return self.__score
+</code></pre>
+
+<p>如果又要允许外部代码修改<code>score</code>怎么办？可以再给<code>Student</code>类增加<code>set_score()</code>方法：</p>
+
+<pre><code class="language-python">class Student(object):
+    ...
+
+    def set_score(self, score):
+        self.__score = score
+</code></pre>
+
+<p>你也许会问，原先那种直接通过<code>bart.score = 59</code>也可以修改啊，为什么要定义一个方法大费周折？因为在方法中，可以对参数做检查，避免传入无效的参数：</p>
+
+<pre><code class="language-python">class Student(object):
+    ...
+
+    def set_score(self, score):
+        if 0 &lt;= score &lt;= 100:
+            self.__score = score
+        else:
+            raise ValueError('bad score')
+</code></pre>
+
+<h3 id="强行访问">强行访问</h3>
+
+<p>需要注意的是，在 Python 中，变量名类似<code>__xxx__</code>的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是 private 变量，所以，不能用<code>__name__()</code>、<code>__score__()</code>这样的变量名。</p>
+
+<p>有些时候，你会看到以一个下划线开头的实例变量名，比如<code>_name</code>，这样的实例变量外部是可以访问的，但是，按照约定俗成的规定，当你看到这样的变量时，意思就是，“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。</p>
+
+<p>双下划线开头的实例变量是不是一定不能从外部访问呢？其实也不是。不能直接访问<code>__name</code>是因为 Python 解释器对外把<code>__name</code>变量改成了<code>_Student__name</code>，所以，仍然可以通过<code>_Student__name</code>来访问<code>__name</code>变量：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart._Student__name
+'Bart Simpson'
+</code></pre>
+
+<p>但是强烈建议你不要这么干，因为不同版本的 Python 解释器可能会把<code>__name</code>改成不同的变量名。总的来说就是，Python 本身没有任何机制阻止你干坏事，一切全靠自觉。</p>
+
+<p>最后注意下面的这种错误写法：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart = Student('Bart Simpson', 98)
+&gt;&gt;&gt; bart.get_name()
+'Bart Simpson'
+&gt;&gt;&gt; bart.__name = 'New Name' # 设置__name变量！
+&gt;&gt;&gt; bart.__name
+'New Name'
+</code></pre>
+
+<p>表面上看，外部代码“成功”地设置了<code>__name</code>变量，但实际上这个<code>__name</code>变量和 class 内部的<code>__name</code>变量不是一个变量！内部的<code>__name</code>变量已经被 Python 解释器自动改成了<code>_Student__name</code>，而外部代码给<code>bart</code>新增了一个<code>__name</code>变量。不信试试：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; bart.get_name()         # get_name()内部返回self.__name
+'Bart Simpson'
+</code></pre>
+
+<h2 id="继承和多态">继承和多态</h2>
+
+<p><strong>继承</strong>有什么好处？最大的好处是子类获得了父类的全部功能。由于<code>Animial</code>实现了<code>run()</code>方法，因此，<code>Dog</code>和<code>Cat</code>作为它的子类，什么事也没干，就自动拥有了<code>run()</code>方法。</p>
+
+<p>当子类和父类都存在相同的<code>run()</code>方法时，我们说，子类的<code>run()</code>覆盖了父类的<code>run()</code>，在代码运行的时候，总是会调用子类的<code>run()</code>。这样，我们就获得了继承的另一个好处：<strong>多态</strong>。</p>
+
+<p>对于下面的函数：</p>
+
+<pre><code class="language-python">def run_twice(animal):
+    animal.run()
+    animal.run()
+</code></pre>
+
+<p>新增一个<code>Animal</code>的子类，不必对<code>run_twice()</code>做任何修改，实际上，任何依赖<code>Animal</code>作为参数的函数或者方法都可以不加修改地正常运行，原因就在于多态。</p>
+
+<p>多态的好处就是，当我们需要传入<code>Dog</code>、<code>Cat</code>、<code>Tortoise</code>……时，我们只需要接收<code>Animal</code>类型就可以了，因为<code>Dog</code>、<code>Cat</code>、<code>Tortoise</code>……都是<code>Animal</code>类型，然后，按照<code>Animal</code>类型进行操作即可。由于<code>Animal</code>类型有<code>run()</code>方法，因此，传入的任意类型，只要是<code>Animal</code>类或者子类，就会自动调用实际类型的<code>run()</code>方法，这就是多态的意思：</p>
+
+<blockquote>
+<p>对于一个变量，我们只需要知道它是<code>Animal</code>类型，无需确切地知道它的子类型，就可以放心地调用<code>run()</code>方法，而具体调用的<code>run()</code>方法是作用在<code>Animal</code>、<code>Dog</code>、<code>Cat</code>还是<code>Tortoise</code>对象上，由运行时该对象的确切类型决定，这就是多态真正的威力：调用方只管调用，不管细节，而当我们新增一种<code>Animal</code>的子类时，只要确保<code>run()</code>方法编写正确，不用管原来的代码是如何调用的。这就是著名的“开闭”原则：</p>
+</blockquote>
+
+<ul>
+<li>对扩展开放：允许新增<code>Animal</code>子类；</li>
+<li>对修改封闭：不需要修改依赖<code>Animal</code>类型的<code>run_twice()</code>等函数。<br />
+</li>
+</ul>
+
+<h2 id="静态语言-vs-动态语言">静态语言 vs 动态语言</h2>
+
+<p>对于静态语言（例如 Java）来说，如果需要传入<code>Animal</code>类型，则传入的对象必须是<code>Animal</code>类型或者它的子类，否则，将无法调用<code>run()</code>方法。</p>
+
+<p>对于 Python 这样的动态语言来说，则不一定需要传入<code>Animal</code>类型。我们只需要保证传入的对象有一个<code>run()</code>方法就可以了：</p>
+
+<pre><code class="language-python">class Timer(object):
+    def run(self):
+        print('Start...')
+</code></pre>
+
+<p>这就是动态语言的<strong>鸭子类型</strong>，它并不要求严格的继承体系，一个对象只要<code>看起来像鸭子，走起路来像鸭子</code>，那它就可以被看做是鸭子。</p>
+
+<p>Python 的<code>file-like object</code>就是一种鸭子类型。对真正的文件对象，它有一个<code>read()</code>方法，返回其内容。但是，许多对象，只要有<code>read()</code>方法，都被视为<code>file-like object</code>。许多函数接收的参数就是<code>file-like object</code>，你不一定要传入真正的文件对象，完全可以传入任何实现了<code>read()</code>方法的对象。</p>
+
+<h2 id="获取对象信息">获取对象信息</h2>
+
+<h3 id="type-判断对象类型">type() - 判断对象类型</h3>
+
+<pre><code class="language-python">&gt;&gt;&gt; type(123)==type(456)
+True
+&gt;&gt;&gt; type(123)==int
+True
+&gt;&gt;&gt; type('abc')==type('123')
+True
+&gt;&gt;&gt; type('abc')==str
+True
+&gt;&gt;&gt; type('abc')==type(123)
+False
+
+&gt;&gt;&gt; import types
+&gt;&gt;&gt; def fn():
+...     pass
+...
+&gt;&gt;&gt; type(fn)==types.FunctionType
+True
+&gt;&gt;&gt; type(abs)==types.BuiltinFunctionType
+True
+&gt;&gt;&gt; type(lambda x: x)==types.LambdaType
+True
+&gt;&gt;&gt; type((x for x in range(10)))==types.GeneratorType
+True
+</code></pre>
+
+<h3 id="isinstance-有继承关系时比-type-好用">isinstance() - 有继承关系时比 type() 好用</h3>
+
+<pre><code class="language-python">&gt;&gt;&gt; isinstance(h, Husky)
+True
+
+&gt;&gt;&gt; isinstance(h, Dog)
+True
+
+&gt;&gt;&gt; isinstance(d, Dog) and isinstance(d, Animal)
+True
+
+&gt;&gt;&gt; isinstance(d, Husky)
+False
+</code></pre>
+
+<p>能用<code>type()</code>判断的基本类型也可以用<code>isinstance()</code>判断：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; isinstance('a', str)
+True
+&gt;&gt;&gt; isinstance(123, int)
+True
+&gt;&gt;&gt; isinstance(b'a', bytes)
+True
+</code></pre>
+
+<p>并且还可以判断一个变量是否是某些类型中的一种，比如下面的代码就可以判断是否是<code>list</code>或者<code>tuple</code>：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; isinstance([1, 2, 3], (list, tuple))
+True
+&gt;&gt;&gt; isinstance((1, 2, 3), (list, tuple))
+True
+</code></pre>
+
+<h3 id="dir-获得对象的所有属性和方法">dir() - 获得对象的所有属性和方法</h3>
+
+<pre><code class="language-python">dir('ABC')
+</code></pre>
+
+<p>类似<code>__xxx__</code>的属性和方法在 Python 中都是有特殊用途的，剩下的都是普通属性或方法。</p>
+
+<h3 id="getattr-setattr-hasattr">getattr()、setattr()、hasattr()</h3>
+
+<p>注意这里的<code>getattr()</code>和<code>setattr()</code>与前面的<code>get_name()</code>和<code>set_name()</code>不同，这里的两个方法是针对全体类的一个通过实现，而前面的两个方法是程序作者根据需要自己定义的方法，作者通常会在其中添加自己的更多额外工作，如数据有效验证等。</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; hasattr(obj, 'x') # 有属性'x'吗？
+True
+&gt;&gt;&gt; obj.x
+9
+&gt;&gt;&gt; hasattr(obj, 'y') # 有属性'y'吗？
+False
+&gt;&gt;&gt; setattr(obj, 'y', 19) # 设置一个属性'y'
+&gt;&gt;&gt; hasattr(obj, 'y') # 有属性'y'吗？
+True
+&gt;&gt;&gt; getattr(obj, 'y') # 获取属性'y'
+19
+&gt;&gt;&gt; obj.y # 获取属性'y'
+19
+</code></pre>
+
+<p>如果试图获取不存在的属性，会抛出<code>AttributeError</code>的错误：</p>
+
+<pre><code>&gt;&gt;&gt; getattr(obj, 'z') # 获取属性'z'
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: 'MyObject' object has no attribute 'z'
+</code></pre>
+
+<p>可以传入一个<code>default</code>参数，如果属性不存在，就返回默认值：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; getattr(obj, 'z', 404) # 获取属性'z'，如果不存在，返回默认值404
+404
+</code></pre>
+
+<p>也可以获得对象的方法：</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; hasattr(obj, 'power') # 有属性'power'吗？
+True
+&gt;&gt;&gt; getattr(obj, 'power') # 获取属性'power'
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10077a6a0&gt;&gt;
+&gt;&gt;&gt; fn = getattr(obj, 'power') # 获取属性'power'并赋值到变量fn
+&gt;&gt;&gt; fn # fn指向obj.power
+&lt;bound method MyObject.power of &lt;__main__.MyObject object at 0x10077a6a0&gt;&gt;
+&gt;&gt;&gt; fn() # 调用fn()与调用obj.power()是一样的
+81
+</code></pre>
+
+<h3 id="小结">小结</h3>
+
+<p>通过内置的一系列函数，我们可以对任意一个 Python 对象进行剖析，拿到其内部的数据。要注意的是，只有在不知道对象信息的时候，我们才会去获取对象信息。如果可以直接写：</p>
+
+<pre><code class="language-python">sum = obj.x + obj.y
+</code></pre>
+
+<p>就不要写：</p>
+
+<pre><code class="language-python">sum = getattr(obj, 'x') + getattr(obj, 'y')
+</code></pre>
+
+<p>一个正确的用法的例子如下：</p>
+
+<pre><code class="language-python">def readImage(fp):
+    if hasattr(fp, 'read'):
+        return readData(fp)
+    return None
+</code></pre>
+
+<p>假设我们希望从文件流<code>fp</code>中读取图像，我们首先要判断该<code>fp</code>对象是否存在<code>read()</code>方法，如果存在，则该对象是一个流，如果不存在，则无法读取。<code>hasattr()</code>就派上了用场。</p>
+
+<p>请注意，在 Python 这类动态语言中，根据鸭子类型，有<code>read()</code>方法，不代表该<code>fp</code>对象就是一个<del><code>文件流</code></del>，它也可能是<code>网络流</code>，也可能是内存中的一个<code>字节流</code>，但只要<code>read()</code>方法返回的是有效的图像数据，就不影响读取图像的功能。</p>
+
+<h2 id="实例属性和类属性">实例属性和类属性</h2>
+
+<p>由于 Python 是动态语言，根据类创建的实例可以任意绑定属性，但这个属性只与实例有关，与类无关。我们定义了一个类属性后，这个属性虽然归类所有，但类的所有实例都可以访问到。编写程序的时候，千万不要把实例属性和类属性使用相同的名字，因为相同名称的实例属性将屏蔽掉类属性，但是删除实例属性后，再使用相同的名称，访问到的将是类属性。</p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:-">类在一定条件下也可以实时添加新的属性，具体方法参考高级部分内容。 <a class="footnote-return" href="#fnref:-">↩</a></li>
+<li id="fn:new-init">教程中说的是创建实例的时候，实际上创建与<code>__new__()</code>对应，要早于<code>__init__()</code>。 <a class="footnote-return" href="#fnref:new-init">↩</a></li>
+<li id="fn:getattr-setattr">和后面的<code>getattr()</code>、<code>setattr()</code>不同，那里的两个方法是 Python 实现的适用于全体类的通用方法。 <a class="footnote-return" href="#fnref:getattr-setattr">↩</a></li>
+</ol>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/06/16/python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 《廖雪峰 Python 教程》笔记 3：Module, Package</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/06/18/python-debug/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">《廖雪峰 Python 教程》笔记 6：调试 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/06\/16\/python\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/06\/18\/python-debug\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+

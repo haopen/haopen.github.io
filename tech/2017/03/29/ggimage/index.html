@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>ggimage：ggplot2中愉快地使用图片 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="ggimage：ggplot2中愉快地使用图片 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">3613 字</span>
+    
+
+    
+<h1 class="article-title">ggimage：ggplot2中愉快地使用图片 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 余光创 ·   2017/03/29</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=ggimage%EF%BC%9Aggplot2%E4%B8%AD%E6%84%89%E5%BF%AB%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%9B%BE%E7%89%87&#43;z&#43;%2Ftech%2F2017%2F03%2F29%2Fggimage%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=ggimage%EF%BC%9Aggplot2%E4%B8%AD%E6%84%89%E5%BF%AB%E5%9C%B0%E4%BD%BF%E7%94%A8%E5%9B%BE%E7%89%87&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F03%2F29%2Fggimage%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-03-29-ggimage.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-r" title="R">R</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-r" title="R">R</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-ggplot2" title="ggplot2">ggplot2</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E5%9B%BE%E5%BD%A2" title="图形">图形</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p>原文地址：<a href="https://cos.name/2017/04/ggimage/" target="_blank">https://cos.name/2017/04/ggimage/</a></p>
+
+<blockquote>
+<p>作者简介：余光创，香港大学公共卫生学院，生物信息学博士生。<br />
+博客：<a href="https://guangchuangyu.github.io" target="_blank">https://guangchuangyu.github.io</a>， 公众号：biobabble</p>
+</blockquote>
+
+<h1 id="导言">导言</h1>
+
+<p>本文介绍了<strong>ggimage</strong>包，允许在<strong>ggplot2</strong>作图时嵌入图片，并支持<code>aes</code>映射，可以把离散型变量映射到不同图片。目前有几个包可以使用图片嵌入做图，但都是针对特定的场景，这里使用<strong>ggimage</strong>来展示在这些特定领域里的应用，<strong>ggimage</strong>的设计是通用的，并不被特定场景所限定，文末又介绍了用R图标来画出R、用饼图来画气泡图等实例。</p>
+
+<!-- more -->
+
+<h1 id="图上嵌图片">图上嵌图片</h1>
+
+<p>R 基础图形库（base graphics）可以在做图的时候嵌入图片，使用的是<code>graphics::rasterImage</code>：</p>
+
+<pre><code class="language-r">imgurl &lt;- &quot;http://phylopic.org/assets/images/submissions/295cd9f7-eef2-441e-ba7e-40c772ca7611.256.png&quot;
+library(EBImage)
+x &lt;- readImage(imgurl)
+plot(1, type = &quot;n&quot;, xlab = &quot;&quot;, ylab = &quot;&quot;, xlim = c(0, 8), ylim = c(0, 8))
+rasterImage(x, 2, 2, 6, 4)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/raster.png" alt="R绘图嵌入图片演示" /></p>
+
+<p></p>
+
+<p>如果我们搜索&rdquo;ggplot2 image&rdquo;，会找到类似于下面这样的帖子/博文：</p>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/9917049/inserting-an-image-to-ggplot2" target="_blank">r - Inserting an image to ggplot2 - Stack Overflow</a></li>
+<li><a href="https://www.r-bloggers.com/add-a-background-png-image-to-ggplot2/" target="_blank">Add a background png image to ggplot2 | R-bloggers</a><br />
+</li>
+</ul>
+
+<p>也就是说通过程序员秘笈，搜索，我们用<strong>ggplot2</strong>同样也可以做到。</p>
+
+<p>这里我们需要用到<code>annotation_custom(rasterGrob)</code>来把图片加到<strong>ggplot2</strong>图形中，这和基础图形库是一模一样的。</p>
+
+<pre><code class="language-r">library(grid)
+library(ggplot2)
+
+p &lt;- ggplot(d = data.frame(x = c(0, 8), y = c(0, 8)), aes(x, y)) + geom_blank()
+p + annotation_custom(rasterGrob(x), 2, 6, 2, 4)
+</code></pre>
+
+<p>如果要使用图片来打点画一个散点图，我们就需要<code>for</code>循环，对每一个点进行操作，这显然是底层的操作，而<strong>ggplot2</strong>是一个高抽象的画图系统，我们希望能够使用<strong>ggplot2</strong>的语法。</p>
+
+<p><strong>ggimage</strong>就是来实现这样一个功能，它只是一个简单的包，允许我们在ggplot2中把离散性变量映射到不同的图片来画图。</p>
+
+<p><img src="/images/Tech/R/ggimage/Screenshot1.png" alt="推特截屏：把图片当字体一样使用" /></p>
+
+<p>实现这个功能的想法已经酝酿很久了，在<strong>ggtree</strong>的开发中，我实现了<code>phylopic</code>函数来使用Phylopic数据库的图片注释进化树，也实现了<code>subview</code>函数在图上嵌入小图。用图片来注释进化树在进化分析上还是很常见的，特别是在一些分类学的研究中，需要把一些分类学特征在进化树上展示出来，而像我们做病毒，也经常会把一些图片放在进化树上来展示病毒的宿主信息。</p>
+
+<p><strong>ggtree</strong>和可视化有关的函数分两类，一类是加注释的图层，另一类是可视化操作树（比如像旋转、合并分支）。操作树的都是普通函数，而加注释的都是<code>geom</code>图层，除了<code>subview</code>和<code>phylopic</code>，这种所谓逼死处女座的存在，我早就想改成了<code>geom_subview</code>和<code>geom_phylopic</code>了（已实现），这也是为什么我要写<strong>ggimage</strong>的原因了。</p>
+
+<h1 id="安装">安装</h1>
+
+<p><strong>ggimage</strong>依赖于<strong>EBImage</strong>来读图片，这是个Bioconductor包，所以我们需要额外的动作来安装它，用<code>setRepositories</code>把Bioconductor软件仓库加进来，这样<code>install.packages</code>也可以搜索到它的包。</p>
+
+<pre><code class="language-r">setRepositories(ind = 1:2)
+install.packages(&quot;ggimage&quot;)
+</code></pre>
+
+<h1 id="实例分析">实例分析</h1>
+
+<p>据我所知目前支持使用图片的R包有<strong>CatterPlots</strong>, <strong>rphylopic</strong>, <strong>emoGG</strong>,<br />
+<strong>ggflags</strong>这几个，都是为特定的目的而实现的，都有其特定的应用场景，而<strong>ggimage</strong>是的<br />
+<code>geom_image</code>是通用的，通过对它进行简单的包装，同样可以实现这些特殊场景的应用图层。</p>
+
+<p><strong>CatterPlots</strong>这个包只可以应用于基础图形库（base graphics）中，通过预设的几个猫图（R对象，随包载入）来画散点图。最近<a href="http://blog.revolutionanalytics.com/2017/02/catterplots-plots-with-cats.html" target="_blank">RevolutionAnalytics 有博文</a>介绍。<strong>ggplot2</strong>没有相应画猫的包。我们可以使用<strong>ggimage</strong>来画，而且不用限制于<strong>CatterPlots</strong>预设的几个图形。</p>
+
+<pre><code class="language-r">library(ggplot2)
+library(ggimage)
+
+mytheme &lt;- theme_minimal() +
+    theme(axis.title = element_blank())
+theme_set(mytheme)
+
+x &lt;- seq(-2 * pi, 2 * pi, length.out = 30)
+d &lt;- data.frame(x = x, y = sin(x))
+
+img &lt;- &quot;http://www.belleamibengals.com/bengal_cat_2.png&quot;
+ggplot(d, aes(x, y)) + geom_image(image = img, size = .1)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/ggimage_CatterPlots.png" alt="ggimage画猫散点图演示" /></p>
+
+<p><strong>CatterPlots</strong>实现的方式就是上面谈到的<code>rasterImage</code>内部使用了循环。<strong>rphylopic</strong>同时支持基础图形库（base graphics）和<strong>ggplot2</strong>，也是一样的实现方式，不过<strong>rphylopic</strong>内部没有使用循环，一次只能加一个图，它使用的图来自于<a href="http://phylopic.org/" target="_blank">phylopic</a>数据库。</p>
+
+<p>我们用<strong>ggimage</strong>同样可以使用<code>phylopic</code>图片：</p>
+
+<pre><code class="language-r">ggplot(d, aes(x, y)) + geom_phylopic(image = &quot;500bd7c6-71c1-4b86-8e54-55f72ad1beca&quot;, size = .1)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/ggimage_rphylopic.png" alt="ggimage使用phylopic图片演示" /></p>
+
+<blockquote>
+<p>图中是<code>翼足目</code>动物。</p>
+</blockquote>
+
+<p><strong>emoGG</strong>是专门来画<code>emoji</code>的，如果要画<code>emoji</code>的话，我推荐我写的<strong>emojifont</strong>包，在轩哥的<a href="https://cos.name/2014/01/showtext-interesting-fonts-and-graphs/" target="_blank"><strong>showtext</strong>基础</a>上，把<code>emoji</code>当做普通字体一样操作，更方便。</p>
+
+<p><strong>emoGG</strong>这个包提供了<code>geom_emoji</code>图层，虽然一次可以画出散点，但因为不支持<code>aes</code>映射，而<strong>ggimage</strong>所提供的<code>geom_emoji</code>则支持映射，下面的例子中我们做了一个简单的回归分析，如果残差<code>&lt;0.5</code>用笑脸表示，<code>&gt;0.5</code>则用哭脸来表示。</p>
+
+<pre><code class="language-r">set.seed(123)
+iris2 &lt;- iris[sample(1:nrow(iris), 30), ]
+model &lt;- lm(Petal.Length ~ Sepal.Length, data = iris2)
+iris2$fitted &lt;- predict(model)
+
+p &lt;- ggplot(iris2, aes(x = Sepal.Length, y = Petal.Length)) +
+  geom_linerange(aes(ymin = fitted, ymax = Petal.Length),
+                 colour = &quot;purple&quot;) +
+  geom_abline(intercept = model$coefficients[1],
+              slope = model$coefficients[2])
+
+p + ggimage::geom_emoji(aes(image = ifelse(abs(Petal.Length-fitted) &gt; 0.5, '1f622', '1f600')))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/emoji_residual2.png" alt="ggimage画emoji演示" /></p>
+
+<p>如果要用<strong>emoGG</strong>来做的话，则需要自己切数据分两次来进行：</p>
+
+<pre><code class="language-r">p + emoGG::geom_emoji(data = subset(iris2, (Petal.Length-fitted) &lt; 0.5), emoji = &quot;1f600&quot;) +
+    emoGG::geom_emoji(data = subset(iris2, (Petal.Length-fitted) &gt; 0.5), emoji = &quot;1f622&quot;)
+</code></pre>
+
+<p>这里我们只分两类(残差是否大于0.5)，所以需要加两次，试想我们的分类变量有多种可能的取值，则我们需要分多次切数据加图层，<strong>CatterPlots</strong>、<strong>rphylopic</strong>和<strong>emoGG</strong>都有这个问题，这也是<code>aes</code>映射之于<strong>ggplot2</strong>的重要和强大之处，它让我们可以在更高的抽像水平思考，</p>
+
+<p><strong>ggflags</strong>是支持<code>aes</code>映射的，只不过它只能用来画国旗而已。同样<strong>ggimage</strong>也提供<br />
+了相应的<code>geom_flag</code>来使用国旗用于做图。</p>
+
+<pre><code class="language-r">library(rvest)
+library(dplyr)
+
+url &lt;- &quot;http://www.nbcolympics.com/medals&quot;
+
+medals &lt;- read_html(url) %&gt;%
+    html_nodes(&quot;table&quot;) %&gt;%
+    html_table() %&gt;% .[[1]]
+
+library(countrycode)
+library(tidyr)
+
+medals &lt;- medals %&gt;%
+    mutate(code = countrycode(Country, &quot;country.name&quot;, &quot;iso2c&quot;)) %&gt;%
+    gather(medal, count, Gold:Bronze) %&gt;%
+    filter(Total &gt;= 10)
+
+head(medals)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">Country</th>
+<th align="right">Total</th>
+<th align="left">code</th>
+<th align="left">medal</th>
+<th align="right">count</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Russia</td>
+<td align="right">33</td>
+<td align="left">RU</td>
+<td align="left">Gold</td>
+<td align="right">13</td>
+</tr>
+
+<tr>
+<td align="left">United States</td>
+<td align="right">28</td>
+<td align="left">US</td>
+<td align="left">Gold</td>
+<td align="right">9</td>
+</tr>
+
+<tr>
+<td align="left">Norway</td>
+<td align="right">26</td>
+<td align="left">NO</td>
+<td align="left">Gold</td>
+<td align="right">11</td>
+</tr>
+
+<tr>
+<td align="left">Canada</td>
+<td align="right">25</td>
+<td align="left">CA</td>
+<td align="left">Gold</td>
+<td align="right">10</td>
+</tr>
+
+<tr>
+<td align="left">Netherlands</td>
+<td align="right">24</td>
+<td align="left">NL</td>
+<td align="left">Gold</td>
+<td align="right">8</td>
+</tr>
+
+<tr>
+<td align="left">Germany</td>
+<td align="right">19</td>
+<td align="left">DE</td>
+<td align="left">Gold</td>
+<td align="right">8</td>
+</tr>
+</tbody>
+</table>
+
+<p>首先我们从网站上爬回来2016年各个国家的奥林匹克奖牌数，画出柱状图，并在<code>xlab</code>国家名边上用<strong>ggimage</strong>画上国旗：</p>
+
+<pre><code class="language-r">p &lt;- ggplot(medals, aes(Country, count)) + geom_col(aes(fill = medal), width = .8)
+
+p + geom_flag(y = -2, aes(image = code)) +
+    coord_flip() + expand_limits(y = -2)  +
+    scale_fill_manual(values = c(&quot;Gold&quot; = &quot;gold&quot;, &quot;Bronze&quot; = &quot;#cd7f32&quot;, &quot;Silver&quot; = &quot;#C0C0C0&quot;))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/olympics_2016.png" alt="ggimage画国旗演示" /></p>
+
+<h2 id="ggimage"><strong>ggimage</strong></h2>
+
+<p>前面我们介绍了<strong>ggimage</strong>在一些场景的应用实例，虽然有专门的包针对这些应用场景，但<strong>ggimage</strong>在这些领域中的表现要比大多数的包要好（支持aes映射）。但<strong>ggimage</strong>的使用并不限于这些(<code>geom_phylopic</code>，<code>geom_emoji</code>和<code>geom_flag</code>只是通用图层<code>geom_image</code>的简单封装)，这里将展示一些有趣的例子。</p>
+
+<h3 id="用r图标来画r形状">用R图标来画R形状</h3>
+
+<pre><code class="language-r">x &lt;- c(2, 2, 2, 2, 2, 3, 3, 3.5, 3.5, 4)
+y &lt;- c(2, 3, 4, 5, 6, 4, 6, 3, 5, 2)
+d &lt;- data.frame(x = x, y = y)
+
+img &lt;- system.file(&quot;img&quot;, &quot;Rlogo.png&quot;, package = &quot;png&quot;)
+ggplot(d, aes(x, y)) + geom_image(image = img, size = .1) +
+  xlim(0, 6) + ylim(0, 7)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/R.png" alt="用R图标画R形状演示" /></p>
+
+<h3 id="嵌套式绘图">嵌套式绘图</h3>
+
+<p>这里我要展示的是非常有名的气泡图（Bubble Plot），但气泡不是圆圈，而是使用<strong>ggplot2</strong>画<br />
+的饼图，我先把饼图保存起来，再用<strong>ggimage</strong>拿来画，饼图的大小<br />
+与人口总数正相关。这个例子可以应用到很多场景中去，比如一个时间序列的曲线，你要用统计图在某些时间点上展示相关的信息，比如你要在地图上加某些地方的相关统计信息（如果要在地图上画饼图，可以使用我写的<a href="https://cran.r-project.org/package=scatterpie" target="_blank"><strong>scatterpie</strong></a>包）。</p>
+
+<pre><code class="language-r">crime &lt;- read.csv(&quot;http://datasets.flowingdata.com/crimeRatesByState2005.tsv&quot;,
+                  header = TRUE, sep = &quot;\t&quot;, stringsAsFactors = F)
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">state</th>
+<th align="right">murder</th>
+<th align="right">Forcible_rate</th>
+<th align="right">Robbery</th>
+<th align="right">aggravated_assult</th>
+<th align="right">burglary</th>
+<th align="right">larceny_theft</th>
+<th align="right">motor<em>vehicle</em>theft</th>
+<th align="right">population</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Alabama</td>
+<td align="right">8.2</td>
+<td align="right">34.3</td>
+<td align="right">141.4</td>
+<td align="right">247.8</td>
+<td align="right">953.8</td>
+<td align="right">2650.0</td>
+<td align="right">288.3</td>
+<td align="right">4627851</td>
+</tr>
+
+<tr>
+<td align="left">Alaska</td>
+<td align="right">4.8</td>
+<td align="right">81.1</td>
+<td align="right">80.9</td>
+<td align="right">465.1</td>
+<td align="right">622.5</td>
+<td align="right">2599.1</td>
+<td align="right">391.0</td>
+<td align="right">686293</td>
+</tr>
+
+<tr>
+<td align="left">Arizona</td>
+<td align="right">7.5</td>
+<td align="right">33.8</td>
+<td align="right">144.4</td>
+<td align="right">327.4</td>
+<td align="right">948.4</td>
+<td align="right">2965.2</td>
+<td align="right">924.4</td>
+<td align="right">6500180</td>
+</tr>
+
+<tr>
+<td align="left">Arkansas</td>
+<td align="right">6.7</td>
+<td align="right">42.9</td>
+<td align="right">91.1</td>
+<td align="right">386.8</td>
+<td align="right">1084.6</td>
+<td align="right">2711.2</td>
+<td align="right">262.1</td>
+<td align="right">2855390</td>
+</tr>
+
+<tr>
+<td align="left">California</td>
+<td align="right">6.9</td>
+<td align="right">26.0</td>
+<td align="right">176.1</td>
+<td align="right">317.3</td>
+<td align="right">693.3</td>
+<td align="right">1916.5</td>
+<td align="right">712.8</td>
+<td align="right">36756666</td>
+</tr>
+
+<tr>
+<td align="left">Colorado</td>
+<td align="right">3.7</td>
+<td align="right">43.4</td>
+<td align="right">84.6</td>
+<td align="right">264.7</td>
+<td align="right">744.8</td>
+<td align="right">2735.2</td>
+<td align="right">559.5</td>
+<td align="right">4861515</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-r">library(gtable)
+
+plot_pie &lt;- function(i) {
+    df &lt;- gather(crime[i, ], type, value, murder:motor_vehicle_theft)
+    ggplot(df, aes(x = 1, value, fill = type)) +
+        geom_col() + coord_polar(theta = 'y') +
+        ggtitle(crime[i, &quot;state&quot;]) +
+        theme_void() + theme_transparent() +
+        theme(legend.position = &quot;none&quot;,
+              plot.title = element_text(size = rel(6), hjust = 0.5))
+}
+
+pies &lt;- sapply(1:nrow(crime), function(i) {
+    outfile &lt;- paste0(&quot;crime_&quot;, i, &quot;.png&quot;)
+    plot_pie(i) + ggsave(outfile, bg = &quot;transparent&quot;)
+    outfile
+})
+
+radius &lt;- sqrt(crime$population / pi)
+crime$radius &lt;- 0.2 * radius/max(radius)
+crime$pie &lt;- pies
+
+leg1 &lt;- gtable_filter(
+    ggplot_gtable(
+        ggplot_build(plot_pie(1) + theme(legend.position = &quot;right&quot;))
+    ), &quot;guide-box&quot;)
+
+ggplot(crime, aes(murder, Robbery)) +
+  geom_image(aes(image = pie, size = I(radius))) +
+  geom_subview(leg1, x = 8.8, y = 50)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/us_crime.png" alt="嵌套式绘图演示：用饼图来画气泡图" /></p>
+
+<p>我们还可以每次只画一个州的数据，制作成动图。</p>
+
+<pre><code class="language-r">plot_crime &lt;- function(i) {
+    o &lt;- paste0(i, &quot;.png&quot;)
+    ggplot(crime, aes(murder, Robbery)) + geom_blank() +
+        geom_image(data = crime[i, ], aes(image = pie, size = I(radius))) +
+        geom_subview(p, leg1, x = 8.8, y = 50) + ggsave(o)
+    o
+}
+
+library(magick)
+library(purrr)
+order(crime$murder, decreasing = F) %&gt;%
+    map(plot_crime) %&gt;%
+    map(image_read) %&gt;%
+    image_join() %&gt;%
+    image_animate(fps = 2) %&gt;%
+    image_write(&quot;crime.gif&quot;)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggimage/us_crime.gif" alt="嵌套式绘图演示，动图版本" /></p>
+
+<p><code>geom_subview</code>可以图上嵌图，并不需要保存为图片，但对于<strong>ggplot2</strong>来讲，保存图片也是有好处的，因为<strong>ggplot2</strong>画图，点线是在数据空间上，随着我们保存图片的大小是按比例缩小或放大的，但文字是在像素空间上，和画图空间并不相关。所以当我们嵌图时缩小了画图窗口之后，字体会显得格外大，微调起来也比较繁琐，这时候保存为合适尺寸的图片，再用<code>geom_image</code>来加上去，显然就轻松得多。</p>
+
+<h3 id="其它来自r社区的例子">其它来自R社区的例子</h3>
+
+<p>SAS博客对<code>M&amp;M</code>巧克力的<a href="http://blogs.sas.com/content/iml/2017/02/20/proportion-of-colors-mandms.html" target="_blank">颜色分布做了分析</a>，通过模拟估计不同颜色的置信区间。这个<a href="http://rpubs.com/hrbrmstr/mms" target="_blank">分析被翻译成R</a>，并产生下图：</p>
+
+<p><img src="/images/Tech/R/ggimage/mm.png" alt="M&amp;M例子展示" /></p>
+
+<p>其中垂直片段|是真实值，水平片段当然就是置信空间了，而估计值用了<strong>ggimage</strong>来画不同颜色的巧克力。</p>
+
+<p>另一个例子是<a href="https://rpubs.com/bhaskarvk/disney" target="_blank">迪斯尼电影主人公名字的流行程度</a>:</p>
+
+<p><img src="/images/Tech/R/ggimage/Screenshot3.png" alt="迪斯尼例子展示" /></p>
+
+<p>最近我还添加了<code>geom_pokemon</code>图层，让大家可以用pokemon来画图，比如：</p>
+
+<p><img src="/images/Tech/R/ggimage/geom_pokemon.png" alt="pokemon例子展示" /></p>
+
+<p><strong>ggimage</strong>是通用的包，所以可以被应用于不同的领域/场景中，起码可以让我们画出更好玩的图出来，后续我有时间的话，会写一个<code>draw_key_image</code>的函数，实现使用图片来当legend key的功能。</p>
+
+<p>最后祝大家玩得开心！不要把图画得太有魔性哦:)</p>
+
+<p><img src="/images/Tech/R/ggimage/Screenshot2.png" alt="推特截屏" /></p>
+
+<blockquote>
+<p>感谢大为和太云的校稿，特别是大为提出很多修改意见以及给出了用R画R的例子。</p>
+</blockquote>
+
+<h2 id="参考资料">参考资料</h2>
+
+<ul>
+<li><a href="https://stackoverflow.com/questions/9917049/inserting-an-image-to-ggplot2" target="_blank">https://stackoverflow.com/questions/9917049/inserting-an-image-to-ggplot2</a></li>
+<li><a href="https://www.r-bloggers.com/add-a-background-png-image-to-ggplot2/" target="_blank">https://www.r-bloggers.com/add-a-background-png-image-to-ggplot2/</a></li>
+<li><a href="https://github.com/GuangchuangYu/ggimage" target="_blank">https://github.com/GuangchuangYu/ggimage</a></li>
+<li><a href="https://github.com/Gibbsdavidl/CatterPlots" target="_blank">https://github.com/Gibbsdavidl/CatterPlots</a></li>
+<li><a href="https://github.com/sckott/rphylopic" target="_blank">https://github.com/sckott/rphylopic</a></li>
+<li><a href="https://github.com/baptiste/ggflags" target="_blank">https://github.com/baptiste/ggflags</a></li>
+<li><a href="http://blog.revolutionanalytics.com/2017/02/catterplots-plots-with-cats.html" target="_blank">http://blog.revolutionanalytics.com/2017/02/catterplots-plots-with-cats.html</a></li>
+<li><a href="http://blogs.sas.com/content/iml/2017/02/20/proportion-of-colors-mandms.html" target="_blank">http://blogs.sas.com/content/iml/2017/02/20/proportion-of-colors-mandms.html</a></li>
+<li><a href="http://rpubs.com/hrbrmstr/mms" target="_blank">http://rpubs.com/hrbrmstr/mms</a></li>
+<li><a href="https://rpubs.com/bhaskarvk/disney" target="_blank">https://rpubs.com/bhaskarvk/disney</a></li>
+<li><a href="https://cran.r-project.org/package=scatterpie" target="_blank">https://cran.r-project.org/package=scatterpie</a></li>
+</ul>
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/03/28/mathjax/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Hexo 的 NexT 主题中的 pre 环境、Mathjax 公式</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/04/17/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">用 Hexo&#43;Github 搭建博客平台 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/03\/28\/mathjax\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/04\/17\/hexo\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    processEscapes: true
+  }
+});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

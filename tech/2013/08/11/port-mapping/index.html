@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>网络：从外网访问局域网内主机(端口映射) z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="网络：从外网访问局域网内主机(端口映射) z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2100 字</span>
+    
+
+    
+<h1 class="article-title">网络：从外网访问局域网内主机(端口映射) z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2013/08/11</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BB%8E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E4%B8%BB%E6%9C%BA%28%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%29&#43;z&#43;%2Ftech%2F2013%2F08%2F11%2Fport-mapping%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E7%BD%91%E7%BB%9C%EF%BC%9A%E4%BB%8E%E5%A4%96%E7%BD%91%E8%AE%BF%E9%97%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E4%B8%BB%E6%9C%BA%28%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%29&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2013%2F08%2F11%2Fport-mapping%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2013-08-11-port-mapping.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-%E8%AE%A1%E7%AE%97%E6%9C%BA---%E7%BD%91%E7%BB%9C" title="计算机 - 网络">计算机 - 网络</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84" title="端口映射">端口映射</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E5%86%85%E7%BD%91" title="内网">内网</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E5%A4%96%E7%BD%91" title="外网">外网</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      
+
+<p>首先要做的事情如下：</p>
+
+<ol>
+<li>确认你内网的路由器是否支持端口映射功能</li>
+<li>如果你的路由器支持端口映射功能，在你本机安装远程控制软件</li>
+<li>远程控制软件安装后，设置路由器，输入远程控制软件的端口和你本机ip，做端口映射</li>
+<li>在你本机安装花生壳之类的动态域名软件</li>
+<li>测试成功后，你在外网打开远程软件控制端，输入动态域名就可以访问你自己电脑了<br />
+</li>
+</ol>
+
+<!-- more -->
+
+<h1 id="端口映射-port-mapping">端口映射（Port Mapping）</h1>
+
+<p>如果你是 ADSL、MODEM 或光纤等宽带接入用户，想在公司或单位内部建一个服务器或 WEB 站点，并且想让互联网上的用户访问你的服务器，那么你就会遇到端口映射问题。<br />
+通常情况下，路由器都有防火墙功能，互联网用户只能访问到你的路由器WAN口(接 ADSL 的电话线口或路由宽带外网口)，而访问不到内部服务器。要想让互联网用户访问到你建的服务器，就要在路由器上做一个转发设置，也就是端口映射设置，让互联网用户发送的请求到达路由器后,再转发到你建立的服务器或 WEB 站点。这就是端口映射。由于各个路由器厂商所取功能名称不一样，有的叫虚拟服务器，有的叫NAT设置(BitComet 中常见问题)端口映射。<br />
+其实做端口映射设置很简单，例如要映射一台内网 IP 地址为 192.168.0.66 的WEB服务器，只需把WEB服务器的 IP 地址 192.168.0.66 和 TCP 端口 80 填入到路由器的端口映射表中就OK了。</p>
+
+<p>关于打开端口映射后的安全问题：设置了端口映射后，互联网用户能够通过设置好映射的端口，跳过路由器防火墙访问到你的服务器，在通过攻击你服务器上的漏洞控制你的主机，所以打开端口映射后有必要在你的服务器上再挂一个防火墙也确保安全性。</p>
+
+<p><strong>花生壳</strong>是一套完全免费的动态域名解析服务客户端软件。当您安装并注册该项服务，无论您在任何地点、任何时间、使用任何线路，均可利用这一服务建立拥有固定域名和最大自主权的互联网主机。“花生壳”支持的线路包括普通电话线、ISDN、ADSL、有线电视网络、双绞线到户的宽带网和其它任何能够提供互联网真实IP的接入服务线路，而无论连接获得的 IP 属于动态还是静态。</p>
+
+<h1 id="动态域名">动态域名</h1>
+
+<p>用户每次上网得到新的动态分配的 IP 地址之后，安装在用户计算机里的动态域名软件就会把这个IP地址发送到动态域名解析服务器，更新域名解析数据库。Internet 上的其他人要访问这个域名的时候，动态域名解析服务器会返回正确的IP地址给他。这叫动态域名。</p>
+
+<p>因为绝大部分 Internet 用户上网的时候分配到的 IP 地址都是动态的，用传统的静态域名解析方法，用户想把自己上网的计算机做成一个有固定域名的网站，是不可能的。而有了动态域名，这个美梦就可以成真。用户可以申请一个域名，利用动态域名解析服务，把域名与自己上网的计算机绑定在一起，这样就可以在家里或公司里搭建自己的网站，非常方便。</p>
+
+<p>端口映射（Port Mapping/Port Forwarding）有点类似服务重定向, 所以有些路由器(Router)中也称为虚拟服务器(Virtual Server)。为了描述方便，下面的叙述中统一称为[端口映射]。</p>
+
+<p>采用端口映射的方法，可以实现从 Internet 到局域网内部机器的特定端口服务的访问。</p>
+
+<p>端口映射的实现方式可以分为纯软件和软硬结合方式。以纯软件方式实现端口映射功能软件有很多, 比如, MS Windows9x/200/XP 下的 PortTunnel 专门针对 HTTP、FTP、SMTP 服务的端口映射，提供了较多的参数设置，在相应的标签菜单下调整。又如各种版本的Linux 操作系统本身就支持端口映射，只需要网络管理员做相应的设置和调整即可实现。而以软硬结合方式实现端口映射功能的，主要常见于各种路由器(提供网关路由功能) 。</p>
+
+<h1 id="各种路由器-router-中如何实现端口映射">各种路由器(Router)中如何实现端口映射</h1>
+
+<p>一般路由器中有个端口映射（Port Mapping）或者虚拟服务器(Virtual Server)的设置。用户需要在路由器(Router)的“管理界面”中相应的端口映射界面中, 设置好相应的需要映射的端口, 协议,内网地址等, 才能生效。设置的方法可能会因为路由器(Router)不同的品牌和型号，在设置的方法上也会有所不同。端口映射支持的网络协议有TCP/UDP/两者, 所以进行端口映射设置时, 如果不熟悉, 可以选择两者都支持。</p>
+
+<h2 id="举例说明">举例说明</h2>
+
+<p>以某路由器(Router)为例，在启用其路由功能之后，网络拓扑图如下：</p>
+
+<p>这里假定路由器(Router)默认 IP 内网地址为 192.168.1.1，内网中电脑一般可以设置成为 192.168.1.X（X=2~254），在内网中某一台电脑上打开 IE，在地址栏输入 <a href="http://192.168.1.1，输入初始用户名、密码，之后就可以看到设置界面了。" target="_blank">http://192.168.1.1，输入初始用户名、密码，之后就可以看到设置界面了。</a></p>
+
+<p>针对邮件服务器要做如下设置：进入“端口映射”，在端口填入 25, 协议中选择： TCP, IP 地址： 192.168.1.x (x 为安装邮件服务器电脑的局域网IP 地址），同样方法设置 110(pop3),6080(webmail) 端口等。 以上假定用户内网段地址为: 192.168.1.0。设置好后, 就实现了端口映射功能了, 发往路由器的邮件就会自动转发到指定的内网主机上 (192.168.1.x)。</p>
+
+<p>同样, 如果想设置特殊端口, 比如: <code>6000</code>。 在端口填入<code>6000</code>, 协议中选择： <code>ALL</code>(或根据具体情况选择), IP 地址：192.168.1.x(x 为内网段地址<code>1~254</code>)。</p>
+
+<p>设置好后, 发往路由器 6000 端口的任何数据就会自动转发到主机 192.168.1.x 的端口 6000 上了。</p>
+
+<p>以上说明没有针对具体路由器。 具体情况, 请查阅您的路由器说明书，看看如何作端口映射。</p>
+
+<hr />
+
+<p>参考：<br />
+1. <a href="http://www.hrtl.com.cn/News_398.aspx" target="_blank">http://www.hrtl.com.cn/News_398.aspx</a><br />
+2. <a href="https://my.oschina.net/eicyan/blog/209440" target="_blank">https://my.oschina.net/eicyan/blog/209440</a></p>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2013/07/10/filter/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 滤波的基本概念</div>
+    </a>
+    
+
+    
+    <a href="/tech/2014/02/04/lstlistings-numbering/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">语法高亮：如何在文本复制时自动忽略行号 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2013\/07\/10\/filter\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2014\/02\/04\/lstlistings-numbering\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+    
+
+    
+  </body>
+</html>
+

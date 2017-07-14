@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>SAS 中 IF 与 WHERE 的辨析 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="SAS 中 IF 与 WHERE 的辨析 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">596 字</span>
+    
+
+    
+<h1 class="article-title">SAS 中 IF 与 WHERE 的辨析
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 2017/06/18</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=SAS&#43;%E4%B8%AD&#43;IF&#43;%E4%B8%8E&#43;WHERE&#43;%E7%9A%84%E8%BE%A8%E6%9E%90&#43;%2Ftech%2F2017%2F06%2F18%2Fsas-if-where%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=SAS&#43;%E4%B8%AD&#43;IF&#43;%E4%B8%8E&#43;WHERE&#43;%E7%9A%84%E8%BE%A8%E6%9E%90&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F06%2F18%2Fsas-if-where%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-06-18-sas-if-where.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-sas" title="SAS">SAS</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-sas" title="SAS">SAS</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>参考资料</strong>：《SAS 编程演义》, by 谷鸿秋, p90</p>
+
+<p>在新数据集里，我们可能只要部分观测，比如：只要女生。如何挑出女生的观测呢？通常可以从这三个阶段入手：</p>
+
+<ul>
+<li>打开数据集时，直接读取只需要的观测；</li>
+<li>PDV 里筛选过滤观测；</li>
+<li>只写入所需观测进入数据集。<br />
+</li>
+</ul>
+
+<p>具体执行时，可以借助 <code>IF</code> 或 <code>WHERE</code> 语句选项。</p>
+
+<!-- more -->
+
+<pre><code class="language-sas">*===第一阶段：通过 WHERE 选项限定读入数据集;
+data tmp;
+    set sashlep.class(where=(sex=&quot;F&quot;));
+run;
+
+*===第二阶段：通过 IF 或者 WHERE 语句;
+*===通过 where 语句;
+data tmp;
+    set sashlep.class;
+    where sex=&quot;F&quot;;
+run;
+
+*===通过求子集 IF 语句;
+data tmp;
+    set sashlep.class;
+    if sex=&quot;F&quot;;
+run;
+
+*===第三阶段：通过 WHERE 选项限定输出数据集;
+data tmp(where=(sex=&quot;F&quot;));
+    set sashlep.class;
+run;
+</code></pre>
+
+<ul>
+<li>在数据集选项里，我们只能用 <code>WHERE</code>，而不能用 <code>IF</code>；</li>
+<li>从效率上讲，<code>WHERE</code> 更高效。因为 <code>WHERE</code> 语句在读入 PDV 之前就先行判断，而求子集 <code>IF</code> 语句先读入观测进入 PDV，而后再判断；</li>
+<li>从使用范围上讲，<code>WHERE</code> 更广泛。<code>WHREE</code> 语句不仅可以用在 <code>DATA</code> 步，还可以用在 <code>PROC</code> 步中。此外，<code>WHERE</code> 还可以作为数据集选项使用，而 <code>IF</code> 只能作为 <code>DATA</code> 步语句使用；</li>
+<li><code>IF</code> 语句对 <code>INPUT</code> 语句创建的观测有效，但是 <code>WHERE</code> 语句只能筛选数据集里的观测；</li>
+<li>有 <code>BY</code> 语句时，求子集 <code>IF</code> 语句与 <code>WHERE</code> 语句的结果可能会不同，因为 SAS 创建 <code>BY</code> 组在 <code>WHERE</code> 之后，求子集 <code>IF</code> 语句之前；</li>
+<li>求子集 <code>IF</code> 语句可以用在条件 <code>IF</code> 语句中，但 <code>WHERE</code> 语句不行；</li>
+<li>当读入多个数据集时，求子集 <code>IF</code> 语句无法针对每个数据集单独筛选，但是 <code>WHERE</code> 选项却可以。<br />
+</li>
+</ul>
+
+<p>大多数情况下，作者喜欢用数据集选项来筛选观测。因此，在筛选观测时，代码大致如下：</p>
+
+<pre><code class="language-sas">*=== WHERE 选项筛选观测;
+data want(where=(not missing(id)));
+    set raw1(where=(age between  20 and 30))  raw2(where=(sex=&quot;F&quot;));
+run;
+</code></pre>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/06/18/python-class-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 《廖雪峰 Python 教程》笔记 5：面向对象编程2</div>
+    </a>
+    
+
+    
+    <a href="/tech/2017/06/19/create-class-dynamic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">Python 动态创建类 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/06\/18\/python-class-2\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/06\/19\/create-class-dynamic\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
