@@ -42,7 +42,19 @@
   }
   img_data_src();
 
-
 $(document).ready(function() {
-	$("#images-container").lightGallery(); 
+  $("#images-container").lightGallery(); 
+
+  var objNavLI = $(".nav-links > li"), i;
+  if (location.href.indexOf("haopen.github.io") > 0) {
+    if (location.href.indexOf("haopen.github.io/cn") > 0) {
+      for (i=0; i<objNavLI.length; i++) {
+        objNavLI[i].firstChild.href = "#";
+      }
+	} else {
+	  for (i=0; i<2; i++) {
+        objNavLI[i].firstChild.href = "#";
+      }
+	}
+  }
 });
