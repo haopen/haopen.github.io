@@ -97,7 +97,7 @@
 
   <article class="article">
     
-    <span class="article-duration">2129 字</span>
+    <span class="article-duration">2303 字</span>
     
 
     
@@ -249,14 +249,22 @@ Hi haopen! You&#39;ve successfully authenticated, but GitHub does not provide sh
 <h1><span class="header-section-number">3</span> 在 RStudio 中使用 GitHub</h1>
 <p>到 GitHub 的网站上新添加一个代码仓库（包含 <code>readme.md</code>），然后打开 RStudio，<code>File - New Project - Version Control - Git</code>，输入 <code>Repository URL</code>（要输入的内容可以在 GitHub 代码仓库右方点 <code>Clone or download</code> 找到），其中 <code>Project directory name</code> 用于设定项目所在文件夹的名称，<code>Create project as subdirectory of</code> 用于指定该文件夹所属的父目录，此外勾选 <code>Open in new session</code>，接下来 RStudio 会将该仓库中的内容 Pull 到本地。</p>
 <div class="figure">
-<img src="/images/Tech/GitHub/Create-Git-Repository.png" alt="创建一个 Git Repository" />
-<p class="caption">创建一个 Git Repository</p>
+<img src="/images/Tech/GitHub/RStudio/NewProject-Git-RStudio.png" alt="创建一个 Git Repository：Step 1" />
+<p class="caption">创建一个 Git Repository：Step 1</p>
+</div>
+<div class="figure">
+<img src="/images/Tech/GitHub/RStudio/NewProject-Git-RStudio1.png" alt="创建一个 Git Repository：Step 2" />
+<p class="caption">创建一个 Git Repository：Step 2</p>
+</div>
+<div class="figure">
+<img src="/images/Tech/GitHub/RStudio/Create-Git-Repository.png" alt="创建一个 Git Repository：Step 3" />
+<p class="caption">创建一个 Git Repository：Step 3</p>
 </div>
 <p>成功之后显示如下内容：</p>
 <pre class="txt"><code>C:/Program Files/.../git.exe clone --progress git@github.com:haopen/Blogdown.git Blogdown</code></pre>
 <p>尝试添加文件并保存到，点击右边 Git 面板中的 <code>Commit</code>（直接在 Git 面板中某个文件上点右键，选择 <code>ignore</code> 可以指定应忽略跳过的文件），可以在打开的窗口中勾选需要 Commit 的文件，之后在右半边窗口中填写简单的描述文字，之后可以点击下方的 <code>Commit</code>。</p>
 <div class="figure">
-<img src="/images/Tech/GitHub/RStudio-Commit.png" alt="提交一个 Commit" />
+<img src="/images/Tech/GitHub/RStudio/RStudio-Commit.png" alt="提交一个 Commit" />
 <p class="caption">提交一个 Commit</p>
 </div>
 <p><strong>问题</strong>：Commit 完成之后，刚开始右上角并没有 <code>Pull</code> 向上箭头，并且尝试提交时会出现 <code>unable to access... The requested URL returned error: 403</code> 类的错误，根据<a href="https://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed">这个讨论</a>，在本地目录中找到隐藏的 <code>.git/config</code>，将其中的</p>
@@ -271,8 +279,12 @@ Hi haopen! You&#39;ve successfully authenticated, but GitHub does not provide sh
 <li>之后 Clone 到本地<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>：参考前面在 RStudio 中 Clone Repository 的步骤，也可以先进入到 <code>D:\GitHub</code>，再点击右键，选择 <code>Git GUI Here</code>，在打开的窗口中选择 <code>Clone Existing Repository</code>，参考下图填写内容即可：</li>
 </ol>
 <div class="figure">
-<img src="/images/Tech/GitHub/CloneExistingRepository.png" />
-
+<img src="/images/Tech/GitHub/RStudio/CloneExistingRepository.png" alt="Git 客户端" />
+<p class="caption">Git 客户端</p>
+</div>
+<div class="figure">
+<img src="/images/Tech/GitHub/RStudio/CloneExistingRepositoryRStudio.png" alt="RStudio 中的 Git 客户端" />
+<p class="caption">RStudio 中的 Git 客户端</p>
 </div>
 <p>其中 <code>haopen-public</code> 是在 Hugo 中的 <code>.Rprofile</code> 中指定的内容发布目录，对应的绝对地址是 <code>D:\GitHub\haopen-public</code>。</p>
 <ol start="3" style="list-style-type: decimal">
@@ -304,6 +316,11 @@ RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added &#39;[ssh.github.com]:443,[192.30.253.123]:443&#39; (RSA) to the list of known hosts.
 Hi haopen! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
+<p><strong>技巧</strong>：在 RStudio 第一次准备将本地大量文件 Commit 时，右侧 Git 面板中的 <code>Staged</code> 对应的 Checkbox 经常点不动，参考 <a href="https://pages.github.com/" class="uri">https://pages.github.com/</a> 后此时可以考虑从齿轮那里打开 RStudio 带的 Git shell，然后在里面输入：</p>
+<pre class="bash"><code>git add --all
+~$git commit -m &quot;Initial commit&quot;
+~$git push -u origin master</code></pre>
+<p>这种命令行的方式此时可能会更加方便一些。</p>
 </div>
 </div>
 <div class="footnotes">

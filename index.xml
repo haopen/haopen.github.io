@@ -117,14 +117,22 @@ Hi haopen! You&amp;#39;ve successfully authenticated, but GitHub does not provid
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; 在 RStudio 中使用 GitHub&lt;/h1&gt;
 &lt;p&gt;到 GitHub 的网站上新添加一个代码仓库（包含 &lt;code&gt;readme.md&lt;/code&gt;），然后打开 RStudio，&lt;code&gt;File - New Project - Version Control - Git&lt;/code&gt;，输入 &lt;code&gt;Repository URL&lt;/code&gt;（要输入的内容可以在 GitHub 代码仓库右方点 &lt;code&gt;Clone or download&lt;/code&gt; 找到），其中 &lt;code&gt;Project directory name&lt;/code&gt; 用于设定项目所在文件夹的名称，&lt;code&gt;Create project as subdirectory of&lt;/code&gt; 用于指定该文件夹所属的父目录，此外勾选 &lt;code&gt;Open in new session&lt;/code&gt;，接下来 RStudio 会将该仓库中的内容 Pull 到本地。&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/images/Tech/GitHub/Create-Git-Repository.png&#34; alt=&#34;创建一个 Git Repository&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;创建一个 Git Repository&lt;/p&gt;
+&lt;img src=&#34;/images/Tech/GitHub/RStudio/NewProject-Git-RStudio.png&#34; alt=&#34;创建一个 Git Repository：Step 1&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;创建一个 Git Repository：Step 1&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/images/Tech/GitHub/RStudio/NewProject-Git-RStudio1.png&#34; alt=&#34;创建一个 Git Repository：Step 2&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;创建一个 Git Repository：Step 2&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/images/Tech/GitHub/RStudio/Create-Git-Repository.png&#34; alt=&#34;创建一个 Git Repository：Step 3&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;创建一个 Git Repository：Step 3&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;成功之后显示如下内容：&lt;/p&gt;
 &lt;pre class=&#34;txt&#34;&gt;&lt;code&gt;C:/Program Files/.../git.exe clone --progress git@github.com:haopen/Blogdown.git Blogdown&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;尝试添加文件并保存到，点击右边 Git 面板中的 &lt;code&gt;Commit&lt;/code&gt;（直接在 Git 面板中某个文件上点右键，选择 &lt;code&gt;ignore&lt;/code&gt; 可以指定应忽略跳过的文件），可以在打开的窗口中勾选需要 Commit 的文件，之后在右半边窗口中填写简单的描述文字，之后可以点击下方的 &lt;code&gt;Commit&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/images/Tech/GitHub/RStudio-Commit.png&#34; alt=&#34;提交一个 Commit&#34; /&gt;
+&lt;img src=&#34;/images/Tech/GitHub/RStudio/RStudio-Commit.png&#34; alt=&#34;提交一个 Commit&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;提交一个 Commit&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：Commit 完成之后，刚开始右上角并没有 &lt;code&gt;Pull&lt;/code&gt; 向上箭头，并且尝试提交时会出现 &lt;code&gt;unable to access... The requested URL returned error: 403&lt;/code&gt; 类的错误，根据&lt;a href=&#34;https://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed&#34;&gt;这个讨论&lt;/a&gt;，在本地目录中找到隐藏的 &lt;code&gt;.git/config&lt;/code&gt;，将其中的&lt;/p&gt;
@@ -139,8 +147,12 @@ Hi haopen! You&amp;#39;ve successfully authenticated, but GitHub does not provid
 &lt;li&gt;之后 Clone 到本地&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;：参考前面在 RStudio 中 Clone Repository 的步骤，也可以先进入到 &lt;code&gt;D:\GitHub&lt;/code&gt;，再点击右键，选择 &lt;code&gt;Git GUI Here&lt;/code&gt;，在打开的窗口中选择 &lt;code&gt;Clone Existing Repository&lt;/code&gt;，参考下图填写内容即可：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class=&#34;figure&#34;&gt;
-&lt;img src=&#34;/images/Tech/GitHub/CloneExistingRepository.png&#34; /&gt;
-
+&lt;img src=&#34;/images/Tech/GitHub/RStudio/CloneExistingRepository.png&#34; alt=&#34;Git 客户端&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Git 客户端&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/images/Tech/GitHub/RStudio/CloneExistingRepositoryRStudio.png&#34; alt=&#34;RStudio 中的 Git 客户端&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;RStudio 中的 Git 客户端&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;其中 &lt;code&gt;haopen-public&lt;/code&gt; 是在 Hugo 中的 &lt;code&gt;.Rprofile&lt;/code&gt; 中指定的内容发布目录，对应的绝对地址是 &lt;code&gt;D:\GitHub\haopen-public&lt;/code&gt;。&lt;/p&gt;
 &lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
@@ -172,6 +184,11 @@ RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added &amp;#39;[ssh.github.com]:443,[192.30.253.123]:443&amp;#39; (RSA) to the list of known hosts.
 Hi haopen! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;技巧&lt;/strong&gt;：在 RStudio 第一次准备将本地大量文件 Commit 时，右侧 Git 面板中的 &lt;code&gt;Staged&lt;/code&gt; 对应的 Checkbox 经常点不动，参考 &lt;a href=&#34;https://pages.github.com/&#34; class=&#34;uri&#34;&gt;https://pages.github.com/&lt;/a&gt; 后此时可以考虑从齿轮那里打开 RStudio 带的 Git shell，然后在里面输入：&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git add --all
+~$git commit -m &amp;quot;Initial commit&amp;quot;
+~$git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这种命令行的方式此时可能会更加方便一些。&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
@@ -433,69 +450,93 @@ url: &amp;quot;search.xml&amp;quot;
       <description>
         &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#install&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 安装与运行&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#rstudio-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.1&lt;/span&gt; RStudio 安装&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#hugo-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.2&lt;/span&gt; Hugo 安装&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.3&lt;/span&gt; 博客搭建&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.3.1&lt;/span&gt; 方法 1&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#-2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.3.2&lt;/span&gt; 方法 2&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#-3&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.3.3&lt;/span&gt; 方法 3&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#-4&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1.3.4&lt;/span&gt; 方法 4（推荐）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#skills&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 使用心得&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#install&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 安装与运行&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#rstudio-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; RStudio 安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#hugo-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; Hugo 安装&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#building&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; 博客搭建&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#-1&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.1&lt;/span&gt; 方法 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#-2&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.2&lt;/span&gt; 方法 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#-3&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.3&lt;/span&gt; 方法 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#-4&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3.4&lt;/span&gt; 方法 4（推荐）&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; 站点配置与功能订制&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; 站点配置&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.2&lt;/span&gt; 功能订制&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#futureFeatures&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.3&lt;/span&gt; 待实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#config-custom&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; 站点配置与功能订制&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#config&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; 站点配置&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#custom&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; 功能订制&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#futureFeatures&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.3&lt;/span&gt; 待实现&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; 主题调整&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.1&lt;/span&gt; 页面宽度&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3.2&lt;/span&gt; 字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#themes&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; 主题调整&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#page-width&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.1&lt;/span&gt; 页面宽度&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#font-family&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4.2&lt;/span&gt; 字体&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; 使用心得&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; 功能解读&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#Hugo-Functions&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; 功能解读&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 
+&lt;div id=&#34;skills&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 使用心得&lt;/h1&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;在 yml 头中加入 &lt;code&gt;subtitle: A subtitle&lt;/code&gt; 可以为 post 添加一个副标题；&lt;/li&gt;
+&lt;li&gt;这里是一个 &lt;code&gt;&amp;lt;kbd&amp;gt;...&amp;lt;/kbd&amp;gt;&lt;/code&gt; 的例子：&lt;kbd&gt;Ctrl&lt;/kbd&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;slug: &amp;quot;cn/about&amp;quot;&lt;/code&gt; 中的 &lt;code&gt;slug&lt;/code&gt; 是 Hugo 特有的一种机制，这里对应的文件实际上只是 &lt;code&gt;\content\cn_about.md&lt;/code&gt;，但最终这个文件在 URL 中显示的却是 &lt;code&gt;/cn/about/&lt;/code&gt;，所以 Slug 可以同时设定所属的博客子分类以及在 URL 中的文件名称，相当于强制重定向到了某一指定的路径。&lt;/li&gt;
+&lt;li&gt;要实现 &lt;code&gt;&lt;code&gt;$...&lt;/code&gt;$&lt;/code&gt; 这样的效果，需要使用 &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; 标记，具体参考此处的源代码；&lt;/li&gt;
+&lt;li&gt;用 R Markdown 时，生成的 toc 如果是全中文的条目，可能链接的下划线无法用 css hack 很好的消除，但给对应的标题一个 &lt;code&gt;{#idName}&lt;/code&gt; 时，这个问题自动消失，详细参考本文档上方的目录；&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;R Markdown 的&lt;a href=&#34;https://bookdown.org/yihui/blogdown/content.html#body&#34;&gt;说明文档&lt;/a&gt;中说在 R Markdown 中不能直接使用 Shortcode，而要用下面的语法&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;：&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;```{r echo=FALSE}
+blogdown::shortcode(&amp;#39;tweet&amp;#39;, &amp;#39;852205086956818432&amp;#39;)
+```&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;提示&lt;/strong&gt;：下面的内容，没有改模板的需求时，基本不用理会。&lt;/p&gt;
+&lt;/div&gt;
 &lt;div id=&#34;install&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;1&lt;/span&gt; 安装与运行&lt;/h1&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 安装与运行&lt;/h1&gt;
 &lt;div id=&#34;rstudio-&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; RStudio 安装&lt;/h2&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; RStudio 安装&lt;/h2&gt;
 &lt;p&gt;暂时不能直接用官方网站的正式版安装，而要用 &lt;a href=&#34;https://dailies.rstudio.com/&#34; class=&#34;uri&#34;&gt;https://dailies.rstudio.com/&lt;/a&gt; 提供的开发测试版，否则无法直接通过 RStudio 的新建 Project 向导创建一个 Hugo 的博客站点。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;hugo-&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.2&lt;/span&gt; Hugo 安装&lt;/h2&gt;
-&lt;pre&gt;&lt;code&gt;C:\Users\Howard\AppData\Roaming\Hugo 这是一个 dos 命令的示例：dir *.txt&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; 基于 &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; 语言编写，与 &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; 和 &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; 相比，虽然 Hugo 目前&lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;主题&lt;/a&gt;和插件还不如 Hexo 丰富，但它运行速度极快，并且安装非常容易，用户只需要&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;下载&lt;/a&gt;主程序 &lt;code&gt;Hugo.exe&lt;/code&gt; 并复制到指定目录即可&lt;a href=&#34;#fn1&#34; class=&#34;footnoteRef&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;：&lt;/p&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; Hugo 安装&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; 基于 &lt;a href=&#34;https://golang.org/&#34;&gt;Go&lt;/a&gt; 语言编写，与 &lt;a href=&#34;https://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; 和 &lt;a href=&#34;https://hexo.io/&#34;&gt;Hexo&lt;/a&gt; 相比，虽然 Hugo 目前&lt;a href=&#34;https://themes.gohugo.io/&#34;&gt;主题&lt;/a&gt;和插件还不如 Hexo 丰富，但它运行速度极快，并且安装非常容易，用户只需要&lt;a href=&#34;https://github.com/gohugoio/hugo/releases&#34;&gt;下载&lt;/a&gt;主程序 &lt;code&gt;Hugo.exe&lt;/code&gt; 并复制到指定目录即可&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;：&lt;/p&gt;
 &lt;pre class=&#34;txt&#34;&gt;&lt;code&gt;C:\Users\Howard\AppData\Roaming\Hugo&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;具体使用时可以参考&lt;a href=&#34;https://gohugo.io/overview/introduction/&#34;&gt;官方文档&lt;/a&gt;（&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;中文&lt;/a&gt;）进一步了解如何使用 Hugo，还可以到 GitHub 了解存在的问题以及目前的开发进度，到 &lt;a href=&#34;https://discourse.gohugo.io/&#34;&gt;Community&lt;/a&gt; 与其他用户讨论使用过程中遇到的各种问题。&lt;/p&gt;
+&lt;p&gt;用户可以参考&lt;a href=&#34;https://gohugo.io/overview/introduction/&#34;&gt;官方文档&lt;/a&gt;（&lt;a href=&#34;http://www.gohugo.org/&#34;&gt;中文&lt;/a&gt;）进一步了解如何使用 Hugo，还可以到 GitHub 了解存在的问题以及目前的开发进度，到 &lt;a href=&#34;https://discourse.gohugo.io/&#34;&gt;Community&lt;/a&gt; 与其他用户讨论使用过程中遇到的各种问题。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.3&lt;/span&gt; 博客搭建&lt;/h2&gt;
+&lt;div id=&#34;building&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; 博客搭建&lt;/h2&gt;
 &lt;div id=&#34;-1&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.3.1&lt;/span&gt; 方法 1&lt;/h3&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.1&lt;/span&gt; 方法 1&lt;/h3&gt;
 &lt;p&gt;首先，切换到放置博客文件的目录，比如 &lt;code&gt;D:\GitHub&lt;/code&gt;，接下来右键并选择 &lt;code&gt;GUI Bash Here&lt;/code&gt;，之后在弹出的命令对话框中输入如下命令：&lt;/p&gt;
 &lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git clone --recursive https://github.com/yihui/blogdown-yihui-template.git&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;就可以从谢益辉的 Github 上将 &lt;code&gt;hugo-lithium-theme&lt;/code&gt; 所需的文件全部下载到本地的 &lt;code&gt;D:\GitHub\blogdown-yihui-template\&lt;/code&gt; 目录之中，这个目录名称可以自行修改，比如修改成 &lt;code&gt;blogdown_Haopeng&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这个命令从谢益辉的 Github 上提取建立博客需要的全部文件到本地 &lt;code&gt;D:\GitHub\blogdown-yihui-template\&lt;/code&gt; 目录之中，这是谢根据 &lt;code&gt;hugo-lithium-theme&lt;/code&gt; 主题修改后又从自已的站点抽取出来的一个框架，这个目录名称可以自行修改，比如修改成 &lt;code&gt;blogdown_Haopeng&lt;/code&gt;，觉得麻烦的话，也可以参考&lt;a href=&#34;/tech/2017/07/14/github-in-rstudio/&#34;&gt;这里&lt;/a&gt;通过 Git 的图形客户端完成整个过程。&lt;/p&gt;
 &lt;p&gt;其次，打开 RStudio，输入如下命令：&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;setwd(&amp;#39;D:/GitHub/blogdown_Haopeng&amp;#39;)
 blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;当控制台显示 &lt;code&gt;Serving the directory D:\GitHub\blogdown_Haopeng at http://127.0.0.1:4321&lt;/code&gt; 类似的文字时，就可以在浏览器中输入 &lt;code&gt;http://127.0.0.1:4321&lt;/code&gt; 进行预览，因为具有 Hugo 实时预览功能，因此对目录中相关文件进行修改后，甚至不需要刷新浏览器就可以看到更新后的结果。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;-2&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.3.2&lt;/span&gt; 方法 2&lt;/h3&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.2&lt;/span&gt; 方法 2&lt;/h3&gt;
 &lt;p&gt;如果没有安装 git 客户端，也可以跳过上面的两个步骤，直接在 RStudio 中输入如下命令：&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;setwd(&amp;#39;D:/GitHub/blogdown_Haopeng&amp;#39;)
 blogdown::new_site(theme = &amp;#39;yihui/hugo-lithium-theme&amp;#39;)
 blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这样生成的博客站点和上面的非常类似，但细节和相关功能上可能会有比较多的问题。&lt;/p&gt;
+&lt;p&gt;这样生成的博客站点和上面的非常类似，但细节和相关功能上和上面的那个代码仓库相比，可能会有比较多的差别。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;-3&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.3.3&lt;/span&gt; 方法 3&lt;/h3&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.3&lt;/span&gt; 方法 3&lt;/h3&gt;
 &lt;p&gt;先复制一份打包好的 &lt;code&gt;blogdown_Haopeng&lt;/code&gt; 目录到指定位置，然后参考方法 1 第二步进行操作。&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;-4&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.3.4&lt;/span&gt; 方法 4（推荐）&lt;/h3&gt;
+&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3.4&lt;/span&gt; 方法 4（推荐）&lt;/h3&gt;
+&lt;p&gt;2017.07.14 所有一切怪异的源头来自 &lt;code&gt;R/*.*&lt;/code&gt;，这里面的文件配合站点下的自定义的 &lt;code&gt;.Rprofile&lt;/code&gt; 用于自定义整个站点的渲染过程，相当于一个自定义版本的 &lt;code&gt;blogdown::servesite()&lt;/code&gt;，虽然现在已经弄清楚中间发生了什么。这种自定义的方式其实是先将 Rmd 文件通过 knitr 转换成 md 文件，之后再交由 Hugo 的 Markdown 引擎 Blackfriday 来处理，对于一般的文档，这种自定义的方法的最大好处是可以控制更多细节，比较 Rmd 文件中绘制图形的保存路径等，但最大的问题是：&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Blackfriday 处理数学公式的能力远不如 Pandoc；&lt;/li&gt;
+&lt;li&gt;也无法做到为各级标题自动添加编号；&lt;/li&gt;
+&lt;li&gt;不能自动给源文档中不连续的有序列表添加连续的编号；&lt;/li&gt;
+&lt;li&gt;还有一个比较难受的点是，生成的临时 md 文件与原始的 md 混在一起，非常难区分；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此最终还是选择用这里的第 4 种方法：先参考第 2 种方法下载最精简版本的文件，之后再从第 1 种方法下载的文件中提取需要用到的各种文件，再整合到精简版的内容之中。&lt;/p&gt;
+&lt;p&gt;实际操作过程中，在模板整合完成并调试结束后，可以把其中的内容全部复制出来，再参考&lt;a href=&#34;/tech/2017/07/14/github-in-rstudio/&#34;&gt;这里&lt;/a&gt;将提取出来的内容放到一个 GitHub 的本地代码仓库之中，之后再 Push 到远程仓库。&lt;/p&gt;
+&lt;hr /&gt;
 &lt;p&gt;方法 1 和 方法 3 的思路会遇到一个比较奇怪的事情，在 &lt;a href=&#34;https://github.com/rstudio/blogdown/issues/140&#34; class=&#34;uri&#34;&gt;https://github.com/rstudio/blogdown/issues/140&lt;/a&gt; 反映了此问题：就是在 Rmd 中&lt;del&gt;&lt;strong&gt;无法&lt;/strong&gt;&lt;/del&gt;成功通过如下的设置来生成文章内的目录，并给每个小标题添加编号，&lt;/p&gt;
 &lt;pre class=&#34;yaml&#34;&gt;&lt;code&gt;output:
   blogdown::html_page:
@@ -528,27 +569,33 @@ blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; 站点配置与功能订制&lt;/h1&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; 站点配置&lt;/h2&gt;
+&lt;div id=&#34;config-custom&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; 站点配置与功能订制&lt;/h1&gt;
+&lt;div id=&#34;config&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; 站点配置&lt;/h2&gt;
 &lt;p&gt;站点配置主要在 &lt;code&gt;config.yaml&lt;/code&gt; 文件中进行，直接参考谢益辉的 &lt;code&gt;config.yaml&lt;/code&gt; 文件进行修改即可，注意目前暂时不添加 &lt;code&gt;googleAnalytics&lt;/code&gt; 相关的信息，因此这一部分的取值为空。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;说明&lt;/strong&gt;：Hugo 的配置包含两部分，一部分位于主题目录之中，比如 &lt;code&gt;themes\hugo-lithium-theme\&lt;/code&gt; 下的 &lt;code&gt;static\&lt;/code&gt; 或 &lt;code&gt;layout\&lt;/code&gt;，另一部分位于站点根目录之中，比如 &lt;code&gt;\layout\&lt;/code&gt; 或 &lt;code&gt;\static\&lt;/code&gt;，其中后者的优先级要高于前者。在后续的内容中，涉及到相关目录时，如果没有提及“主题中的”相关字眼，通常指的是站点根目录中的相关目录或文件。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.2&lt;/span&gt; 功能订制&lt;/h2&gt;
-&lt;p&gt;功能订制主要是在谢益辉已提供功能的基础上进行修正和添加，首先需要从谢益辉的 &lt;code&gt;\static\&lt;/code&gt; 和 &lt;code&gt;\layout\&lt;/code&gt; 中复制全部文件到博客的根目录中，接下来，&lt;/p&gt;
+&lt;div id=&#34;custom&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; 功能订制&lt;/h2&gt;
+&lt;p&gt;功能订制主要是在谢益辉已提供功能的基础上进行修正和添加，首先需要从谢益辉的 &lt;code&gt;\static\&lt;/code&gt; 和 &lt;code&gt;\layout\&lt;/code&gt; 中复制全部文件到博客的根目录中，接下来&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;，&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;公式&lt;/strong&gt;：默认的模板公式做的不够好，因此参考 Hexo 的模板加入了公式编号功能，在 &lt;code&gt;/layouts/paritals/footer_mathjax.html&lt;/code&gt; 加入了下面的内容：&lt;/p&gt;
+&lt;pre class=&#34;javascript&#34;&gt;&lt;code&gt;&amp;lt;script type=&amp;quot;text/x-mathjax-config&amp;quot;&amp;gt;
+MathJax.Hub.Config({
+TeX: {equationNumbers: {autoNumber: [&amp;quot;AMS&amp;quot;], useLabelIds: true}},
+&amp;quot;HTML-CSS&amp;quot;: {linebreaks: {automatic: true}},
+SVG: {linebreaks: {automatic: true}}
+});
+&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;logo&lt;/strong&gt;：在 &lt;code&gt;\static\images\&lt;/code&gt; 中放置已经做好的头像文件，如果觉得不满意，可以在 Photoshop 中参考已经做好的头像文件自行调整；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;disqus&lt;/strong&gt;：将 &lt;code&gt;\layouts\partials\disqus.html&lt;/code&gt; 文件中的：&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;disqus&lt;/strong&gt;：将 &lt;code&gt;\layouts\partials\disqus.html&lt;/code&gt; 文件中的：&lt;/p&gt;
 &lt;pre class=&#34;javascript&#34;&gt;&lt;code&gt;var disqus_js = &amp;#39;//{{ .Site.DisqusShortname }}.disqus.com/embed.js&amp;#39;;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;替换成：&lt;/p&gt;
-&lt;pre class=&#34;javascript&#34;&gt;&lt;code&gt;var disqus_js = &amp;#39;https://{{ .Site.DisqusShortname }}.disqus.com/embed.js&amp;#39;;&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：关于异步加载字体功能，将 &lt;code&gt;\static\js\load-typekit.js&lt;/code&gt; 文件中的 &lt;code&gt;kitId: &#39;kwz5xar&#39;&lt;/code&gt; 修改成 &lt;code&gt;kitId: &#39;oqz0fck&#39;&lt;/code&gt;，这里的 &lt;code&gt;kitId&lt;/code&gt; 需要&lt;a href=&#34;https://typekit.com/plans&#34;&gt;注册&lt;/a&gt;获得&lt;a href=&#34;#fn2&#34; class=&#34;footnoteRef&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;；&lt;/li&gt;
+&lt;pre class=&#34;javascript&#34;&gt;&lt;code&gt;var disqus_js = &amp;#39;https://{{ .Site.DisqusShortname }}.disqus.com/embed.js&amp;#39;;&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：关于异步加载字体功能，将 &lt;code&gt;\static\js\load-typekit.js&lt;/code&gt; 文件中的 &lt;code&gt;kitId: &#39;kwz5xar&#39;&lt;/code&gt; 修改成 &lt;code&gt;kitId: &#39;oqz0fck&#39;&lt;/code&gt;，这里的 &lt;code&gt;kitId&lt;/code&gt; 需要&lt;a href=&#34;https://typekit.com/plans&#34;&gt;注册&lt;/a&gt;获得&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;，目前看来，似乎之前这个账号在新的地址中也可以继续使用；&lt;/li&gt;
 &lt;li&gt;从 &lt;code&gt;\layouts\partials\head_custom.html&lt;/code&gt; 可以看出：
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：FontAwesome 相关的字体也是异步在线加载的，现在已迁移到本地，否则 Ad block 有可能产生不好的影响，导致图标无法显示；&lt;/li&gt;
@@ -557,41 +604,41 @@ blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：时间格式正文页中的时间格式显示比较怪，在没有了解 Hugo 的语法前，将 &lt;code&gt;\layouts\partials\article_meta.html&lt;/code&gt; 文件中的 &lt;code&gt;{{ .Date.Format (default &amp;quot;January 2, 2006&amp;quot; .Site.Params.dateFormat ) }}&lt;/code&gt; 修改成 &lt;code&gt;{{ .Date.Format &amp;quot;2006/01/02&amp;quot; }}&lt;/code&gt;；&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：GitHub Edit 在 Windows 上，文件路径中使用 &lt;code&gt;\&lt;/code&gt;，而 &lt;code&gt;\layouts\partials\article_meta.html&lt;/code&gt; 中没有考虑到这一点，导致生成的链接中包含 &lt;code&gt;%5c&lt;/code&gt; 字样，这正是 &lt;code&gt;\&lt;/code&gt; 对应的 html 转义码，因此将文件中的&lt;code&gt;{{ $.Scratch.Set &amp;quot;filePath&amp;quot; $.File.Path }}&lt;/code&gt; 修改成 &lt;code&gt;{{ $.Scratch.Set &amp;quot;filePath&amp;quot; (replace $.File.Path &amp;quot;\\&amp;quot; &amp;quot;/&amp;quot;) }}&lt;/code&gt;，注意不是替换 &lt;code&gt;%5c&lt;/code&gt;，而是 &lt;code&gt;\\&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：关于页面标题居中通过修改 &lt;code&gt;\layouts\partials\article_meta.html&lt;/code&gt; 将“关于”页面的标题剧中，具体的，需要将如下代码&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;OK&lt;/strong&gt;：关于页面标题居中通过修改 &lt;code&gt;\layouts\partials\article_meta.html&lt;/code&gt; 将“关于”页面的标题剧中，具体的，需要将如下代码&lt;/p&gt;
 &lt;pre class=&#34;html&#34;&gt;&lt;code&gt;&amp;lt;h1 class=&amp;quot;article-title&amp;quot;&amp;gt;{{ .Title }}&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;修改为：&lt;/p&gt;
 &lt;pre class=&#34;html&#34;&gt;&lt;code&gt;{{if findRE &amp;quot;-about$&amp;quot; $.File.BaseFileName }}
 &amp;lt;h1 class=&amp;quot;article-title&amp;quot; style=&amp;quot;text-align: center;&amp;quot;&amp;gt;{{ .Title }}
 {{ else }}
 &amp;lt;h1 class=&amp;quot;article-title&amp;quot;&amp;gt;{{ .Title }}
-{{ end }}&lt;/code&gt;&lt;/pre&gt;
+{{ end }}&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
 &lt;div id=&#34;futureFeatures&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.3&lt;/span&gt; 待实现&lt;/h2&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.3&lt;/span&gt; 待实现&lt;/h2&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;R Markdown 下面设定超链接在新窗口中打开，Plain Markdown 中在 &lt;code&gt;_config.yaml&lt;/code&gt; 的 &lt;code&gt;blackfriday&lt;/code&gt; 设置即可；&lt;/li&gt;
-&lt;li&gt;标签和分类相关的问题：
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：R Markdown 下面设定超链接在新窗口中打开，Plain Markdown 中在 &lt;code&gt;_config.yaml&lt;/code&gt; 的 &lt;code&gt;blackfriday&lt;/code&gt; 设置即可；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：标签和分类相关的问题：
 &lt;ul&gt;
-&lt;li&gt;标签和分类中的空格会被自动忽略，怎么禁止；&lt;/li&gt;
-&lt;li&gt;标签和分类为中文时，Blogdown 对应的当前分类（标签）条目汇总页无法显示，但是 &lt;a href=&#34;https://blog.coderzh.com/categories/读书笔记/&#34; class=&#34;uri&#34;&gt;https://blog.coderzh.com/categories/读书笔记/&lt;/a&gt; 是正常工作的，这说明有可能是 blogdown 或者模板的问题；&lt;/li&gt;
-&lt;li&gt;另一个问题是当前分类（标签）汇总页的标题不能是 &lt;code&gt;.Title&lt;/code&gt;，否则取值为 &lt;code&gt;年份&lt;/code&gt;，这里由于 &lt;code&gt;tags&lt;/code&gt; 和 &lt;code&gt;categories&lt;/code&gt; 都位于站点根目录下，因此唯一的可能是获取用户进到本页面之前的前一个页面对应的 section，然后根据该 section 展示一个与 section 有关的标签页或分类页，然而这样做的基础是可以在不同的 section 下面生成各自的 &lt;code&gt;tags&lt;/code&gt; 和 &lt;code&gt;categories&lt;/code&gt; 页，估计会有比较大的困难；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：&lt;strong&gt;标签云&lt;/strong&gt;功能的实现，默认的分类和标签都是同一类对象，而现在需要将两类对象分离出来，查看 &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme&#34; class=&#34;uri&#34;&gt;https://github.com/kakawait/hugo-tranquilpeak-theme&lt;/a&gt; 中 kakawait-tranquilpeak 的主题效果时，发现里面有一个 &lt;code&gt;\layouts\taxonomy&lt;/code&gt; 目录，其中包含了 &lt;code&gt;archive.terms.html&lt;/code&gt;, &lt;code&gt;category.html&lt;/code&gt;, &lt;code&gt;category.terms.html&lt;/code&gt;, &lt;code&gt;tag.html&lt;/code&gt;, &lt;code&gt;tag.terms.html&lt;/code&gt;，再根据 &lt;a href=&#34;https://gohugo.io/templates/terms/&#34; class=&#34;uri&#34;&gt;https://gohugo.io/templates/terms/&lt;/a&gt; 的文档说明，显然存档页、分类页、标签页都可以分开定义模板，其中 &lt;code&gt;tag.terms.html&lt;/code&gt; 是标签汇总页（标签云），那么 &lt;code&gt;tag.html&lt;/code&gt; 就应该是某个标签下的 post 的展示页，暂时不清楚 &lt;code&gt;archive.terms.html&lt;/code&gt; 的作用。在 &lt;code&gt;\layouts\taxonomy&lt;/code&gt; 中添加了一个自定义的 &lt;code&gt;tag.terms.html&lt;/code&gt;，之后就可以生成标签汇总页。具体生成标签汇总页时，发现 &lt;a href=&#34;https://www.josephearl.co.uk/tags&#34; class=&#34;uri&#34;&gt;https://www.josephearl.co.uk/tags&lt;/a&gt; 的标签云效果很不错，于是： (1) 到 &lt;a href=&#34;https://github.com/josephearl/website&#34; class=&#34;uri&#34;&gt;https://github.com/josephearl/website&lt;/a&gt; 下载了对应的源代码（主题的其它功能可以到 &lt;a href=&#34;https://github.com/nodejh/hugo-theme-cactus-plus&#34; class=&#34;uri&#34;&gt;https://github.com/nodejh/hugo-theme-cactus-plus&lt;/a&gt; 查阅），提取其中的 &lt;code&gt;themes\cactus-plus\static\js\js.tags&lt;/code&gt; 到自己博客的 &lt;code&gt;\static\js\，(2) 参考这个模板中的&lt;/code&gt;\section.html&lt;code&gt;文件的内容，同时参考 &amp;lt;https://github.com/kakawait/hugo-tranquilpeak-theme&amp;gt; 的目录结构，在&lt;/code&gt;&lt;code&gt;中添加了一个自定义的&lt;/code&gt;tag.terms.html&lt;code&gt;，(3) 修改&lt;/code&gt;tags.js&lt;code&gt;中的&lt;/code&gt;var tagcloudOptions={size:{start:12,end:30,unit:“pt”},color:{start:“#bbbbbb”,end:“#2dbe60”}}&lt;code&gt;，将其中的两个&lt;/code&gt;start&lt;code&gt;,&lt;/code&gt;end` 修改成现在的取值，用于指定标签云字体的大小和颜色。&lt;/li&gt;
+&lt;li&gt;标签和分类中的空格会被自动忽略，怎么禁止(做不到，但可以在生成页面时再用 Hugo 的指令替换回来)；&lt;/li&gt;
+&lt;li&gt;标签和分类为中文时，Blogdown 对应的当前分类（标签）条目汇总页无法显示，但是 &lt;a href=&#34;https://blog.coderzh.com/categories/读书笔记/&#34; class=&#34;uri&#34;&gt;https://blog.coderzh.com/categories/读书笔记/&lt;/a&gt; 是正常工作的，这说明有可能是 blogdown 或者模板的问题(已得到 Yihui 修正，是 &lt;code&gt;Servr&lt;/code&gt; 包的问题)；&lt;/li&gt;
+&lt;li&gt;另一个问题是当前分类（标签）汇总页的标题不能是 &lt;code&gt;.Title&lt;/code&gt;，否则取值为 &lt;code&gt;年份&lt;/code&gt;，这里由于 &lt;code&gt;tags&lt;/code&gt; 和 &lt;code&gt;categories&lt;/code&gt; 都位于站点根目录下，因此唯一的可能是获取用户进到本页面之前的前一个页面对应的 section，然后根据该 section 展示一个与 section 有关的标签页或分类页，然而这样做的基础是可以在不同的 section 下面生成各自的 &lt;code&gt;tags&lt;/code&gt; 和 &lt;code&gt;categories&lt;/code&gt; 页(Terms 页本来也不怎么需要分布，而 Section 的 list pages 分页并不受影响)；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：&lt;strong&gt;标签云&lt;/strong&gt;功能的&lt;a href=&#34;/tech/2017/07/10/tags-cloud/&#34;&gt;实现&lt;/a&gt;，默认的分类和标签都是同一类对象，而现在需要将两类对象分离出来，查看 &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme&#34; class=&#34;uri&#34;&gt;https://github.com/kakawait/hugo-tranquilpeak-theme&lt;/a&gt; 中 kakawait-tranquilpeak 的主题效果时，发现里面有一个 &lt;code&gt;\layouts\taxonomy&lt;/code&gt; 目录，其中包含了 &lt;code&gt;archive.terms.html&lt;/code&gt;, &lt;code&gt;category.html&lt;/code&gt;, &lt;code&gt;category.terms.html&lt;/code&gt;, &lt;code&gt;tag.html&lt;/code&gt;, &lt;code&gt;tag.terms.html&lt;/code&gt;，再根据 &lt;a href=&#34;https://gohugo.io/templates/terms/&#34; class=&#34;uri&#34;&gt;https://gohugo.io/templates/terms/&lt;/a&gt; 的文档说明，显然存档页、分类页、标签页都可以分开定义模板，其中 &lt;code&gt;tag.terms.html&lt;/code&gt; 是标签汇总页（标签云），那么 &lt;code&gt;tag.html&lt;/code&gt; 就应该是某个标签下的 post 的展示页，暂时不清楚 &lt;code&gt;archive.terms.html&lt;/code&gt; 的作用。在 &lt;code&gt;\layouts\taxonomy&lt;/code&gt; 中添加了一个自定义的 &lt;code&gt;tag.terms.html&lt;/code&gt;，之后就可以生成标签汇总页。具体生成标签汇总页时，发现 &lt;a href=&#34;https://www.josephearl.co.uk/tags&#34; class=&#34;uri&#34;&gt;https://www.josephearl.co.uk/tags&lt;/a&gt; 的标签云效果很不错，于是： (1) 到 &lt;a href=&#34;https://github.com/josephearl/website&#34; class=&#34;uri&#34;&gt;https://github.com/josephearl/website&lt;/a&gt; 下载了对应的源代码（主题的其它功能可以到 &lt;a href=&#34;https://github.com/nodejh/hugo-theme-cactus-plus&#34; class=&#34;uri&#34;&gt;https://github.com/nodejh/hugo-theme-cactus-plus&lt;/a&gt; 查阅），提取其中的 &lt;code&gt;themes\cactus-plus\static\js\js.tags&lt;/code&gt; 到自己博客的 &lt;code&gt;\static\js\，(2) 参考这个模板中的&lt;/code&gt;\section.html&lt;code&gt;文件的内容，同时参考 &amp;lt;https://github.com/kakawait/hugo-tranquilpeak-theme&amp;gt; 的目录结构，在&lt;/code&gt;&lt;code&gt;中添加了一个自定义的&lt;/code&gt;tag.terms.html&lt;code&gt;，(3) 修改&lt;/code&gt;tags.js&lt;code&gt;中的&lt;/code&gt;var tagcloudOptions={size:{start:12,end:30,unit:“pt”},color:{start:“#bbbbbb”,end:“#2dbe60”}}&lt;code&gt;，将其中的两个&lt;/code&gt;start&lt;code&gt;,&lt;/code&gt;end` 修改成现在的取值，用于指定标签云字体的大小和颜色。&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://www.josephearl.co.uk/tags&#34; class=&#34;uri&#34;&gt;https://www.josephearl.co.uk/tags&lt;/a&gt; 是一个非常好的标签云的效果；&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;标签：正文中的标签，标签汇总页（&lt;strong&gt;已解决&lt;/strong&gt;），单个标签对应文章列表（分页，&lt;strong&gt;待解决&lt;/strong&gt;）；&lt;/li&gt;
-&lt;li&gt;分类：正文中显示所属分类，分类目录页（分页），单个分类中的文章列表（分页）；
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：标签：正文中的标签，标签汇总页（&lt;strong&gt;已解决&lt;/strong&gt;），单个标签对应文章列表（分页，文章多时再解决，这是 Hugo 自动做的事情，完全不是问题）；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：分类：正文中显示所属分类，分类目录页（分页），单个分类中的文章列表（分页，文章多时再解决，这是 Hugo 自动做的事情，完全不是问题）；
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://tranquilpeak.kakawait.com/categories/&#34; class=&#34;uri&#34;&gt;https://tranquilpeak.kakawait.com/categories/&lt;/a&gt;：这个分类页面显示了标签，还显示了全部 post，不同分类下的 post，值得参考；&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可解决非 tags 部分&lt;/strong&gt;：除了 EN 下外，其它地方的 tags list/paper list 的标题都用中文，这些地方的标题都居中；&lt;/li&gt;
-&lt;li&gt;能不能每个 section 中包含一个 &lt;code&gt;tags&lt;/code&gt; 和 &lt;code&gt;categories&lt;/code&gt; 页面？&lt;/li&gt;
-&lt;li&gt;存档：按年份倒序的存档页（分页），根据 &lt;a href=&#34;https://gohugo.io/templates/terms/&#34; class=&#34;uri&#34;&gt;https://gohugo.io/templates/terms/&lt;/a&gt;，可以用 &lt;code&gt;len .Data.Terms&lt;/code&gt; 和 &lt;code&gt;len .Data.Pages&lt;/code&gt; 得到标签数和页数；&lt;/li&gt;
-&lt;li&gt;Hexo 中的 &lt;code&gt;&amp;lt;ol&amp;gt;&lt;/code&gt; 标记默认可以添加一个 &lt;code&gt;start&lt;/code&gt; 属性，但是本主题中还不支持，用 R Markdown 可以通过 Pandoc 的能力来实现；&lt;/li&gt;
-&lt;li&gt;FontAwesome 相关的字体也是异步在线加载的，可以考虑将来迁移到本地；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：只有 &lt;code&gt;cn/&lt;/code&gt; 目录下的文章会异步加载思源宋体，需要修改；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：页面摘要：用 &lt;code&gt;&amp;lt;!-- more --&amp;gt;&lt;/code&gt; 生成的目录页和存档页不同，这种类型的页面中包含一部分正文内容，并且需要支持分页；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：&lt;strong&gt;搜索&lt;/strong&gt;功能：
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：除了 EN 下外，其它地方的 tags list/paper list 的标题都用中文，这些地方的标题都居中(技巧是给每个分类以及标签一个 Section 代码前缀)；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：能不能每个 section 中包含一个 &lt;code&gt;tags&lt;/code&gt; 和 &lt;code&gt;categories&lt;/code&gt; 页面？&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：存档：按年份倒序的存档页（分页），根据 &lt;a href=&#34;https://gohugo.io/templates/terms/&#34; class=&#34;uri&#34;&gt;https://gohugo.io/templates/terms/&lt;/a&gt;，可以用 &lt;code&gt;len .Data.Terms&lt;/code&gt; 和 &lt;code&gt;len .Data.Pages&lt;/code&gt; 得到标签数和页数；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：Hexo 中的 &lt;code&gt;&amp;lt;ol&amp;gt;&lt;/code&gt; 标记默认可以添加一个 &lt;code&gt;start&lt;/code&gt; 属性，但是本主题中还不支持，用 R Markdown 可以通过 Pandoc 的能力来实现；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：FontAwesome 相关的字体也是异步在线加载的，可以考虑将来迁移到本地；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：只有 &lt;code&gt;cn/&lt;/code&gt; 目录下的文章会异步加载思源宋体，需要修改；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：页面摘要：用 &lt;code&gt;&amp;lt;!--more--&amp;gt;&lt;/code&gt; 生成的目录页和存档页不同，这种类型的页面中包含一部分正文内容，并且需要支持分页，对应于模板的 &lt;code&gt;.Summary&lt;/code&gt; 和 &lt;code&gt;.li&lt;/code&gt; 视图，具体参见&lt;a href=&#34;/tech/2017/07/08/hugo-template-priority/&#34;&gt;这里&lt;/a&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：&lt;strong&gt;搜索&lt;/strong&gt;功能（实现过程参考&lt;a href=&#34;/tech/2017/07/10/hugo-local-search/&#34;&gt;这里&lt;/a&gt;）：
 &lt;ul&gt;
 &lt;li&gt;可以用 &lt;code&gt;lunr.js&lt;/code&gt; 或者其增强版 &lt;a href=&#34;http://blog.csdn.net/watkinsong/article/details/47168075&#34;&gt;&lt;code&gt;elasticlunr.js&lt;/code&gt;&lt;/a&gt; 来实现，其中 &lt;code&gt;lunr.js&lt;/code&gt; 的比较好的主题示例可以参考 &lt;a href=&#34;https://themes.gohugo.io/docdock/&#34;&gt;DocDock&lt;/a&gt;；&lt;/li&gt;
 &lt;li&gt;另一种方案是 Hexo 的 NexT 主题使用的 &lt;a href=&#34;https://github.com/algolia/react-instantsearch/&#34;&gt;&lt;code&gt;instantsearch.js&lt;/code&gt;&lt;/a&gt;，&lt;a href=&#34;https://community.algolia.com/instantsearch.js/v2/getting-started.html&#34; class=&#34;uri&#34;&gt;https://community.algolia.com/instantsearch.js/v2/getting-started.html&lt;/a&gt; 有一个比较详细的使用步骤介绍，&lt;a href=&#34;https://codepen.io/Algolia/pen/ZOyoJg&#34; class=&#34;uri&#34;&gt;https://codepen.io/Algolia/pen/ZOyoJg&lt;/a&gt; 是一个非常好的演示例子。&lt;/li&gt;
@@ -606,29 +653,32 @@ blogdown::serve_site()&lt;/code&gt;&lt;/pre&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/bep/bepsays.com/commit/1d7bf7fd6e7c637f28a04f93a97ebfed084c27ff&#34; class=&#34;uri&#34;&gt;https://github.com/bep/bepsays.com/commit/1d7bf7fd6e7c637f28a04f93a97ebfed084c27ff&lt;/a&gt;：未试验，但感觉是一个 post 生成一个文件，这个地址来自 &lt;a href=&#34;https://discourse.gohugo.io/t/simple-json-site-index-in-hugo/2854&#34;&gt;Simple JSON site index in Hugo&lt;/a&gt;；&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：图片浏览器：&lt;code&gt;fancybox&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：图片浏览器不再用 &lt;code&gt;fancybox&lt;/code&gt;，使用方便程度和整合难度都不太理想，改成用 &lt;a href=&#34;/tech/2017/07/10/hugo-light-gallery/&#34;&gt;&lt;code&gt;lightGallery&lt;/code&gt;&lt;/a&gt;；&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：图片保存的路径，在 &lt;code&gt;\static\images\&lt;/code&gt; 中保存是比较好的选择，Rmd 文件生成的图像在 &lt;code&gt;static\figures\&lt;/code&gt;之中，不需要人工干预；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：文章内目录：&lt;code&gt;\layouts\_default\single.html&lt;/code&gt; 显示目前的主题是支持 toc 功能的，需要弄清楚如何开启，目前模板的 &lt;code&gt;single.html&lt;/code&gt; 中，可以在 YAML 头中添加 &lt;code&gt;show_toc: true&lt;/code&gt; 来开启；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：文章内的子标题编号，由于 Hugo 的 Markdown 引擎 &lt;a href=&#34;https://github.com/russross/blackfriday&#34;&gt;blackfriday&lt;/a&gt; 还不支持 Auto numbering，因此这个功能暂时不好实现，Rmd 提供了接口，但目前运行不成功；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：pdf、视频文件的显示，参考 &lt;a href=&#34;https://gohugo.io/extras/shortcodes/&#34;&gt;Shortcodes&lt;/a&gt; 可以了解更多关于短代码的说明，里面有 Youtube 的支持，但是感觉这会导致不同的系统不兼容，另外还可以参考主题 &lt;code&gt;Castanet&lt;/code&gt; 的实现方法；需要进一步了解自己怎样定义好的短代码；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：图片的标题是用 &lt;code&gt;*...*&lt;/code&gt; 还是直接用一个 &lt;code&gt;&amp;lt;p class=&amp;quot;text-align: center&amp;quot;&amp;gt;...&amp;lt;/p&amp;gt;&lt;/code&gt;，最终决定定义一个 &lt;code&gt;imgCaption&lt;/code&gt; 和 &lt;code&gt;tabCaption&lt;/code&gt;，这里使用了 Pandoc 的转换功能，将 Markdown 代码中的可选文本自动转换成 Caption；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：&lt;code&gt;cool\&lt;/code&gt; 中的内容的命名规则能不能参考 &lt;code&gt;cn&lt;/code&gt; 或 &lt;code&gt;en&lt;/code&gt; 目录下的文件，可以参考也可以自己用 &lt;code&gt;slug&lt;/code&gt; 直接指定；&lt;/li&gt;
-&lt;li&gt;如果将幻灯片等和本博客集成到一起，需不需要集成；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：试验添加 &lt;code&gt;Rmd&lt;/code&gt; 文件，并在 RStudio 中查看运行效果，原生的 Rmd 格式的 YAML 头和 blogdown 中的并不完全相同；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：像 &lt;a href=&#34;https://github.com/bep/bepsays.com/blob/master/config.toml&#34; class=&#34;uri&#34;&gt;https://github.com/bep/bepsays.com/blob/master/config.toml&lt;/a&gt; 一样，提供不同语言界面的支持，或者像 &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme&#34; class=&#34;uri&#34;&gt;https://github.com/kakawait/hugo-tranquilpeak-theme&lt;/a&gt; 中的 &lt;code&gt;hugo-tranquilpeak-theme-master\i18n&lt;/code&gt; 那样用不同 YAML 提供语言支持的做法也非常值得参考；&lt;/li&gt;
-&lt;li&gt;多主题：&lt;a href=&#34;https://yulinling.net/&#34; class=&#34;uri&#34;&gt;https://yulinling.net/&lt;/a&gt; 中 blog 部分是卡片列表，而相册部分是另外一种主题，不知道是不是可以在不同的 Section 中用不同的主题，还是压根是两个站点；&lt;/li&gt;
-&lt;li&gt;如何通过 Hugo 删除一些不想要的 post 在 &lt;code&gt;public\&lt;/code&gt; 中的 html 存档；&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;已解决&lt;/strong&gt;：文章内目录：&lt;code&gt;\layouts\_default\single.html&lt;/code&gt; 显示目前的主题是支持 toc 功能的，通过 &lt;code&gt;show_toc: true&lt;/code&gt; 开启，如果是 Rmd 文件，开启方法参考 Bookdown 即可：&lt;/p&gt;
+&lt;pre class=&#34;yaml&#34;&gt;&lt;code&gt;output:
+  blogdown::html_page:
+toc: true
+number_sections: true&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：文章内的子标题编号，由于 Hugo 的 Markdown 引擎 &lt;a href=&#34;https://github.com/russross/blackfriday&#34;&gt;blackfriday&lt;/a&gt; 还不支持 Auto numbering，因此这个功能暂时不好实现，Rmd 提供了接口，开启方法见上面的示例代码或本文档的源文件；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：视频文件的特殊显示效果 &lt;code&gt;lightGallery&lt;/code&gt; 就可以解决，参考 &lt;a href=&#34;https://gohugo.io/extras/shortcodes/&#34;&gt;Shortcodes&lt;/a&gt; 可以了解更多关于短代码的说明，里面有 Youtube 的支持，但是感觉这会导致不同的系统不兼容，另外还可以参考主题 &lt;code&gt;Castanet&lt;/code&gt; 的实现方法；需要进一步了解自己怎样定义好的短代码；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;已解决&lt;/strong&gt;：图片的标题是用 &lt;code&gt;*...*&lt;/code&gt; 还是直接用一个 &lt;code&gt;&amp;lt;p class=&amp;quot;text-align: center&amp;quot;&amp;gt;...&amp;lt;/p&amp;gt;&lt;/code&gt;，最终决定定义一个 &lt;code&gt;imgCaption&lt;/code&gt; 和 &lt;code&gt;tabCaption&lt;/code&gt;，这里使用了 Pandoc 的转换功能，将 Markdown 代码中的可选文本自动转换成 Caption；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：如果将幻灯片等和本博客集成到一起，需不需要集成，做不了，也没必要，直接再做一个仓库保存幻灯片即可；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OK&lt;/strong&gt;：试验添加 &lt;code&gt;Rmd&lt;/code&gt; 文件，并在 RStudio 中查看运行效果，原生的 Rmd 格式的 YAML 头和 blogdown 中的并不完全相同，各走各即可，目前使用过程中除 toc 功能外大部分是相同的；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：不准备做，反正 &lt;code&gt;EN&lt;/code&gt; 已经基本的外观。像 &lt;a href=&#34;https://github.com/bep/bepsays.com/blob/master/config.toml&#34; class=&#34;uri&#34;&gt;https://github.com/bep/bepsays.com/blob/master/config.toml&lt;/a&gt; 一样，提供不同语言界面的支持，或者像 &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme&#34; class=&#34;uri&#34;&gt;https://github.com/kakawait/hugo-tranquilpeak-theme&lt;/a&gt; 中的 &lt;code&gt;hugo-tranquilpeak-theme-master\i18n&lt;/code&gt; 那样用不同 YAML 提供语言支持的做法也非常值得参考；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可解决&lt;/strong&gt;：多主题：&lt;a href=&#34;https://yulinling.net/&#34; class=&#34;uri&#34;&gt;https://yulinling.net/&lt;/a&gt; 中 blog 部分是卡片列表，而相册部分是另外一种主题，不知道是不是可以在不同的 Section 中用不同的主题，还是压根是两个站点，是一个站点，只需要给指定的 Section 一个特殊的 list.html 即可，参考&lt;a href=&#34;/tech/2017/07/08/hugo-template-priority/&#34;&gt;这里&lt;/a&gt;，再移植其它模板的代码即可；&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;别解决&lt;/strong&gt;：如何通过 Hugo 删除一些不想要的 post 在 &lt;code&gt;public\&lt;/code&gt; 中的 html 存档，html 文档类似于缓存，删除之后下次 Render 时候又要再做一次，所以不要删除；&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; 主题调整&lt;/h1&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.1&lt;/span&gt; 页面宽度&lt;/h2&gt;
+&lt;div id=&#34;themes&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; 主题调整&lt;/h1&gt;
+&lt;div id=&#34;page-width&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.1&lt;/span&gt; 页面宽度&lt;/h2&gt;
 &lt;p&gt;在 &lt;code&gt;static/css/fonts/&lt;/code&gt; 中修改 &lt;code&gt;custom.css&lt;/code&gt;，相关内容参考该文件中的注释。&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;3.2&lt;/span&gt; 字体&lt;/h2&gt;
+&lt;div id=&#34;font-family&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;4.2&lt;/span&gt; 字体&lt;/h2&gt;
 &lt;p&gt;在 &lt;code&gt;static/css/fonts/&lt;/code&gt; 中修改 &lt;code&gt;fonts.css&lt;/code&gt;，调整字体相关的设置为如下内容：&lt;/p&gt;
 &lt;pre class=&#34;css&#34;&gt;&lt;code&gt;body {
   font-family: &amp;#39;Alegreya&amp;#39;, &amp;#39;Palatino Linotype&amp;#39;, &amp;#39;Book Antiqua&amp;#39;, Palatino,
@@ -656,40 +706,24 @@ strong {
 }&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class=&#34;section level1&#34;&gt;
-&lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;4&lt;/span&gt; 使用心得&lt;/h1&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;在 yml 头中加入 &lt;code&gt;subtitle: A subtitle&lt;/code&gt; 可以为 post 添加一个副标题；&lt;/li&gt;
-&lt;li&gt;这里是一个 &lt;code&gt;&amp;lt;kbd&amp;gt;...&amp;lt;/kbd&amp;gt;&lt;/code&gt; 的例子：&lt;kbd&gt;Ctrl&lt;/kbd&gt;；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;slug: &amp;quot;cn/about&amp;quot;&lt;/code&gt; 中的 &lt;code&gt;slug&lt;/code&gt; 是 Hugo 特有的一种机制，这里对应的文件实际上只是 &lt;code&gt;\content\cn_about.md&lt;/code&gt;，但最终这个文件在 URL 中显示的却是 &lt;code&gt;/cn/about/&lt;/code&gt;，所以 Slug 可以同时设定所属的博客子分类以及在 URL 中的文件名称，相当于强制重定向到了某一指定的路径。&lt;/li&gt;
-&lt;li&gt;要实现 &lt;code&gt;&lt;code&gt;$...&lt;/code&gt;$&lt;/code&gt; 这样的效果，需要使用 &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; 标记，具体参考此处的源代码；&lt;/li&gt;
-&lt;li&gt;用 R Markdown 时，生成的 toc 如果是全中文的条目，可能链接的下划线无法用 css hack 很好的消除，但给对应的标题一个 &lt;code&gt;{#idName}&lt;/code&gt; 时，这个问题自动消失，详细参考本文档上方的目录；&lt;/li&gt;
-&lt;li&gt;R Markdown 的&lt;a href=&#34;https://bookdown.org/yihui/blogdown/content.html#body&#34;&gt;说明文档&lt;/a&gt;中说在 R Markdown 中不能直接使用 Shortcode，而要用下面的语法&lt;a href=&#34;#fn3&#34; class=&#34;footnoteRef&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;：&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre class=&#34;markdown&#34;&gt;&lt;code&gt;```{r echo=FALSE}
-blogdown::shortcode(&amp;#39;tweet&amp;#39;, &amp;#39;852205086956818432&amp;#39;)
-```&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div class=&#34;section level1&#34;&gt;
+&lt;div id=&#34;Hugo-Functions&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;5&lt;/span&gt; 功能解读&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Hugo 中的相关统计数据，如字数(&lt;code&gt;.WordCount&lt;/code&gt;)、估计阅读时间(&lt;code&gt;.ReadingTime&lt;/code&gt;)、页数、文章数、分类数等可以参考&lt;a href=&#34;https://gohugo.io/templates/variables/&#34;&gt;变量列表&lt;/a&gt;，特殊功能实现参考&lt;a href=&#34;https://gohugo.io/templates/functions/&#34;&gt;函数列表&lt;/a&gt;；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;.Site.Params&lt;/code&gt; 开头的是站点的&lt;code&gt;全局&lt;/code&gt;参数，可以自定义；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;.Params&lt;/code&gt; 开头的是当前文章中的&lt;code&gt;局部&lt;/code&gt;参数，在 yml 头中定义，但暂时不清楚是否可以自定义，当然即使可以支持，为了保持和其它系统或 Markdown 的良好兼容，不推荐在文章内用自定义的参数；&lt;/li&gt;
-&lt;li&gt;下面的代码实现了一个循环：&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;下面的代码实现了一个循环：&lt;/p&gt;
 &lt;pre class=&#34;html&#34;&gt;&lt;code&gt;{{ range .Site.Params.customJS }}
 &amp;lt;script async src=&amp;quot;{{ . | relURL }}&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
-{{ end }}&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
+{{ end }}&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;{{ with FOO }}{{ . }}{{ end }}&lt;/code&gt; 是 &lt;code&gt;{{if FOO }}{{ FOO }}{{ end }}&lt;/code&gt; 的另一种写法，可以不用写两次 &lt;code&gt;FOO&lt;/code&gt;；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;.Data&lt;/code&gt; is dynamic, and its value changes according to the specific list you want to generate. For example, the list page &lt;code&gt;https://xmin.yihui.name/post/&lt;/code&gt; only contains pages under &lt;code&gt;content/post/&lt;/code&gt;, and &lt;code&gt;https://xmin.yihui.name/note/&lt;/code&gt; only contains pages under &lt;code&gt;content/note/&lt;/code&gt;；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;content\&lt;/code&gt; 目录下的 &lt;code&gt;_index.md&lt;/code&gt; 对应的是存档页，对应 &lt;code&gt;list.html&lt;/code&gt;，用于生成全部 post 的存档列表；分类、标签汇总页对应 &lt;code&gt;terms.html&lt;/code&gt;，是自动生成的，&lt;code&gt;single.html&lt;/code&gt; 对应一篇 post 的生成；分类、汇总还可以通过 &lt;code&gt;list.html&lt;/code&gt; 生成各自的存档页，对分类、标签设置不同的模板参考“待解决问题”；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;_index.md&lt;/code&gt; 中有内容时（YAML 除外），本主题将 &lt;code&gt;list.html&lt;/code&gt; 转换成一个类似于网站主页说明的 &lt;code&gt;index.html&lt;/code&gt;，但这个转换不是用 &lt;code&gt;single.html&lt;/code&gt; 的模板，而是 &lt;code&gt;list.html&lt;/code&gt; 的 &lt;code&gt;if&lt;/code&gt; 分支的模板，没有内容时，填充当前 section 下的全部文章的 list。但不同位置的 &lt;code&gt;_index.md&lt;/code&gt; 的管辖范围不同；&lt;/li&gt;
 &lt;li&gt;模板文件不能用 Markdown，只能用 html 语法格式；&lt;/li&gt;
-&lt;li&gt;主题中一段比较有参考价值的代码的解释：&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;主题中一段比较有参考价值的代码的解释：&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;pre class=&#34;txt&#34;&gt;&lt;code&gt;{{ if .File.Path }}
+&lt;pre class=&#34;html&#34;&gt;&lt;code&gt;{{ if .File.Path }}
 
 {{ $Rmd := (print .File.BaseFileName &amp;quot;.Rmd&amp;quot;)) }}
 
@@ -722,9 +756,10 @@ blogdown::shortcode(&amp;#39;tweet&amp;#39;, &amp;#39;852205086956818432&amp;#39
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;这个目录是本人电脑上的目录，可自行根据实际情况修改。&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;必需通过 VPN 方式才能注册，无法用 Chrome 带的翻墙功能注册。&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;这段代码的插入需要用比较特殊的语法，与传统的 R Markdow 中使用 backtick 的方法还不相同，具体参考源文件。&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;这段代码的插入需要用比较特殊的语法，与传统的 R Markdow 中使用 backtick 的方法还不相同，具体参考源文件。&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;这个目录是本人电脑上的目录，可自行根据实际情况修改。&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;实际的修改过程要考虑的细节和内容要复杂很多，下面只是最早不太熟悉时候的一些记录。&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;必需通过 VPN 方式才能注册，无法用 Chrome 带的翻墙功能注册。&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
