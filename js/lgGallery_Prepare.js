@@ -46,15 +46,14 @@ $(document).ready(function() {
   $("#images-container").lightGallery(); 
 
   var objNavLI = $(".nav-links > li"), i;
-  if (location.href.indexOf("haopen.github.io") > 0) {
-    if (location.href.indexOf("haopen.github.io/cn") > 0) {
-      for (i=0; i<objNavLI.length; i++) {
-        objNavLI[i].firstChild.href = "#";
-      }
+  var strHref = location.href;
+  if (strHref.indexOf("github.io") > 0) {
+    if (strHref.indexOf("github.io/cn") > 0) {
+      for (i=0; i<objNavLI.length; i++) { objNavLI[i].firstChild.href = "#"; }
 	} else {
-	  for (i=0; i<2; i++) {
-        objNavLI[i].firstChild.href = "#";
-      }
+	  if (!(strHref.indexOf("github.io/arts") > 0 || strHref.indexOf("github.io/tech") > 0 || strHref.indexOf("github.io/data") > 0 || strHref.indexOf("github.io/prof") > 0)) {
+	    for (i=0; i<2; i++) { objNavLI[i].firstChild.href = "#"; }
+	  }
 	}
   }
 });
