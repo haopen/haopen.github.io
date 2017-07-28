@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>用 minted 宏包实现语法高亮 - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="用 minted 宏包实现语法高亮 - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1137 字</span>
+    
+
+    
+<h1 class="article-title">用 minted 宏包实现语法高亮
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 彭浩 ·   2017/07/20</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E7%94%A8&#43;minted&#43;%E5%AE%8F%E5%8C%85%E5%AE%9E%E7%8E%B0%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE&#43;%2Ftech%2F2017%2F07%2F20%2Fminted%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E7%94%A8&#43;minted&#43;%E5%AE%8F%E5%8C%85%E5%AE%9E%E7%8E%B0%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2017%2F07%2F20%2Fminted%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2017-07-20-minted.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-latex" title="LaTeX">LaTeX</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-latex" title="LaTeX">LaTeX</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE" title="语法高亮">语法高亮</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-highlight" title="Highlight">Highlight</a></span>;
+  
+  
+</div>
+
+
+     <nav id="TableOfContents">
+<ul>
+<li><a href="#listings-的麻烦"><code>listings</code> 的麻烦</a></li>
+<li><a href="#minted-宏包需要的支持"><code>minted</code> 宏包需要的支持</a>
+<ul>
+<li><a href="#可能的麻烦">可能的麻烦</a></li>
+</ul></li>
+<li><a href="#简单例子">简单例子</a></li>
+</ul>
+</nav> 
+    <div class="article-content cn" id="articleContent">
+      <h1 id="listings-的麻烦"><code>listings</code> 的麻烦</h1>
+
+<p>在 LaTeX 中实现语法高亮的老牌方案是 <a href="https://www.ctan.org/pkg/listings" target="_blank"><code>listings</code></a>，然而这种方案用起来非常麻烦：</p>
+
+<ol>
+<li>默认的字体效果很糟糕，居然是 Serif 系列的；</li>
+<li>定义一种新语言需要先耗费大量时间了解帮助手册，还可能需要了解很多奇怪的规则；</li>
+<li>代码<strong>跨页</strong>时需要一些<a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=53451" target="_blank">额外的工作</a>；</li>
+<li>代码中的<a href="http://stackoverflow.com/questions/432349/how-do-you-display-straight-quotes-instead-of-curly-quotes-when-using-latexs-l" target="_blank">单引号，双引号问题</a>；</li>
+<li><strong>中文</strong>支持<a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=50241" target="_blank">问题</a><sup class="footnote-ref" id="fnref:CTeX-76123-http"><a rel="footnote" href="#fn:CTeX-76123-http">1</a></sup>。</li>
+<li>甚至对 LaTeX 的语法高亮支持也需要做许多<a href="/tech/2011/11/03/lsset-highlight-blackslash/">额外工作</a>。<br />
+</li>
+</ol>
+
+<p></p>
+
+<p>当然，不是说 <code>listings</code> 包的功能不够强大，从《<a href="/tech/2010/02/24/highlight-chunk/">给语法高亮内容中的部分内容进行高亮标识</a>》这个方案可以看到，利用 escape character 除了可以解决中文的问题外，还可以实现更多自定义的效果，比如《<a href="https://tex.stackexchange.com/questions/22635/lstlistings-getting-pretty-equations-in-display-mode" target="_blank">在代码中添加公式</a>》。如果是英文文档，定义一个类似于 <code>\verb|.|</code> 的命令，实现 inline code 式的命令也很容易<sup class="footnote-ref" id="fnref:bug-GitHub-282-h"><a rel="footnote" href="#fn:bug-GitHub-282-h">2</a></sup>。</p>
+
+<p>因此，虽然 <code>listings</code> 包理论上可以满足我们的需求，但是要解决特定的问题往往需要耗费相当的精力和时间，对初学者并不算太友好。</p>
+
+<h1 id="minted-宏包需要的支持"><code>minted</code> 宏包需要的支持</h1>
+
+<p>LaTeX 中的 <code>minted</code> 宏包实际上是调用 Python 的 <code>pygments</code> 来完成语法高亮的，高亮效果好，支持的语法充分，可以实现代码内的公式<sup class="footnote-ref" id="fnref:-"><a rel="footnote" href="#fn:-">3</a></sup>，通过 <code>\mintinline</code> 命令实现<strong>行内代码</strong>的同时<sup class="footnote-ref" id="fnref:Stack-Exchange-4"><a rel="footnote" href="#fn:Stack-Exchange-4">4</a></sup>可以指定语言的名称<sup class="footnote-ref" id="fnref:Stack-Exchange-4"><a rel="footnote" href="#fn:Stack-Exchange-4">5</a></sup>，需要的额外配置少，唯一目前要做就是在安装完 Python 后，通过下面的命令安装 <code>pygments</code>：</p>
+
+<pre><code class="language-bash">pip install pygments
+</code></pre>
+
+<p>之后编译时用下面的命令：</p>
+
+<pre><code class="language-bash">xelatex -shell-escape demo.tex
+</code></pre>
+
+<p>或</p>
+
+<pre><code class="language-bash">lualatex -shell-escape demo.tex
+</code></pre>
+
+<p>对于使用 <a href="http://blog.csdn.net/u011982340/article/details/40261735" target="_blank">WinEdt</a> 或者 <a href="https://tex.stackexchange.com/questions/170723/custom-build-settings-in-sublime" target="_blank">Sublime Text</a> 界面接口的用户，可能选项 <code>-shell-escape</code> 会比较麻烦一些，但由于自己是直接调用 bat 文件来处理编译问题，因此这个选项完全不是问题。</p>
+
+<blockquote>
+<p>现在 <code>knitr</code> 转成 pdf 的语法高亮应该也是由 <code>pygments</code> 完成的，并且完全不需要用户干预（不确定在 <code>knitr</code> 时 <code>pygments</code> 是否需要提前安装。）。</p>
+</blockquote>
+
+<h2 id="可能的麻烦">可能的麻烦</h2>
+
+<p><strong>提醒</strong>：尝试在 CTeX 2.9.2 下面直接将<a href="https://github.com/gpoore/minted" target="_blank">最新版</a>的 <code>minted</code> 相关文件复制到相应的目录，但结果出错，说找不到 <a href="https://github.com/gpoore/fvextra" target="_blank"><code>fvextra</code></a> 宏包，然而添加了该宏包之后仍然会有其它错误，估计是相关的依赖包没有更新的原因，因此推荐使用最新版的 TeXLive 或者将整个 CTeX 套装的宏包都进行更新来解决这个问题，但是在线更新 MikTeX 之后，再更新相关宏包时，同样会出现各种各样的奇怪问题，像 <code>picins</code> 这要的宏包甚至会认为是过时的而直接删除，导致其它很多麻烦，最终放弃更新 CTeX。</p>
+
+<p>好像更新新的 <code>ctex</code> 宏包后，<code>ctexsetup</code> 命令也不再推荐使用。</p>
+
+<h1 id="简单例子">简单例子</h1>
+
+<p>这个例子来自 <a href="https://zhuanlan.zhihu.com/p/27996164" target="_blank">https://zhuanlan.zhihu.com/p/27996164</a>。</p>
+
+<pre><code class="language-tex">\documentclass[a4paper]{article}
+\usepackage{minted}
+\usepackage{xcolor}
+\definecolor{bg}{rgb}{0.95,0.95,0.95} 
+\usepackage[margin=2.5cm]{geometry}
+\begin{document}
+
+\begin{minted}[bgcolor=bg]{rust}
+fn foo(v1: Vec&lt;i32&gt;, v2: Vec&lt;i32&gt;) -&gt; (Vec&lt;i32&gt;, Vec&lt;i32&gt;, i32) {
+    // Do stuff with `v1` and `v2`.
+    // Hand back ownership, and the result of our function.
+    (v1, v2, 42)
+}
+
+let v1 = vec![1, 2, 3];
+let v2 = vec![1, 2, 3];
+
+let (v1, v2, answer) = foo(v1, v2);
+\end{minted}
+
+\begin{minted}[bgcolor=bg]{go}
+import &quot;math&quot;
+
+type Shape interface {
+    Area() float64
+}
+
+type Square struct { // Note: no &quot;implements&quot; declaration
+    side float64
+}
+
+func (sq Square) Area() float64 { return sq.side * sq.side }
+
+type Circle struct { // No &quot;implements&quot; declaration here either
+    radius float64
+}
+
+func (c Circle) Area() float64 { return math.Pi * math.Pow(c.radius, 2) }
+\end{minted}
+
+\end{document}
+</code></pre>
+
+<p>下面是实际的高亮效果：</p>
+
+<p><img src="/images/Tech/LaTeX/minted-exm.png" alt="`minted` 语法高亮" /></p>
+<div class="footnotes">
+
+<hr />
+
+<ol>
+<li id="fn:CTeX-76123-http">中文支持后期已经基本解决，参考 <a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=76123" target="_blank">CTeX #76123</a> 和 <a href="http://bbs.ctex.org/forum.php?mod=viewthread&amp;tid=77046" target="_blank">CTeX #77046</a>。 <a class="footnote-return" href="#fnref:CTeX-76123-http">↩</a></li>
+<li id="fn:bug-GitHub-282-h">中文里面还有 bug，参见 <a href="https://github.com/CTeX-org/ctex-kit/issues/282" target="_blank">GitHub #282</a> 以及《<a href="/tech/2017/03/07/lstlistings-bgcolor/">语法高亮：在 <code>lstinline</code> 中给行内代码添加背景颜色 z</a>》。 <a class="footnote-return" href="#fnref:bug-GitHub-282-h">↩</a></li>
+<li id="fn:-">参见帮助文档。 <a class="footnote-return" href="#fnref:-">↩</a></li>
+<li id="fn:Stack-Exchange-4">可进一步参考 <a href="https://tex.stackexchange.com/questions/45756/inline-code-and-short-verb-with-minted" target="_blank">Stack Exchange #45756</a>。 <a class="footnote-return" href="#fnref:Stack-Exchange-4">↩</a></li>
+<li id="fn:Stack-Exchange-4">参考 <a href="https://tex.stackexchange.com/questions/45756/inline-code-and-short-verb-with-minted" target="_blank">Stack Exchange #45756</a>，这个功能需要 <code>minted</code> 2.0 以上版本，CTeX 2.9.2 套装默认的版本不行。 <a class="footnote-return" href="#fnref:Stack-Exchange-4">↩</a></li>
+</ol>
+</div>
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2017/07/14/github-in-rstudio/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 在 RStudio 中使用 GitHub</div>
+    </a>
+    
+
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2017\/07\/14\/github-in-rstudio\/';
+    
+  } else if (e.which == 39) {  
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

@@ -10,6 +10,128 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>用 minted 宏包实现语法高亮</title>
+      <link>/tech/2017/07/20/minted/</link>
+      <pubDate>Thu, 20 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tech/2017/07/20/minted/</guid>
+      <description>
+        &lt;h1 id=&#34;listings-的麻烦&#34;&gt;&lt;code&gt;listings&lt;/code&gt; 的麻烦&lt;/h1&gt;
+
+&lt;p&gt;在 LaTeX 中实现语法高亮的老牌方案是 &lt;a href=&#34;https://www.ctan.org/pkg/listings&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;listings&lt;/code&gt;&lt;/a&gt;，然而这种方案用起来非常麻烦：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;默认的字体效果很糟糕，居然是 Serif 系列的；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;定义一种新语言需要先耗费大量时间了解帮助手册，还可能需要了解很多奇怪的规则；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;代码&lt;strong&gt;跨页&lt;/strong&gt;时需要一些&lt;a href=&#34;http://bbs.ctex.org/forum.php?mod=viewthread&amp;amp;tid=53451&#34; target=&#34;_blank&#34;&gt;额外的工作&lt;/a&gt;；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;代码中的&lt;a href=&#34;http://stackoverflow.com/questions/432349/how-do-you-display-straight-quotes-instead-of-curly-quotes-when-using-latexs-l&#34; target=&#34;_blank&#34;&gt;单引号，双引号问题&lt;/a&gt;；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;中文&lt;/strong&gt;支持&lt;a href=&#34;http://bbs.ctex.org/forum.php?mod=viewthread&amp;amp;tid=50241&#34; target=&#34;_blank&#34;&gt;问题&lt;/a&gt;&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:CTeX-76123-http&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:CTeX-76123-http&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;。&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;甚至对 LaTeX 的语法高亮支持也需要做许多&lt;a href=&#34;/tech/2011/11/03/lsset-highlight-blackslash/&#34;&gt;额外工作&lt;/a&gt;。&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;当然，不是说 &lt;code&gt;listings&lt;/code&gt; 包的功能不够强大，从《&lt;a href=&#34;/tech/2010/02/24/highlight-chunk/&#34;&gt;给语法高亮内容中的部分内容进行高亮标识&lt;/a&gt;》这个方案可以看到，利用 escape character 除了可以解决中文的问题外，还可以实现更多自定义的效果，比如《&lt;a href=&#34;https://tex.stackexchange.com/questions/22635/lstlistings-getting-pretty-equations-in-display-mode&#34; target=&#34;_blank&#34;&gt;在代码中添加公式&lt;/a&gt;》。如果是英文文档，定义一个类似于 &lt;code&gt;\verb|.|&lt;/code&gt; 的命令，实现 inline code 式的命令也很容易&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:bug-GitHub-282-h&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:bug-GitHub-282-h&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+
+&lt;p&gt;因此，虽然 &lt;code&gt;listings&lt;/code&gt; 包理论上可以满足我们的需求，但是要解决特定的问题往往需要耗费相当的精力和时间，对初学者并不算太友好。&lt;/p&gt;
+
+&lt;h1 id=&#34;minted-宏包需要的支持&#34;&gt;&lt;code&gt;minted&lt;/code&gt; 宏包需要的支持&lt;/h1&gt;
+
+&lt;p&gt;LaTeX 中的 &lt;code&gt;minted&lt;/code&gt; 宏包实际上是调用 Python 的 &lt;code&gt;pygments&lt;/code&gt; 来完成语法高亮的，高亮效果好，支持的语法充分，可以实现代码内的公式&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:-&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:-&#34;&gt;3&lt;/a&gt;&lt;/sup&gt;，通过 &lt;code&gt;\mintinline&lt;/code&gt; 命令实现&lt;strong&gt;行内代码&lt;/strong&gt;的同时&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:Stack-Exchange-4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:Stack-Exchange-4&#34;&gt;4&lt;/a&gt;&lt;/sup&gt;可以指定语言的名称&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:Stack-Exchange-4&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:Stack-Exchange-4&#34;&gt;5&lt;/a&gt;&lt;/sup&gt;，需要的额外配置少，唯一目前要做就是在安装完 Python 后，通过下面的命令安装 &lt;code&gt;pygments&lt;/code&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;pip install pygments
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;之后编译时用下面的命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;xelatex -shell-escape demo.tex
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;lualatex -shell-escape demo.tex
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对于使用 &lt;a href=&#34;http://blog.csdn.net/u011982340/article/details/40261735&#34; target=&#34;_blank&#34;&gt;WinEdt&lt;/a&gt; 或者 &lt;a href=&#34;https://tex.stackexchange.com/questions/170723/custom-build-settings-in-sublime&#34; target=&#34;_blank&#34;&gt;Sublime Text&lt;/a&gt; 界面接口的用户，可能选项 &lt;code&gt;-shell-escape&lt;/code&gt; 会比较麻烦一些，但由于自己是直接调用 bat 文件来处理编译问题，因此这个选项完全不是问题。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;现在 &lt;code&gt;knitr&lt;/code&gt; 转成 pdf 的语法高亮应该也是由 &lt;code&gt;pygments&lt;/code&gt; 完成的，并且完全不需要用户干预（不确定在 &lt;code&gt;knitr&lt;/code&gt; 时 &lt;code&gt;pygments&lt;/code&gt; 是否需要提前安装。）。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;可能的麻烦&#34;&gt;可能的麻烦&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;提醒&lt;/strong&gt;：尝试在 CTeX 2.9.2 下面直接将&lt;a href=&#34;https://github.com/gpoore/minted&#34; target=&#34;_blank&#34;&gt;最新版&lt;/a&gt;的 &lt;code&gt;minted&lt;/code&gt; 相关文件复制到相应的目录，但结果出错，说找不到 &lt;a href=&#34;https://github.com/gpoore/fvextra&#34; target=&#34;_blank&#34;&gt;&lt;code&gt;fvextra&lt;/code&gt;&lt;/a&gt; 宏包，然而添加了该宏包之后仍然会有其它错误，估计是相关的依赖包没有更新的原因，因此推荐使用最新版的 TeXLive 或者将整个 CTeX 套装的宏包都进行更新来解决这个问题，但是在线更新 MikTeX 之后，再更新相关宏包时，同样会出现各种各样的奇怪问题，像 &lt;code&gt;picins&lt;/code&gt; 这要的宏包甚至会认为是过时的而直接删除，导致其它很多麻烦，最终放弃更新 CTeX。&lt;/p&gt;
+
+&lt;p&gt;好像更新新的 &lt;code&gt;ctex&lt;/code&gt; 宏包后，&lt;code&gt;ctexsetup&lt;/code&gt; 命令也不再推荐使用。&lt;/p&gt;
+
+&lt;h1 id=&#34;简单例子&#34;&gt;简单例子&lt;/h1&gt;
+
+&lt;p&gt;这个例子来自 &lt;a href=&#34;https://zhuanlan.zhihu.com/p/27996164&#34; target=&#34;_blank&#34;&gt;https://zhuanlan.zhihu.com/p/27996164&lt;/a&gt;。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass[a4paper]{article}
+\usepackage{minted}
+\usepackage{xcolor}
+\definecolor{bg}{rgb}{0.95,0.95,0.95} 
+\usepackage[margin=2.5cm]{geometry}
+\begin{document}
+
+\begin{minted}[bgcolor=bg]{rust}
+fn foo(v1: Vec&amp;lt;i32&amp;gt;, v2: Vec&amp;lt;i32&amp;gt;) -&amp;gt; (Vec&amp;lt;i32&amp;gt;, Vec&amp;lt;i32&amp;gt;, i32) {
+    // Do stuff with `v1` and `v2`.
+    // Hand back ownership, and the result of our function.
+    (v1, v2, 42)
+}
+
+let v1 = vec![1, 2, 3];
+let v2 = vec![1, 2, 3];
+
+let (v1, v2, answer) = foo(v1, v2);
+\end{minted}
+
+\begin{minted}[bgcolor=bg]{go}
+import &amp;quot;math&amp;quot;
+
+type Shape interface {
+    Area() float64
+}
+
+type Square struct { // Note: no &amp;quot;implements&amp;quot; declaration
+    side float64
+}
+
+func (sq Square) Area() float64 { return sq.side * sq.side }
+
+type Circle struct { // No &amp;quot;implements&amp;quot; declaration here either
+    radius float64
+}
+
+func (c Circle) Area() float64 { return math.Pi * math.Pow(c.radius, 2) }
+\end{minted}
+
+\end{document}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面是实际的高亮效果：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/Tech/LaTeX/minted-exm.png&#34; alt=&#34;`minted` 语法高亮&#34; /&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:CTeX-76123-http&#34;&gt;中文支持后期已经基本解决，参考 &lt;a href=&#34;http://bbs.ctex.org/forum.php?mod=viewthread&amp;amp;tid=76123&#34; target=&#34;_blank&#34;&gt;CTeX #76123&lt;/a&gt; 和 &lt;a href=&#34;http://bbs.ctex.org/forum.php?mod=viewthread&amp;amp;tid=77046&#34; target=&#34;_blank&#34;&gt;CTeX #77046&lt;/a&gt;。 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:CTeX-76123-http&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:bug-GitHub-282-h&#34;&gt;中文里面还有 bug，参见 &lt;a href=&#34;https://github.com/CTeX-org/ctex-kit/issues/282&#34; target=&#34;_blank&#34;&gt;GitHub #282&lt;/a&gt; 以及《&lt;a href=&#34;/tech/2017/03/07/lstlistings-bgcolor/&#34;&gt;语法高亮：在 &lt;code&gt;lstinline&lt;/code&gt; 中给行内代码添加背景颜色 z&lt;/a&gt;》。 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:bug-GitHub-282-h&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:-&#34;&gt;参见帮助文档。 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:-&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:Stack-Exchange-4&#34;&gt;可进一步参考 &lt;a href=&#34;https://tex.stackexchange.com/questions/45756/inline-code-and-short-verb-with-minted&#34; target=&#34;_blank&#34;&gt;Stack Exchange #45756&lt;/a&gt;。 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:Stack-Exchange-4&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:Stack-Exchange-4&#34;&gt;参考 &lt;a href=&#34;https://tex.stackexchange.com/questions/45756/inline-code-and-short-verb-with-minted&#34; target=&#34;_blank&#34;&gt;Stack Exchange #45756&lt;/a&gt;，这个功能需要 &lt;code&gt;minted&lt;/code&gt; 2.0 以上版本，CTeX 2.9.2 套装默认的版本不行。 &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:Stack-Exchange-4&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+        
+      </description>
+    </item>
+    
+    <item>
       <title>在 RStudio 中使用 GitHub</title>
       <link>/tech/2017/07/14/github-in-rstudio/</link>
       <pubDate>Fri, 14 Jul 2017 00:00:00 +0000</pubDate>
@@ -40,8 +162,7 @@
 &lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;1.1&lt;/span&gt; 查看配置&lt;/h2&gt;
 &lt;p&gt;参考资料：&lt;a href=&#34;http://www.jianshu.com/p/0ad3d88c51f4&#34; class=&#34;uri&#34;&gt;http://www.jianshu.com/p/0ad3d88c51f4&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;由于之前已经成功安装 Git 并登陆到过 GitHub，因此查看当前配置时，最后两行会显示用户名及用户密码。&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git config --list
-......
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;$ git config --list | grep user
 user.name=xxxxxx
 user.email=xxxxxx@xxxx.com&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这里的 &lt;code&gt;user.name&lt;/code&gt; 和 &lt;code&gt;user.email&lt;/code&gt; 就是 Author 信息。此时，上面提到的三个级别都配置了 user 信息。当 &lt;code&gt;git commit&lt;/code&gt; 时，Author 信息依次读取 local、global 和 system 的配置，如果找到则不再继续读取。其他配置的读取顺序也是如此。&lt;/p&gt;
@@ -184,7 +305,7 @@ RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added &amp;#39;[ssh.github.com]:443,[192.30.253.123]:443&amp;#39; (RSA) to the list of known hosts.
 Hi haopen! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;技巧&lt;/strong&gt;：在 RStudio 第一次准备将本地大量文件 Commit 时，右侧 Git 面板中的 &lt;code&gt;Staged&lt;/code&gt; 对应的 Checkbox 经常点不动，参考 &lt;a href=&#34;https://pages.github.com/&#34; class=&#34;uri&#34;&gt;https://pages.github.com/&lt;/a&gt; 后此时可以考虑从齿轮那里打开 RStudio 带的 Git shell，然后在里面输入：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;技巧&lt;/strong&gt;：在 RStudio 第一次准备将本地大量文件 Commit 时，右侧 Git 面板中的 &lt;code&gt;Staged&lt;/code&gt; 对应的 Checkbox 经常点不动，参考 &lt;a href=&#34;https://pages.github.com/&#34; class=&#34;uri&#34;&gt;https://pages.github.com/&lt;/a&gt; 后此时可以考虑从齿轮那里打开 RStudio 带的 Git shell，然后在里面输入&lt;a href=&#34;#fn4&#34; class=&#34;footnoteRef&#34; id=&#34;fnref4&#34;&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;/a&gt;：&lt;/p&gt;
 &lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git add --all
 ~$git commit -m &amp;quot;Initial commit&amp;quot;
 ~$git push -u origin master&lt;/code&gt;&lt;/pre&gt;
@@ -197,6 +318,7 @@ Hi haopen! You&amp;#39;ve successfully authenticated, but GitHub does not provid
 &lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;可以考虑使用直接使用 Git GUI Here 客户端，也可以考虑使用 RStudio 提供的界面，通常后者可能会更人性化一些。&lt;a href=&#34;#fnref1&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;修改 &lt;code&gt;C:\Windows\System32\drivers\etc\hosts&lt;/code&gt; 这个文件时，经常提示有其它程序占用，因此转而修改 &lt;code&gt;C:\Program Files\Git\etc\hosts&lt;/code&gt;，效果也是一样的。&lt;a href=&#34;#fnref2&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;但连接速度真的很慢。&lt;a href=&#34;#fnref3&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn4&#34;&gt;&lt;p&gt;要在这个自带的 Shell 窗口中粘贴内容，只能在窗口的标题栏点击右击，再选择“编辑”，之后选择“粘贴”。&lt;a href=&#34;#fnref4&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 
@@ -486,6 +608,14 @@ url: &amp;quot;search.xml&amp;quot;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;```{r echo=FALSE}
 blogdown::shortcode(&amp;#39;tweet&amp;#39;, &amp;#39;852205086956818432&amp;#39;)
 ```&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在 md 格式下输入以下内容可以自动将最后一行转换成右对齐的格式（普通的 Rmd 下 knitr 时不支持，但 Blogdown 下的 Rmd 可以）：&lt;/p&gt;
+&lt;pre class=&#34;markdown&#34;&gt;&lt;code&gt;# Quotes
+
+&amp;gt; Let us change our traditional attitude to the construction of programs:
+&amp;gt; Instead of imagining that our main task is to instruct a computer what to do,
+&amp;gt; let us concentrate rather on explaining to humans what we want the computer to do.
+
+&amp;gt; --- Donald E. Knuth, Literate Programming, 1984&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;strong&gt;提示&lt;/strong&gt;：下面的内容，没有改模板的需求时，基本不用理会。&lt;/p&gt;
 &lt;/div&gt;
@@ -807,11 +937,7 @@ SimpleHTTPServer.test()
         &lt;div id=&#34;TOC&#34;&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a&gt;&lt;span class=&#34;toc-section-number&#34;&gt;1&lt;/span&gt; 总结&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;#suest-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; &lt;code&gt;suest&lt;/code&gt; 和交乘&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#asad&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1&lt;/span&gt; asad&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#afsdf&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2.1.1&lt;/span&gt; afsdf&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#suest-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;2&lt;/span&gt; &lt;code&gt;suest&lt;/code&gt; 和交乘&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#xtreg--suest&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;3&lt;/span&gt; &lt;code&gt;xtreg&lt;/code&gt; 无法使用 &lt;code&gt;suest&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#bdiff----by-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;4&lt;/span&gt; &lt;code&gt;bdiff&lt;/code&gt; - 自举法 by 连玉君&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;#z-&#34;&gt;&lt;span class=&#34;toc-section-number&#34;&gt;5&lt;/span&gt; Z 统计量&lt;/a&gt;&lt;/li&gt;
@@ -832,10 +958,6 @@ SimpleHTTPServer.test()
 &lt;/div&gt;
 &lt;div id=&#34;suest-&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;2&lt;/span&gt; &lt;code&gt;suest&lt;/code&gt; 和交乘&lt;/h1&gt;
-&lt;div id=&#34;asad&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1&lt;/span&gt; asad&lt;/h2&gt;
-&lt;div id=&#34;afsdf&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;&lt;span class=&#34;header-section-number&#34;&gt;2.1.1&lt;/span&gt; afsdf&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;参考&lt;/strong&gt;：&lt;a href=&#34;http://bbs.pinggu.org/thread-2267159-1-1.html&#34; class=&#34;uri&#34;&gt;http://bbs.pinggu.org/thread-2267159-1-1.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Stata 里&lt;code&gt;suest&lt;/code&gt;可以做 Chow test 检验&lt;/p&gt;
 &lt;p&gt;Example 2: Do coefficients vary between groups? (“Chow test”)&lt;/p&gt;
@@ -854,8 +976,6 @@ SimpleHTTPServer.test()
 &lt;blockquote class=&#34;gray&#34;&gt;
 &lt;p&gt;&lt;strong&gt;连玉君&lt;/strong&gt;：&lt;code&gt;SUest&lt;/code&gt;假设两组的干扰项具有&lt;code&gt;不同&lt;/code&gt;的分布，允许两组的干扰项相关；而采用交乘项的方式，估计时只有一条方程，所以相当于假设两个组的干扰项具有&lt;code&gt;相同&lt;/code&gt;的分布。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;xtreg--suest&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;&lt;span class=&#34;header-section-number&#34;&gt;3&lt;/span&gt; &lt;code&gt;xtreg&lt;/code&gt; 无法使用 &lt;code&gt;suest&lt;/code&gt;&lt;/h1&gt;
@@ -4241,6 +4361,137 @@ True
     </item>
     
     <item>
+      <title>LaTeX 如何在文档的侧面插入图片实现“绕排” z</title>
+      <link>/tech/2017/06/12/wrap-figure/</link>
+      <pubDate>Mon, 12 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tech/2017/06/12/wrap-figure/</guid>
+      <description>
+        
+
+&lt;p&gt;&lt;strong&gt;原文地址&lt;/strong&gt;：&lt;a href=&#34;https://www.zhihu.com/question/26837705&#34; target=&#34;_blank&#34;&gt;https://www.zhihu.com/question/26837705&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;买了我书的读者，请看 5.3.5 节「文字绕排」。&lt;/p&gt;
+
+&lt;p&gt;本质上绕排功能都是通过在 TeX 中使用 &lt;code&gt;\parshape&lt;/code&gt; 命令控制段落形状，挖出一个空洞出来，然后把图表内容填进去来完成的。Knuth 排版 TAOCP 就都是手工完成这种绕排工作的。不过手工完成这种工作非常繁琐，在 LaTeX 中通常还是使用现成的宏包工具。&lt;/p&gt;
+
+&lt;h1 id=&#34;主要宏包&#34;&gt;主要宏包&lt;/h1&gt;
+
+&lt;p&gt;实现文字绕排工具很多，效果各有千秋。按当前版本的时间顺序排是：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;picins&lt;/code&gt;：1992 年 3.0 版，早于 LaTeX2e，因许可证问题现已从 TeXLive 中删除，MiKTeX 仍可用；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;picinpar&lt;/code&gt;：1993 年 1.2a 版，早于 LaTeX2e；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;floatflt&lt;/code&gt;：1997 年 1.31 版，最早版本发布于 1994 年，LaTeX2e 代码；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;wrapfig&lt;/code&gt;：2003 年 3.6 版，最早版本发布于 1991 年，现为 LaTeX2e 代码；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cutwin&lt;/code&gt;：2010 年 0.1 版，LaTeX2e 代码。&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;为什么会有这么多宏包？因为绕排问题复杂，要求繁多，并没有哪一个宏包能在各方面完美地解决文字绕排的问题。所以多少需要选着用。&lt;/p&gt;
+
+&lt;p&gt;各个宏包的其本用法可以看各自的手册，但注意 &lt;code&gt;picins&lt;/code&gt; 的手册是一个文本文件，而 &lt;code&gt;picinpar&lt;/code&gt; 的手册要看德文版 pdf（看例子）配合源代码里面的注释。其中 &lt;code&gt;picins&lt;/code&gt;、&lt;code&gt;picinpar&lt;/code&gt;、&lt;code&gt;wrapfig&lt;/code&gt; 的一个集中（但有些过时）的介绍可以看《LaTeX2e 插图指南》的一节：&lt;a href=&#34;http://www.ctex.org/documents/latex/graphics/node114.html&#34; target=&#34;_blank&#34;&gt;30. 图文混排&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h1 id=&#34;功能差异&#34;&gt;功能差异&lt;/h1&gt;
+
+&lt;p&gt;我们忽略掉在 TeX Live 下无法使用的老宏包 &lt;code&gt;picins&lt;/code&gt;，下面主要考虑一些功能上的差别：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;wrapfig&lt;/code&gt; 代码较新，语法与标准的 &lt;code&gt;figure&lt;/code&gt; 环境接近，基本功能比较全面，可以指定宽度高度也可以自动计算，可以设置伸出版心。此外在页面放不下时还有浮动到下一段的功能（这块儿我的书写错了）。但位置限定较多，一般只用在段落开头，图片出现在段落（包括连续几段）的左上角或右上角。&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;picinpar&lt;/code&gt; 位置灵活，水平方向和垂直方向都可以放在一段的中间。但语法比较怪异，也不能直接指定内容大小。&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;floatflt&lt;/code&gt; 功能和语法都与 &lt;code&gt;wrapfig&lt;/code&gt; 接近，但可以控制的参数更少。它的特色是对列表 &lt;code&gt;\item&lt;/code&gt; 项有特殊处理，并且对奇偶页面可以有不同的位置处理。&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cutwin&lt;/code&gt; 的特色是对位置的控制最强，不仅可以把图片放在段落的各种不对称位置，而且还支持特殊形状的挖洞，可以自己定义三角形、圆形之类的空洞来放置特殊的图片。但 &lt;code&gt;cutwin&lt;/code&gt; 语法麻烦，在其他方面的功能也较弱，比如 &lt;code&gt;cutwin&lt;/code&gt; 就没有提供 &lt;code&gt;\caption&lt;/code&gt; 功能，只提供了基本的挖洞功能。所以如果有图表标题又不想自己实现，就不要选 &lt;code&gt;cutwin&lt;/code&gt; 宏包。而 &lt;code&gt;picins&lt;/code&gt;、&lt;code&gt;picinpar&lt;/code&gt;、&lt;code&gt;floatflt&lt;/code&gt;、&lt;code&gt;wrapfig&lt;/code&gt; 都支持图表标题，并且有 &lt;code&gt;caption&lt;/code&gt; 宏包支持。&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;选用小结&#34;&gt;选用小结&lt;/h1&gt;
+
+&lt;ol&gt;
+&lt;li&gt;在需求简单的情况下，使用 &lt;code&gt;wrapfig&lt;/code&gt; 或 &lt;code&gt;floatflt&lt;/code&gt; 就可以满足要求，优先选择功能多的 &lt;code&gt;wrapfig&lt;/code&gt;；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;如果对插入图表的位置有特殊要求，用 &lt;code&gt;picinpar&lt;/code&gt;；&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;如果对位置或形状有较高要求，用 &lt;code&gt;cutwin&lt;/code&gt;。&lt;br /&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&#34;示例&#34;&gt;示例&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&#34;/images/Tech/LaTeX/wrap-figure.jpg&#34; alt=&#34;图文绕排示例&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass{article}
+
+\usepackage{graphicx}
+
+\usepackage{wrapfig}
+\usepackage{picinpar}
+\usepackage{cutwin}
+
+\begin{document}
+
+\section{wrapfig}
+
+\begin{wrapfigure}{l}[1cm]{0pt}
+\includegraphics[width=3cm]{example-image-a}
+\caption{wrapfig}
+\end{wrapfigure}
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+
+\section{picinpar}
+
+\begin{figwindow}[2,c,
+  {\includegraphics[width=3cm]{example-image-b}},
+  picinpar]
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+\end{figwindow}
+
+\section{cutwin}
+
+\renewcommand{\windowpagestuff}{%
+  \quad\includegraphics[width=3cm]{example-image-c}}
+\begin{cutout}{2}{2.2cm}{6.2cm}{6}
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+text text text text text text text text text text text text
+\end{cutout}
+
+\end{document}
+&lt;/code&gt;&lt;/pre&gt;
+
+        
+      </description>
+    </item>
+    
+    <item>
       <title>使 LaTeX 文稿中的 URL 正确换行z</title>
       <link>/tech/2017/05/17/latex-url-linkbreak/</link>
       <pubDate>Wed, 17 May 2017 00:00:00 +0000</pubDate>
@@ -5808,241 +6059,6 @@ plt.title(&amp;#39;validation set&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
-        
-      </description>
-    </item>
-    
-    <item>
-      <title>LaTeX 中的浮动体：处理超宽问题</title>
-      <link>/tech/2017/03/22/floats-in-latex-handle-overfull-floats/</link>
-      <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tech/2017/03/22/floats-in-latex-handle-overfull-floats/</guid>
-      <description>
-        
-
-&lt;p&gt;&lt;strong&gt;原文地址&lt;/strong&gt;：&lt;a href=&#34;http://liam0205.me/2017/03/22/floats-in-LaTeX-handle-overfull-floats/&#34; target=&#34;_blank&#34;&gt;http://liam0205.me/2017/03/22/floats-in-LaTeX-handle-overfull-floats/&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;/2017/03/11/floats-in-LaTeX-basic/&#34;&gt;前文&lt;/a&gt;说了，浮动体主要是处理高度比较大，又不方便分割的内容：比如图片和表格。实际上，此类内容除了在高度上可能很高，它们也可能很宽。LaTeX 在水平方向，会贴着版芯的左边边界，开始排列内容。因此，如果一张图片或者表格的宽度超过了版芯的宽度，那么看起来就像是没有居中，而是偏右。&lt;/p&gt;
-
-&lt;p&gt;此篇我们讲一下如何处理此类情况。&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h1 id=&#34;缩小&#34;&gt;缩小&lt;/h1&gt;
-
-&lt;p&gt;对付内容过大，最直接的办法，就是把它们缩小。对于图片，如果使用了 &lt;code&gt;graphicx&lt;/code&gt; 宏包，我们可以使用 &lt;code&gt;width = \linewidth&lt;/code&gt; 的参数将图片缩放到正好填满页面宽度的大小，避免「超宽」。对于表格等其他内容，我们可以使用 &lt;code&gt;graphicx&lt;/code&gt; 提供的 &lt;code&gt;\resizebox&lt;/code&gt; 命令来处理。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass{article}
-\usepackage{showframe}
-\usepackage{graphicx}
-\begin{document}
-\begin{table}[!htb]
-\centering
-\caption{Oh, this table is overfull!}\label{tab:overfull}
-\rule{1.1\linewidth}{3cm}
-\end{table}
-
-\begin{table}[!htb]
-\centering
-\caption{Imagine that this is a table.}\label{tab:resized}
-\resizebox{\linewidth}{!}{\rule{1.1\linewidth}{3cm}}
-\end{table}
-
-\begin{figure}[!htb]
-\centering
-\includegraphics[width = \linewidth]{example-image}
-\caption{A fit figure.}\label{fig:example-image}
-\end{figure}
-\end{document}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Tech/LaTeX/overfull/overfull_01.png&#34; alt=&#34;用缩小的办法处理超宽的内容&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;想办法居中&#34;&gt;想办法居中&lt;/h1&gt;
-
-&lt;p&gt;上述通过缩小解决问题，是一种办法。但是，在很多情况下，也会存在问题；比如&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;表格内容缩小之后，就看不清了；&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;\verb&lt;/code&gt; 之类的内容，不能放在大多数 box 之内。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;为此，我们需要用别的办法，尝试解决这些问题。&lt;/p&gt;
-
-&lt;p&gt;实际上，大多数用户对于这类问题最大的诉求在于：为什么这些超宽的图表不局中了？所以，我们只要解决「居中」的问题，可能就覆盖了绝大部分用户的需求。而这些内容无法居中的原因，我们在介绍部分也说过了：LaTeX 在水平方向，会贴着版芯的左边边界，开始排列内容。因此，如果我们能让 LaTeX 不从版芯的最左边开始排列内容，就有可能解决这个问题。&lt;/p&gt;
-
-&lt;p&gt;决定 LaTeX 从何处开始排列内容的，是 &lt;code&gt;\leftskip&lt;/code&gt; 这个宏。在 LaTeX2e 中，它被默认定义为 &lt;code&gt;\z@&lt;/code&gt;。也就是说，从版芯的左边边界处开始排列内容。我们可以修改这个宏，比如改为 &lt;code&gt;\setlength{\leftskip}{-20pt}&lt;/code&gt;，那么 LaTeX 将从版芯左边边界左边的 &lt;code&gt;20pt&lt;/code&gt; 的位置开始排列内容。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass{article}
-\usepackage{showframe}
-\usepackage{graphicx}
-\begin{document}
-\begin{table}[!htb]
-\centering
-\caption{Oh, this table is overfull!}\label{tab:overfull}
-\setlength{\leftskip}{-20pt}
-\rule{1.1\linewidth}{3cm}
-\end{table}
-\end{document}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Tech/LaTeX/overfull/overfull_02.png&#34; alt=&#34;leftskip 示例&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;同理，我们有 &lt;code&gt;\rightskip&lt;/code&gt;，用于确定水平方向排版的终止位置与版芯右边界之间的距离。&lt;/p&gt;
-
-&lt;p&gt;我们知道，TeX 的 skip 是所谓的「弹簧」，允许在一定程度上进行缩放；而所谓的居中，实际上就是在版芯两侧，有两个力量相等的无限弹簧，同时向中间挤压内容。因此，我们不难得到对 &lt;code&gt;\leftskip&lt;/code&gt; 和 &lt;code&gt;\rightskip&lt;/code&gt; 的几个要求：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;默认情况，应该贴着两侧边界；&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;最差的情况，应该允许内容向左右两侧延伸，超过版芯但不超过纸张宽度；&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;同时具有让内容居中的能力。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;因此，我们可以将它们设置为（粗略地）：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\setlength{\leftskip}{0pt plus 1fil minus \marginparwidth}
-\setlength{\rightskip}{\leftskip}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;为了让它更好用，我们可以把他们收纳在一个新的命令当中（包含了一些额外的工作）：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass{article}
-\usepackage{showframe}
-\usepackage{graphicx}
-\makeatletter
-\newcommand*{\centerfloat}{%
-  \parindent \z@
-  \leftskip \z@ \@plus 1fil \@minus \marginparwidth
-  \rightskip \leftskip
-  \parfillskip \z@skip}
-\makeatother
-\begin{document}
-\begin{table}[!htb]
-\centerfloat
-\caption{Oh, this table is adjusted!}\label{tab:adjusted}
-\rule{1.1\linewidth}{3cm}
-\end{table}
-\end{document}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Tech/LaTeX/overfull/overfull_03.png&#34; alt=&#34;巧妙地设置 leftskip 及 rightskip&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;当然，你也可以通过 &lt;code&gt;\makebox&lt;/code&gt; 命令来达成目标，不过这样依然无法容纳含有类似 &lt;code&gt;\verb&lt;/code&gt; 的内容：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass{article}
-\usepackage{showframe}
-\usepackage{graphicx}
-\begin{document}
-\begin{table}[!htb]
-\centering
-\caption{Oh, this table is adjusted!}\label{tab:adjusted}
-\makebox[0pt][c]{\rule{1.1\linewidth}{3cm}}
-\end{table}
-\end{document}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h1 id=&#34;使用-adjustbox-宏包&#34;&gt;使用 &lt;code&gt;adjustbox&lt;/code&gt; 宏包&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;mailto:martin@scharrer-online.de&#34; target=&#34;_blank&#34;&gt;Martin Scharrer&lt;/a&gt; 有发布名为 &lt;code&gt;adjustbox&lt;/code&gt; 的宏包，提供了类似 &lt;code&gt;graphicx&lt;/code&gt; 宏包中 &lt;code&gt;\includegraphics&lt;/code&gt; 命令的 key-value 参数，用以实现各类 box 效果。值得一提的是，宏包提供的几个宏、环境，都可以容纳 &lt;code&gt;\verb&lt;/code&gt; 之类的内容。很是好用。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass{article}
-\usepackage{showframe}
-\usepackage{adjustbox}
-\begin{document}
-\begin{table}[!htb]
-\centering
-\caption{Oh, this table is adjusted by the package adjustbox!}\label{tab:adjusted}
-\adjustbox{center}{\rule{1.1\linewidth}{3cm}}
-\end{table}
-\end{document}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;效果和使用我们定义的 &lt;code&gt;\centerfloat&lt;/code&gt; 命令类似，这里就不重复贴图了。&lt;/p&gt;
-
-&lt;h1 id=&#34;倘若把它倒过来&#34;&gt;倘若把它倒过来……&lt;/h1&gt;
-
-&lt;p&gt;上面的介绍，基本都仅限于处理 overfull 程度不大、超出版芯程度不多的情形。如果你有一个大胖娃娃，他/她使得版芯宽度严重超载，那么你可能要考虑把它旋转九十度了。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;rotating&lt;/code&gt; 宏包提供了 &lt;code&gt;sidewaystable&lt;/code&gt; 和 &lt;code&gt;sidewaysfigure&lt;/code&gt; 环境（以及带 &lt;code&gt;*&lt;/code&gt; 的版本，用于在双栏模式下通栏排版），分别作为对应 &lt;code&gt;table&lt;/code&gt; 和 &lt;code&gt;figure&lt;/code&gt; 的工具。使用这些环境，能使图表旋转 90° 摆放。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-tex&#34;&gt;\documentclass{article}
-\usepackage{showframe}
-\usepackage{rotating}
-\begin{document}
-\begin{sidewaystable}[!htb]
-\centering
-\caption{Let&#39;s rock!}\label{tab:rotated}
-\rule{0.8\linewidth}{3cm}
-\end{sidewaystable}
-\end{document}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;需要注意的是，当旋转过来之后，「长宽」就交换了。因此，我们这里使用 &lt;code&gt;0.8\linewidth&lt;/code&gt; 实际上是相对版芯的高度的 0.8 倍。此外，&lt;code&gt;rotating&lt;/code&gt; 宏包默认将内容逆时针旋转了 90°，你也可以在调用宏包时传入 &lt;code&gt;clockwise&lt;/code&gt; 参数，得到顺时针旋转的版本。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Tech/LaTeX/overfull/overfull_04.png&#34; alt=&#34;旋转、跳跃，我闭着眼&#34; /&gt;&lt;/p&gt;
-
-        
-      </description>
-    </item>
-    
-    <item>
-      <title>商业承兑汇票和银行承兑汇票的区别 z</title>
-      <link>/prof/2017/03/22/acceptance-bill/</link>
-      <pubDate>Wed, 22 Mar 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/prof/2017/03/22/acceptance-bill/</guid>
-      <description>
-        
-
-&lt;p&gt;&lt;strong&gt;原文地址&lt;/strong&gt;：&lt;a href=&#34;https://www.zhihu.com/question/53595037&#34; target=&#34;_blank&#34;&gt;https://www.zhihu.com/question/53595037&lt;/a&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;银行承兑汇票&#34;&gt;银行承兑汇票&lt;/h1&gt;
-
-&lt;p&gt;简称银票。是由采购方出票，向采购方开户银行申请并经银行审查同意承兑的，保证在票据到期日无条件支付确定的金额给收款人或持票人的票据。&lt;/p&gt;
-
-&lt;p&gt;它的票面长成这个样子。这个是新版的票据，从网上搜到很多银票的票样有的是旧版的，已经作废不用了。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Accounting/Accounting/acceptance/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;它是怎么用的呢，流程大致是这样的。&lt;/p&gt;
-
-&lt;p&gt;举个例子比较清楚：A 公司向 B 公司买一批货物或者支付劳务什么的，总价款 1000 万，需要向 B 公司付款。但是 A 公司不想付现金给 B 公司。可能 A 公司没钱，或者暂时不想付给 B 公司现金，所以 A 公司就和 B 公司谈判，本公司要钱没有，要银行承兑汇票倒是有一张，B 公司为了实现销售，就同意了 A 公司的条件。A 公司就到了自己的开户银行，申请开立一张银行承兑汇票，这张银行承兑汇票的意思就是，我要给 B 公司付款，但是我现在没钱，直接打个白条 B 公司不认，现在我要开出一张汇票，请银行帮我做个付款承诺：这张汇票到期后，银行会到期无条件承诺兑付这张票据。银行同意后，A 公司开出一张银行承兑汇票，银行在承兑行处盖章，A 公司将这张票据交给 B 公司。B 公司拿到银行承兑汇票后，到期日时，B 公司将银行承兑汇票交回银行，银行负责将票据上的款项划给B公司。完毕。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Accounting/Accounting/acceptance/2.jpg&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;流程图&lt;/em&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;商业承兑汇票&#34;&gt;商业承兑汇票&lt;/h1&gt;
-
-&lt;p&gt;简称商票，是由企业直接签发的，用于买方远期支付给卖方的资金的信用凭证。&lt;/p&gt;
-
-&lt;p&gt;票面长成这个样子，从票面上看，没有了银行承兑的相关内容。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Accounting/Accounting/acceptance/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;它的使用方法是这样的：首先企业从银行买回来商业承兑汇票。买卖双方企业在交易过程中，约定使用商业承兑汇票支付。买方开出商业承兑汇票，盖上自己的财务章，然后交给卖方，买方拿到商业承兑汇票后，在票据到期日的前三天将票据交回给买方的银行，请求买方的银行从买方的账户上划款给卖方。完毕。&lt;/p&gt;
-
-&lt;h1 id=&#34;区别&#34;&gt;区别&lt;/h1&gt;
-
-&lt;p&gt;总体来讲，银行承兑汇票和商业承兑汇票有以下的区别：&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;承兑人&lt;/strong&gt;不同：银行承兑汇票是由银行承兑的，商业承兑汇票是企业承兑的。但是有些企业为了让交易对手接受自己的商业承兑汇票，会请银行帮忙，做保证兑付，就是在商业承兑汇票上盖上银行的承兑章，达到和银行承兑汇票一样的效果。&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;信用&lt;/strong&gt;不同：一般来讲，银行承兑汇票的信用和支付效率要优于商业承兑汇票。因为大家都认为银行比较靠谱。但并不完全一样，有时候一张农商行开具的银行承兑汇票，就没有一张由大型上市或者国企公司开出的商业承兑汇票的信用高。&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;最后，说一下电子票据。&lt;/p&gt;
-
-&lt;p&gt;以前票据都是纸质的，传递起来不方便，有丢失的风险，还有假冒、破损、背书不清楚等一系列问题。为了解决上述问题，有些银行开始做电子票据了，就是把开票的要素直接放在网上银行中完成。但是这些票据只能在一家银行内流转，流转起来不方便。人民银行顺应民意，搞了一个全国一体化的票据开票流转的平台，就是人行电票系统。他和纸质票据在功能上没有太大区别，但是电子票据的期限可以是一年的，而纸质票据最多是半年。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;/images/Accounting/Accounting/acceptance/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
         
       </description>

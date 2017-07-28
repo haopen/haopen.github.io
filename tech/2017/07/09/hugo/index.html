@@ -97,7 +97,7 @@
 
   <article class="article">
     
-    <span class="article-duration">7391 字</span>
+    <span class="article-duration">7495 字</span>
     
 
     
@@ -196,6 +196,14 @@
 <pre class="r"><code>```{r echo=FALSE}
 blogdown::shortcode(&#39;tweet&#39;, &#39;852205086956818432&#39;)
 ```</code></pre></li>
+<li><p>在 md 格式下输入以下内容可以自动将最后一行转换成右对齐的格式（普通的 Rmd 下 knitr 时不支持，但 Blogdown 下的 Rmd 可以）：</p>
+<pre class="markdown"><code># Quotes
+
+&gt; Let us change our traditional attitude to the construction of programs:
+&gt; Instead of imagining that our main task is to instruct a computer what to do,
+&gt; let us concentrate rather on explaining to humans what we want the computer to do.
+
+&gt; --- Donald E. Knuth, Literate Programming, 1984</code></pre></li>
 </ol>
 <p><strong>提示</strong>：下面的内容，没有改模板的需求时，基本不用理会。</p>
 </div>
@@ -600,14 +608,6 @@ document.addEventListener('keyup', function(e) {
 
     
 <script src="/js/math-code.js"></script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    processEscapes: true
-  }
-});
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
 	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},

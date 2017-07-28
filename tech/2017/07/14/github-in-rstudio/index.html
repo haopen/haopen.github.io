@@ -97,7 +97,7 @@
 
   <article class="article">
     
-    <span class="article-duration">2303 字</span>
+    <span class="article-duration">2354 字</span>
     
 
     
@@ -172,8 +172,7 @@
 <h2><span class="header-section-number">1.1</span> 查看配置</h2>
 <p>参考资料：<a href="http://www.jianshu.com/p/0ad3d88c51f4" class="uri">http://www.jianshu.com/p/0ad3d88c51f4</a></p>
 <p>由于之前已经成功安装 Git 并登陆到过 GitHub，因此查看当前配置时，最后两行会显示用户名及用户密码。</p>
-<pre class="bash"><code>$ git config --list
-......
+<pre class="bash"><code>$ git config --list | grep user
 user.name=xxxxxx
 user.email=xxxxxx@xxxx.com</code></pre>
 <p>这里的 <code>user.name</code> 和 <code>user.email</code> 就是 Author 信息。此时，上面提到的三个级别都配置了 user 信息。当 <code>git commit</code> 时，Author 信息依次读取 local、global 和 system 的配置，如果找到则不再继续读取。其他配置的读取顺序也是如此。</p>
@@ -316,7 +315,7 @@ RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added &#39;[ssh.github.com]:443,[192.30.253.123]:443&#39; (RSA) to the list of known hosts.
 Hi haopen! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
-<p><strong>技巧</strong>：在 RStudio 第一次准备将本地大量文件 Commit 时，右侧 Git 面板中的 <code>Staged</code> 对应的 Checkbox 经常点不动，参考 <a href="https://pages.github.com/" class="uri">https://pages.github.com/</a> 后此时可以考虑从齿轮那里打开 RStudio 带的 Git shell，然后在里面输入：</p>
+<p><strong>技巧</strong>：在 RStudio 第一次准备将本地大量文件 Commit 时，右侧 Git 面板中的 <code>Staged</code> 对应的 Checkbox 经常点不动，参考 <a href="https://pages.github.com/" class="uri">https://pages.github.com/</a> 后此时可以考虑从齿轮那里打开 RStudio 带的 Git shell，然后在里面输入<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>：</p>
 <pre class="bash"><code>git add --all
 ~$git commit -m &quot;Initial commit&quot;
 ~$git push -u origin master</code></pre>
@@ -329,6 +328,7 @@ Hi haopen! You&#39;ve successfully authenticated, but GitHub does not provide sh
 <li id="fn1"><p>可以考虑使用直接使用 Git GUI Here 客户端，也可以考虑使用 RStudio 提供的界面，通常后者可能会更人性化一些。<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>修改 <code>C:\Windows\System32\drivers\etc\hosts</code> 这个文件时，经常提示有其它程序占用，因此转而修改 <code>C:\Program Files\Git\etc\hosts</code>，效果也是一样的。<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>但连接速度真的很慢。<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>要在这个自带的 Shell 窗口中粘贴内容，只能在窗口的标题栏点击右击，再选择“编辑”，之后选择“粘贴”。<a href="#fnref4">↩</a></p></li>
 </ol>
 </div>
 
@@ -343,6 +343,10 @@ Hi haopen! You&#39;ve successfully authenticated, but GitHub does not provide sh
     
 
     
+    <a href="/tech/2017/07/20/minted/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">用 minted 宏包实现语法高亮 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
 </nav>
 <script type="text/javascript">
 document.addEventListener('keyup', function(e) {
@@ -353,6 +357,8 @@ document.addEventListener('keyup', function(e) {
     url = '\/tech\/2017\/07\/10\/hugo-light-gallery\/';
     
   } else if (e.which == 39) {  
+    
+    url = '\/tech\/2017\/07\/20\/minted\/';
     
   }
   if (url) window.location = url;
@@ -453,14 +459,6 @@ document.addEventListener('keyup', function(e) {
 
     
 <script src="/js/math-code.js"></script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    processEscapes: true
-  }
-});
-</script>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
 	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
