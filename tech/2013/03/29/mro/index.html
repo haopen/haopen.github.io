@@ -158,8 +158,7 @@
 
 <ul>
 <li>在 Python 中，类是可以多重继承的。Python 类中的所有成员变量都是类似 Java 语言中的<code>public</code>的。</li>
-<li>在 Python 中，类中定义的函数也是对象。也可以修改赋值。<br />
-</li>
+<li>在 Python 中，类中定义的函数也是对象。也可以修改赋值。</li>
 </ul>
 
 <!-- more -->
@@ -225,8 +224,7 @@ if __name__ == &quot;__main__&quot;:
 
 <ul>
 <li><strong>本地优先级</strong>：指声明时父类的顺序，比如<code>C(A, B)</code>，如果访问<code>C</code>类对象属性时，应该根据声明顺序，优先查找<code>A</code>类，然后再查找<code>B</code>类。</li>
-<li><strong>单调性</strong>：如果在<code>C</code>的解析顺序中，<code>A</code>排在<code>B</code>的前面，那么在<code>C</code>的所有子类里，也必须满足这个顺序。<br />
-</li>
+<li><strong>单调性</strong>：如果在<code>C</code>的解析顺序中，<code>A</code>排在<code>B</code>的前面，那么在<code>C</code>的所有子类里，也必须满足这个顺序。</li>
 </ul>
 
 <p>在新式类中，查找一个要调用的函数或者属性的时候，是<code>广度优先</code>搜搜的。在旧式类当中，是<code>深度优先</code>搜索的。如下图所示：</p>
@@ -258,8 +256,7 @@ f.foo()
 
 <p>例子中定义<code>D</code>类的时候，<code>D</code>是新式类，所以<code>D</code>的所有子类都是新式类。<code>A</code>的实例对象<code>f</code>在调用<code>foo</code>函数的时候，根据广度优先搜索原则，调用的是<code>C</code>类里面的<code>foo</code>函数。上面的代码输出<code>class C</code>；如果定义<code>D</code>类的时候直接<code>class D</code>，而不是<code>class D(object)</code>，那么上述代码就该输出<code>class D</code>了。</p>
 
-<p>需要说明的是，在 3.X 中运行代码时<code>class D:</code>和<code>class D(object)</code>的返回结果都是<code>class C</code>，说明完全不再有深度优先支持；但在 2.X 中，<code>class D:</code>的结果是<code>class D</code>，说明 2.X 还是支持深度优先的。<br />
-返回的结果是<code>class C</code></p>
+<p>需要说明的是，在 3.X 中运行代码时<code>class D:</code>和<code>class D(object)</code>的返回结果都是<code>class C</code>，说明完全不再有深度优先支持；但在 2.X 中，<code>class D:</code>的结果是<code>class D</code>，说明 2.X 还是支持深度优先的。返回的结果是<code>class C</code></p>
 
 <h1 id="命名空间-作用域">命名空间、作用域</h1>
 
@@ -447,6 +444,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

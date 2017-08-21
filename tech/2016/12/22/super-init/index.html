@@ -262,8 +262,7 @@ leave A
 
 <ul>
 <li>如果是本身就会依次继承下一个类；如果是继承链里之前的类便会无限递归下去<sup class="footnote-ref" id="fnref:-"><a rel="footnote" href="#fn:-">1</a></sup>；</li>
-<li>如果是继承链里之后的类便会忽略继承链汇总本身和传入类之间的类；<br />
-</li>
+<li>如果是继承链里之后的类便会忽略继承链汇总本身和传入类之间的类；</li>
 </ul>
 
 <p>比如将<code>childA()</code>中的<code>super</code>改为：<code>super(childC, self).__init__()</code>，程序就会无限递归下去。如：</p>
@@ -422,6 +421,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

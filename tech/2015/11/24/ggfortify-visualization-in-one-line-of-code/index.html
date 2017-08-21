@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>一行 R 代码来实现繁琐的可视化 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="一行 R 代码来实现繁琐的可视化 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">1936 字</span>
+    
+
+    
+<h1 class="article-title">一行 R 代码来实现繁琐的可视化 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 唐源 ·   2015/11/24</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E4%B8%80%E8%A1%8C&#43;R&#43;%E4%BB%A3%E7%A0%81%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%B9%81%E7%90%90%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96&#43;z&#43;%2Ftech%2F2015%2F11%2F24%2Fggfortify-visualization-in-one-line-of-code%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E4%B8%80%E8%A1%8C&#43;R&#43;%E4%BB%A3%E7%A0%81%E6%9D%A5%E5%AE%9E%E7%8E%B0%E7%B9%81%E7%90%90%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2015%2F11%2F24%2Fggfortify-visualization-in-one-line-of-code%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2015-11-24-ggfortify-visualization-in-one-line-of-code.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-r" title="R">R</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-ggfortify" title="ggfortify">ggfortify</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-ggplot2" title="ggplot2">ggplot2</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E5%8F%AF%E8%A7%86%E5%8C%96" title="可视化">可视化</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E6%A8%A1%E5%9E%8B" title="模型">模型</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-r-package" title="R Package">R Package</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E5%9B%BE%E5%BD%A2" title="图形">图形</a></span>;
+  
+  
+</div>
+
+
+     <nav id="TableOfContents">
+<ul>
+<li><a href="#pca-主成分分析">PCA (主成分分析)</a></li>
+<li><a href="#因子分析">因子分析</a></li>
+<li><a href="#k-均值聚类">K-均值聚类</a></li>
+<li><a href="#其他聚类">其他聚类</a>
+<ul>
+<li><a href="#lfda-fisher局部判别分析">lfda（Fisher局部判别分析）</a></li>
+</ul></li>
+<li><a href="#时间序列的可视化">时间序列的可视化</a>
+<ul>
+<li><a href="#ts对象">ts对象</a></li>
+<li><a href="#多变量时间序列">多变量时间序列</a></li>
+<li><a href="#forecast包">forecast包</a></li>
+<li><a href="#vars包">vars包</a></li>
+<li><a href="#changepoint包">changepoint包</a></li>
+<li><a href="#strucchange包">strucchange包</a></li>
+<li><a href="#dlm包">dlm包</a></li>
+<li><a href="#kfas包">KFAS包</a></li>
+<li><a href="#stats包">stats包</a></li>
+</ul></li>
+</ul>
+</nav> 
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>：<a href="https://cosx.org/2015/11/ggfortify-visualization-in-one-line-of-code/" target="_blank">https://cosx.org/2015/11/ggfortify-visualization-in-one-line-of-code/</a></p>
+
+<p>本文作者：唐源，目前就职于芝加哥一家创业公司，曾参与和创作过多个被广泛使用的R和Python开源项目，是ggfortify，lfda，metric-learn等包的作者，也是 xgboost，caret，pandas等包的贡献者。（喜欢爬山和烧烤）</p>
+
+<p><a href="https://github.com/sinhrks/ggfortify" target="_blank">ggfortify</a> 是一个简单易用的R软件包，它可以仅仅使用<strong>一行代码</strong>来对许多受欢迎的R软件包结果进行二维可视化，这让统计学家以及数据科学家省去了许多繁琐和重复的过程，不用对结果进行任何处理就能以 <code>ggplot</code> 的风格画出好看的图，大大地提高了工作的效率。</p>
+
+<p>ggfortify 已经可以在 <a href="https://cran.fhcrc.org/web/packages/ggfortify/index.html" target="_blank">CRAN</a> 上下载得到，但是由于最近很多的功能都还在快速增加，因此还是推荐大家从 <a href="https://github.com/sinhrks/ggfortify" target="_blank">Github</a> 上下载和安装。</p>
+
+<pre><code class="language-r">library(devtools)
+install_github('sinhrks/ggfortify')
+library(ggfortify)
+</code></pre>
+
+<p>接下来我将简单介绍一下怎么用 <code>ggplot2</code> 和 <code>ggfortify</code> 来很快地对PCA、聚类以及LFDA的结果进行可视化，然后将简单介绍用 <code>ggfortify</code> 来对时间序列进行快速可视化的方法。</p>
+
+<h1 id="pca-主成分分析">PCA (主成分分析)</h1>
+
+<p><code>ggfortify</code> 使 <code>ggplot2</code> 知道怎么诠释PCA对象。加载好 <code>ggfortify</code> 包之后, 你可以对<code>stats::prcomp</code> 和 <code>stats::princomp</code> 对象使用 <code>ggplot2::autoplot</code>。</p>
+
+<pre><code class="language-r">library(ggfortify)
+df &lt;- iris[c(1, 2, 3, 4)]
+autoplot(prcomp(df))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-1-1.png" alt="" />你还可以选择数据中的一列来给画出的点按类别自动分颜色。输入<code>help(autoplot.prcomp)</code> 可以了解到更多的其他选择。</p>
+
+<pre><code class="language-r">autoplot(prcomp(df), data = iris, colour = 'Species')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-2-1.png" alt="ggfortify-unnamed-chunk-2-1" /></p>
+
+<p>比如说给定<code>label = TRUE</code> 可以给每个点加上标识（以<code>rownames</code>为标准），也可以调整标识的大小。</p>
+
+<pre><code class="language-r">autoplot(prcomp(df), data = iris, colour = 'Species', label = TRUE,label.size = 3)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-3-1.png" alt="ggfortify-unnamed-chunk-3-1" /></p>
+
+<p>给定 <code>shape = FALSE</code> 可以让所有的点消失，只留下标识，这样可以让图更清晰，辨识度更大。</p>
+
+<pre><code class="language-r">autoplot(prcomp(df), data = iris, colour = 'Species', shape = FALSE,label.size = 3)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-4-1.png" alt="ggfortify-unnamed-chunk-4-1" /></p>
+
+<p>给定 <code>loadings = TRUE</code> 可以很快地画出特征向量。</p>
+
+<pre><code class="language-r">autoplot(prcomp(df), data = iris, colour = 'Species', loadings = TRUE)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-5-1.png" alt="" />同样的，你也可以显示特征向量的标识以及调整他们的大小，更多选择请参考帮助文件。</p>
+
+<pre><code class="language-r">autoplot(prcomp(df), data = iris, colour = 'Species',
+ loadings = TRUE, loadings.colour = 'blue',
+loadings.label = TRUE, loadings.label.size = 3)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-6-1.png" alt="" /></p>
+
+<h1 id="因子分析">因子分析</h1>
+
+<p>和PCA类似，<code>ggfortify</code> 也支持 <code>stats::factanal</code> 对象。可调的选择也很广泛。以下给出了简单的例子：</p>
+
+<p><strong>注意</strong> 当你使用 <code>factanal</code> 来计算分数的话，你必须给定 <code>scores</code> 的值。</p>
+
+<pre><code class="language-r">d.factanal &lt;- factanal(state.x77, factors = 3, scores = 'regression')
+autoplot(d.factanal, data = state.x77, colour = 'Income')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-7-1.png" alt="ggfortify-unnamed-chunk-7-1" /></p>
+
+<pre><code class="language-r">autoplot(d.factanal, label = TRUE, label.size = 3,
+         loadings = TRUE, loadings.label = TRUE, loadings.label.size  = 3)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-7-2.png" alt="" /></p>
+
+<h1 id="k-均值聚类">K-均值聚类</h1>
+
+<pre><code class="language-r">autoplot(kmeans(USArrests, 3), data = USArrests)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-8-1.png" alt="ggfortify-unnamed-chunk-8-1" /></p>
+
+<pre><code class="language-r">autoplot(kmeans(USArrests, 3), data = USArrests, label = TRUE, 
+         label.size = 3)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-8-2.png" alt="ggfortify-unnamed-chunk-8-2" /></p>
+
+<h1 id="其他聚类">其他聚类</h1>
+
+<p><code>ggfortify</code> 也支持 <code>cluster::clara</code>, <code>cluster::fanny</code>, <code>cluster::pam</code>。</p>
+
+<pre><code class="language-r">library(cluster)
+autoplot(clara(iris[-5], 3))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-9-1.png" alt="ggfortify-unnamed-chunk-9-1" /></p>
+
+<p>给定 <code>frame = TRUE</code>，可以把 <code>stats::kmeans</code> 和 <code>cluster::*</code> 中的每个类圈出来。</p>
+
+<pre><code class="language-r">autoplot(fanny(iris[-5], 3), frame = TRUE)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-10-1.png" alt="ggfortify-unnamed-chunk-10-1" /></p>
+
+<p>你也可以通过 <code>frame.type</code> 来选择圈的类型。更多选择请参照 <a href="http://docs.ggplot2.org/dev/stat_ellipse.html" target="_blank"><code>ggplot2::stat_ellipse</code></a> 里面的 <code>frame.type</code> 的 <code>type</code> 关键词。</p>
+
+<pre><code class="language-r">autoplot(pam(iris[-5], 3), frame = TRUE, frame.type = 'norm')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-11-1.png" alt="" /></p>
+
+<p>更多关于聚类方面的可视化请参考 Github 上的 <a href="https://github.com/sinhrks/ggfortify/tree/master/vignettes" target="_blank">Vignette</a> 或者 <a href="http://rpubs.com/sinhrks/plot_pca" target="_blank">Rpubs</a> 上的例子。</p>
+
+<h2 id="lfda-fisher局部判别分析">lfda（Fisher局部判别分析）</h2>
+
+<p><a href="https://cran.r-project.org/web/packages/lfda/index.html" target="_blank"><code>lfda</code></a> 包支持一系列的 Fisher 局部判别分析方法，包括半监督 lfda，非线性 lfda。你也可以使用 <code>ggfortify</code> 来对他们的结果进行可视化。</p>
+
+<pre><code class="language-r">library(lfda)
+# Fisher局部判别分析 (LFDA)
+model &lt;- lfda(iris[-5], iris[, 5], 4, metric=&quot;plain&quot;)
+autoplot(model, data = iris, frame = TRUE, frame.colour = 'Species')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-12-1.png" alt="ggfortify-unnamed-chunk-12-1" /></p>
+
+<pre><code class="language-r"># 非线性核Fisher局部判别分析 (KLFDA)
+model &lt;- klfda(kmatrixGauss(iris[-5]), iris[, 5], 4, metric=&quot;plain&quot;)
+autoplot(model, data = iris, frame = TRUE, frame.colour = 'Species')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-12-2.png" alt="" /><strong>注意</strong> 对<code>iris</code>数据来说，不同的类之间的关系很显然不是简单的线性，这种情况下非线性的klfda 影响可能太强大而影响了可视化的效果，在使用前请充分理解每个算法的意义以及效果。</p>
+
+<pre><code class="language-r"># 半监督Fisher局部判别分析 (SELF)
+model &lt;- self(iris[-5], iris[, 5], beta = 0.1, r = 3, metric=&quot;plain&quot;)
+autoplot(model, data = iris, frame = TRUE, frame.colour = 'Species')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-13-1.png" alt="ggfortify-unnamed-chunk-13-1" /></p>
+
+<h1 id="时间序列的可视化">时间序列的可视化</h1>
+
+<p>用 <code>ggfortify</code> 可以使时间序列的可视化变得极其简单。接下来我将给出一些简单的例子。</p>
+
+<h2 id="ts对象">ts对象</h2>
+
+<pre><code class="language-r">library(ggfortify)
+autoplot(AirPassengers)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-14-1.png" alt="ggfortify-unnamed-chunk-14-1" />可以使用 <code>ts.colour</code> 和 <code>ts.linetype</code> 来改变线的颜色和形状。更多的选择请参考 <code>help(autoplot.ts)</code>。</p>
+
+<pre><code class="language-r">autoplot(AirPassengers, ts.colour = 'red', ts.linetype = 'dashed')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-15-1.png" alt="ggfortify-unnamed-chunk-15-1" /></p>
+
+<h2 id="多变量时间序列">多变量时间序列</h2>
+
+<pre><code class="language-r">library(vars)
+data(Canada)
+autoplot(Canada)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-16-1.png" alt="ggfortify-unnamed-chunk-16-1" /></p>
+
+<p>使用 <code>facets = FALSE</code> 可以把所有变量画在一条轴上。</p>
+
+<pre><code class="language-r">autoplot(Canada, facets = FALSE)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-17-1.png" alt="ggfortify-unnamed-chunk-17-1" /></p>
+
+<p><code>autoplot</code> 也可以理解其他的时间序列类别。可支持的R包有：</p>
+
+<ul>
+<li><code>zoo::zooreg</code></li>
+<li><code>xts::xts</code></li>
+<li><code>timeSeries::timSeries</code></li>
+<li><code>tseries::irts</code></li>
+</ul>
+
+<p>一些例子：</p>
+
+<pre><code class="language-r">library(xts)
+autoplot(as.xts(AirPassengers), ts.colour = 'green')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-18-1.png" alt="ggfortify-unnamed-chunk-18-1" /></p>
+
+<pre><code class="language-r">library(timeSeries)
+autoplot(as.timeSeries(AirPassengers), ts.colour = ('dodgerblue3'))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-18-2.png" alt="ggfortify-unnamed-chunk-18-2" /></p>
+
+<p>你也可以通过 <code>ts.geom</code> 来改变几何形状，目前支持的有 <code>line</code>， <code>bar</code> 和 <code>point。</code></p>
+
+<pre><code class="language-r">autoplot(AirPassengers, ts.geom = 'bar', fill = 'blue')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-19-1.png" alt="ggfortify-unnamed-chunk-19-1" /></p>
+
+<pre><code class="language-r">autoplot(AirPassengers, ts.geom = 'point', shape = 3)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-20-1.png" alt="ggfortify-unnamed-chunk-20-1" /></p>
+
+<h2 id="forecast包">forecast包</h2>
+
+<pre><code class="language-r">library(forecast)
+d.arima &lt;- auto.arima(AirPassengers)
+d.forecast &lt;- forecast(d.arima, level = c(95), h = 50)
+autoplot(d.forecast)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-21-1.png" alt="ggfortify-unnamed-chunk-21-1" />有很多设置可供调整：</p>
+
+<pre><code class="language-r">autoplot(d.forecast, ts.colour = 'firebrick1', predict.colour = 'red',
+         predict.linetype = 'dashed', conf.int = FALSE)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-22-1.png" alt="ggfortify-unnamed-chunk-22-1" /></p>
+
+<h2 id="vars包">vars包</h2>
+
+<pre><code class="language-r">library(vars)
+data(Canada)
+d.vselect &lt;- VARselect(Canada, lag.max = 5, type = 'const')$selection[1]
+d.var &lt;- VAR(Canada, p = d.vselect, type = 'const')
+autoplot(predict(d.var, n.ahead = 50), ts.colour = 'dodgerblue4',
+         predict.colour = 'blue', predict.linetype = 'dashed')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-24-1.png" alt="ggfortify-unnamed-chunk-24-1" /></p>
+
+<h2 id="changepoint包">changepoint包</h2>
+
+<pre><code class="language-r">library(changepoint)
+autoplot(cpt.meanvar(AirPassengers))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-25-1.png" alt="ggfortify-unnamed-chunk-25-1" /></p>
+
+<pre><code class="language-r">autoplot(cpt.meanvar(AirPassengers), cpt.colour = 'blue', cpt.linetype = 'solid')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-26-1.png" alt="ggfortify-unnamed-chunk-26-1" /></p>
+
+<h2 id="strucchange包">strucchange包</h2>
+
+<pre><code class="language-r">library(strucchange)
+autoplot(breakpoints(Nile ~ 1), ts.colour = 'blue', ts.linetype = 'dashed',
+cpt.colour = 'dodgerblue3', cpt.linetype = 'solid')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-27-1.png" alt="ggfortify-unnamed-chunk-27-1" /></p>
+
+<h2 id="dlm包">dlm包</h2>
+
+<pre><code class="language-r">library(dlm)
+form &lt;- function(theta){
+dlmModPoly(order = 1, dV = exp(theta[1]), dW = exp(theta[2]))
+}
+
+model &lt;- form(dlmMLE(Nile, parm = c(1, 1), form)$par)
+filtered &lt;- dlmFilter(Nile, model)
+
+autoplot(filtered)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-28-1.png" alt="ggfortify-unnamed-chunk-28-1" /></p>
+
+<pre><code class="language-r">autoplot(filtered, ts.linetype = 'dashed', fitted.colour = 'blue')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-29-1.png" alt="ggfortify-unnamed-chunk-29-1" /></p>
+
+<pre><code class="language-r">smoothed &lt;- dlmSmooth(filtered)
+autoplot(smoothed)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-30-1.png" alt="ggfortify-unnamed-chunk-30-1" /></p>
+
+<pre><code class="language-r">p &lt;- autoplot(filtered)
+autoplot(smoothed, ts.colour = 'blue', p = p)
+</code></pre>
+
+<h2 id="kfas包">KFAS包</h2>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-31-1.png" alt="ggfortify-unnamed-chunk-31-1" /></p>
+
+<pre><code class="language-r">library(KFAS)
+model &lt;- SSModel(
+Nile ~ SSMtrend(degree=1, Q=matrix(NA)), H=matrix(NA)
+)
+fit &lt;- fitSSM(model=model, inits=c(log(var(Nile)),log(var(Nile))), 
+              method=&quot;BFGS&quot;)
+smoothed &lt;- KFS(fit$model)
+autoplot(smoothed)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-32-1.png" alt="ggfortify-unnamed-chunk-32-1" /></p>
+
+<p>使用 <code>smoothing='none'</code> 可以画出过滤后的结果。</p>
+
+<pre><code class="language-r">filtered &lt;- KFS(fit$model, filtering=&quot;mean&quot;, smoothing='none')
+autoplot(filtered)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-33-1.png" alt="ggfortify-unnamed-chunk-33-1" /></p>
+
+<pre><code class="language-r">trend &lt;- signal(smoothed, states=&quot;trend&quot;)
+p &lt;- autoplot(filtered)
+autoplot(trend, ts.colour = 'blue', p = p)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-35-1.png" alt="ggfortify-unnamed-chunk-35-1" /></p>
+
+<h2 id="stats包">stats包</h2>
+
+<p>可支持的stats包里的对象有：</p>
+
+<ul>
+<li><code>stl</code>, <code>decomposed.ts</code></li>
+<li><code>acf</code>, <code>pacf</code>, <code>ccf</code></li>
+<li><code>spec.ar</code>, <code>spec.pgram</code></li>
+<li><code>cpgram</code></li>
+</ul>
+
+<pre><code class="language-r">autoplot(stl(AirPassengers, s.window = 'periodic'), ts.colour = 'blue')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-36-1.png" alt="ggfortify-unnamed-chunk-36-1" /></p>
+
+<pre><code class="language-r">autoplot(acf(AirPassengers, plot = FALSE))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-37-1.png" alt="ggfortify-unnamed-chunk-37-1" /></p>
+
+<pre><code class="language-r">autoplot(acf(AirPassengers, plot = FALSE), conf.int.fill = '#0000FF', 
+         conf.int.value = 0.8, conf.int.type = 'ma')
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-38-1.png" alt="ggfortify-unnamed-chunk-38-1" /></p>
+
+<pre><code class="language-r">autoplot(spec.ar(AirPassengers, plot = FALSE))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-39-1.png" alt="ggfortify-unnamed-chunk-39-1" /></p>
+
+<pre><code class="language-r">ggcpgram(arima.sim(list(ar = c(0.7, -0.5)), n = 50))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-40-1.png" alt="ggfortify-unnamed-chunk-40-1" /></p>
+
+<pre><code class="language-r">library(forecast)
+ggtsdiag(auto.arima(AirPassengers))
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-41-1.png" alt="ggfortify-unnamed-chunk-41-1" /></p>
+
+<pre><code class="language-r">gglagplot(AirPassengers, lags = 4)
+</code></pre>
+
+<p><img src="/images/Tech/R/ggfortify-visualization-in-one-line-of-code/ggfortify-unnamed-chunk-42-1.png" alt="ggfortify-unnamed-chunk-42-1" /></p>
+
+<p>更多关于时间序列的例子，请参考 <a href="http://rpubs.com/sinhrks/plot_ts" target="_blank">Rpubs</a> 上的介绍。</p>
+
+<p>最近又多了许多额外的非常好用的功能，比如说现在已经支持 <code>multiplot</code> 同时画多个不同对象，强烈推荐参考 <a href="http://rpubs.com/sinhrks/ggfortify_subplots" target="_blank">Rpubs</a> 以及关注我们 <a href="https://github.com/sinhrks/ggfortify" target="_blank">Github</a> 上的更新。</p>
+
+<p>祝大家使用愉快！有问题请及时在Github上 <a href="https://github.com/sinhrks/ggfortify/issues" target="_blank">报告</a>。(可以使用中文)</p>
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2015/07/23/hello-r-markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Hello R Markdown</div>
+    </a>
+    
+
+    
+    <a href="/tech/2015/11/30/to-achieve-the-visualization-and-annotation-of-evolutionary-tree-using-ggtree/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用ggtree实现进化树的可视化和注释 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2015\/07\/23\/hello-r-markdown\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2015\/11\/30\/to-achieve-the-visualization-and-annotation-of-evolutionary-tree-using-ggtree\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

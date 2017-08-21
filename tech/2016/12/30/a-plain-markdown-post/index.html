@@ -156,8 +156,7 @@
 
 <ol>
 <li>You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (<code>```{r}</code>);</li>
-<li>A plain Markdown post is rendered through <a href="https://gohugo.io/overview/configuration/" target="_blank">Blackfriday</a>, and an R Markdown document is compiled by <a href="http://rmarkdown.rstudio.com" target="_blank"><strong>rmarkdown</strong></a> and <a href="http://pandoc.org" target="_blank">Pandoc</a>.<br />
-</li>
+<li>A plain Markdown post is rendered through <a href="https://gohugo.io/overview/configuration/" target="_blank">Blackfriday</a>, and an R Markdown document is compiled by <a href="http://rmarkdown.rstudio.com" target="_blank"><strong>rmarkdown</strong></a> and <a href="http://pandoc.org" target="_blank">Pandoc</a>.</li>
 </ol>
 
 <p>There are many differences in syntax between Blackfriday&rsquo;s Markdown and Pandoc&rsquo;s Markdown. For example, you can write a task list with Blackfriday but not with Pandoc:</p>
@@ -166,8 +165,7 @@
 <li><input type="checkbox" checked disabled class="task-list-item"> Write an R package.</li>
 <li><input type="checkbox" disabled class="task-list-item"> Write a book.</li>
 <li><input type="checkbox" disabled class="task-list-item"> &hellip;</li>
-<li><input type="checkbox" disabled class="task-list-item"> Profit!<br />
-</li>
+<li><input type="checkbox" disabled class="task-list-item"> Profit!</li>
 </ul>
 
 <p>Similarly, Blackfriday does not support LaTeX math and Pandoc does. I have added the MathJax support to this theme (<a href="https://github.com/yihui/hugo-lithium-theme" target="_blank">hugo-lithium-theme</a>) but there is a caveat for plain Markdown posts: you have to include math expressions in a pair of backticks (inline: <code>`$ $`</code>; display style: <code>`$$ $$`</code>), e.g., <code>$S_n = \sum_{i=1}^n X_i$</code>.<sup class="footnote-ref" id="fnref:This-is-because"><a rel="footnote" href="#fn:This-is-because">1</a></sup> For R Markdown posts, you do not need the backticks, because Pandoc can identify and process math expressions.</p>
@@ -250,6 +248,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

@@ -220,8 +220,7 @@ request.add_header(&quot;Cookie&quot;, cookie)
 
 <ol>
 <li>User-Agent：有些 Server 或 Proxy 会检查该值，用来判断是否是浏览器发起的 Request</li>
-<li>Content-Type：在使用 REST 接口时，Server 会检查该值，用来确定 HTTP Body 中的内容该怎样解析。<br />
-</li>
+<li>Content-Type：在使用 REST 接口时，Server 会检查该值，用来确定 HTTP Body 中的内容该怎样解析。</li>
 </ol>
 
 <p>这时可以通过修改<code>http</code>包中的<code>header</code>来实现，代码片段如下：</p>
@@ -244,16 +243,14 @@ print urllib2.urlopen(request).read()
 
 <ul>
 <li>正则表达式入门：<a href="http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html" target="_blank">http://www.cnblogs.com/huxi/archive/2010/07/04/1771073.html</a></li>
-<li>正则表达式在线测试：<a href="http://tool.oschina.net/regex/" target="_blank">http://tool.oschina.net/regex/</a><br />
-</li>
+<li>正则表达式在线测试：<a href="http://tool.oschina.net/regex/" target="_blank">http://tool.oschina.net/regex/</a></li>
 </ul>
 
 <p>其次就是解析库了，常用的有两个<code>lxml</code>和<code>BeautifulSoup</code>，对于这两个的使用介绍两个比较好的网站：</p>
 
 <ul>
 <li>lxml：<a href="http://my.oschina.net/jhao104/blog/639448" target="_blank">http://my.oschina.net/jhao104/blog/639448</a></li>
-<li>BeautifulSoup：<a href="http://cuiqingcai.com/1319.html" target="_blank">http://cuiqingcai.com/1319.html</a><br />
-</li>
+<li>BeautifulSoup：<a href="http://cuiqingcai.com/1319.html" target="_blank">http://cuiqingcai.com/1319.html</a></li>
 </ul>
 
 <p>对于这两个库，我的评价是，都是 HTML/XML 的处理库，<code>Beautifulsoup</code>纯 Python 实现，效率低，但是功能实用，比如能用通过结果搜索获得某个 HTML 节点的源码；<code>lxml</code>C语言编码，高效，支持<code>Xpath</code>。</p>
@@ -332,8 +329,8 @@ q.join()
     
 
     
-    <a href="/tech/2016/09/23/js-css-webagent/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title">根据浏览器类型、屏幕分辨率调用不同的样式文件 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    <a href="/tech/2016/06/29/introduction-to-remap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">REmap入门示例 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
     </a>
     
 </nav>
@@ -347,7 +344,7 @@ document.addEventListener('keyup', function(e) {
     
   } else if (e.which == 39) {  
     
-    url = '\/tech\/2016\/09\/23\/js-css-webagent\/';
+    url = '\/tech\/2016\/06\/29\/introduction-to-remap\/';
     
   }
   if (url) window.location = url;
@@ -419,6 +416,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

@@ -164,8 +164,7 @@
 <ol>
 <li>默认的类看不出是动态创建的；</li>
 <li><code>eval()</code>, <code>getattr</code> 动态创建对象 - 见下面内容；</li>
-<li>区分<code>__getattr__()</code>方法与<code>getattr()</code>函数；前者是访问不存在的属性时动态返回一个属性或函数，后者是返回指定类属性的取值；<br />
-</li>
+<li>区分<code>__getattr__()</code>方法与<code>getattr()</code>函数；前者是访问不存在的属性时动态返回一个属性或函数，后者是返回指定类属性的取值；</li>
 </ol>
 
 <!-- more -->
@@ -173,8 +172,7 @@
 <hr />
 
 <ol>
-<li>廖雪峰的 ORM 的例子中中，<code>Model</code>里面只有非常抽象的<code>save()</code>等方法，在<code>ModelMetaclass</code>里面根据<code>User</code>中的属性动态创建映射关系，然后再实时返回一个创建好的具体的<code>User</code>类；<br />
-
+<li>廖雪峰的 ORM 的例子中中，<code>Model</code>里面只有非常抽象的<code>save()</code>等方法，在<code>ModelMetaclass</code>里面根据<code>User</code>中的属性动态创建映射关系，然后再实时返回一个创建好的具体的<code>User</code>类；
 <ol>
 <li><code>Users</code>中由使用者指定需要映射的具体条目，对于不同的使用者，要映射的条目不相同，比如现在要的是<code>username, email</code>，下次的场景就可能是<code>user, password</code>；</li>
 <li>即使要映射的条目相同，使用者定义的<code>Users</code>的属性名称也可能不同，比如有人是<code>username</code>，有人可能是<code>userid</code>；</li>
@@ -184,8 +182,7 @@
 <li><code>ModelMetaclass</code>在 new Users 的时候，就把<code>Users</code>中指定好的条目对（本地条目、数据库表的字段）接管过来，保存好<code>属性-字段</code>关系，将其作为一部分参数重新传递给<code>type()</code>函数重新创建<code>User</code>类，也就是在<code>Users()</code>创建的时候拦截下来，做了修改之后再按规划创建一个规范的<code>User</code>类</li>
 <li><code>User</code>如果不用<code>ModelMetaclass</code>的话，其创建的时候，自身是无法知道接下来会有什么属性和属性名的。</li>
 <li>这时<code>User</code>继承自<code>Model</code>的<code>Save()</code>其实在此之前并不知道会有哪些条目，但是经过<code>ModelMetaclass</code>之后，就可以从动态生成的<code>__mappings__</code>中获知这一点；</li>
-<li>现在<code>User</code>只管根据需要即时创建好条目对，之后由<code>ModelMetaclass</code>创建修改后的类，创建初始化完成后，参数再传递到继承自<code>Model</code>的<code>Save()</code>方法，最后<code>Save()</code>根据收到的参数：对象的具体参数以及具体需要的条目对完成数据库操作。<br />
-</li>
+<li>现在<code>User</code>只管根据需要即时创建好条目对，之后由<code>ModelMetaclass</code>创建修改后的类，创建初始化完成后，参数再传递到继承自<code>Model</code>的<code>Save()</code>方法，最后<code>Save()</code>根据收到的参数：对象的具体参数以及具体需要的条目对完成数据库操作。</li>
 </ol>
 
 <hr />
@@ -193,8 +190,7 @@
 <ul>
 <li><code>User</code>中只有条目对作为属性；</li>
 <li><code>ModelMetaclass</code>中只有<code>__new__()</code>；</li>
-<li><code>Model</code>中包含具体的初始化以及业务逻辑。<br />
-</li>
+<li><code>Model</code>中包含具体的初始化以及业务逻辑。</li>
 </ul>
 
 <h1 id="利用-eval">利用 eval()</h1>
@@ -379,6 +375,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

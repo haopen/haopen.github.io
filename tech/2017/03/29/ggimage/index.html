@@ -97,7 +97,7 @@
 
   <article class="article">
     
-    <span class="article-duration">3613 字</span>
+    <span class="article-duration">3618 字</span>
     
 
     
@@ -142,17 +142,18 @@
   
   <span class="taxonomy-tag"><a href="/tags/4-%E5%9B%BE%E5%BD%A2" title="图形">图形</a></span>;
   
+  <span class="taxonomy-tag"><a href="/tags/4-r-package" title="R Package">R Package</a></span>;
+  
   
 </div>
 
 
     
     <div class="article-content cn" id="articleContent">
-      <p>原文地址：<a href="https://cos.name/2017/04/ggimage/" target="_blank">https://cos.name/2017/04/ggimage/</a></p>
+      <p><strong>原文地址</strong>：<a href="https://cos.name/2017/04/ggimage/" target="_blank">https://cos.name/2017/04/ggimage/</a></p>
 
 <blockquote>
-<p>作者简介：余光创，香港大学公共卫生学院，生物信息学博士生。<br />
-博客：<a href="https://guangchuangyu.github.io" target="_blank">https://guangchuangyu.github.io</a>， 公众号：biobabble</p>
+<p>作者简介：余光创，香港大学公共卫生学院，生物信息学博士生。<br />博客：<a href="https://guangchuangyu.github.io" target="_blank">https://guangchuangyu.github.io</a>， 公众号：biobabble</p>
 </blockquote>
 
 <h1 id="导言">导言</h1>
@@ -180,8 +181,7 @@ rasterImage(x, 2, 2, 6, 4)
 
 <ul>
 <li><a href="https://stackoverflow.com/questions/9917049/inserting-an-image-to-ggplot2" target="_blank">r - Inserting an image to ggplot2 - Stack Overflow</a></li>
-<li><a href="https://www.r-bloggers.com/add-a-background-png-image-to-ggplot2/" target="_blank">Add a background png image to ggplot2 | R-bloggers</a><br />
-</li>
+<li><a href="https://www.r-bloggers.com/add-a-background-png-image-to-ggplot2/" target="_blank">Add a background png image to ggplot2 | R-bloggers</a></li>
 </ul>
 
 <p>也就是说通过程序员秘笈，搜索，我们用<strong>ggplot2</strong>同样也可以做到。</p>
@@ -215,9 +215,7 @@ install.packages(&quot;ggimage&quot;)
 
 <h1 id="实例分析">实例分析</h1>
 
-<p>据我所知目前支持使用图片的R包有<strong>CatterPlots</strong>, <strong>rphylopic</strong>, <strong>emoGG</strong>,<br />
-<strong>ggflags</strong>这几个，都是为特定的目的而实现的，都有其特定的应用场景，而<strong>ggimage</strong>是的<br />
-<code>geom_image</code>是通用的，通过对它进行简单的包装，同样可以实现这些特殊场景的应用图层。</p>
+<p>据我所知目前支持使用图片的R包有<strong>CatterPlots</strong>, <strong>rphylopic</strong>, <strong>emoGG</strong>,<strong>ggflags</strong>这几个，都是为特定的目的而实现的，都有其特定的应用场景，而<strong>ggimage</strong>是的<code>geom_image</code>是通用的，通过对它进行简单的包装，同样可以实现这些特殊场景的应用图层。</p>
 
 <p><strong>CatterPlots</strong>这个包只可以应用于基础图形库（base graphics）中，通过预设的几个猫图（R对象，随包载入）来画散点图。最近<a href="http://blog.revolutionanalytics.com/2017/02/catterplots-plots-with-cats.html" target="_blank">RevolutionAnalytics 有博文</a>介绍。<strong>ggplot2</strong>没有相应画猫的包。我们可以使用<strong>ggimage</strong>来画，而且不用限制于<strong>CatterPlots</strong>预设的几个图形。</p>
 
@@ -278,8 +276,7 @@ p + ggimage::geom_emoji(aes(image = ifelse(abs(Petal.Length-fitted) &gt; 0.5, '1
 
 <p>这里我们只分两类(残差是否大于0.5)，所以需要加两次，试想我们的分类变量有多种可能的取值，则我们需要分多次切数据加图层，<strong>CatterPlots</strong>、<strong>rphylopic</strong>和<strong>emoGG</strong>都有这个问题，这也是<code>aes</code>映射之于<strong>ggplot2</strong>的重要和强大之处，它让我们可以在更高的抽像水平思考，</p>
 
-<p><strong>ggflags</strong>是支持<code>aes</code>映射的，只不过它只能用来画国旗而已。同样<strong>ggimage</strong>也提供<br />
-了相应的<code>geom_flag</code>来使用国旗用于做图。</p>
+<p><strong>ggflags</strong>是支持<code>aes</code>映射的，只不过它只能用来画国旗而已。同样<strong>ggimage</strong>也提供了相应的<code>geom_flag</code>来使用国旗用于做图。</p>
 
 <pre><code class="language-r">library(rvest)
 library(dplyr)
@@ -393,9 +390,7 @@ ggplot(d, aes(x, y)) + geom_image(image = img, size = .1) +
 
 <h3 id="嵌套式绘图">嵌套式绘图</h3>
 
-<p>这里我要展示的是非常有名的气泡图（Bubble Plot），但气泡不是圆圈，而是使用<strong>ggplot2</strong>画<br />
-的饼图，我先把饼图保存起来，再用<strong>ggimage</strong>拿来画，饼图的大小<br />
-与人口总数正相关。这个例子可以应用到很多场景中去，比如一个时间序列的曲线，你要用统计图在某些时间点上展示相关的信息，比如你要在地图上加某些地方的相关统计信息（如果要在地图上画饼图，可以使用我写的<a href="https://cran.r-project.org/package=scatterpie" target="_blank"><strong>scatterpie</strong></a>包）。</p>
+<p>这里我要展示的是非常有名的气泡图（Bubble Plot），但气泡不是圆圈，而是使用<strong>ggplot2</strong>画的饼图，我先把饼图保存起来，再用<strong>ggimage</strong>拿来画，饼图的大小与人口总数正相关。这个例子可以应用到很多场景中去，比如一个时间序列的曲线，你要用统计图在某些时间点上展示相关的信息，比如你要在地图上加某些地方的相关统计信息（如果要在地图上画饼图，可以使用我写的<a href="https://cran.r-project.org/package=scatterpie" target="_blank"><strong>scatterpie</strong></a>包）。</p>
 
 <pre><code class="language-r">crime &lt;- read.csv(&quot;http://datasets.flowingdata.com/crimeRatesByState2005.tsv&quot;,
                   header = TRUE, sep = &quot;\t&quot;, stringsAsFactors = F)
@@ -688,6 +683,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

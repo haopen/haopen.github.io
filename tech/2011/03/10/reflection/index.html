@@ -206,8 +206,7 @@ dir([obj]):
 <ul>
 <li><code>hasattr(obj, attr)</code>: 这个方法用于检查<code>obj</code>是否有一个名为<code>attr</code>的值的属性，返回一个布尔值。</li>
 <li><code>getattr(obj, attr)</code>: 调用这个方法将返回<code>obj</code>中名为<code>attr</code>值的属性的值，例如如果<code>attr</code>为<code>'bar'</code>，则返回<code>obj.bar</code>。</li>
-<li><code>setattr(obj, attr, val)</code>: 调用这个方法将给<code>obj</code>的名为<code>attr</code>的值的属性赋值为<code>val</code>。例如如果<code>attr</code>为<code>'bar'</code>，则相当于<code>obj.bar = val</code>。<br />
-</li>
+<li><code>setattr(obj, attr, val)</code>: 调用这个方法将给<code>obj</code>的名为<code>attr</code>的值的属性赋值为<code>val</code>。例如如果<code>attr</code>为<code>'bar'</code>，则相当于<code>obj.bar = val</code>。</li>
 </ul>
 
 <h1 id="访问对象的元数据">访问对象的元数据</h1>
@@ -221,8 +220,7 @@ dir([obj]):
 <p>在<code>types</code>模块中定义了全部的 Python 内置类型，结合内置方法<code>isinstance()</code>就可以确定对象的具体类型了。</p>
 
 <ul>
-<li><code>isinstance(object, classinfo)</code>: 检查<code>object</code>是不是<code>classinfo</code>中列举出的类型，返回布尔值。<code>classinfo</code>可以是一个具体的类型，也可以是多个类型的元组或列表。<br />
-</li>
+<li><code>isinstance(object, classinfo)</code>: 检查<code>object</code>是不是<code>classinfo</code>中列举出的类型，返回布尔值。<code>classinfo</code>可以是一个具体的类型，也可以是多个类型的元组或列表。</li>
 </ul>
 
 <p><code>types</code>模块中仅仅定义了类型，而<code>inspect</code>模块中封装了很多检查类型的方法，比直接使用<code>types</code>模块更为轻松，所以这里不给出关于<code>types</code>的更多介绍，如有需要可以直接查看<code>types</code>模块的文档说明。本文第 3 节中介绍了<code>inspect</code>模块。</p>
@@ -233,8 +231,7 @@ dir([obj]):
 <li><code>__doc__</code>: 文档字符串。如果模块没有文档，这个值是<code>None</code>。</li>
 <li><strong>*</strong><code>__name__</code>: 始终是定义时的模块名；即使你使用<code>import .. as</code>为它取了别名，或是赋值给了另一个变量名。</li>
 <li><strong>*</strong><code>__dict__</code>: 包含了模块里可用的<code>属性名-属性</code>的字典；也就是可以使用<code>模块名.属性名</code>访问的对象。</li>
-<li><code>__file__</code>: 包含了该模块的文件路径。需要注意的是内建的模块没有这个属性，访问它会抛出异常！<br />
-</li>
+<li><code>__file__</code>: 包含了该模块的文件路径。需要注意的是内建的模块没有这个属性，访问它会抛出异常！</li>
 </ul>
 
 <pre><code class="language-python">import fnmatch as m
@@ -251,8 +248,7 @@ print m.__dict__.items()[0]     # ('fnmatchcase', )
 <li><strong>*</strong><code>__name__</code>: 始终是定义时的类名。</li>
 <li><strong>*</strong><code>__dict__</code>: 包含了类里可用的<code>属性名-属性</code>的字典；也就是可以使用<code>类名.属性名</code>访问的对象。</li>
 <li><code>__module__</code>: 包含该类的定义的模块名；需要注意，是字符串形式的模块名而不是模块对象。</li>
-<li><strong>*</strong><code>__bases__</code>: 直接父类对象的元组；但不包含继承树更上层的其他类，比如父类的父类。<br />
-</li>
+<li><strong>*</strong><code>__bases__</code>: 直接父类对象的元组；但不包含继承树更上层的其他类，比如父类的父类。</li>
 </ul>
 
 <pre><code class="language-python">print Cat.__doc__           # None
@@ -268,8 +264,7 @@ print Cat.__dict__          # {'__module__': '__main__', ...}
 
 <ul>
 <li><strong>*</strong><code>__dict__</code>: 包含了可用的<code>属性名-属性</code>字典。</li>
-<li><strong>*</strong><code>__class__</code>: 该实例的类对象。对于类<code>Cat</code>，<code>cat.__class__ == Cat</code>为<code>True</code>。<br />
-</li>
+<li><strong>*</strong><code>__class__</code>: 该实例的类对象。对于类<code>Cat</code>，<code>cat.__class__ == Cat</code>为<code>True</code>。</li>
 </ul>
 
 <pre><code class="language-python">print cat.__dict__
@@ -285,8 +280,7 @@ print cat.__class__ == Cat # True
 <li><code>__doc__</code>: 函数或方法的文档。</li>
 <li><code>__name__</code>: 函数或方法定义时的名字。</li>
 <li><code>__self__</code>: 仅方法可用，如果是绑定的(bound)，则指向调用该方法的类（如果是类方法）或实例（如果是实例方法），否则为<code>None</code>。</li>
-<li><strong>*</strong><code>__module__</code>: 函数或方法所在的模块名。<br />
-</li>
+<li><strong>*</strong><code>__module__</code>: 函数或方法所在的模块名。</li>
 </ul>
 
 <h2 id="函数-function">函数(function)</h2>
@@ -297,8 +291,7 @@ print cat.__class__ == Cat # True
 <li><code>__doc__</code>: 函数的文档；另外也可以用属性名<code>func_doc</code>。</li>
 <li><code>__name__</code>: 函数定义时的函数名；另外也可以用属性名<code>func_name</code>。</li>
 <li><strong>*</strong><code>__module__</code>: 包含该函数定义的模块名；同样注意，是模块名而不是模块对象。</li>
-<li><strong>*</strong><code>__dict__</code>: 函数的可用属性；另外也可以用属性名<code>func_dict</code>。<br />
-</li>
+<li><strong>*</strong><code>__dict__</code>: 函数的可用属性；另外也可以用属性名<code>func_dict</code>。</li>
 </ul>
 
 <p>不要忘了函数也是对象，可以使用函数.属性名访问属性（赋值时如果属性不存在将新增一个），或使用内置函数<code>has/get/setattr()</code>访问。不过，在函数中保存属性的意义并不大。</p>
@@ -307,8 +300,7 @@ print cat.__class__ == Cat # True
 <li><code>func_defaults</code>: 这个属性保存了函数的参数默认值元组；因为默认值总是靠后的参数才有，所以不使用字典的形式也是可以与参数对应上的。</li>
 <li><code>func_code</code>: 这个属性指向一个该函数对应的<code>code</code>对象，<code>code</code>对象中定义了其他的一些特殊属性，将在下文中另外介绍。</li>
 <li><code>func_globals</code>: 这个属性指向定义函数时的全局命名空间。</li>
-<li><strong>*</strong><code>func_closure</code>: 这个属性仅当函数是一个闭包时有效，指向一个保存了所引用到的外部函数的变量<code>cell</code>的元组，如果该函数不是一个内部函数，则始终为<code>None</code>。这个属性也是只读的。<br />
-</li>
+<li><strong>*</strong><code>func_closure</code>: 这个属性仅当函数是一个闭包时有效，指向一个保存了所引用到的外部函数的变量<code>cell</code>的元组，如果该函数不是一个内部函数，则始终为<code>None</code>。这个属性也是只读的。</li>
 </ul>
 
 <p>下面的代码演示了<code>func_closure</code>：</p>
@@ -339,8 +331,7 @@ print closure.func_closure[0].cell_contents # 2
 <li><strong>*</strong><code>*__module__</code>: 与函数相同。</li>
 <li><code>im_func</code>: 使用这个属性可以拿到方法里实际的函数对象的引用。另外如果是 2.6 以上的版本，还可以使用属性名<code>__func__</code>。</li>
 <li><code>im_self</code>: 如果是绑定的(bound)，则指向调用该方法的类（如果是类方法）或实例（如果是实例方法），否则为<code>None</code>。如果是 2.6 以上的版本，还可以使用属性名<code>__self__</code>。</li>
-<li><code>im_class</code>: 实际调用该方法的类，或实际调用该方法的实例的类。注意不是方法的定义所在的类，如果有继承关系的话。<br />
-</li>
+<li><code>im_class</code>: 实际调用该方法的类，或实际调用该方法的实例的类。注意不是方法的定义所在的类，如果有继承关系的话。</li>
 </ul>
 
 <pre><code class="language-python">im = cat.sayHi
@@ -360,8 +351,7 @@ print im.im_class # Cat
 <li><code>gi_code</code>: 生成器对应的<code>code</code>对象。</li>
 <li><code>gi_frame</code>: 生成器对应的<code>frame</code>对象。</li>
 <li><code>gi_running</code>: 生成器函数是否在执行。生成器函数在<code>yield</code>以后、执行<code>yield</code>的下一行代码前处于<code>frozen</code>状态，此时这个属性的值为<code>0</code>。</li>
-<li><code>next|close|send|throw</code>: 这是几个可调用的方法，并不包含元数据信息，如何使用可以查看生成器的相关文档。<br />
-</li>
+<li><code>next|close|send|throw</code>: 这是几个可调用的方法，并不包含元数据信息，如何使用可以查看生成器的相关文档。</li>
 </ul>
 
 <pre><code class="language-python">def gen():
@@ -389,8 +379,7 @@ for n in g:
 <li><code>co_names</code>: 所有的参数名（包括<code>*</code>参数和<code>**</code>参数）和局部变量名的元组。</li>
 <li><code>co_varnames</code>: 所有的局部变量名的元组。</li>
 <li><code>co_filename</code>: 源代码所在的文件名。</li>
-<li><code>co_flags</code>:  这是一个数值，每一个二进制位都包含了特定信息。较关注的是<code>0b100(0x4)</code>和<code>0b1000(0x8)</code>，如果<code>co_flags &amp; 0b100 != 0</code>，说明使用了<code>*args</code>参数；如果<code>co_flags &amp; 0b1000 != 0</code>，说明使用了<code>**kwargs</code>参数。另外，如果<code>co_flags &amp; 0b100000(0x20) != 0</code>，则说明这是一个生成器函数(generator function)。<br />
-</li>
+<li><code>co_flags</code>:  这是一个数值，每一个二进制位都包含了特定信息。较关注的是<code>0b100(0x4)</code>和<code>0b1000(0x8)</code>，如果<code>co_flags &amp; 0b100 != 0</code>，说明使用了<code>*args</code>参数；如果<code>co_flags &amp; 0b1000 != 0</code>，说明使用了<code>**kwargs</code>参数。另外，如果<code>co_flags &amp; 0b100000(0x20) != 0</code>，则说明这是一个生成器函数(generator function)。</li>
 </ul>
 
 <pre><code class="language-python">co = cat.sayHi.func_code
@@ -408,8 +397,7 @@ print co.co_flags &amp; 0b100   # 0
 <li><code>f_back</code>: 调用栈的前一帧。</li>
 <li><code>f_code</code>: 栈帧对应的<code>code</code>对象。</li>
 <li><code>f_locals</code>: 用在当前栈帧时与内建函数<code>locals()</code>相同，但你可以先获取其他帧然后使用这个属性获取那个帧的<code>locals()</code>。</li>
-<li><code>f_globals</code>: 用在当前栈帧时与内建函数<code>globals()</code>相同，但你可以先获取其他帧……。<br />
-</li>
+<li><code>f_globals</code>: 用在当前栈帧时与内建函数<code>globals()</code>相同，但你可以先获取其他帧……。</li>
 </ul>
 
 <pre><code class="language-python">def add(x, y=1):
@@ -427,8 +415,7 @@ add(2)
 <ul>
 <li><code>tb_next</code>: 追踪的下一个追踪对象。</li>
 <li><code>tb_frame</code>: 当前追踪对应的栈帧。</li>
-<li><code>tb_lineno</code>: 当前追踪的行号。<br />
-</li>
+<li><code>tb_lineno</code>: 当前追踪的行号。</li>
 </ul>
 
 <pre><code class="language-python">def div(x, y):
@@ -449,8 +436,7 @@ div(1, 0)
 
 <ul>
 <li><code>is{module|class|function|method|builtin}(obj)</code>: 检查对象是否为模块、类、函数、方法、内建函数或方法。</li>
-<li><code>isroutine(obj)</code>: 用于检查对象是否为函数、方法、内建函数或方法等等可调用类型。用这个方法会比多个<code>is*()</code>更方便，不过它的实现仍然是用了多个<code>is*()</code>。<br />
-</li>
+<li><code>isroutine(obj)</code>: 用于检查对象是否为函数、方法、内建函数或方法等等可调用类型。用这个方法会比多个<code>is*()</code>更方便，不过它的实现仍然是用了多个<code>is*()</code>。</li>
 </ul>
 
 <pre><code class="language-python">im = cat.sayHi
@@ -467,8 +453,7 @@ if inspect.isroutine(im):
 <li><code>getmodule(object)</code>: 还在为第2节中的<code>__module__</code>属性只返回字符串而遗憾吗？这个方法一定可以满足你，它返回<code>object</code>的定义所在的模块对象。</li>
 <li><code>get{file|sourcefile}(object)</code>: 获取<code>object</code>的定义所在的模块的文件名|源代码文件名（如果没有则返回<code>None</code>）。用于内建的对象（内建模块、类、函数、方法）上时会抛出<code>TypeError</code>异常。</li>
 <li><code>get{source|sourcelines}(object)</code>: 获取<code>object</code>的定义的源代码，以字符串|字符串列表返回。代码无法访问时会抛出<code>IOError</code>异常。只能用于<code>module/class/function/method/code/frame/traceack</code>对象。</li>
-<li><code>getargspec(func)</code>: 仅用于方法，获取方法声明的参数，返回元组，分别是<code>(普通参数名的列表, *参数名, **参数名, 默认值元组)</code>。如果没有值，将是空列表和 3 个<code>None</code>。如果是 2.6 以上版本，将返回一个命名元组(Named Tuple)，即除了索引外还可以使用属性名访问元组中的元素。<br />
-</li>
+<li><code>getargspec(func)</code>: 仅用于方法，获取方法声明的参数，返回元组，分别是<code>(普通参数名的列表, *参数名, **参数名, 默认值元组)</code>。如果没有值，将是空列表和 3 个<code>None</code>。如果是 2.6 以上版本，将返回一个命名元组(Named Tuple)，即除了索引外还可以使用属性名访问元组中的元素。</li>
 </ul>
 
 <pre><code class="language-python">def add(x, y=1, *z):
@@ -478,8 +463,7 @@ print inspect.getargspec(add)
 </code></pre>
 
 <ul>
-<li><code>getargvalues(frame)</code>: 仅用于栈帧，获取栈帧中保存的该次函数调用的参数值，返回元组，分别是<code>(普通参数名的列表, *参数名, **参数名, 帧的locals())</code>。如果是 2.6 以上版本，将返回一个命名元组(Named Tuple)，即除了索引外还可以使用属性名访问元组中的元素。<br />
-</li>
+<li><code>getargvalues(frame)</code>: 仅用于栈帧，获取栈帧中保存的该次函数调用的参数值，返回元组，分别是<code>(普通参数名的列表, *参数名, **参数名, 帧的locals())</code>。如果是 2.6 以上版本，将返回一个命名元组(Named Tuple)，即除了索引外还可以使用属性名访问元组中的元素。</li>
 </ul>
 
 <pre><code class="language-python">def add(x, y=1, *z):
@@ -491,8 +475,7 @@ add(2)
 
 <ul>
 <li><code>getcallargs(func[, *args][, **kwds])</code>: 返回使用<code>args</code>和<code>kwds</code>调用该方法时各参数对应的值的字典。这个方法仅在 2.7 版本中才有。</li>
-<li><code>getmro(cls)</code>: 返回一个类型元组，查找类属性时按照这个元组中的顺序。如果是<code>新式类</code>，与<code>cls.__mro__</code>结果一样。但旧式类没有<code>__mro__</code>这个属性，直接使用这个属性会报异常，所以这个方法还是有它的价值的。<br />
-</li>
+<li><code>getmro(cls)</code>: 返回一个类型元组，查找类属性时按照这个元组中的顺序。如果是<code>新式类</code>，与<code>cls.__mro__</code>结果一样。但旧式类没有<code>__mro__</code>这个属性，直接使用这个属性会报异常，所以这个方法还是有它的价值的。</li>
 </ul>
 
 <pre><code class="language-python">print inspect.getmro(Cat)
@@ -506,8 +489,7 @@ print Dog.__mro__ # AttributeError
 </code></pre>
 
 <ul>
-<li><code>currentframe()</code>: 返回当前的栈帧对象。<br />
-</li>
+<li><code>currentframe()</code>: 返回当前的栈帧对象。</li>
 </ul>
 
 <p>其他的操作<code>frame</code>和<code>traceback</code>的函数请查阅<code>inspect</code>模块的文档，用的比较少，这里就不多介绍了。</p>
@@ -617,6 +599,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

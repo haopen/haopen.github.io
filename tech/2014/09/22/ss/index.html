@@ -168,8 +168,7 @@
 <ul>
 <li><code>1)</code> 首先用户和境外服务器基于 ssh 建立起一条加密的通道；</li>
 <li><code>2-3)</code> 用户通过建立起的隧道进行代理，通过 ssh server 向真实的服务发起请求；</li>
-<li><code>4-5)</code> 服务通过 ssh server，再通过创建好的隧道返回给用户。<br />
-</li>
+<li><code>4-5)</code> 服务通过 ssh server，再通过创建好的隧道返回给用户。</li>
 </ul>
 
 <p><img src="/images/Tech/Network/shadowsocks/whats-shadowsocks-03.png" alt="" /></p>
@@ -185,8 +184,7 @@
 <ul>
 <li><code>6)</code> 客户端发出的请求基于 Socks5 协议跟 ss-local 端进行通讯，由于这个 ss-local 一般是本机或路由器或局域网的其他机器，不经过 GFW，所以解决了上面被 GFW 通过特征分析进行干扰的问题；</li>
 <li><code>5)</code> ss-local 和 ss-server 两端通过多种可选的加密方法进行通讯，经过 GFW 的时候是常规的TCP包，没有明显的特征码而且 GFW 也无法对通讯数据进行解密；</li>
-<li><code>3、4)</code> ss-server 将收到的加密数据进行解密，还原原来的请求，再发送到用户需要访问的服务，获取响应原路返回。<br />
-</li>
+<li><code>3、4)</code> ss-server 将收到的加密数据进行解密，还原原来的请求，再发送到用户需要访问的服务，获取响应原路返回。</li>
 </ul>
 
 <p><img src="/images/Tech/Network/shadowsocks/whats-shadowsocks-04.png" alt="" /></p>
@@ -289,6 +287,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

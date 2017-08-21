@@ -160,8 +160,7 @@
 
 <ul>
 <li>Python 可调用对象<code>__call__</code>方法的用法分析：<a href="http://blog.csdn.net/networm3/article/details/8645185" target="_blank">http://blog.csdn.net/networm3/article/details/8645185</a></li>
-<li>Python 2.7 中的<code>__call__</code>方法在实际环境中有什么实用的地方？(<code>cached_property</code>, <code>Pipline</code>)：<a href="https://segmentfault.com/q/1010000006113393?_ea=1020343" target="_blank">https://segmentfault.com/q/1010000006113393?_ea=1020343</a><br />
-</li>
+<li>Python 2.7 中的<code>__call__</code>方法在实际环境中有什么实用的地方？(<code>cached_property</code>, <code>Pipline</code>)：<a href="https://segmentfault.com/q/1010000006113393?_ea=1020343" target="_blank">https://segmentfault.com/q/1010000006113393?_ea=1020343</a></li>
 </ul>
 
 <!-- more -->
@@ -248,8 +247,7 @@ x(1, 2, 3) # __call__
 <ul>
 <li><code>__new__(cls, )</code>： 对象的<strong>创建</strong>，是一个<code>静态</code>方法，第一个参数是<code>cls</code>。(想想也是，不可能是<del><code>self</code></del>，对象还没创建，哪来的<code>self</code>)</li>
 <li><code>__init__(self, )</code>： 对象的<strong>初始化</strong>， 是一个<code>实例</code>方法，第一个参数是<code>self</code>。</li>
-<li><code>__call__()</code>： 对象 <strong>callable</strong>，注意不是类，是对象。<br />
-</li>
+<li><code>__call__()</code>： 对象 <strong>callable</strong>，注意不是类，是对象。</li>
 </ul>
 
 <p>先有创建，才有初始化。即先<code>__new__()</code>，而后<code>__init__()</code>。</p>
@@ -283,8 +281,7 @@ f()         # 对象 f 可 call
 
 <ul>
 <li>在 Python 中，<code>__init__()</code>方法类似于其它语言中的构造函数<sup class="footnote-ref" id="fnref:del"><a rel="footnote" href="#fn:del">1</a></sup>，该方法在创建对象时由类的<code>__new__()</code>方法调用，用于初始化一个实例。</li>
-<li><code>__call__()</code>方法使得类的实例变得<code>callable</code>，那什么时候可能会用到呢？考虑如下的场景：已经创建了类的实例——某个对象，现在需要在不销毁的前提下对这个已经创建好的对象进行重新定义，就需要用到<code>__call()__</code>方法。<br />
-</li>
+<li><code>__call__()</code>方法使得类的实例变得<code>callable</code>，那什么时候可能会用到呢？考虑如下的场景：已经创建了类的实例——某个对象，现在需要在不销毁的前提下对这个已经创建好的对象进行重新定义，就需要用到<code>__call()__</code>方法。</li>
 </ul>
 
 <blockquote>
@@ -397,6 +394,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

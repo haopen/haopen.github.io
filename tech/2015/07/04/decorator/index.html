@@ -215,8 +215,7 @@ This is a global variable
 <ol>
 <li>全局变量能够被<code>访问</code>到；</li>
 <li>如果是可变数据类型（如<code>list</code>, <code>dict</code>这些，甚至能够被更改），可能准确来讲并没有改变<code>list</code>或<code>dict</code>，而是改变了指向的具体<code>list</code>或<code>dict</code>内部的某个元素；</li>
-<li>不可以<del><code>赋值</code></del>，这里的赋值相当于在<code>foo()</code>内部创建一个名称为<code>a_string</code>的变量，因此只能在<code>foo()</code>的作用域内进行。<br />
-</li>
+<li>不可以<del><code>赋值</code></del>，这里的赋值相当于在<code>foo()</code>内部创建一个名称为<code>a_string</code>的变量，因此只能在<code>foo()</code>的作用域内进行。</li>
 </ol>
 
 <p>在函数内部的<code>#1</code>处，我们实际上新创建了一个局部变量，隐藏全局作用域中的同名变量。可以通过打印出局部命名空间中的内容得出这个结论，显然在<code>#2</code>处打印出来的变量<code>a_string</code>的值并没有改变。</p>
@@ -267,16 +266,14 @@ TypeError: foo() takes at least 1 argument (0 given)
 <ul>
 <li>在<code>#2</code>处我们能够通过常规的方式来调用函数，尽管有一个命名参数，但参数依然可以通过位置传递给函数；</li>
 <li>在调用函数的时候，对于命名参数<code>y</code>我们也可以完全不管就像<code>#3</code>处所示的一样。如果命名参数没有接收到任何值的话，Python会自动使用声明的默认值也就是<code>0</code>；</li>
-<li>不能省略第一个位置参数<code>x</code>，否则的话就会出现类似<code>#4</code>处所示发生错误；<br />
-</li>
+<li>不能省略第一个位置参数<code>x</code>，否则的话就会出现类似<code>#4</code>处所示发生错误；</li>
 </ul>
 
 <p>目前还算简洁清晰吧， 但是接下来可能会有点令人困惑。Python支持函数<code>调用时的命名参数</code>（个人觉得应该是命名实参）。</p>
 
 <ul>
 <li>观察<code>#5</code>处的函数调用，我们传递的是两个<code>命名</code>实参，这个时候因为有名称标识，参数传递的<code>顺序也就不用在意</code>了；</li>
-<li>相反的情况也是正确的：函数的第二个形参是<code>y</code>，但是我们通过位置的方式传递值给它。比如在<code>#2</code>处的函数调用<code>foo(3,1)</code>，我们把<code>3</code>传递给了第一个参数，把<code>1</code>传递给了第二个参数，尽管第二个参数是一个命名参数；<br />
-</li>
+<li>相反的情况也是正确的：函数的第二个形参是<code>y</code>，但是我们通过位置的方式传递值给它。比如在<code>#2</code>处的函数调用<code>foo(3,1)</code>，我们把<code>3</code>传递给了第一个参数，把<code>1</code>传递给了第二个参数，尽管第二个参数是一个命名参数；</li>
 </ul>
 
 <p>简单来讲，我们可以给只定义了位置参数的函数传递命名参数（实参），反之亦然！如果觉得还理解不了，可以查看<a href="https://docs.python.org/2/tutorial/controlflow.html#more-on-defining-functions" target="_blank">官方文档</a>。</p>
@@ -364,8 +361,7 @@ Inside inner
 <p>在上一个例子中我们了解到，<code>inner()</code>作为一个函数成为<code>outer()</code>的返回值，保存在一个变量<code>foo</code>中，并且我们能够对它进行调用：<code>foo()</code>。不过它会正常的运行吗？我们先来看看作用域规则。</p>
 
 <blockquote>
-<p>所有的东西都在 Python 的作用域规则下进行工作：<code>x</code>是函数<code>outer()</code>里的一个局部变量。当函数<code>inner()</code>在<code>#1</code>处打印<code>x</code>的时候，Python 解释器会在<code>inner()</code>内部查找相应的变量，当然会找不到，所以接着会到封闭作用域里面查找，并且会找到匹配。<br />
-但是从变量的生存周期来看，该怎么理解呢？我们的变量<code>x</code>是函数<code>outer()</code>的一个局部变量，这意味着只有当函数<code>outer()</code>正在运行的时候才会存在。根据我们已知的 Python 运行模式，我们没法在函数<code>outer()</code>返回之后继续调用函数<code>inner()</code>，在函数<code>inner()</code>被调用的时候，变量<code>x</code>早已不复存在，可能会发生一个运行时错误。</p>
+<p>所有的东西都在 Python 的作用域规则下进行工作：<code>x</code>是函数<code>outer()</code>里的一个局部变量。当函数<code>inner()</code>在<code>#1</code>处打印<code>x</code>的时候，Python 解释器会在<code>inner()</code>内部查找相应的变量，当然会找不到，所以接着会到封闭作用域里面查找，并且会找到匹配。但是从变量的生存周期来看，该怎么理解呢？我们的变量<code>x</code>是函数<code>outer()</code>的一个局部变量，这意味着只有当函数<code>outer()</code>正在运行的时候才会存在。根据我们已知的 Python 运行模式，我们没法在函数<code>outer()</code>返回之后继续调用函数<code>inner()</code>，在函数<code>inner()</code>被调用的时候，变量<code>x</code>早已不复存在，可能会发生一个运行时错误。</p>
 
 <p>然而事实上返回的函数<code>inner()</code>居然能够正常工作。Python 支持一个叫做<strong>函数闭包</strong>的特性，用人话来讲就是，<strong>嵌套定义在非全局作用域里面的函数能够记住它在被定义的时候它所处的封闭命名空间</strong>。这能够通过查看函数的<code>func_closure</code>属性得出结论，这个属性里面包含封闭作用域里面的值（<code>只会包含被捕捉到的值</code>，比如<code>x</code>，如果在<code>outer()</code>里面还定义了其他的值，封闭作用域里面是不会有的）。</p>
 </blockquote>
@@ -676,6 +672,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

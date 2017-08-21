@@ -214,8 +214,7 @@ calculate(1，2)
 
 <ul>
 <li>在第一种方式下，你直接使用了<code>cal</code>这个函数对象；</li>
-<li>在第二种方式下，你把一个名为<code>calculate</code>的变量指向了<code>cal</code>这个函数对象。如果各位对类的使用很熟悉的话，可以把这个过程看作<strong>实例化</strong>。<br />
-</li>
+<li>在第二种方式下，你把一个名为<code>calculate</code>的变量指向了<code>cal</code>这个函数对象。如果各位对类的使用很熟悉的话，可以把这个过程看作<strong>实例化</strong>。</li>
 </ul>
 
 <p>也就是说，对象，就像是一个模子，当你需要的时候，就用它倒一个模型出来，每一个模型可以有自己不同的名字。在上面的例子中，<code>calculate</code>是一个模型，而你写的<code>cal()</code>函数就是一个模子。</p>
@@ -282,8 +281,7 @@ def func_c(arg):
 <p>接下来，我将带大家探索一下，装饰器是怎么被造出来的，来直观的感受一下装饰器的原理。先回到刚才的那个添加<code>'Start'</code>问题。假设你此时还不知道装饰器。将会以Solution的方式呈现。</p>
 
 <ul>
-<li><strong>S1</strong>：我有比在函数中直接添加<code>print</code>语句更好的解决方案！<br />
-</li>
+<li><strong>S1</strong>：我有比在函数中直接添加<code>print</code>语句更好的解决方案！</li>
 </ul>
 
 <pre><code class="language-python">def a():
@@ -305,8 +303,7 @@ def main():
 <p>感觉这样做好像没什么错，并且还避免了修改原来的函数，如果要手工删改<code>print</code>语句的话也更方便了。嗯，有点进步了，很不错。</p>
 
 <ul>
-<li><strong>S2</strong>：我觉得刚刚那个代码太丑了，还可以再优化一下！于是你这样写了：<br />
-</li>
+<li><strong>S2</strong>：我觉得刚刚那个代码太丑了，还可以再优化一下！于是你这样写了：</li>
 </ul>
 
 <pre><code class="language-python">def a():
@@ -340,8 +337,7 @@ def main():
 <p>来，就说你看到满篇的 decorator 你晕不晕！大声说出来！</p>
 
 <ul>
-<li><strong>S3</strong>：你又想了一个更好的办法。于是你这样写了：<br />
-</li>
+<li><strong>S3</strong>：你又想了一个更好的办法。于是你这样写了：</li>
 </ul>
 
 <pre><code class="language-python">def a():
@@ -370,12 +366,10 @@ def main():
 <pre><code class="language-python">a = decorator(a(arg))
 </code></pre>
 
-<p>此时的本应该在 decorator 中做为一个参数对象的<code>a</code>加上了括号，也就是说，<code>a</code>在括号中被执行了！你只是想要<code>a</code>以函数对象的形式存在，乖乖的跑到 decorator 中当参数就好了。执行它并不是你的本意。<br />
-那该怎么办呢？你扶了扶眼镜，嘴里开始念念有词“万物皆对象，万物皆对象……”你的额头上开始渐渐的渗出汗珠。突然，你的身后的背景暗了下来，一道光反射在眼镜上！不自觉的说了句“真相はひとつだけ”！</p>
+<p>此时的本应该在 decorator 中做为一个参数对象的<code>a</code>加上了括号，也就是说，<code>a</code>在括号中被执行了！你只是想要<code>a</code>以函数对象的形式存在，乖乖的跑到 decorator 中当参数就好了。执行它并不是你的本意。那该怎么办呢？你扶了扶眼镜，嘴里开始念念有词“万物皆对象，万物皆对象……”你的额头上开始渐渐的渗出汗珠。突然，你的身后的背景暗了下来，一道光反射在眼镜上！不自觉的说了句“真相はひとつだけ”！</p>
 
 <ul>
-<li><strong>S4</strong>（终极）：你飞速的写下如下代码<sup class="footnote-ref" id="fnref:Python-2-2017-06"><a rel="footnote" href="#fn:Python-2-2017-06">1</a></sup>。<br />
-</li>
+<li><strong>S4</strong>（终极）：你飞速的写下如下代码<sup class="footnote-ref" id="fnref:Python-2-2017-06"><a rel="footnote" href="#fn:Python-2-2017-06">1</a></sup>。</li>
 </ul>
 
 <pre><code class="language-python">def a(arg):
@@ -734,6 +728,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

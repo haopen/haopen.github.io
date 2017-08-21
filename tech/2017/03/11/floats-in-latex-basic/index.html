@@ -163,8 +163,7 @@
 <ul>
 <li>是一个容器，包含某些不可分页的大块内容；</li>
 <li>有一个简短的描述，比如图题或者表题；</li>
-<li>有一个编号，用于引述。<br />
-</li>
+<li>有一个编号，用于引述。</li>
 </ul>
 
 <p>在 LaTeX 中，默认有 <code>figure</code> 和 <code>table</code> 两种浮动体。（当然，你还可以自定义其他类型的浮动体）在这些环境中，可以用 <code>\caption{}</code> 命令生成上述简短的描述。至于编号，也是用 <code>\caption{}</code> 生成的。这类编号遵循了 TeX 对于编号处理的传统：它们会自动编号，不需要用户操心具体的编号数值。</p>
@@ -175,8 +174,7 @@
 <li><code>h</code> - 表示 here。此类浮动体称为文中的浮动体（in-text floats）。</li>
 <li><code>t</code> - 表示 top。此类浮动体会尝试放在一页的顶部。</li>
 <li><code>b</code> - 表示 bottom。此类浮动体会尝试放在一页的底部。</li>
-<li><code>p</code> - 表示 float page，浮动页。此类浮动体会尝试单独成页。<br />
-</li>
+<li><code>p</code> - 表示 float page，浮动页。此类浮动体会尝试单独成页。</li>
 </ul>
 
 <p>LaTeX 会将浮动体与文本流分离，而后按照位置描述符，根据相应的算法插入 LaTeX 认为合适的位置。</p>
@@ -230,8 +228,7 @@ Figure \ref{fig:dummy} is a dummy figure to show the use of basic floats in \LaT
 
 <ul>
 <li>强制输出所有尚未确定位置的浮动体，清空 <code>\@freelist</code>；</li>
-<li>增强 LaTeX 的处理能力。<br />
-</li>
+<li>增强 LaTeX 的处理能力。</li>
 </ul>
 
 <p>对于第一种思路，我们可以用 <code>\clearpage</code>，或者 <code>placeins</code> 宏包提供的 <code>\FloatBarrier</code> 命令。两个命令都会输出所有尚未输出的浮动体。不同的是，<code>\clearpage</code> 会做一些额外的工作，比如另起一页，继续排版。个人建议使用 <code>\FloatBarrier</code> 命令，遵循「一个命令只做好一件事」的原则。</p>
@@ -247,8 +244,7 @@ Figure \ref{fig:dummy} is a dummy figure to show the use of basic floats in \LaT
 <ul>
 <li><code>\floatsep</code> - 相邻两个浮动体之间的垂直距离。</li>
 <li><code>\textfloatsep</code> - 页面中最后一个 <code>t</code> 模式的浮动体与文本的间距；页面中第一个 <code>b</code> 模式的浮动体与文本的间距。</li>
-<li><code>\intextsep</code> - 页面中共 <code>h</code> 模式的浮动体上下与文本的间距。<br />
-</li>
+<li><code>\intextsep</code> - 页面中共 <code>h</code> 模式的浮动体上下与文本的间距。</li>
 </ul>
 
 <p>因此，你可以通过 <code>\setlength</code> 命令修改上述三个垂直距离，以便调整浮动体与前后文本的距离了。</p>
@@ -351,6 +347,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

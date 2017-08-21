@@ -151,8 +151,7 @@
 <ul>
 <li>打开数据集时，直接读取只需要的观测；</li>
 <li>PDV 里筛选过滤观测；</li>
-<li>只写入所需观测进入数据集。<br />
-</li>
+<li>只写入所需观测进入数据集。</li>
 </ul>
 
 <p>具体执行时，可以借助 <code>IF</code> 或 <code>WHERE</code> 语句选项。</p>
@@ -190,8 +189,7 @@ run;
 <li><code>IF</code> 语句对 <code>INPUT</code> 语句创建的观测有效，但是 <code>WHERE</code> 语句只能筛选数据集里的观测；</li>
 <li>有 <code>BY</code> 语句时，求子集 <code>IF</code> 语句与 <code>WHERE</code> 语句的结果可能会不同，因为 SAS 创建 <code>BY</code> 组在 <code>WHERE</code> 之后，求子集 <code>IF</code> 语句之前；</li>
 <li>求子集 <code>IF</code> 语句可以用在条件 <code>IF</code> 语句中，但 <code>WHERE</code> 语句不行；</li>
-<li>当读入多个数据集时，求子集 <code>IF</code> 语句无法针对每个数据集单独筛选，但是 <code>WHERE</code> 选项却可以。<br />
-</li>
+<li>当读入多个数据集时，求子集 <code>IF</code> 语句无法针对每个数据集单独筛选，但是 <code>WHERE</code> 选项却可以。</li>
 </ul>
 
 <p>大多数情况下，作者喜欢用数据集选项来筛选观测。因此，在筛选观测时，代码大致如下：</p>
@@ -300,6 +298,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

@@ -159,8 +159,7 @@
 <li>修改 css 的定义，实现与现有主题的风格搭配；</li>
 <li>js 文件中找到关键的三处配置，一是 <code>.xml</code> 数据文件的路径，二是每条 Post 中匹配关键词的文本片断的数量，三是搜索的触发方式是 onkeypress 还是 enter 式，对应于 <code>auto</code> 和 <code>manual</code> 两个选择；</li>
 <li><code>$('.popup').detach().appendTo('...')</code> 这里的 <code>appendTo</code> 实际上是随意指定的，要更换成本主题的某个 html 标记容器，这个地方的错误查了将近 7 个小时；</li>
-<li>搜索引擎 js 文件可以异步加载，但是 <code>jQuery.min.js</code> 文件却最好直接加载，以避免引起不必要的麻烦；<br />
-</li>
+<li>搜索引擎 js 文件可以异步加载，但是 <code>jQuery.min.js</code> 文件却最好直接加载，以避免引起不必要的麻烦；</li>
 </ol>
 
 <h1 id="数据文件">数据文件</h1>
@@ -308,6 +307,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

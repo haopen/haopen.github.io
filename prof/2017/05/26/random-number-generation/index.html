@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>随机数生成及其在统计模拟中的应用 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="随机数生成及其在统计模拟中的应用 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/prof/">归档</a></li>
+    
+    <li class=""><a href="/prof/categories/">分类</a></li>
+    
+    <li class=""><a href="/prof/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">6268 字</span>
+    
+
+    
+<h1 class="article-title">随机数生成及其在统计模拟中的应用 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 黄湘云 ·   2017/05/26</span>
+  <span class="article-toolbar">
+    
+    <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%8F%8A%E5%85%B6%E5%9C%A8%E7%BB%9F%E8%AE%A1%E6%A8%A1%E6%8B%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8&#43;z&#43;%2Fprof%2F2017%2F05%2F26%2Frandom-number-generation%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%94%9F%E6%88%90%E5%8F%8A%E5%85%B6%E5%9C%A8%E7%BB%9F%E8%AE%A1%E6%A8%A1%E6%8B%9F%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2017%2F05%2F26%2Frandom-number-generation%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+    
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/prof/2017-05-31-random-number-generation.Rmd"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/6-%E7%BB%9F%E8%AE%A1%E5%AD%A6" title="统计学">统计学</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E9%9A%8F%E6%9C%BA%E6%95%B0" title="随机数">随机数</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E7%BB%9F%E8%AE%A1%E6%A3%80%E9%AA%8C" title="统计检验">统计检验</a></span>;
+  
+  <span class="taxonomy-tag"><a href="/tags/6-%E6%A8%A1%E6%8B%9F" title="模拟">模拟</a></span>;
+  
+  
+</div>
+
+
+    
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>：<a href="https://cosx.org/2017/05/random-number-generation/" class="uri">https://cosx.org/2017/05/random-number-generation/</a></p>
+<p>揭秘统计软件如 R，Octave，Matlab 等使用的随机数发生器，然后做一些统计检验，再将其应用到独立随机变量和的模拟中，最后与符号计算得到的精确结果比较。除特别说明外，文中涉及到的随机数都是指伪随机数，发生器都是指随机数发生器。</p>
+<div class="section level1">
+<h1><span class="header-section-number">1</span> 背景</h1>
+<p>随机数的产生和检验方法是蒙特卡罗方法的重要部分，另外两个是概率分布抽样方法和降低方差提高效率方法。在 20 世纪 40 年代中期，当时为了原子弹的研制，乌拉姆（S.Ulam）、冯诺依曼（J.von Neumann） 和梅特罗波利斯（N. Metropolis） 在美国核武器研究实验室创立蒙特卡罗方法。当时出于保密的需要，与随机模拟相关的技术就代号“蒙特卡罗”。早期取得的成果有产生随机数的平方取中方法，取舍算法和逆变换法等。这两个算法的内容<a href="http://cos.name/2015/06/generating-normal-distr-variates/">见统计之都王夜笙的文章</a>。</p>
+</div>
+<div class="section level1">
+<h1><span class="header-section-number">2</span> 随机数生成</h1>
+<p>讲随机数发生器，不得不提及一个名为 Mersenne Twister（简称 MT）的发生器，它的周期长达<code>$2^{19937}-1$</code>， 现在是 R 、Octave 和 Matlab 等软件（较新版本）的默认随机数发生器<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>。</p>
+<p>Matlab 通过内置的 <code>rng</code> 函数指定不同的发生器，其中包括 1995 年 Matlab 采用 George Marsaglia 在 1991 年提出的借位减（subtract with borrow，简称 SWB）发生器。在 Matlab 中，设置如下命令可指定发生器及其状态，其中 <code>1234</code> 是随机数种子，指定发生器的状态，目的是重复实验结果，v5uniform 是发生器的名字。</p>
+<pre class="matlab"><code>rng(1234, &#39;v5uniform&#39;)</code></pre>
+<p>Octave 通过内置的 <code>rand</code> 函数指定发生器的不同状态，为获取相同的两组随机数，<code>state</code> 参数的设置一样，如 <code>1234</code>（你也可以设置为别的值）。Octave 已经放弃了老版本内置的发生器，找不到命令去指定早期的发生器，这个和 Matlab 不一样。</p>
+<pre class="octave"><code>rand (&#39;state&#39;,1234)
+rand(1,5)
+
+   0.9664535   0.4407326   0.0074915   0.9109760   0.9392690
+
+rand (&#39;state&#39;,1234)
+rand(1,5)
+
+   0.9664535   0.4407326   0.0074915   0.9109760   0.9392690</code></pre>
+<p>Python 的 <code>numpy</code> 模块也采用 MT 发生器，类似地，通过如下方式获得相同的两组随机数</p>
+<pre class="python"><code>import numpy as np
+a = np.random.RandomState(1234)
+a.rand(5)
+array([ 0.19151945,  0.62210877,  0.43772774,  0.78535858,  0.77997581])
+
+a = np.random.RandomState(1234)
+a.rand(5)
+array([ 0.19151945,  0.62210877,  0.43772774,  0.78535858,  0.77997581])</code></pre>
+<p>R 的默认发生器也是 MT 发生器，除了设置随机数种子的 seed 参数，还可以通过 <code>kind</code> 参数指定其他发生器，<code>normal.kind</code> 参数指定产生正态分布随机数的发生器，下面也使用类似的方式产生两组完全一样的随机数。</p>
+<pre class="r"><code>set.seed(seed, kind = NULL, normal.kind = NULL)
+set.seed(1234,kind = &quot;Mersenne-Twister&quot;, normal.kind =  &quot;Inversion&quot;) # 默认参数设置
+runif(5)
+[1] 0.1137034 0.6222994 0.6092747 0.6233794 0.8609154
+
+set.seed(1234,kind = &quot;Mersenne-Twister&quot;, normal.kind =  &quot;Inversion&quot;) # 默认参数设置
+runif(5)
+[1] 0.1137034 0.6222994 0.6092747 0.6233794 0.8609154</code></pre>
+<p>SWB 发生器中“借位相减”步骤是指序列的第 <span class="math inline">\(i\)</span> 个随机数<code>$z_{i}$</code>要依据如下递推关系产生，<code>$$z_{i}=z_{i+20}-z_{i+5}-b$$</code> 下标<code>$i,i+20,i+5$</code>都是对 32 取模的结果，<code>$z_{i+20}$</code>与<code>$z_{i+5}$</code>做减法运算，<span class="math inline">\(b\)</span> 是借位，其取值与前一步有关，当<code>$z_i$</code>是正值时，下一步将 <span class="math inline">\(b\)</span> 置为 0，如果计算的<code>$z_i$</code>是负值，在保存<code>$z_i$</code>之前，将其值加 1，并在下一步，将 <span class="math inline">\(b\)</span> 的值设为<code>$2^{-53}$</code>。</p>
+<p>下面关于随机数生成的效率和后面的统计检验，都以生成<code>$2^{24}$</code>个为基准，是 1600 多万个，取这么多，一方面为了比较编程语言实现的发生器产生随机数的效率，另一方面是后面的游程检验需要比较大的样本量。</p>
+<p>Matlab 内置的发生器及大部分的函数，底层实现都是 C 或者 Fortran，MathWorks 创始人 <a href="https://www.wikiwand.com/en/Cleve_Moler">Cleve B. Moler</a> 是数值分析领域著名的 LINPACK 和 EISPACK 包的作者之一，他当年做了很多优化和封装，进而推出 Matlab，只要是调用内置函数，效率不会比 C 差，自己写的含有循环、判断等语句的代码，性能就因人而异了，对大多数人来说，性能要比 C 低。这里比较 Matlab 内置SWB发生器（就当作是 C 语言实现的好了）和用 Matlab 重写的 SWB 发生器的效率，代码如下：</p>
+<pre class="matlab"><code>% matlab code
+tic % 大约几秒
+rng(1234, &#39;v5uniform&#39;) % 调用SWB发生器
+x = rand(1,2^24);
+toc</code></pre>
+<pre class="octave"><code>% octave code
+id = tic % 时间耗费大约一小时
+randtx(&#39;state&#39;,0)
+x = randtx(1,2^24);
+toc (id)</code></pre>
+<p><a href="https://www.mathworks.com/moler/chapters.html">randtx</a>不是 Matlab 和 Octave 内置的函数，而是 Cleve B. Moler 基于 Matlab 实现的 SWB 发生器，也是 100 多行包含嵌套循环等语句的 Matlab 代码打包的函数，上面的代码运行时间差异之大也就不难理解了，为了能在 Octave 上跑，我做了少量修改，Octave 软件版本为 4.2.1，安装 Octave 时，Blas 选择 OpenBlas，为了后续检验，在获得随机数后，将其保存到磁盘文件 <code>random_number.mat</code></p>
+<pre class="octave"><code>save -mat random_number.mat x </code></pre>
+<p>R，Octave，Matlab 和 Python 内置的发生器都是 MT 发生器，与之实现有关的数学库，也是 Blas，虽然有开源和进一步优化的商业版本之分，但是矩阵乘法，向量乘法之类运算的效率也就半斤八两，Julia 语言官网给出了一个<a href="https://julialang.org/">标准测试</a><a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>。</p>
+<img src="/images/Stat/random-number-generation/1.png" alt="不同语言性能" />
+<p style="text-align: center;">
+不同语言的性能表现（C 语言在算法中的表现为基准，时间记为 1.0）
+</p>
+<p>这里再给出用C语言实现的 <a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt64.html">MT 发生器</a>，产生同样多的随机数，只需要 10 秒左右，其中包含编译和写随机数到文件的时间，实际产生随机数的时间应该远小于这个时间。（程序运行环境环境 Dev-C++ 5.11，用 64 位的 GCC 编译）。</p>
+</div>
+<div class="section level1">
+<h1><span class="header-section-number">3</span> 统计检验</h1>
+<p>随机数的检验是有一套标准的，如 George Marsaglia 开发的 DieHard 检验程序，检验的内容很丰富。这篇文章只能算初窥门径，R 内产生真随机数的包是 <a href="http://dirk.eddelbuettel.com/">Dirk Eddelbuettel</a> 开发的 <a href="https://cran.r-project.org/web/packages/random/"><code>random</code></a>包，它是连接产生<a href="https://www.random.org/">真随机数网站</a>的接口。</p>
+<div class="section level2">
+<h2><span class="header-section-number">3.1</span> 相关性检验</h2>
+<p>先来一个简单的，就用 R 产生的两个独立同均匀分布样本，调用 <code>cor.test</code> 做相关性检验，看看这两组数是不是足够独立同分布，通过眼球验证，随着样本量增大，相关性趋于 0，相关性弱到可以视为独立。如下图所示</p>
+<pre class="r"><code>library(ggplot2)
+library(viridisLite)
+library(viridis)
+set.seed(1234)
+corr &lt;- rep(0, 1000) 
+for(i in seq(from = 1000, to = 1000000, by = 1000)) {  
+    corr[i/1000] &lt;-  cor.test(runif(i, min = 0, max = 1),                            
+        runif(i, min = 0, max = 1))$estimate} 
+ggplot(data.frame(x = seq(1000), y = corr), aes(x = x, y = y)) +   
+    geom_hex(show.legend = FALSE) + 
+    scale_fill_viridis(direction = -1) + xlab(&quot;Sample size *10^3&quot;) + ylab(&quot;Correlation&quot;) </code></pre>
+<div class="figure">
+<img src="/images/Stat/random-number-generation/2.png" alt="image" />
+<p class="caption">image</p>
+</div>
+</div>
+<div class="section level2">
+<h2><span class="header-section-number">3.2</span> 分布检验</h2>
+<p>检验产生的随机数是否服从指定的分布：原假设是样本来自指定的分布，计算的 P 值比较大，就不能拒绝原假设。</p>
+<pre class="r"><code>ks.test(runif(1000), &quot;punif&quot;) # 分布检验
+##
+## One-sample Kolmogorov-Smirnov test
+##
+## data: runif(1000)
+## D = 0.022302, p-value = 0.7025
+## alternative hypothesis: two-sided</code></pre>
+<p>检验两样本是否来自同一分布：原假设是两样本来自同一分布，计算的P值比较小，就表示两样本不是来自同一分布。</p>
+<pre class="r"><code>ks.test(runif(1000), runif(1000)) # 同分布检验
+##
+## Two-sample Kolmogorov-Smirnov test
+##
+## data: runif(1000) and runif(1000)
+## D = 0.04, p-value = 0.4005
+## alternative hypothesis: two-sided</code></pre>
+<p>从结果来看，<em>R</em>内置的随机数发生器通过了检验（嘿嘿，这是肯定的！！）。</p>
+</div>
+<div class="section level2">
+<h2><span class="header-section-number">3.3</span> 游程检验</h2>
+<p>游程检验对随机数序列的随机性检验，不对序列做任何分布假设，不同于上面的相关性检验和省略没讲的特征统计量（如均值和方差）的检验。先对随机性略作解释，简单起见，我们考虑 0-1 序列，抛掷均匀的硬币 1000 次，正面向上记为 1，反面向上记为 0，这是一个离散的均匀分布，每一次抛掷硬币都无法准确地判断出现的是正面还是反面，若记录的序列中 0 和 1 相对集中的出现，不是随机，0 和 1 交替出现，呈现周期性也不是随机，除了这两种情况基本就是随机了。</p>
+<p>游程检验的原假设是序列满足随机性，序列一旦生成，就是有序的，因为游程检验需要固定位置，再数上升（下降）的游程数，当计算的 P 值比较大时，不能拒绝原假设，即不能否认这个序列是随机的。对上述 0-1 序列进行模拟，然后检验，如下所示</p>
+<pre class="r"><code>library(tseries)
+x &lt;- sample(c(0, 1), 1000, replace = TRUE, prob = c(1/2, 1/2))
+runs.test(factor(x))
+##
+## Runs Test
+##
+## data: factor(x)
+## Standard Normal = 0.45116, p-value = 0.6519
+## alternative hypothesis: two.sided</code></pre>
+<p>现在用游程检验比较 SWB 发生器（Octave/Matlab 版）、MT 发生器（R 语言版）和 MT 发生器（C 语言版）。对于一般的实数序列，得先指定一个阈值，记为 delta，然后比较序列中的值和 delta 的大小关系，这里类似数上升或下降的游程长度（runs length），基于这样一个事实：如果序列表现随机，则序列中两个小于 delta 的值，间隔越远出现的次数越少。可以这样理解，还是以上面抛硬币的例子来说，出现了很多次正面，那么下一次抛掷倾向于出现反面，这是一条人人可接受的经验。</p>
+<p>为了把这条经验可视化出来，对序列做如下操作：先给定阈值 delta 为 0.01（也可以取别的值），取出序列中的值小于 delta 的位置，位置序列前面添加 0，再差分，然后每个值减 1，得到新序列，新序列中的值为 0，表明原序列连续两个值小于 delta，新序列中的值为1，表明间隔 1 个数小于 delta，新序列中的值为 2，表明间隔 2 个数小于 delta，依次类推…..统计所有的情况，用直方图显示，这就获得游程长度与间隔的关系图（间隔数取到 100 足可示意）。</p>
+<pre class="r"><code>library(gridExtra)
+library(R.matlab)
+# 游程频数直方图
+run_test_fun &lt;- function(x, string, delta) {
+  n &lt;- length(x)
+  len &lt;- diff(c(0, which(x &lt; delta), n + 1)) - 1 
+  ggplot(data.frame(x = len[len &lt; 101]), aes(x, fill = ..count..)) + 
+    scale_fill_viridis(direction = -1) + 
+    geom_histogram(binwidth = 1, show.legend = FALSE) + 
+    xlab(string) + ylab(&quot;&quot;) 
+}
+set.seed(1234) # R默认采用Mersenne Twister发生器
+r_data &lt;- runif(2^24, 0, 1); # R内生成均匀分布随机数
+matlabv5_data &lt;- readMat(&quot;random_number.mat&quot;) # 读取Octave生成的均匀分布随机数
+temp &lt;- read.table(file = &quot;random_number.txt&quot;) # 读取C语言生成的均匀分布随机数 
+c_data &lt;- c(as.matrix(t(temp)))
+p1 &lt;- run_test_fun(x = r_data, string = &quot;R&quot;, delta = 0.01)
+p2 &lt;- run_test_fun(x = matlabv5_data$x, string = &quot;Matlab v5&quot;, delta = 0.01)
+p3 &lt;- run_test_fun(x = c_data, string = &quot;C&quot;, delta = 0.01)
+grid.arrange(p1, p2, p3, ncol=3)</code></pre>
+<div class="figure">
+<img src="/images/Stat/random-number-generation/3.png" alt="image" />
+<p class="caption">image</p>
+</div>
+<p>从图中可以看出 MT 发生器通过了检验，SWT 发生器没有通过，在间隔数为 27 的位置，有一条沟，按规律游程长度不应该减少这么多，这是因为 SWB 发生器“借位减”步骤，取模 32 的运算和 5 一起消耗了间隔为 27 的数量（读者可以按借位减的递推关系思考是如何消耗的），导致不符合随机性的要求，该算法细节参见 <a href="https://www.wikiwand.com/en/Cleve_Moler">Cleve B. Moler</a>的书《Numerical Computing with MATLAB》<a href="https://www.mathworks.com/moler/chapters.html">第 9 章第 267 页</a> 。</p>
+</div>
+</div>
+<div class="section level1">
+<h1><span class="header-section-number">4</span> 应用</h1>
+<div class="section level2">
+<h2><span class="header-section-number">4.1</span> 两个均匀分布的统计模拟</h2>
+<p>随机变量 <code>$X_{1},X_{2}\stackrel{iid}{\sim}$</code>某分布（比如二项分布，泊松分布，正态分布，指数分布，卡方分布，伽马分布），则<code>$X_{1}+X_{2}$</code>也服从该分布。常见的均匀分布是否具有这样的可加性？具体地说，就是<code>$X_{1},X_{2}\stackrel{iid}{\sim}U(0,1)$</code> ，<code>$X_{1}+X_{2}$</code> 是否服从<code>$U(0,2)$</code> ？ 如果有一台电脑在旁边，我首先想到的就是敲三五行代码，画个散点图、直方图，看图说话。</p>
+<pre class="r"><code>set.seed(1234) 
+x &lt;- runif(10000, min = 0, max = 1) 
+y &lt;- runif(10000, min = 0, max = 1) 
+z &lt;- x + y
+plot(z) # 散点图
+hist(z) # 直方图</code></pre>
+<p>为美观起见，从 <a href="https://cran.r-project.org/web/packages/viridis/index.html">viridis 包</a>调用 viridis 调色板，颜色越深的地方，相应的数值越大，不管是此处 <code>geom_hex</code> 绘制的六角形热图，还是 <code>geom_histogram</code> 绘制的直方图，都遵循这个规律。</p>
+<pre class="r"><code>ggplot(data.frame(x = seq(10000), y = z), aes(x = x, y = y)) +   
+    geom_hex(show.legend = FALSE) + 
+    scale_fill_viridis(direction = -1) + xlab(&quot;&quot;) + ylab(&quot;&quot;)</code></pre>
+<div class="figure">
+<img src="/images/Stat/random-number-generation/4.png" alt="image" />
+<p class="caption">image</p>
+</div>
+<p>显然这不是均匀分布，在 <code>$z=1$</code> 处，散点比较集中，看起来有点像正态分布。如果往中心极限定理上靠，将作如下标准化<code>$$Y_{2}^{\star}=\frac{X_1 + X_2 - 2*\frac{1}{2}}{\sqrt{\frac{1}{12}}*\sqrt{2}}=\sqrt{6}(X_1 + X_2 -1)$$</code> 则<code>$Y_{2}^{\star}$</code>的期望为 0，方差为 1。</p>
+<pre class="r"><code>p4 &lt;- ggplot(data.frame(x = z), aes(x, fill = ..count..)) +     
+    scale_fill_viridis(direction = -1) +     
+    geom_histogram(bins=20, show.legend = FALSE) + xlab(&quot;&quot;) + ylab(&quot;&quot;)  
+p5 &lt;- ggplot(data.frame(x = sqrt(6)*(z-1)), aes(x, fill = ..count..)) +     
+    scale_fill_viridis(direction = -1) +     
+    geom_histogram(bins = 20, show.legend = FALSE) + xlab(&quot;&quot;) + ylab(&quot;&quot;)  
+grid.arrange(p4, p5, ncol=2)</code></pre>
+<div class="figure">
+<img src="/images/Stat/random-number-generation/5.png" alt="image" />
+<p class="caption">image</p>
+</div>
+<p>只是变换后的图像和之前基本一致，那么现在看来眼球检验不好使了，那就上<code>$P$</code>值呗！</p>
+<pre class="r"><code>ks.test(sqrt(6)*(z-1), &quot;pnorm&quot;) # 分布检验
+##
+## One-sample Kolmogorov-Smirnov test
+##
+## data: sqrt(6) * (z - 1)
+## D = 0.025778, p-value = 3.381e-06
+## alternative hypothesis: two-sided</code></pre>
+<p>也不是正态分布，既然如此，那就在两个随机变量的情况下，把精确分布推导出来。</p>
+</div>
+<div class="section level2">
+<h2><span class="header-section-number">4.2</span> 精确分布的推导及计算</h2>
+<p>课本如《概率论与数理统计教程》 采用卷积的方法求分布函数，这种方法实行起来比较繁琐，也不利于后续编程，下面考虑用特征函数的方法求。我们知道标准均匀分布的特征函数<code>$$\varphi(t)=\frac{e^{it}-1}{it}$$</code>考虑<code>$X_1$</code>和<code>$X_2$</code>相互独立，它们的和用<code>$S_2$</code>表示，则随机变量<code>$S_2$</code>的特征函数为 <code>$$\varphi_2(t)=\varphi(t)*\varphi(t)=(\frac{e^{it}-1}{it})^2=\frac{2(1-\cos(t))e^{it}}{t^2}$$</code></p>
+<p>只要满足条件</p>
+<p><code>$$\int_{-\infty}^{+\infty}\vert \varphi_2(t) \vert \mathrm{d} t &lt; \infty$$</code></p>
+<p><code>$S_2$</code>的密度函数就可以表示为</p>
+<p><code>$$p_2(x)=\frac{1}{2 \pi}\int_{-\infty}^{+\infty}\mathrm{e}^{-itx}\varphi_2(t)\mathrm{d}t$$</code></p>
+<p>经计算 <code>$$\int_{-\infty}^{+\infty}\vert \varphi_2(t) \vert \mathrm{d} t=4\int_{0}^{+\infty}\frac{1-\cos(t)}{t^2}\mathrm{d}t=4\int_{0}^{+\infty}\big(\frac{\sin(x)}{x}\big)^2\mathrm{d}x=2\pi$$</code></p>
+<p>那么 <code>$$p_2(x)=\frac{1}{2 \pi}\int_{-\infty}^{+\infty}\mathrm{e}^{-itx}\varphi_2(t)\mathrm{d}t=\frac{2}{\pi}\int_{0}^{+\infty}\frac{(1-\cos(t))\cos(t(1-x))}{t^2}\mathrm{d}t=\frac{2}{\pi}\int_{0}^{+\infty}\cos\big(2(1-x)t\big)\big(\frac{\sin(t)}{t}\big)^2\mathrm{d}t$$</code></p>
+<p>一般地，<span class="math inline">\(n\)</span> 个独立随机变量的和</p>
+<p><code>$$\varphi_n(t)=\big(\frac{e^{it}-1}{it}\big)^n=\big(\frac{\sin(t/2)\mathrm{e}^{\frac{it}{2}}}{t/2}\big)^n$$</code> 那么，同理 <code>$$p_n(x)=\frac{2}{\pi}\int_{0}^{+\infty}\cos\big(2(n/2-x)t\big)(\frac{\sin(t)}{t})^n\mathrm{d}t$$</code></p>
+<p>要说数值计算一个<code>$p(x)$</code>近似值，是一点问题没有！且看</p>
+<pre class="r"><code>integrate(function(t,x,n) 2/pi*cos((n-2*x)*t)*(sin(t)/t)^n ,x = 1,n = 2,
+            lower = 0,upper = Inf,subdivisions = 1000) 
+## 0.9999846 with absolute error &lt; 6.6e-05          </code></pre>
+<p>那如果要把上面的积分积出来，获得一个精确的表达式，在<code>$n=2$</code>的时候还可以手动计算，主要使用分部积分，余弦积化和差公式和一个狄利克雷积分公式<code>$\int_{0}^{+\infty}\frac{\sin(ax)}{x}\mathrm{d}x=\frac{\pi}{2}\mathrm{sgn}(a)$</code>，过程略，最后算得</p>
+<p><code>$$p_2(x)=\frac{1}{2}\big((2-x)\mathrm{sgn}(2-x)-x\mathrm{sgn}(-x)\big)-(1-x)\mathrm{sgn}(1-x)=\frac{1}{2}(\left | x \right |+\left | x-2 \right |)-\left | x-1 \right |,0&lt;x&lt;2$$</code></p>
+<p><code>$p_2(x)$</code>的密度函数图象如下：</p>
+<pre class="r"><code>fun_p2_1 &lt;- function(x) { 1 / 2 * (abs(x - 2) - 2 * abs(x - 1) + abs(x)) }
+fun_p2_2 &lt;- function(x) { 
+    x &lt;- as.matrix(x)
+    tempfun &lt;- function(x) {
+        integrate(function(t, x, n) 2 / pi * cos((n - 2 * x) * t) * (sin(t) / t) ^ n,
+            x = x, n = 2,lower = 0, upper = Inf, subdivisions = 1000)$value
+    }
+   return( sapply(x,tempfun) )
+}
+ggplot(data.frame(x = c(0, 2)), aes(x = x)) +
+    stat_function(fun = fun_p2_2, geom = &quot;point&quot;, colour = &quot;#2A768EFF&quot;) +
+    stat_function(fun = fun_p2_1, geom = &quot;line&quot;, colour = &quot;#78D152FF&quot;) </code></pre>
+<div class="figure">
+<img src="/images/Stat/random-number-generation/6.png" alt="image" />
+<p class="caption">image</p>
+</div>
+<p>从图中可以看出，两种形式的密度函数在数值计算的结果上很一致，当 <code>$n=100,1000$</code> 时，含参量积分的表示形式就很方便啦！任意给定一个 <span class="math inline">\(n\)</span>，符号计算上面的含参量积分，这个时候还是用软件计算比较合适，R 的符号计算仅限于求导，积分运算需要借助 <code>Ryacas</code>，<code>rSymPy</code>，可惜的是，这些包更新缓慢，即使 <code>$\int_{0}^{+\infty}\frac{\sin(at)}{t}\mathrm{d}t$</code> 也算不出来，果断直接使用 Python 的 <code>sympy</code> 模块</p>
+<pre class="python"><code>from sympy import * 
+a=symbols(&#39;a&#39;, real = True)
+t=symbols(&#39;t&#39;, real = True, positive = True)
+print(integrate(sin(a*t)/t, (t, 0, oo)))
+
+## Piecewise((pi/2, Eq(Abs(periodic_argument(polar_lift(a)**2, oo)), 0)), (Integral(sin(a*t)/t, (t, 0, oo)), True))</code></pre>
+<p>。。。初次见到这样的结果，是不是一脸mb，翻译一下，就是</p>
+<p><code>$$ \begin{equation*} \begin{cases}  \frac{\pi}{2} &amp; \text{for}\: \left|{\operatorname{periodic_{argument}}{\left (\operatorname{polar\_lift}^{2}{\left (a \right )},\infty \right )}}\right| = 0 \\ \int\limits_{0}^{\infty} \frac{1}{t} \sin{\left (a t \right )}\, dt &amp; \text{otherwise} \end{cases} \end{equation*} $$</code></p>
+<p>稍为好点，但是还是有一大块看不懂，那个绝对值里是什么<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>？还是不要纠结了，路远坑多，慢走不送啊！话说要是计算<code>$p_2(x)$</code>密度函数里的积分，</p>
+<pre class="python"><code>from sympy import * 
+x=symbols(&#39;x&#39;, real=True)
+t=symbols(&#39;t&#39;, real=True,positive=True)
+print(integrate(2/pi*cos(2*t*(1-x))*(sin(t)/t)**2,(t,0,oo)))
+
+## Piecewise((Piecewise((2*x, (2*x - 2)**2/4 &lt; 1), (0, 4/(2*x - 2)**2 &lt; 1), (meijerg(((1/2,), (1, 1, 3/2)), ((1/2, 1, 0), (1/2,)), polar_lift(-2*x + 2)**2/4), True))/2, Eq(Abs(periodic_argument(polar_lift(-2*x + 2)**2, oo)), 0)), (Integral(2*sin(t)**2*cos(2*t*(-x + 1))/(pi*t**2), (t, 0, oo)), True))</code></pre>
+<p>那就更长了。。。</p>
+<p><code>$$ \begin{equation*} \begin{cases}  \frac{1}{2} \begin{cases}  2 x &amp; \text{for}\: \frac{1}{4} \left(2 x - 2\right)^{2} &lt; 1 \\ 0 &amp; \text{for}\: \frac{4}{\left(2 x - 2\right)^{2}} &lt; 1 \\ {G_{4, 4}^{3, 1}\left(\begin{matrix} \frac{1}{2} &amp; 1, 1, \frac{3}{2} \\\frac{1}{2}, 1, 0 &amp; \frac{1}{2} \end{matrix} \middle| {\frac{1}{4} \operatorname{polar\_lift}^{2}{\left (- 2 x + 2 \right )}} \right)} &amp; \text{otherwise} \end{cases} &amp; \text{for}\: \left|{\operatorname{periodic_{argument}}{\left (\operatorname{polar\_lift}^{2}{\left (- 2 x + 2 \right )},\infty \right )}}\right| = 0 \\ \int\limits_{0}^{\infty} \frac{2}{\pi t^{2}} \sin^{2}{\left (t \right )} \cos{\left (2 t \left(- x + 1\right) \right )}\, dt &amp; \text{otherwise}  \end{cases} \end{equation*} $$</code></p>
+<p><code>sympy</code> 模块还是比较强的，化简可能比较弱，感觉是我的条件声明没有充分利用，要看懂，得知道一些复变函数的知识，这个时候，可以试试 Maple 或者 Mathematica，面对高昂的费用，我们可以使用在线的免费计算 WolframAlpha（<a href="http://www.wolframalpha.com/" class="uri">http://www.wolframalpha.com/</a>），输入</p>
+<pre class="mathematica"><code>integrate 2/pi*cos(2*t*(1-x))*(sin(t)/t)^2 ,t ,0,oo</code></pre>
+<p>即可得<code>$p_2(x)=\frac{1}{2}(\left | x-2 \right |-2\left | x-1 \right |+\left | x \right |)$</code>，<span class="math inline">\(n\)</span> 取任意值都是可以算的，由于式子比较复杂，就不展示了。</p>
+</div>
+</div>
+<div class="section level1">
+<h1><span class="header-section-number">5</span> 小结</h1>
+<blockquote>
+<p>作者的一些经验感悟:</p>
+</blockquote>
+<blockquote>
+<p>因为看论文的原因（感觉 MCMC 好像哪都有），接着从随机数生成开始自学 MCMC，一次偶然的机会，去年在北京计算科学研究中心听清华喻文健教授的报告，提到均匀分布的随机数检验，中间也出现了这个图，现在已经记不得是喻教授因为时间原因，没细讲背后的原因，还是自己没听懂，总之只觉得挺有意思的（涉及统计中的游程检验，周围基本都是工科学生，我想我听的更明白些），就记下来，在听报告之前，囫囵地看了康崇禄写的《蒙特卡罗方法理论和应用》的前两章（前两章故事比较多因此看完了），这本书没讲那个例子，却把背后的原因讲明白了（后来细看才知道的）。错位相减算法曾出现在 Matlab，自然就去读 Cleve B. Moler 写的《Numerical Computing with MATLAB》(Revised in 2013)，这本书在文中有出现，也介绍了 Matlab 这么多年内置的随机数发生器的变化史。其实还是推荐看康崇禄那本，不仅因为故事多，而且内容全面和透彻，可以挑自己需要和感兴趣的部分读，也不拘泥于 Matlab。</p>
+</blockquote>
+<blockquote>
+<p>关于应用部分的举例，源于面试，陷于教材，钟于符号计算。这部分涉及一本广为人知的教材《概率论与数理统计教程》（第二版）茆诗松、程依明和濮晓龙著，这本书给了用卷积求独立随机变量和的例子，后面讲特征函数，说它在求独立随机变量和有优势，但是没有举例，所以正好是补充，而且意外地简洁和统一。符号计算获得精确结果是为了和数值计算的结果比较，之前在统计之都的投名状就是符号计算与 R 语言，但是没有提及 Python 的 <code>sympy</code>，这下也正好合体了。</p>
+</blockquote>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>现在，R、Octave 和 Matlab 这些软件没有单纯用借位相减算法来产生随机数，1995 年后，Matlab 使用延迟斐波那契和移位寄存器的组合发生器，直到 2007 年，Matlab 推出 7.4 版本的时候才采用 MT 发生器。<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>在官网的 High-Performance JIT Compiler 部分<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Python 的符号计算模块 <code>sympy</code> 功能比较全，但是化简比较弱，导致结果理解起来不是很方便，比如式子的第一行，看似当<code>$0&lt;x&lt;2$</code>时，<code>$p_{2}(x)=x$</code>是错的，正确的范围应该是<code>$0&lt;x&lt;1$</code>，其实 <code>for</code> 后面的函数 <code>polar_lift()</code> 要求参数大于 <span class="math inline">\(0\)</span>，这样就没问题了，建议多撸一撸<a href="http://docs.sympy.org/latest/index.html?v=20170321095755"><code>sympy</code> 官方文档</a>。<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/prof/2017/04/17/demean/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> 回归时交叉项为什么要去平均？ - 慧航 - 专栏</div>
+    </a>
+    
+
+    
+    <a href="/prof/2017/06/18/operator/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">算子 (Operator) <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/prof\/2017\/04\/17\/demean\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/prof\/2017\/06\/18\/operator\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

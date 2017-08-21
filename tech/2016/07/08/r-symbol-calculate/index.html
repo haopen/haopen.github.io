@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.25" />
+
+
+<title>R 语言做符号计算 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="R 语言做符号计算 z - 彭浩 ~ Hao Peng">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+<link rel="stylesheet" href="/css/custom.css">
+
+<link rel="stylesheet" href="/css/localsearch.css">
+
+<link rel="stylesheet" href="/lib/lightGallery/css/lightgallery.css">
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script async src="/js/load-typekit.js"></script>
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Hao Peng">
+  </a>
+
+  <ul class="nav-links">
+    
+	
+	
+    
+	
+
+	
+    
+    <li class=""><a href="/">首页</a></li>
+    
+    <li class=""><a href="/tech/">归档</a></li>
+    
+    <li class=""><a href="/tech/categories/">分类</a></li>
+    
+    <li class=""><a href="/tech/tags/">标签</a></li>
+    
+    <li class=""><a href="javascript:;" class="popup-trigger"><i class="fa fa-search" aria-hidden="true" title="搜索"></i></a></li>
+    
+  </ul>
+</nav>
+
+
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2914 字</span>
+    
+
+    
+<h1 class="article-title">R 语言做符号计算 z
+
+
+</h1>
+
+
+
+<div class="article-date">
+  <span> 黄湘云 ·   2016/07/08</span>
+  <span class="article-toolbar">
+    
+    <a href="/tech/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
+    
+    <a href="https://twitter.com/home?status=R&#43;%E8%AF%AD%E8%A8%80%E5%81%9A%E7%AC%A6%E5%8F%B7%E8%AE%A1%E7%AE%97&#43;z&#43;%2Ftech%2F2016%2F07%2F08%2Fr-symbol-calculate%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=R&#43;%E8%AF%AD%E8%A8%80%E5%81%9A%E7%AC%A6%E5%8F%B7%E8%AE%A1%E7%AE%97&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Ftech%2F2016%2F07%2F08%2Fr-symbol-calculate%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
+    
+	
+    
+	
+    <a href="https://github.com/haopen/Blogdown/edit/master/content/tech/2016-07-08-r-symbol-calculate.md"><i class="fa fa-pencil-square-o" aria-hidden="true" title="编辑本页"></i></a>
+    
+    </span>
+</div>
+
+<div class="article-taxonomies">
+  
+  <span class="category-prefix"><i class="fa fa-folder-o"></i></span>
+  
+  <span class="taxonomy-category"><a href="/categories/4-r" title="R">R</a></span>;
+  
+  
+  
+  <span class="tag-prefix"><i class="fa fa-tags"></i></span>
+  
+  <span class="taxonomy-tag"><a href="/tags/4-%E7%AC%A6%E5%8F%B7%E8%BF%90%E7%AE%97" title="符号运算">符号运算</a></span>;
+  
+  
+</div>
+
+
+     <nav id="TableOfContents">
+<ul>
+<li><a href="#引言">引言</a></li>
+<li><a href="#符号计算">符号计算</a>
+<ul>
+<li><a href="#1-符号微分">1.符号微分</a></li>
+<li><a href="#2-表达式转函数">2. 表达式转函数</a></li>
+<li><a href="#3-符号计算扩展包-ryacas">3.符号计算扩展包 <code>Ryacas</code></a></li>
+<li><a href="#4-符号计算在优化算法中的应用">4.符号计算在优化算法中的应用</a></li>
+</ul></li>
+<li><a href="#r软件信息">R软件信息</a></li>
+<li><a href="#参考文献">参考文献</a></li>
+</ul>
+</nav> 
+    <div class="article-content cn" id="articleContent">
+      <p><strong>原文地址</strong>：<a href="https://cosx.org/2016/07/r-symbol-calculate" target="_blank">https://cosx.org/2016/07/r-symbol-calculate</a></p>
+
+<p><strong>本文作者：</strong>黄湘云，2011-2015年在中国矿业大学（北京）的数学与应用数学专业获得学士学位，并从2015年至今在中国矿业大学（北京）统计学专业硕士在读，主要研究方向为复杂数据分析。</p>
+
+<h1 id="引言">引言</h1>
+
+<p>谈起符号计算，大家首先想到的可能就是大名鼎鼎的Maple，其次是Mathematica，但是他们都是商业软件，除了其自身昂贵的价格外，对于想知道底层，并做一些修改的极客而言，这些操作也很不可能实现。自从遇到R以后，还是果断脱离商业软件的苦海，R做符号计算固然比不上Maple，但是你真的需要Maple这样的软件去做符号计算吗？我们看看R语言的符号计算能做到什么程度。</p>
+
+<h1 id="符号计算">符号计算</h1>
+
+<h2 id="1-符号微分">1.符号微分</h2>
+
+<p>在R中能够直接用来符号计算的是表达式，下面以Tetrachoric函数为例，</p>
+
+<p><code>$$\tau(x)=\frac{(-1)^{j-1}}{\sqrt{j !}}\phi^{(j)}(x)$$</code></p>
+
+<p>其中</p>
+
+<p><code>$$\phi(x)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}$$</code></p>
+
+<p>在R里，声明表达式对象使用expression函数</p>
+
+<pre><code class="language-r">NormDensity &lt;- expression(1 / sqrt(2 * pi) * exp(-x^2 / 2))
+class(NormDensity)
+## [1] &quot;expression&quot;
+</code></pre>
+
+<p>计算一阶导数</p>
+
+<pre><code class="language-r">D(NormDensity, &quot;x&quot;)
+## -(1/sqrt(2 * pi) * (exp(-x^2/2) * (2 * x/2)))
+
+deriv(NormDensity, &quot;x&quot;)
+## expression({
+##      .expr3 &lt;- 1/sqrt(2 * pi)
+##      .expr7 &lt;- exp(-x^2/2)
+##      .value &lt;- .expr3 * .expr7
+##      .grad &lt;- array(0, c(length(.value), 1L), list(NULL,c(&quot;x&quot;)))
+##      .grad[, &quot;x&quot;] &lt;- -(.expr3 * (.expr7 * (2 * x/2)))
+##      attr(.value, &quot;gradient&quot;) &lt;- .grad
+##     .value
+## })
+
+deriv3(NormDensity, &quot;x&quot;)
+## expression({
+##     .expr3 &lt;- 1/sqrt(2 * pi)
+##     .expr7 &lt;- exp(-x^2/2)
+##     .expr10 &lt;- 2 * x/2
+##     .expr11 &lt;- .expr7 * .expr10
+##     .value &lt;- .expr3 * .expr7
+##     .grad &lt;- array(0, c(length(.value), 1L), list(NULL, c(&quot;x&quot;)))
+##     .hessian &lt;- array(0, c(length(.value), 1L, 1L), list(NULL, 
+##     c(&quot;x&quot;), c(&quot;x&quot;)))
+##     .grad[, &quot;x&quot;] &lt;- -(.expr3 * .expr11)
+##     .hessian[, &quot;x&quot;, &quot;x&quot;] &lt;- -(.expr3 * (.expr7 * (2/2) - .expr11  
+##     ＊.expr10))
+##     attr(.value, &quot;gradient&quot;) &lt;- .grad
+##     attr(.value, &quot;hessian&quot;) &lt;- .hessian
+##     .value
+## })
+</code></pre>
+
+<p>计算 n 阶导数</p>
+
+<pre><code class="language-r">DD &lt;- function(expr, name, order = 1) {
+ if (order &lt; 1)
+     stop(&quot;'order' must be &gt;= 1&quot;)
+ if (order == 1)
+     D(expr, name) else DD(D(expr, name), name, order - 1)
+ }
+DD(NormDensity, &quot;x&quot;, 3)
+## 1/sqrt(2 * pi) * (exp(-x^2/2) * (2 * x/2) * (2/2) + ((exp(-x^2/2) * 
+## (2/2)-exp(-x^2/2)*(2*x/2)*(2*x/2))*(2*x/2)+
+## exp(-x^2/2) * (2 * x/2) * (2/2)))
+</code></pre>
+
+<h2 id="2-表达式转函数">2. 表达式转函数</h2>
+
+<p>很多时候我们使用R目的是计算，符号计算后希望可以直接代入计算，那么只需要在deriv中指定 <code>function.arg</code> 参数为 <code>TRUE</code>。</p>
+
+<pre><code class="language-r">DFun &lt;- deriv(NormDensity, &quot;x&quot;, function.arg = TRUE)
+DFun(1)
+## [1] 0.2419707
+## attr(,&quot;gradient&quot;)
+##               x
+## [1,] -0.2419707
+
+DFun(0)
+## [1] 0.3989423
+## attr(,&quot;gradient&quot;)
+## x 
+## [1,] 0
+</code></pre>
+
+<p>从计算结果可以看出，deriv不仅计算了导数值还计算了原函数在该处的函数值。我们可以作如下简单验证：</p>
+
+<pre><code class="language-r">Normfun &lt;- function(x) 1/sqrt(2 * pi) * exp(-x^2/2)
+Normfun(1)
+## [1] 0.2419707
+
+Normfun(0)
+## [1] 0.3989423
+</code></pre>
+
+<p>在讲另外一个将表达式转化为函数的方法之前，先来一个小插曲,有没有觉得之前计算 3 阶导数的结果太复杂了，说不定看到这的人，早就要吐槽了！其实这个问题已经有高人写了 <code>Deriv</code> 包 [1] 来解决，请看：</p>
+
+<pre><code class="language-r">DD(NormDensity, &quot;x&quot;, 3)
+## 1/sqrt(2 * pi) * (exp(-x^2/2) * (2 * x/2) * (2/2) + ((exp(-x^2/2) * 
+## (2/2)-exp(-x^2/2)*(2*x/2)*(2*x/2))*(2*x/2)+
+## exp(-x^2/2) * (2 * x/2) * (2/2)))
+
+library(Deriv)
+Simplify(DD(NormDensity, &quot;x&quot;, 3))
+## x * (3 - x^2) * exp(-(x^2/2))/sqrt(2 * pi)
+</code></pre>
+
+<p>三阶导数根本不在话下，如果想体验更高阶导数，不妨请读者动动手！表达式转函数的关键是理解函数其实是由参数列表 (args) 和函数体 (body) 两部分构成，以前面自编的 <code>Normfun</code> 函数为例：</p>
+
+<pre><code class="language-r">body(Normfun)
+## 1/sqrt(2 * pi) * exp(-x^2/2)
+
+args(Normfun)
+## function (x)
+## NULL
+</code></pre>
+
+<p>而函数体被一对花括号括住的就是表达式，查看 <code>eval</code> 函数帮助，我们可以知道 <code>eval</code> 计算的对象就是表达式。下面来个小示例以说明此问题：</p>
+
+<pre><code class="language-r">eval({x&lt;-2;x^2})
+eval(body(Normfun))
+Normfun(2)
+## [1] 4
+
+eval(body(Normfun))
+## [1] 0.05399097
+
+Normfun(2)
+## [1] 0.05399097
+</code></pre>
+
+<p>至此我们可以将表达式转化为函数，也许又有读者耐不住了，既然可以用 <code>eval</code> 函数直接计算，干嘛还要转化为函数？这个主要是写成函数比较方便，你可能需要重复计算不同的函数值，甚至放在你的算法的中间过程中……(此处省略500字，请读者自己理解)。终于又回到开篇处 <code>Tetrachoric</code> 函数，里面要计算任意阶导数，反正现在是没问题了，管他几阶，算完后化简转函数，请看：</p>
+
+<pre><code>Tetrachoric &lt;- function(x, j) {
+ (-1)^(j-1)/sqrt(factorial(j))*eval(Simplify(DD(NormDensity,&quot;x&quot;,j)))
+}
+Tetrachoric(2, 3)
+## [1] -0.04408344
+</code></pre>
+
+<p>有时候我们有的就是函数，这怎么计算导数呢？按道理，看完上面的过程，这已经不是什么问题啦！</p>
+
+<pre><code class="language-r">Simplify(D(body(Normfun), &quot;x&quot;))
+## -(x * exp(-(x^2/2))/sqrt(2 * pi))
+</code></pre>
+
+<p>作为本节的最后，献上函数图像，这个函数的作用主要是计算多元正态分布的概率，详细内容参看 [2]。</p>
+
+<p><img src="/images/Tech/R/r-symbol-calculate/Tetrachoric.jpg" alt="Tetrachoric" /></p>
+
+<h2 id="3-符号计算扩展包-ryacas">3.符号计算扩展包 <code>Ryacas</code></h2>
+
+<p>想要做更多的符号计算内容，如解方程，泰勒展开等，可以借助第三方R扩展包 <code>Ryacas</code> [3]。</p>
+
+<pre><code class="language-r">suppressPackageStartupMessages(library(Ryacas))
+yacas(&quot;Solve(x/(1+x) == a, x)&quot;)
+## [1] &quot;Starting Yacas!&quot;
+## expression(list(x == a/(1 - a)))
+
+yacas(expression(Expand((1 + x)^3)))
+## expression(x^3 + 3 * x^2 + 3 * x + 1)
+
+yacas(&quot;OdeSolve(y''== 4 * y)&quot;)
+## expression(C95 * exp(2 * x) + C99 * exp(-2 * x))
+
+yacas(&quot;Taylor(x, a, 3) Exp(x)&quot;)
+## expression(exp(a) + exp(a) * (x - a) + (x - a)^2 * exp(a)/2 + 
+## (x - a)^3 * exp(a)/6)
+</code></pre>
+
+<h2 id="4-符号计算在优化算法中的应用">4.符号计算在优化算法中的应用</h2>
+
+<p>学过运筹学或者数值分析课程的可能知道，有不少优化算法是要求导或者求梯度的，如拟牛顿算法，最速下降法和共轭梯度法，还有求解非线性方程组的拟牛顿算法及其修正算法。下面以求 <code>Rosenbrock</code> 函数的极小值为例：</p>
+
+<p><img src="/images/Tech/R/r-symbol-calculate/Rosenbrock2.png" alt="Rosenbrock2" /></p>
+
+<p>符号微分</p>
+
+<pre><code class="language-r">fun &lt;- expression(100 * (x2 - x1^2)^2 + (1 - x1)^2)
+D(fun, &quot;x1&quot;)
+## -(2 * (1 - x1) + 100 * (2 * (2 * x1 * (x2 - x1^2))))
+
+D(fun, &quot;x2&quot;)
+## 100 * (2 * (x2 - x1^2))
+</code></pre>
+
+<p>调用拟牛顿法求极值</p>
+
+<pre><code class="language-r">fr &lt;- function(x) {
+ x1 &lt;- x[1]
+ x2 &lt;- x[2]
+ 100 * (x2 - x1 * x1)^2 + (1 - x1)^2
+ }
+ grr1 &lt;- function(x) {
+ x1 &lt;- x[1]
+ x2 &lt;- x[2]
+ c(-400 * x1 * (x2 - x1 * x1) - 2 * (1 - x1),
+ 200 * (x2 - x1 * x1))
+ }
+optim(c(-1.2,1), fr, grr1, method = &quot;BFGS&quot;)
+## $par
+## [1] 1 1
+## 
+## $value
+## [1] 9.594956e-18
+## 
+## $counts
+## function gradient 
+## 110 43 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL
+</code></pre>
+
+<p>仿照 <code>Tetrachoric</code> 函数的写法，可以简写 <code>grr</code> 函数（这个写法可以稍微避免一点复制粘贴）：</p>
+
+<pre><code class="language-r">grr2&lt;-function(x){
+ x1 &lt;- x[1]
+ x2 &lt;- x[2]
+ c(eval(D(fun, &quot;x1&quot;)), eval(D(fun, &quot;x2&quot;))) # 表达式微分
+ }
+optim(c(-1.2,1), fr, grr2, method = &quot;BFGS&quot;)
+## $par
+## [1] 1 1
+## 
+## $value
+## [1] 9.594956e-18
+## 
+## $counts
+## function gradient 
+## 110 43 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL
+</code></pre>
+
+<p>如果调用 <code>numDeriv</code> 包 [4]，可以再少写点代码：</p>
+
+<pre><code class="language-r">library(numDeriv)
+grr3 &lt;- function(x) {
+ grad(fr, c(x[1], x[2])) # 函数微分
+ }
+optim(c(-1.2, 1), fr, grr3, method = &quot;BFGS&quot;)
+## $par
+## [1] 1 1
+## 
+## $value
+## [1] 9.595012e-18
+## 
+## $counts
+## function gradient 
+## 110 43 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL
+</code></pre>
+
+<p>如果一定要体现符号微分的过程，就调用 <code>Deriv</code> 包：</p>
+
+<pre><code class="language-r">library(Deriv)
+fr1 &lt;- function(x1, x2) { # 函数形式与上面不同
+ 100 * (x2 - x1 * x1)^2 + (1 - x1)^2
+ }
+grr2 &lt;- function(x) {
+ Deriv(fr1, cache.exp = FALSE)(x[1], x[2]) # 符号微分
+ }
+optim(c(-1.2, 1), fr, grr2, method = &quot;BFGS&quot;)
+## $par
+## [1] 1 1
+## 
+## $value
+## [1] 9.594956e-18
+## 
+## $counts
+## function gradient 
+## 110 43 
+## 
+## $convergence
+## [1] 0
+## 
+## $message
+## NULL
+</code></pre>
+
+<p>从上面可以看出函数（Deriv与optim）之间不兼容：Deriv与optim接受的函数形式不同，导致两个函数（<code>fr</code> 与 <code>fr1</code>）的参数列表的形式不一样，应能看出 <code>fr</code> 这种写法更好些。</p>
+
+<p>注：</p>
+
+<ol>
+<li>求极值和求解方程（组）往往有联系的，如统计中求参数的最大似然估计，有不少可以转化为求方程（组），如 <code>stat4</code> 包 [5] 的 mle 函数。</li>
+<li>目标函数可以求导，使用拟牛顿算法效果比较好，如上例中 <code>methods</code> 参数设置成 <code>CG</code>，结果就会不一样。</li>
+<li><code>nlm</code>、<code>optim</code> 和 <code>nlminb</code> 等函数都实现了带梯度的优化算法。</li>
+<li>不过话又说回来，真实的场景大多是目标函数不能求导，一阶导数都不能求,更多细节请读者参见 <code>optim</code> 函数帮助。</li>
+<li>还有一些做数值优化的 R 包，如 <code>BB</code> 包 [6] 求解大规模非线性系统，<code>numDeriv</code> 包是数值微分的通用求解器，更多的内容可参见 <a href="https://cran.rstudio.com/web/views/Optimization.html" target="_blank">https://cran.rstudio.com/web/views/Optimization.html</a>。</li>
+<li>除了数值优化还有做概率优化的 R 包，如仅遗传算法就有 <code>GA</code> [7]，<code>gafit</code> [8]，<code>galts</code> [9]，<code>mcga</code> [10]，<code>rgenoud</code> [11]，<code>gaoptim</code> [12]，<code>genalg</code> [13] 等 R 包，这方面的最新成果参考文献 [14]。</li>
+</ol>
+
+<h1 id="r软件信息">R软件信息</h1>
+
+<pre><code class="language-r">sessionInfo()
+## R version 3.1.3 (2015-03-09)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 8 x64 (build 9200)
+## 
+## locale:
+## [1] LC_COLLATE=Chinese (Simplified)_China.936 
+## [2] LC_CTYPE=Chinese (Simplified)_China.936 
+## [3] LC_MONETARY=Chinese (Simplified)_China.936
+## [4] LC_NUMERIC=C 
+## [5] LC_TIME=Chinese (Simplified)_China.936 
+## 
+## attached base packages:
+## [1] stats graphics grDevices utils datasets methods base 
+## 
+## other attached packages:
+## [1] numDeriv_2014.2-1 Ryacas_0.2-12.1 Deriv_3.7.0 knitr_1.13 
+## 
+## loaded via a namespace (and not attached):
+## [1] evaluate_0.9 formatR_1.3 highr_0.5.1 magrittr_1.5 
+## [5] RevoUtils_7.4.0 stringi_1.0-1 stringr_1.0.0 tools_3.1.3
+</code></pre>
+
+<h1 id="参考文献">参考文献</h1>
+
+<p>[1] Andrew Clausen and Serguei Sokol. Deriv: Symbolic Differentiation, 2016. R package version 3.7.0.</p>
+
+<p>[2] Bernard Harris and Andrew P. Soms. The use of the tetrachoric series for evaluating multivariate normal probabilities. Journal of Multivariate Analysis, 10(2):252–267, 1980.</p>
+
+<p>[3] Ryacas: R interface to the yacas computer algebra system, 2014. R package version 0.2-12.1.</p>
+
+<p>[4] Paul Gilbert and Ravi Varadhan. numDeriv: Accurate Numerical Derivatives, 2015. R package version 2014.2-1.</p>
+
+<p>[5] R Core Team. R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria, 2015.</p>
+
+<p>[6] Ravi Varadhan and Paul Gilbert. BB: An R package for solving a large system of nonlinear equations and for optimizing a high-dimensional nonlinear objective function. Journal of Statistical Software, 32(4):1–26, 2009.</p>
+
+<p>[7] Luca Scrucca. GA: Genetic Algorithms, 2016. R package version 3.0.1.</p>
+
+<p>[8] Telford Tendys. gafit: Genetic Algorithm for Curve Fitting, 2012. R package version 0.4.1.</p>
+
+<p>[9] Mehmet Hakan Satman. galts: Genetic algorithms and C-steps based LTS (Least Trimmed Squares) estimation, 2013. R package version 1.3.</p>
+
+<p>[10] Mehmet Hakan Satman. Machine coded genetic algorithms for real parameter optimization problems. Gazi University Journal of Science, 26(1):85–95, 2013.</p>
+
+<p>[11] Walter R. Mebane, Jr. and Jasjeet S. Sekhon. Genetic optimization using derivatives: The rgenoud package for R. Journal of Statistical Software, 42(11):1–26, 2011.</p>
+
+<p>[12] Fernando Tenorio. gaoptim: Genetic Algorithm optimization for real-based and permutation-based problems, 2013. R package version 1.1.</p>
+
+<p>[13] Egon Willighagen and Michel Ballings. genalg: R Based Genetic Algorithm, 2015. R package version 0.2.0.</p>
+
+<p>[14] L. Scrucca. On some extensions to GA package: hybrid optimisation, parallelisation and islands evolution. ArXiv e-prints, May 2016.</p>
+
+<p>[15] Yihui Xie. knitr: A General-Purpose Package for Dynamic Report Generation in R, 2016. R package version 1.13.</p>
+    </div>
+    
+
+<nav id="article-nav">
+    
+    <a href="/tech/2016/06/29/introduction-to-remap/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> REmap入门示例 z</div>
+    </a>
+    
+
+    
+    <a href="/tech/2016/08/10/wordcloud2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">可能是目前最好的词云解决方案wordcloud2 z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    </a>
+    
+</nav>
+<script type="text/javascript">
+document.addEventListener('keyup', function(e) {
+  if (e.target.nodeName.toUpperCase() != 'BODY') return;
+  var url = false;
+  if (e.which == 37) {  
+    
+    url = '\/tech\/2016\/06\/29\/introduction-to-remap\/';
+    
+  } else if (e.which == 39) {  
+    
+    url = '\/tech\/2016\/08\/10\/wordcloud2\/';
+    
+  }
+  if (url) window.location = url;
+});
+</script>
+
+
+
+  </article>
+
+  
+<section id="comments">
+  <div id="disqus_thread"></div>
+  <script src="/js/disqusloader.min.js"></script>
+  <script>
+  var disqus_config = function () {
+  
+    this.page.url = "https:\/\/haopen.github.io\/" + location.pathname;
+  
+  };
+  (function() {
+    var inIFrame = function() {
+      var iframe = true;
+      try { iframe = window.self !== window.top; } catch (e) {}
+      return iframe;
+    };
+    if (inIFrame()) return;
+    var disqus_js = 'https://haopeng.disqus.com/embed.js';
+    
+    if (location.hash.match(/^#comment/)) {
+      var d = document, s = d.createElement('script');
+      s.src = disqus_js; s.async = true;
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    } else {
+      disqusLoader('#disqus_thread', {
+        scriptUrl: disqus_js, laziness: 0, disqusConfig: disqus_config
+      });
+    }
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          
+          
+          <li><a href="https://github.com/haopen"><i class="fa fa-github" aria-hidden="true" title="Github"></i><span class="sr-only">Github</span></a></li>
+          <li><a href="https://twitter.com/haopeng"><i class="fa fa-twitter" aria-hidden="true" title="Twitter"></i><span class="sr-only">Twitter</span></a></li>
+          <li><a href="http://weibo.com/seplost"><i class="fa fa-weibo" aria-hidden="true" title="新浪微博"></i><span class="sr-only">新浪微博</span></a></li>
+          
+          <li><a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i><span class="sr-only">Attribution-NonCommercial-ShareAlike 4.0 International</span></a></li>
+          <li><a href="/"><i class="fa fa-copyright" aria-hidden="true" title="Copyright"></i> 2005 - 2017</a></li>
+        </ul>
+      </footer>
+    </div>
+
+	<div id="images-container"></div>
+
+    <script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/lib/jquery/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lightgallery.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-thumbnail.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
+	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
+	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
+    
+    <script async src="/js/center-img.js"></script>
+    
+    <script async src="/js/right-quote.js"></script>
+    
+    <script async src="/js/no-highlight.js"></script>
+    
+    <script async src="/js/fix-footnote.js"></script>
+    
+    <script async src="/js/local-search.js"></script>
+    
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/tex.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/matlab.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+	"HTML-CSS": {linebreaks: {automatic: true}},
+	SVG: {linebreaks: {automatic: true}}
+});
+</script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+  </body>
+</html>
+

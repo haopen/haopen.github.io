@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/tech/2017/07/30/define-a-new-command-with-different-amount-of-parameters-in-latex/</loc>
+    <lastmod>2017-07-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tech/2017/07/20/minted/</loc>
     <lastmod>2017-07-20T00:00:00+00:00</lastmod>
   </url>
@@ -88,11 +93,6 @@
   </url>
   
   <url>
-    <loc>/data/2016-01-07-data-mining-machine-learing/</loc>
-    <lastmod>2017-06-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tech/2017/06/16/python/</loc>
     <lastmod>2017-06-16T00:00:00+00:00</lastmod>
   </url>
@@ -118,8 +118,18 @@
   </url>
   
   <url>
+    <loc>/prof/2017/05/26/random-number-generation/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tech/2017/05/17/latex-url-linkbreak/</loc>
     <lastmod>2017-05-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data/2017/05/04/bandit-and-recommender-systems/</loc>
+    <lastmod>2017-05-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -148,7 +158,7 @@
   </url>
   
   <url>
-    <loc>/data/bias-variance-tradeoff/</loc>
+    <loc>/data/2017/03/25/bias-variance-tradeoff/</loc>
     <lastmod>2017-03-25T11:33:41+00:00</lastmod>
   </url>
   
@@ -203,6 +213,11 @@
   </url>
   
   <url>
+    <loc>/src/</loc>
+    <lastmod>2017-01-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/cn/</loc>
     <lastmod>2017-01-31T00:00:00+00:00</lastmod>
   </url>
@@ -248,7 +263,7 @@
   </url>
   
   <url>
-    <loc>/data/conjugate-gradient-for-regression/</loc>
+    <loc>/data/2016/11/23/conjugate-gradient-for-regression/</loc>
     <lastmod>2016-11-23T00:00:00+00:00</lastmod>
   </url>
   
@@ -263,13 +278,48 @@
   </url>
   
   <url>
+    <loc>/data/2016/10/10/data-mining-1-lasso/</loc>
+    <lastmod>2016-10-10T20:01:59+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tech/2016/09/23/js-css-webagent/</loc>
     <lastmod>2016-09-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
+    <loc>/tech/2016/08/10/wordcloud2/</loc>
+    <lastmod>2016-08-10T18:47:55+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tech/2016/07/08/r-symbol-calculate/</loc>
+    <lastmod>2016-07-08T19:48:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tech/2016/06/29/introduction-to-remap/</loc>
+    <lastmod>2016-06-29T09:57:01+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data/2016/06/23/machine-learning-statistics-and-computation/</loc>
+    <lastmod>2016-06-23T00:24:21+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tech/2016/06/19/spider/</loc>
     <lastmod>2016-06-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data/2016/06/04/five-useful-regression-models/</loc>
+    <lastmod>2016-06-04T00:15:20+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data/2016/05/24/credit-scoring-model-in-internet-credit-reporting/</loc>
+    <lastmod>2016-05-24T23:03:20+00:00</lastmod>
   </url>
   
   <url>
@@ -293,6 +343,11 @@
   </url>
   
   <url>
+    <loc>/data/2016/04/07/mxnet-r/</loc>
+    <lastmod>2016-04-07T10:13:38+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tech/2016/03/19/crypto-js-cookies/</loc>
     <lastmod>2016-03-19T00:00:00+00:00</lastmod>
   </url>
@@ -303,6 +358,16 @@
   </url>
   
   <url>
+    <loc>/data/2016/01/07/intro-to-chinese-nlp/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data/2016/01/07/data-mining-machine-learing/</loc>
+    <lastmod>2016-01-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tech/2016/01/03/chain-invoke-rest-sdk-api/</loc>
     <lastmod>2016-01-03T00:00:00+00:00</lastmod>
   </url>
@@ -310,6 +375,16 @@
   <url>
     <loc>/prof/2015/12/08/driving-restrictions-on-pollution/</loc>
     <lastmod>2015-12-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tech/2015/11/30/to-achieve-the-visualization-and-annotation-of-evolutionary-tree-using-ggtree/</loc>
+    <lastmod>2015-11-30T00:55:37+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tech/2015/11/24/ggfortify-visualization-in-one-line-of-code/</loc>
+    <lastmod>2015-11-24T10:41:34+00:00</lastmod>
   </url>
   
   <url>
@@ -330,6 +405,11 @@
   <url>
     <loc>/prof/2015/09/06/job-creation-destruction/</loc>
     <lastmod>2015-09-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data/2015/08/31/some-basic-ideas-and-methods-of-model-selection/</loc>
+    <lastmod>2015-08-31T08:29:54+00:00</lastmod>
   </url>
   
   <url>
@@ -360,6 +440,11 @@
   <url>
     <loc>/tech/2015/07/23/hello-r-markdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/data/2015/07/20/years-as-a-data-scientist/</loc>
+    <lastmod>2015-07-20T22:35:22+00:00</lastmod>
   </url>
   
   <url>
@@ -1113,6 +1198,26 @@
   </url>
   
   <url>
+    <loc>/src/python/</loc>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/src/r/</loc>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/src/machine-learning/</loc>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/src/deep-learning/</loc>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/arts/categories/</loc>
     <lastmod>2005-01-01T00:00:00+00:00</lastmod>
   </url>
@@ -1160,6 +1265,12 @@
   <url>
     <loc>/</loc>
     <lastmod>2005-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/0-%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/</loc>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -1325,6 +1436,12 @@
   </url>
   
   <url>
+    <loc>/tags/4-echarts/</loc>
+    <lastmod>2016-06-29T09:57:01+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/4-eval/</loc>
     <lastmod>2012-12-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -1343,8 +1460,20 @@
   </url>
   
   <url>
+    <loc>/tags/4-ggfortify/</loc>
+    <lastmod>2015-11-24T10:41:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/4-ggplot2/</loc>
     <lastmod>2017-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/4-ggtree/</loc>
+    <lastmod>2015-11-30T00:55:37+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1379,13 +1508,13 @@
   </url>
   
   <url>
-    <loc>/categories/4-hugo/</loc>
+    <loc>/tags/4-hugo/</loc>
     <lastmod>2017-07-10T23:49:00-23:59</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/4-hugo/</loc>
+    <loc>/categories/4-hugo/</loc>
     <lastmod>2017-07-10T23:49:00-23:59</lastmod>
     <priority>0</priority>
   </url>
@@ -1409,14 +1538,14 @@
   </url>
   
   <url>
-    <loc>/categories/4-latex/</loc>
-    <lastmod>2017-07-20T00:00:00+00:00</lastmod>
+    <loc>/tags/4-latex/</loc>
+    <lastmod>2017-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/4-latex/</loc>
-    <lastmod>2017-07-20T00:00:00+00:00</lastmod>
+    <loc>/categories/4-latex/</loc>
+    <lastmod>2017-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1428,19 +1557,19 @@
   
   <url>
     <loc>/tags/4-macro/</loc>
-    <lastmod>2017-02-09T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/4-markdown/</loc>
-    <lastmod>2016-12-30T21:49:57-07:00</lastmod>
+    <lastmod>2017-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/4-markdown/</loc>
     <lastmod>2017-06-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/4-markdown/</loc>
+    <lastmod>2016-12-30T21:49:57-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1457,13 +1586,13 @@
   </url>
   
   <url>
-    <loc>/categories/4-matlab/</loc>
+    <loc>/tags/4-matlab/</loc>
     <lastmod>2012-12-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/4-matlab/</loc>
+    <loc>/categories/4-matlab/</loc>
     <lastmod>2012-12-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -1559,14 +1688,14 @@
   </url>
   
   <url>
-    <loc>/categories/4-python/</loc>
-    <lastmod>2017-07-06T21:49:57-07:00</lastmod>
+    <loc>/tags/4-python/</loc>
+    <lastmod>2017-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/4-python/</loc>
-    <lastmod>2017-06-19T00:00:00+00:00</lastmod>
+    <loc>/categories/4-python/</loc>
+    <lastmod>2017-07-06T21:49:57-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1577,14 +1706,14 @@
   </url>
   
   <url>
-    <loc>/categories/4-r/</loc>
-    <lastmod>2017-06-15T00:00:00+00:00</lastmod>
+    <loc>/tags/4-r/</loc>
+    <lastmod>2017-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/4-r/</loc>
-    <lastmod>2017-03-29T00:00:00+00:00</lastmod>
+    <loc>/categories/4-r/</loc>
+    <lastmod>2017-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1595,8 +1724,20 @@
   </url>
   
   <url>
+    <loc>/tags/4-r-package/</loc>
+    <lastmod>2017-03-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/4-regression/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/4-remap/</loc>
+    <lastmod>2016-06-29T09:57:01+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1619,13 +1760,13 @@
   </url>
   
   <url>
-    <loc>/categories/4-sas/</loc>
+    <loc>/tags/4-sas/</loc>
     <lastmod>2017-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/4-sas/</loc>
+    <loc>/categories/4-sas/</loc>
     <lastmod>2017-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -1657,6 +1798,18 @@
   <url>
     <loc>/tags/4-word/</loc>
     <lastmod>2011-11-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/4-wordcloud/</loc>
+    <lastmod>2016-08-10T18:47:55+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/4-wordcloud2/</loc>
+    <lastmod>2016-08-10T18:47:55+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1709,6 +1862,12 @@
   </url>
   
   <url>
+    <loc>/tags/4-%E5%8F%AF%E8%A7%86%E5%8C%96/</loc>
+    <lastmod>2016-06-29T09:57:01+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/4-%E5%9B%BE%E5%BD%A2/</loc>
     <lastmod>2017-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -1717,6 +1876,12 @@
   <url>
     <loc>/tags/4-%E5%9B%BE%E7%89%87/</loc>
     <lastmod>2017-03-22T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/4-%E5%9C%B0%E5%9B%BE/</loc>
+    <lastmod>2016-06-29T09:57:01+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1781,6 +1946,12 @@
   </url>
   
   <url>
+    <loc>/tags/4-%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2015-11-24T10:41:34+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/4-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</loc>
     <lastmod>2013-01-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -1813,6 +1984,12 @@
   <url>
     <loc>/tags/4-%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84/</loc>
     <lastmod>2013-08-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/4-%E7%AC%A6%E5%8F%B7%E8%BF%90%E7%AE%97/</loc>
+    <lastmod>2016-07-08T19:48:37+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1877,6 +2054,12 @@
   </url>
   
   <url>
+    <loc>/tags/4-%E8%AF%8D%E4%BA%91/</loc>
+    <lastmod>2016-08-10T18:47:55+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/4-%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE/</loc>
     <lastmod>2017-07-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -1889,8 +2072,92 @@
   </url>
   
   <url>
+    <loc>/tags/4-%E8%BF%9B%E5%8C%96%E6%A0%91/</loc>
+    <lastmod>2015-11-30T00:55:37+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-0-1%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2016-06-04T00:15:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-boosting/</loc>
+    <lastmod>2016-04-07T10:13:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-dmlc/</loc>
+    <lastmod>2016-04-07T10:13:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-lasso/</loc>
+    <lastmod>2016-10-10T20:01:59+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-logistic-%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2016-05-24T23:03:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-nlp/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-r/</loc>
+    <lastmod>2016-04-07T10:13:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-xgboost/</loc>
+    <lastmod>2016-04-07T10:13:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E4%B8%93%E9%A2%98---%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2017-05-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E4%BA%92%E8%81%94%E7%BD%91%E5%BE%81%E4%BF%A1/</loc>
+    <lastmod>2016-05-24T23:03:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E4%BF%A1%E7%94%A8%E8%AF%84%E5%88%86/</loc>
+    <lastmod>2016-05-24T23:03:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/5-%E5%85%B1%E8%BD%AD%E6%A2%AF%E5%BA%A6/</loc>
     <lastmod>2016-11-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E5%88%86%E8%AF%8D/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1907,20 +2174,116 @@
   </url>
   
   <url>
-    <loc>/tags/5-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</loc>
-    <lastmod>2017-06-17T00:00:00+00:00</lastmod>
+    <loc>/tags/5-%E5%AE%9A%E5%BA%8F%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2016-06-04T00:15:20+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/5-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6/</loc>
-    <lastmod>2017-06-17T00:00:00+00:00</lastmod>
+    <loc>/tags/5-%E5%B0%8F%E5%BE%AE%E4%BF%A1%E8%B4%B7/</loc>
+    <lastmod>2016-05-24T23:03:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E5%BA%94%E7%94%A8/</loc>
+    <lastmod>2016-05-24T23:03:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F/</loc>
+    <lastmod>2017-05-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E6%95%B0%E6%8D%AE---%E6%B1%9F%E6%B9%96/</loc>
+    <lastmod>2015-07-20T22:35:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/</loc>
+    <lastmod>2016-01-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98---%E6%A8%A1%E5%9E%8B/</loc>
+    <lastmod>2016-10-10T20:01:59+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6---%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
+    <lastmod>2017-03-25T11:33:41+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6---%E7%BB%BC%E5%90%88/</loc>
+    <lastmod>2016-06-23T00:24:21+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6%E5%AE%B6/</loc>
+    <lastmod>2015-07-20T22:35:22+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E6%96%87%E6%9C%AC/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2017-06-17T00:00:00+00:00</lastmod>
+    <lastmod>2017-03-25T11:33:41+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BB%B7/</loc>
+    <lastmod>2015-08-31T08:29:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9/</loc>
+    <lastmod>2015-08-31T08:29:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2016-04-07T10:13:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2016-04-07T10:13:38+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E7%94%9F%E5%AD%98%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2016-06-04T00:15:20+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1931,8 +2294,68 @@
   </url>
   
   <url>
+    <loc>/categories/5-%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2016-11-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2016-06-04T00:15:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/5-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84/</loc>
     <lastmod>2016-11-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/</loc>
+    <lastmod>2015-08-31T08:29:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E7%BB%9F%E8%AE%A1%E5%AD%A6/</loc>
+    <lastmod>2016-06-23T00:24:21+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2015-08-31T08:29:54+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E8%AE%A1%E6%95%B0%E5%9B%9E%E5%BD%92/</loc>
+    <lastmod>2016-06-04T00:15:20+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6/</loc>
+    <lastmod>2016-06-23T00:24:21+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E8%AF%8D%E5%90%91%E9%87%8F/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/5-%E8%AF%8D%E6%80%A7%E6%A0%87%E6%B3%A8/</loc>
+    <lastmod>2016-01-07T03:50:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -2243,6 +2666,12 @@
   </url>
   
   <url>
+    <loc>/tags/6-%E6%A8%A1%E6%8B%9F/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/6-%E6%A8%AA%E6%88%AA%E6%9D%A1%E4%BB%B6/</loc>
     <lastmod>2014-08-03T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -2418,7 +2847,13 @@
   
   <url>
     <loc>/categories/6-%E7%BB%9F%E8%AE%A1%E5%AD%A6/</loc>
-    <lastmod>2013-07-15T00:00:00+00:00</lastmod>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/6-%E7%BB%9F%E8%AE%A1%E6%A3%80%E9%AA%8C/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -2483,6 +2918,12 @@
   </url>
   
   <url>
+    <loc>/tags/6-%E9%9A%8F%E6%9C%BA%E6%95%B0/</loc>
+    <lastmod>2017-05-26T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/6-%E9%9D%A2%E6%9D%BF%E6%95%B0%E6%8D%AE/</loc>
     <lastmod>2014-08-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -2528,7 +2969,7 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2007-01-24T00:00:00+00:00</lastmod>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -97,7 +97,7 @@
 
   <article class="article">
     
-    <span class="article-duration">3010 字</span>
+    <span class="article-duration">3012 字</span>
     
 
     
@@ -208,17 +208,14 @@ if __name__ == '__main__':
 
 <ol>
 <li><strong>正常</strong>继承模式，两个互不相关的类的多继承，这种情况 DFS 顺序正常，不会引起任何问题；</li>
-<li><strong>棱形</strong>继承模式，存在公共父类（<code>D</code>）的多继承（有种<code>D</code>字一族的感觉），这种情况下 DFS 必定经过公共父类（<code>D</code>），这时候想想，如果这个公共父类（<code>D</code>）有一些初始化属性或者方法，但是子类（<code>C</code>）又重写了这些属性或者方法，那么按照 DFS 顺序必定是会先找到<code>D</code>的属性或方法，那么<code>C</code>的属性或者方法将永远访问不到，导致<code>C</code>只能继承<strong>无法重写</strong>（override）。这也就是为什么新式类不使用 DFS 的原因，因为他们都有一个公共的祖先<code>object</code>。<br />
-</li>
+<li><strong>棱形</strong>继承模式，存在公共父类（<code>D</code>）的多继承（有种<code>D</code>字一族的感觉），这种情况下 DFS 必定经过公共父类（<code>D</code>），这时候想想，如果这个公共父类（<code>D</code>）有一些初始化属性或者方法，但是子类（<code>C</code>）又重写了这些属性或者方法，那么按照 DFS 顺序必定是会先找到<code>D</code>的属性或方法，那么<code>C</code>的属性或者方法将永远访问不到，导致<code>C</code>只能继承<strong>无法重写</strong>（override）。这也就是为什么新式类不使用 DFS 的原因，因为他们都有一个公共的祖先<code>object</code>。</li>
 </ol>
 
 <h2 id="python2-2版本-新式类-new-style-class-诞生">Python2.2版本：新式类（new-style class）诞生</h2>
 
 <p>为了使类和内置类型更加统一，引入了新式类。新式类的每个类都继承于一个基类，可以是自定义类或者其它类，默认承于<code>object</code>。子类可以调用父类的构造函数。</p>
 
-<p>这时有两种 MRO 的方法<br />
-1. 如果是经典类 MRO 为 <strong>DFS</strong>（深度优先搜索（子节点顺序：从左到右））。<br />
-2. 如果是新式类 MRO 为 <strong>BFS</strong>（广度优先搜索（子节点顺序：从左到右））。</p>
+<p>这时有两种 MRO 的方法1. 如果是经典类 MRO 为 <strong>DFS</strong>（深度优先搜索（子节点顺序：从左到右））。2. 如果是新式类 MRO 为 <strong>BFS</strong>（广度优先搜索（子节点顺序：从左到右））。</p>
 
 <pre><code class="language-python">Class A(object):   # 继承于object
     def __init__(self):
@@ -237,8 +234,7 @@ A.__mro__ # 可以查看新式类的顺序
 
 <ol>
 <li>正常继承模式，看起来正常，不过实际上感觉很别扭，比如<code>B</code>明明继承了<code>D</code>的某个属性（假设为<code>foo</code>），<code>C</code>中也实现了这个属性<code>foo</code>，那么 BFS 明明先访问<code>B</code>然后再去访问<code>C</code>，但是为什么<code>foo</code>这个属性会是<code>C</code>？这种应该先从<code>B</code>和<code>B</code>的父类开始找的顺序，我们称之为<strong>单调性</strong>。</li>
-<li>棱形继承模式，这种模式下面，BFS 的查找顺序虽然解了 DFS 顺序下面的棱形问题，但是它也是违背了查找的单调性。因为违背了单调性，所以 BFS 方法只在<code>Python2.2</code>中出现了，在其后版本中用<strong>C3算法</strong>取代了 BFS。<br />
-</li>
+<li>棱形继承模式，这种模式下面，BFS 的查找顺序虽然解了 DFS 顺序下面的棱形问题，但是它也是违背了查找的单调性。因为违背了单调性，所以 BFS 方法只在<code>Python2.2</code>中出现了，在其后版本中用<strong>C3算法</strong>取代了 BFS。</li>
 </ol>
 
 <h2 id="python2-3-到-python2-7-经典类-新式类和平发展">Python2.3 到 Python2.7：经典类、新式类和平发展</h2>
@@ -438,6 +434,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     

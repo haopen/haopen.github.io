@@ -158,8 +158,7 @@
 
 <ul>
 <li>中文：<a href="http://blog.jobbole.com/21351/" target="_blank">http://blog.jobbole.com/21351/</a></li>
-<li>英文：<a href="https://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python" target="_blank">https://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python</a><br />
-</li>
+<li>英文：<a href="https://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python" target="_blank">https://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python</a></li>
 </ul>
 
 <p>这里的语法基于 2.X，3.X 的一些细节，特别是<code>class className(..., metaclass=)</code>的语法参考廖的教程。</p>
@@ -199,8 +198,7 @@ MyObject = MyClass()
 <li>你可以将它赋值给一个变量；</li>
 <li>你可以拷贝它；</li>
 <li>你可以为它增加属性；</li>
-<li>你可以将它作为函数参数进行传递；<br />
-</li>
+<li>你可以将它作为函数参数进行传递；</li>
 </ul>
 
 <p>下面是示例：</p>
@@ -403,8 +401,7 @@ MyObject = MyClass()
 <li>如果是，Python 会在内存中通过<code>__metaclass__</code>创建一个名字为<code>Foo</code>的类对象（我说的是类对象，请紧跟我的思路）；</li>
 <li>如果 Python 没有找到<code>__metaclass__</code>，它会继续在<code>Bar</code>（父类）中寻找<code>__metaclass__</code>属性，并尝试做和前面同样的操作；</li>
 <li>如果 Python 在任何父类中都找不到<code>__metaclass__</code>，它就会在模块层次中去寻找<code>__metaclass__</code>，并尝试做同样的操作；</li>
-<li>如果还是找不到<code>__metaclass__</code>，Python 就会用内置的<code>type()</code>来创建这个类对象。<br />
-</li>
+<li>如果还是找不到<code>__metaclass__</code>，Python 就会用内置的<code>type()</code>来创建这个类对象。</li>
 </ul>
 
 <p>现在的问题就是，你可以在<code>__metaclass__</code>中放置些什么代码呢？答案就是：可以创建一个类的东西。那么什么可以用来创建一个类呢？<code>type()</code>，或者任何使用到<code>type()</code>或者子类化<code>type()</code>的东东都可以。</p>
@@ -531,8 +528,7 @@ class UpperAttrMetaclass(type):
 <ol>
 <li>拦截类的创建；</li>
 <li>修改类；</li>
-<li>返回修改之后的类。<br />
-</li>
+<li>返回修改之后的类。</li>
 </ol>
 
 <h1 id="为什么要用-metaclass-类而不是函数">为什么要用 metaclass 类而不是函数？</h1>
@@ -544,8 +540,7 @@ class UpperAttrMetaclass(type):
 <li>你可以使用 OOP 编程。元类可以从元类中继承而来，改写父类的方法。元类甚至还可以使用元类；</li>
 <li>你可以把代码组织的更好。当你使用元类的时候肯定不会是像我上面举的这种简单场景，通常都是针对比较复杂的问题。将多个方法归总到一个类中会很有帮助，也会使得代码更容易阅读；</li>
 <li>你可以使用<code>__new__()</code>, <code>__init__()</code>以及<code>__call__()</code>这样的特殊方法。它们能帮你处理不同的任务。就算通常你可以把所有的东西都在<code>__new__()</code>里处理掉，有些人还是觉得用<code>__init__()</code>更舒服些；</li>
-<li>哇哦，这东西的名字是<code>metaclass</code>，肯定非善类，我要小心！<br />
-</li>
+<li>哇哦，这东西的名字是<code>metaclass</code>，肯定非善类，我要小心！</li>
 </ol>
 
 <h1 id="究竟为什么要使用元类">究竟为什么要使用元类？</h1>
@@ -586,8 +581,7 @@ print guy.age
 
 <ol>
 <li><a href="Monkey patching" target="_blank">Monkey patching</a>；</li>
-<li>类装饰器；<br />
-</li>
+<li>类装饰器；</li>
 </ol>
 
 <p>当你需要动态修改类时，99%的时间里你最好使用上面这两种技术。当然了，其实在99%的时间里你根本就不需要动态修改类</p>
@@ -699,6 +693,7 @@ document.addEventListener('keyup', function(e) {
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-fullscreen.min.js"></script>
 	<script type="text/javascript" src="/lib/lightGallery/js/lg-zoom.min.js"></script>
 	<script type="text/javascript" src="/js/lgGallery_Prepare.js"></script>
+	<script type="text/javascript" src="/js/load-pangu.js"></script>
     
     <script async src="/js/center-img.js"></script>
     
