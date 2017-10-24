@@ -259,8 +259,8 @@
     
 
     
-    <a href="/prof/2015/08/14/water-pollution/" id="article-nav-newer" class="article-nav-link-wrap">
-      <div class="article-nav-title">工业化的后果：水污染与癌症 - 慧航 - 专栏 <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
+    <a href="/prof/2015/08/13/quasi-experiment/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title">在社会科学研究中，研究者巧妙地运用过哪些「自然实验」？z <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></div>
     </a>
     
 </nav>
@@ -274,7 +274,7 @@ document.addEventListener('keyup', function(e) {
     
   } else if (e.which == 39) {  
     
-    url = '\/prof\/2015\/08\/14\/water-pollution\/';
+    url = '\/prof\/2015\/08\/13\/quasi-experiment\/';
     
   }
   if (url) window.location = url;
@@ -367,6 +367,22 @@ MathJax.Hub.Config({
 	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
 	"HTML-CSS": {linebreaks: {automatic: true}},
 	SVG: {linebreaks: {automatic: true}}
+});
+
+MathJax.Hub.Config({
+  TeX: {
+    extensions: ["boldsymbol.js"],
+    Augment: {
+      Definitions: {macros: {
+        bm: 'myBoldSwitch'
+      }},
+      Parse: {prototype: {
+        myBoldSwitch: function (name) {
+          this.stack.env.boldsymbol = true;
+        }
+      }}
+    }
+  }
 });
 </script>
 <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>

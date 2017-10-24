@@ -71,7 +71,7 @@ div#TOC ul {
 }
 div#TOC a:link {
   border-bottom: initial;
-  box-shadow: initial;
+  box-shadow: none;
   color: #000000;
 }
 div#TOC a:hover {
@@ -274,6 +274,9 @@ pre .nohighlight {
 }
 .footnotes {
   font-size: .9em;
+}
+.footnotes ol li p {
+	margin: 0em;
 }
 
 @media (min-width: 600px) {

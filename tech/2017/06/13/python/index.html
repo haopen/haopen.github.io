@@ -97,7 +97,7 @@
 
   <article class="article">
     
-    <span class="article-duration">10440 字</span>
+    <span class="article-duration">10553 字</span>
     
 
     
@@ -142,7 +142,56 @@
 </div>
 
 
-    
+     <nav id="TableOfContents">
+<ul>
+<li><a href="#python-简介">Python 简介</a>
+<ul>
+<li><a href="#python解释器">Python解释器</a></li>
+<li><a href="#第一个-python-程序">第一个 Python 程序</a></li>
+<li><a href="#python代码运行助手">Python代码运行助手</a></li>
+</ul></li>
+<li><a href="#python-基础语法">Python 基础语法</a>
+<ul>
+<li><a href="#预备知识">预备知识</a></li>
+<li><a href="#基础语法">基础语法</a></li>
+<li><a href="#数据类型">数据类型</a>
+<ul>
+<li><a href="#字符串">字符串</a></li>
+<li><a href="#list-和-tuple">List 和 tuple</a></li>
+<li><a href="#dict-和-list">dict 和 list</a></li>
+</ul></li>
+<li><a href="#循环-判断">循环、判断</a>
+<ul>
+<li><a href="#if-语句">if 语句</a></li>
+<li><a href="#循环语句-for-和-while">循环语句：for 和 while</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#函数">函数</a>
+<ul>
+<li><a href="#定义函数">定义函数</a></li>
+<li><a href="#更稳健的函数">更稳健的函数</a></li>
+<li><a href="#函数的参数">函数的参数</a>
+<ul>
+<li><a href="#默认参数-必须指向不变对象">默认参数(必须指向不变对象)</a></li>
+<li><a href="#可变参数-函数内部为-tuple-定义和引用都可以用">可变参数(函数内部为 tuple，定义和引用都可以用 *)</a></li>
+<li><a href="#关键字参数-函数内部为-dict-定义和引用都可以用">关键字参数(函数内部为 dict，定义和引用都可以用 **)</a></li>
+<li><a href="#命名关键字参数-限制参数名称-单独的">命名关键字参数(限制参数名称，单独的 *)</a></li>
+</ul></li>
+<li><a href="#递归">递归</a></li>
+</ul></li>
+<li><a href="#高级特性">高级特性</a>
+<ul>
+<li><a href="#切片">切片</a></li>
+<li><a href="#迭代">迭代</a></li>
+<li><a href="#list-生成器">list 生成器</a>
+<ul>
+<li><a href="#静态-list">静态 list</a></li>
+<li><a href="#动态-list-generator">动态 list：generator</a></li>
+</ul></li>
+<li><a href="#迭代器">迭代器</a></li>
+</ul></li>
+</ul>
+</nav> 
     <div class="article-content cn" id="articleContent">
       
 
@@ -155,9 +204,10 @@
 <ul>
 <li><strong>CPython</strong>: 官方版本的解释器。这个解释器是用 C 语言开发的，所以叫 CPython。在命令行下运行 Python 就是启动 CPython 解释器。</li>
 <li><strong>IPython</strong>: CPython 之上的一个交互式解释器，也就是说，IPython 只是在交互方式上有所增强，但是执行 Python 代码的功能和 CPython 是完全一样的。好比很多国产浏览器虽然外观不同，但内核其实都是调用了 IE。</li>
-<li><strong>CPython</strong> 用<code>&gt;&gt;&gt;</code>作为提示符，而 IPython 用<code>In [序号]:</code>作为提示符。</li>
+<li><strong>CPython</strong> 用 <code>&gt;&gt;&gt;</code> 作为提示符，而 IPython 用 <code>In [序号]:</code> 作为提示符。</li>
 <li><strong>Jython</strong>: 运行在 Java 平台上的 Python 解释器，可以直接把 Python 代码编译成 Java 字节码执行。</li>
 <li><strong>IronPython</strong>: 和 Jython 类似，只不过 IronPython 是运行在微软 .Net 平台上的 Python 解释器，可以直接把 Python 代码编译成 .Net 的字节码。</li>
+<li><strong>Jupyter Notebook</strong>: 此前被称为IPython notebook，是一个交互式笔记本，支持运行 40 多种编程语言。本质是一个 Web 应用程序，便于创建和共享文学化程序文档，支持实时代码，数学方程，可视化和 markdown。 用途包括数据清理和转换、数值模拟、统计建模、机器学习等等。</li>
 </ul>
 
 <!-- more -->
@@ -1054,6 +1104,22 @@ MathJax.Hub.Config({
 	TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
 	"HTML-CSS": {linebreaks: {automatic: true}},
 	SVG: {linebreaks: {automatic: true}}
+});
+
+MathJax.Hub.Config({
+  TeX: {
+    extensions: ["boldsymbol.js"],
+    Augment: {
+      Definitions: {macros: {
+        bm: 'myBoldSwitch'
+      }},
+      Parse: {prototype: {
+        myBoldSwitch: function (name) {
+          this.stack.env.boldsymbol = true;
+        }
+      }}
+    }
+  }
 });
 </script>
 <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>

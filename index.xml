@@ -3639,9 +3639,10 @@ max(*args)
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;CPython&lt;/strong&gt;: 官方版本的解释器。这个解释器是用 C 语言开发的，所以叫 CPython。在命令行下运行 Python 就是启动 CPython 解释器。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;IPython&lt;/strong&gt;: CPython 之上的一个交互式解释器，也就是说，IPython 只是在交互方式上有所增强，但是执行 Python 代码的功能和 CPython 是完全一样的。好比很多国产浏览器虽然外观不同，但内核其实都是调用了 IE。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;CPython&lt;/strong&gt; 用&lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt;作为提示符，而 IPython 用&lt;code&gt;In [序号]:&lt;/code&gt;作为提示符。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CPython&lt;/strong&gt; 用 &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt; 作为提示符，而 IPython 用 &lt;code&gt;In [序号]:&lt;/code&gt; 作为提示符。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Jython&lt;/strong&gt;: 运行在 Java 平台上的 Python 解释器，可以直接把 Python 代码编译成 Java 字节码执行。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;IronPython&lt;/strong&gt;: 和 Jython 类似，只不过 IronPython 是运行在微软 .Net 平台上的 Python 解释器，可以直接把 Python 代码编译成 .Net 的字节码。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Jupyter Notebook&lt;/strong&gt;: 此前被称为IPython notebook，是一个交互式笔记本，支持运行 40 多种编程语言。本质是一个 Web 应用程序，便于创建和共享文学化程序文档，支持实时代码，数学方程，可视化和 markdown。 用途包括数据清理和转换、数值模拟、统计建模、机器学习等等。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;!-- more --&gt;
