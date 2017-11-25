@@ -1535,13 +1535,13 @@
   </url>
   
   <url>
-    <loc>/tags/4-hugo/</loc>
+    <loc>/categories/4-hugo/</loc>
     <lastmod>2017-07-10T23:49:00-23:59</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/4-hugo/</loc>
+    <loc>/tags/4-hugo/</loc>
     <lastmod>2017-07-10T23:49:00-23:59</lastmod>
     <priority>0</priority>
   </url>
@@ -1565,13 +1565,13 @@
   </url>
   
   <url>
-    <loc>/tags/4-latex/</loc>
+    <loc>/categories/4-latex/</loc>
     <lastmod>2017-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/4-latex/</loc>
+    <loc>/tags/4-latex/</loc>
     <lastmod>2017-07-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -1589,14 +1589,14 @@
   </url>
   
   <url>
-    <loc>/tags/4-markdown/</loc>
-    <lastmod>2017-06-15T00:00:00+00:00</lastmod>
+    <loc>/categories/4-markdown/</loc>
+    <lastmod>2016-12-30T21:49:57-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/4-markdown/</loc>
-    <lastmod>2016-12-30T21:49:57-07:00</lastmod>
+    <loc>/tags/4-markdown/</loc>
+    <lastmod>2017-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1613,13 +1613,13 @@
   </url>
   
   <url>
-    <loc>/tags/4-matlab/</loc>
+    <loc>/categories/4-matlab/</loc>
     <lastmod>2012-12-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/4-matlab/</loc>
+    <loc>/tags/4-matlab/</loc>
     <lastmod>2012-12-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -1715,14 +1715,14 @@
   </url>
   
   <url>
-    <loc>/tags/4-python/</loc>
-    <lastmod>2017-06-19T00:00:00+00:00</lastmod>
+    <loc>/categories/4-python/</loc>
+    <lastmod>2017-07-06T21:49:57-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/4-python/</loc>
-    <lastmod>2017-07-06T21:49:57-07:00</lastmod>
+    <loc>/tags/4-python/</loc>
+    <lastmod>2017-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1733,14 +1733,14 @@
   </url>
   
   <url>
-    <loc>/tags/4-r/</loc>
-    <lastmod>2017-03-29T00:00:00+00:00</lastmod>
+    <loc>/categories/4-r/</loc>
+    <lastmod>2017-06-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/4-r/</loc>
-    <lastmod>2017-06-15T00:00:00+00:00</lastmod>
+    <loc>/tags/4-r/</loc>
+    <lastmod>2017-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -1787,13 +1787,13 @@
   </url>
   
   <url>
-    <loc>/tags/4-sas/</loc>
+    <loc>/categories/4-sas/</loc>
     <lastmod>2017-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/4-sas/</loc>
+    <loc>/tags/4-sas/</loc>
     <lastmod>2017-06-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -2273,14 +2273,14 @@
   </url>
   
   <url>
-    <loc>/tags/5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2017-03-25T11:33:41+00:00</lastmod>
+    <loc>/categories/5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2005-01-18T00:00:00+00:00</lastmod>
+    <loc>/tags/5-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2017-03-25T11:33:41+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -2297,13 +2297,13 @@
   </url>
   
   <url>
-    <loc>/tags/5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>/categories/5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2016-04-07T10:13:38+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>/tags/5-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2016-04-07T10:13:38+00:00</lastmod>
     <priority>0</priority>
   </url>

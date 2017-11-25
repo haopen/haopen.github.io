@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Hugo 0.25" />
+<meta name="generator" content="Hugo 0.31" />
 
 
-<title>比较回归系数的四种方法 - 彭浩 ~ Hao Peng</title>
-<meta property="og:title" content="比较回归系数的四种方法 - 彭浩 ~ Hao Peng">
+<title>比较回归系数的四种方法 z - 彭浩 ~ Hao Peng</title>
+<meta property="og:title" content="比较回归系数的四种方法 z - 彭浩 ~ Hao Peng">
 
 
 
@@ -101,7 +101,7 @@
     
 
     
-<h1 class="article-title">比较回归系数的四种方法
+<h1 class="article-title">比较回归系数的四种方法 z
 
 
 </h1>
@@ -114,8 +114,8 @@
     
     <a href="/prof/index.xml" type="application/rss+xml" target="_blank"><i class="fa fa-rss" aria-hidden="true" title="RSS feed"></i></a>
     
-    <a href="https://twitter.com/home?status=%E6%AF%94%E8%BE%83%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95&#43;%2Fprof%2F2017%2F06%2F27%2Fcomparing-coefficients%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
-    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E6%AF%94%E8%BE%83%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2017%2F06%2F27%2Fcomparing-coefficients%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
+    <a href="https://twitter.com/home?status=%E6%AF%94%E8%BE%83%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95&#43;z&#43;%2Fprof%2F2017%2F06%2F27%2Fcomparing-coefficients%2F&#43;via&#43;%40haopeng" target="_blank"><i class="fa fa-twitter" aria-hidden="true" title="Share via Twitter"></i></a>
+    <a href="http://service.weibo.com/share/share.php?content=utf-8&amp;title=%E6%AF%94%E8%BE%83%E5%9B%9E%E5%BD%92%E7%B3%BB%E6%95%B0%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95&#43;z&#43;%40%E5%BD%AD%E6%B5%A9&amp;url=%2Fprof%2F2017%2F06%2F27%2Fcomparing-coefficients%2F" target="_blank"><i class="fa fa-weibo" aria-hidden="true" title="分享到新浪微博"></i></a>
     <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fa fa-cc" aria-hidden="true" title="Attribution-NonCommercial-ShareAlike 4.0 International"></i></a>
     
 	
@@ -228,7 +228,7 @@ xtreg is not supported by suest</code></pre>
 <h1><span class="header-section-number">6</span> 不能用 Hausman test - 慧航</h1>
 <p><a href="https://www.zhihu.com/question/23642050" class="uri">https://www.zhihu.com/question/23642050</a></p>
 <p>Hausman test 的应用场景：存在同一组系数的两个估计<code>b1</code>和<code>b2</code>，满足：在 H0 的条件下，<code>b1</code>和<code>b2</code>均一致，但是<code>b1</code>是最有效的在 H1 的条件下，<code>b1</code>是不一致的，但是<code>b2</code>是一致的，Hausman 证明了，在 H0 的条件下，<code>var(b2-b1)=var(b2)-var(b1)</code>故而可以构造统计量，<code>(b2-b1)(var(b2)-var(b1))^(-1)(b2-b1)~chi2</code>。</p>
-<p>比如，检验线性回归是不是有内生性：H0：不具有内生性 H1：具有内生性那么<code>b1</code>就是 ols 回归结果，<code>b2</code>就是 iv 的回归结果。同样，检验固定效应还是随机效应，<code>b1</code>是随机效应结果，<code>b2</code>是固定效应结果。但如果比较的是不是组回归的系数，显然不满足 Hausman test 的前提，所以绝对不能用 Hausman test。</p>
+<p>比如，检验线性回归是不是有内生性：H0：不具有内生性 H1：具有内生性那么<code>b1</code>就是 ols 回归结果，<code>b2</code>就是 iv 的回归结果。同样，检验固定效应还是随机效应，<code>b1</code>是随机效应结果，<code>b2</code>是固定效应结果。但如果比较的是不同组回归的系数，显然不满足 Hausman test 的前提，所以绝对不能用 Hausman test。</p>
 </div>
 <div class="footnotes">
 <hr />
